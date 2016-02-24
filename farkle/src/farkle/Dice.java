@@ -64,18 +64,25 @@ public class Dice {
 	 * Allows the player to select dice to add/remove to the banking area 
 	 * in a given turn.
 	 */
-	private void banking(){
+	public void banking(int die, int value){
 		
 		/*
 		 * if the dice is clicked...
 		 * Add the dice to bank array.
 		*/
-		
-		
+		bank[die] = value;
+		System.out.println("DEBUG bank["+die+"] = "+ bank[die]);
 		/*
 		 * if the dice that is banked in the same turn is clicked again...
-		 * Remove the dice from bank array and add back to roll aray
+		 * Remove the dice from bank array and add back to roll array
 		 */
+	}
+	
+	
+	
+	public void unBank(int die){
+		bank[die]=0;
+		System.out.println("DEBUG unBank["+die+"] = "+ bank[die]);
 	}
 	
 }
