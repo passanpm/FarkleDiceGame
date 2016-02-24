@@ -1,0 +1,167 @@
+package farkle;
+
+import farkle.*;
+
+import java.awt.EventQueue;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
+import java.awt.Canvas;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Panel;
+import java.awt.TextField;
+import javax.swing.JLabel;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
+import java.awt.TextArea;
+import javax.swing.JTextField;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+public class FarkleUI {
+
+	private JFrame frmFarkle;
+	private JTextField txtScore;
+	int[] roll;
+	private Dice d6 = new Dice();
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FarkleUI window = new FarkleUI();
+					window.frmFarkle.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public FarkleUI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmFarkle = new JFrame();
+		frmFarkle.setTitle("Farkle");
+		frmFarkle.setBounds(100, 100, 450, 300);
+		frmFarkle.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frmFarkle.setJMenuBar(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mntmNewGame = new JMenuItem("New Game...");
+		mnFile.add(mntmNewGame);
+		
+		JMenuItem mntmSave = new JMenuItem("Save");
+		mnFile.add(mntmSave);
+		
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mnFile.add(mntmExit);
+		frmFarkle.getContentPane().setLayout(null);
+		
+		Panel panel = new Panel();
+		panel.setBounds(0, 0, 434, 38);
+		frmFarkle.getContentPane().add(panel);
+		
+		txtScore = new JTextField();
+		txtScore.setEditable(false);
+		txtScore.setText("Score: ");
+		panel.add(txtScore);
+		txtScore.setColumns(10);
+		
+		JButton btnRoll = new JButton("Roll");
+		btnRoll.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				d6.roll(6, 1, 6);
+				roll = d6.getRoll();
+			}
+		});
+		btnRoll.setBounds(168, 201, 90, 28);
+		frmFarkle.getContentPane().add(btnRoll);
+		
+		int die = 0;
+		Image img;
+		//Sets up Dice
+		JLabel lblDice = new JLabel("");
+		die = roll[0];
+		System.out.println(die);
+		switch(die){
+		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
+		lblDice.setIcon(new ImageIcon(img));
+				break;
+		case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
+		lblDice.setIcon(new ImageIcon(img));
+				break;
+		case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
+		lblDice.setIcon(new ImageIcon(img));
+				break;
+		case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
+		lblDice.setIcon(new ImageIcon(img));
+				break;
+		case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
+		lblDice.setIcon(new ImageIcon(img));
+				break;
+		case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
+		lblDice.setIcon(new ImageIcon(img));
+				break;
+		}
+		
+		
+		lblDice.setBounds(32, 90, 56, 99);
+		frmFarkle.getContentPane().add(lblDice);
+		
+		JLabel label = new JLabel("");
+		Image img2 = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
+		label.setIcon(new ImageIcon(img2));
+		label.setBounds(100, 90, 56, 99);
+		frmFarkle.getContentPane().add(label);
+		
+		JLabel label_1 = new JLabel("");
+		Image img3 = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
+		label_1.setIcon(new ImageIcon(img3));
+		label_1.setBounds(168, 90, 56, 99);
+		frmFarkle.getContentPane().add(label_1);
+		
+		JLabel label_2 = new JLabel("");
+		Image img4 = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
+		label_2.setIcon(new ImageIcon(img4));
+		label_2.setBounds(236, 90, 56, 99);
+		frmFarkle.getContentPane().add(label_2);
+		
+		JLabel label_3 = new JLabel("");
+		Image img5 = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
+		label_3.setIcon(new ImageIcon(img5));
+		label_3.setBounds(304, 90, 56, 99);
+		frmFarkle.getContentPane().add(label_3);
+		
+		JLabel label_4 = new JLabel("");
+		Image img6 = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
+		label_4.setIcon(new ImageIcon(img6));
+		label_4.setBounds(372, 90, 56, 99);
+		frmFarkle.getContentPane().add(label_4);
+		
+		
+		
+	}
+}

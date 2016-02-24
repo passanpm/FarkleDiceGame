@@ -1,0 +1,549 @@
+!SESSION 2016-02-17 14:47:13.176 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.8.0_65
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.ui 2 2 2016-02-18 11:48:50.326
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2016-02-22 10:38:57.863 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.8.0_65
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.ui 2 2 2016-02-22 10:50:17.751
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2016-02-22 11:28:27.062
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at http://download.eclipse.org/windowbuilder/WB/release/R201309271200/4.2/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2016-02-22 11:28:27.125
+!MESSAGE No repository found at http://download.eclipse.org/windowbuilder/WB/release/R201309271200/4.2/.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2016-02-22 11:28:27.880
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at http://download.eclipse.org/windowbuilder/WB/release/R201109201200/3.7/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2016-02-22 11:28:27.896
+!MESSAGE No repository found at http://download.eclipse.org/windowbuilder/WB/release/R201109201200/3.7/.
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-02-22 11:28:52.569
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:28:52.569
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.569
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.569
+!MESSAGE Missing requirement: Maven Integration for Eclipse 1.6.0.20150526-2032 (org.eclipse.m2e.core 1.6.0.20150526-2032) requires 'bundle org.eclipse.osgi 3.10.0' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.569
+!MESSAGE Missing requirement: Maven Integration for Eclipse 1.6.1.20150625-2338 (org.eclipse.m2e.core 1.6.1.20150625-2338) requires 'bundle org.eclipse.osgi 3.10.0' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.569
+!MESSAGE Missing requirement: Maven Integration for Eclipse 1.6.2.20150902-0002 (org.eclipse.m2e.core 1.6.2.20150902-0002) requires 'bundle org.eclipse.osgi 3.10.0' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:28:52.569
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.569
+!MESSAGE From: Maven Integration for Eclipse 1.6.0.20150526-2032 (org.eclipse.m2e.core.ui 1.6.0.20150526-2032)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.569
+!MESSAGE To: bundle org.eclipse.m2e.core [1.6.0,1.7.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:28:52.569
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.569
+!MESSAGE From: Maven Integration for Eclipse 1.6.1.20150625-2338 (org.eclipse.m2e.core.ui 1.6.1.20150625-2338)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.569
+!MESSAGE To: bundle org.eclipse.m2e.core [1.6.0,1.7.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:28:52.570
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.570
+!MESSAGE From: Maven Integration for Eclipse 1.6.2.20150902-0002 (org.eclipse.m2e.core.ui 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.570
+!MESSAGE To: bundle org.eclipse.m2e.core [1.6.0,1.7.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:28:52.570
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.570
+!MESSAGE From: m2e logback appender 1.6.2.20150902-0002 (org.eclipse.m2e.logback.appender 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.570
+!MESSAGE To: bundle org.eclipse.m2e.core.ui [1.6.0,1.7.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:28:52.570
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.570
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.570
+!MESSAGE To: org.eclipse.m2e.logback.appender [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-02-22 11:28:52.583
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:28:52.583
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE Missing requirement: Maven Integration for Eclipse 1.6.0.20150526-2032 (org.eclipse.m2e.core 1.6.0.20150526-2032) requires 'bundle org.eclipse.osgi 3.10.0' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE Missing requirement: Maven Integration for Eclipse 1.6.1.20150625-2338 (org.eclipse.m2e.core 1.6.1.20150625-2338) requires 'bundle org.eclipse.osgi 3.10.0' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE Missing requirement: Maven Integration for Eclipse 1.6.2.20150902-0002 (org.eclipse.m2e.core 1.6.2.20150902-0002) requires 'bundle org.eclipse.osgi 3.10.0' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:28:52.583
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE From: Maven Integration for Eclipse 1.6.0.20150526-2032 (org.eclipse.m2e.core.ui 1.6.0.20150526-2032)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE To: bundle org.eclipse.m2e.core [1.6.0,1.7.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:28:52.583
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE From: Maven Integration for Eclipse 1.6.1.20150625-2338 (org.eclipse.m2e.core.ui 1.6.1.20150625-2338)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE To: bundle org.eclipse.m2e.core [1.6.0,1.7.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:28:52.583
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE From: Maven Integration for Eclipse 1.6.2.20150902-0002 (org.eclipse.m2e.core.ui 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE To: bundle org.eclipse.m2e.core [1.6.0,1.7.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:28:52.583
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE From: m2e logback appender 1.6.2.20150902-0002 (org.eclipse.m2e.logback.appender 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE To: bundle org.eclipse.m2e.core.ui [1.6.0,1.7.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:28:52.583
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:28:52.583
+!MESSAGE To: org.eclipse.m2e.logback.appender [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-02-22 11:29:07.873
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:29:07.873
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.873
+!MESSAGE Software being installed: m2e - Maven Integration for Eclipse (includes Incubating components) 1.6.2.20150902-0002 (org.eclipse.m2e.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.873
+!MESSAGE Missing requirement: Maven Integration for Eclipse 1.6.0.20150526-2032 (org.eclipse.m2e.core 1.6.0.20150526-2032) requires 'bundle org.eclipse.osgi 3.10.0' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.873
+!MESSAGE Missing requirement: Maven Integration for Eclipse 1.6.1.20150625-2338 (org.eclipse.m2e.core 1.6.1.20150625-2338) requires 'bundle org.eclipse.osgi 3.10.0' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.873
+!MESSAGE Missing requirement: Maven Integration for Eclipse 1.6.2.20150902-0002 (org.eclipse.m2e.core 1.6.2.20150902-0002) requires 'bundle org.eclipse.osgi 3.10.0' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:29:07.873
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.873
+!MESSAGE From: Maven Integration for Eclipse 1.6.2.20150902-0002 (org.eclipse.m2e.core.ui 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.873
+!MESSAGE To: bundle org.eclipse.m2e.core [1.6.0,1.7.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:29:07.873
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.873
+!MESSAGE From: m2e - Maven Integration for Eclipse (includes Incubating components) 1.6.2.20150902-0002 (org.eclipse.m2e.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.873
+!MESSAGE To: org.eclipse.m2e.core.ui [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2016-02-22 11:29:07.889
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:29:07.889
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.889
+!MESSAGE Software being installed: m2e - Maven Integration for Eclipse (includes Incubating components) 1.6.2.20150902-0002 (org.eclipse.m2e.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.889
+!MESSAGE Missing requirement: Maven Integration for Eclipse 1.6.0.20150526-2032 (org.eclipse.m2e.core 1.6.0.20150526-2032) requires 'bundle org.eclipse.osgi 3.10.0' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.889
+!MESSAGE Missing requirement: Maven Integration for Eclipse 1.6.1.20150625-2338 (org.eclipse.m2e.core 1.6.1.20150625-2338) requires 'bundle org.eclipse.osgi 3.10.0' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.889
+!MESSAGE Missing requirement: Maven Integration for Eclipse 1.6.2.20150902-0002 (org.eclipse.m2e.core 1.6.2.20150902-0002) requires 'bundle org.eclipse.osgi 3.10.0' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:29:07.889
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.889
+!MESSAGE From: Maven Integration for Eclipse 1.6.2.20150902-0002 (org.eclipse.m2e.core.ui 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.889
+!MESSAGE To: bundle org.eclipse.m2e.core [1.6.0,1.7.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:29:07.889
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.889
+!MESSAGE From: m2e - Maven Integration for Eclipse (includes Incubating components) 1.6.2.20150902-0002 (org.eclipse.m2e.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:29:07.889
+!MESSAGE To: org.eclipse.m2e.core.ui [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2016-02-22 11:30:32.763
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at http://download.eclipse.org/windowbuilder/WB/release/R201109201200/3.7/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:636)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2016-02-22 11:30:32.763
+!MESSAGE No repository found at http://download.eclipse.org/windowbuilder/WB/release/R201109201200/3.7/.
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2016-02-22 11:31:04.476
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at http://download.eclipse.org/windowbuilder/WB/release/R201309271200/4.2/.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:636)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2016-02-22 11:31:04.476
+!MESSAGE No repository found at http://download.eclipse.org/windowbuilder/WB/release/R201309271200/4.2/.
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 2 0 2016-02-22 11:34:46.935
+!MESSAGE Could not remove temporary backup directory (it is safe to manually delete it and its contents): C:\Users\TJB46_~1\AppData\Local\Temp\SDKProfile_2a614f413220_c0a83801168b
+!SESSION 2016-02-22 11:35:01.395 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.8.0_65
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 11:36:36.060
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 11:36:36.060
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:36:36.060
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:36:36.060
+!MESSAGE Missing requirement: m2e logback configuration 1.6.2.20150902-0002 (org.eclipse.m2e.logback.configuration 1.6.2.20150902-0002) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:36:36.060
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:36:36.060
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:36:36.060
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 11:36:36.076
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 11:36:36.076
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:36:36.076
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:36:36.076
+!MESSAGE Missing requirement: m2e logback configuration 1.6.2.20150902-0002 (org.eclipse.m2e.logback.configuration 1.6.2.20150902-0002) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:36:36.076
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:36:36.076
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:36:36.076
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 11:40:17.886
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 11:40:17.886
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:40:17.886
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.5.2.20150413-2215 (org.eclipse.m2e.logback.feature.feature.group 1.5.2.20150413-2215)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:40:17.886
+!MESSAGE Missing requirement: m2e logback configuration 1.5.2.20150413-2215 (org.eclipse.m2e.logback.configuration 1.5.2.20150413-2215) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:40:17.886
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:40:17.886
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.5.2.20150413-2215 (org.eclipse.m2e.logback.feature.feature.group 1.5.2.20150413-2215)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:40:17.886
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.5.2.20150413-2215]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 11:40:17.902
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 11:40:17.902
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:40:17.902
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.5.2.20150413-2215 (org.eclipse.m2e.logback.feature.feature.group 1.5.2.20150413-2215)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:40:17.902
+!MESSAGE Missing requirement: m2e logback configuration 1.5.2.20150413-2215 (org.eclipse.m2e.logback.configuration 1.5.2.20150413-2215) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 11:40:17.902
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:40:17.902
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.5.2.20150413-2215 (org.eclipse.m2e.logback.feature.feature.group 1.5.2.20150413-2215)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:40:17.902
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.5.2.20150413-2215]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 11:40:52.812
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 11:40:52.812
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:40:52.812
+!MESSAGE Software being installed: m2e - Maven Integration for Eclipse (includes Incubating components) 1.6.0.20150526-2032 (org.eclipse.m2e.feature.feature.group 1.6.0.20150526-2032)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:40:52.812
+!MESSAGE Missing requirement: m2e - Maven Integration for Eclipse (includes Incubating components) 1.6.0.20150526-2032 (org.eclipse.m2e.feature.feature.group 1.6.0.20150526-2032) requires 'org.eclipse.jem.util 0.0.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 11:40:52.827
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 11:40:52.827
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:40:52.827
+!MESSAGE Software being installed: m2e - Maven Integration for Eclipse (includes Incubating components) 1.6.0.20150526-2032 (org.eclipse.m2e.feature.feature.group 1.6.0.20150526-2032)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:40:52.827
+!MESSAGE Missing requirement: m2e - Maven Integration for Eclipse (includes Incubating components) 1.6.0.20150526-2032 (org.eclipse.m2e.feature.feature.group 1.6.0.20150526-2032) requires 'org.eclipse.jem.util 0.0.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 11:41:06.781
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 11:41:06.781
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:41:06.781
+!MESSAGE Software being installed: m2e - Maven Integration for Eclipse 1.4.1.20140328-1905 (org.eclipse.m2e.feature.feature.group 1.4.1.20140328-1905)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:41:06.781
+!MESSAGE Missing requirement: m2e - Maven Integration for Eclipse 1.4.1.20140328-1905 (org.eclipse.m2e.feature.feature.group 1.4.1.20140328-1905) requires 'org.eclipse.jem.util 0.0.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 11:41:06.781
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 11:41:06.781
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:41:06.781
+!MESSAGE Software being installed: m2e - Maven Integration for Eclipse 1.4.1.20140328-1905 (org.eclipse.m2e.feature.feature.group 1.4.1.20140328-1905)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 11:41:06.781
+!MESSAGE Missing requirement: m2e - Maven Integration for Eclipse 1.4.1.20140328-1905 (org.eclipse.m2e.feature.feature.group 1.4.1.20140328-1905) requires 'org.eclipse.jem.util 0.0.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 13:45:22.791
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 13:45:22.791
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:45:22.791
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.5.2.20150413-2215 (org.eclipse.m2e.logback.feature.feature.group 1.5.2.20150413-2215)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:45:22.791
+!MESSAGE Missing requirement: m2e logback configuration 1.5.2.20150413-2215 (org.eclipse.m2e.logback.configuration 1.5.2.20150413-2215) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 13:45:22.791
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:45:22.791
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.5.2.20150413-2215 (org.eclipse.m2e.logback.feature.feature.group 1.5.2.20150413-2215)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:45:22.791
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.5.2.20150413-2215]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 13:45:22.807
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 13:45:22.807
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:45:22.807
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.5.2.20150413-2215 (org.eclipse.m2e.logback.feature.feature.group 1.5.2.20150413-2215)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:45:22.807
+!MESSAGE Missing requirement: m2e logback configuration 1.5.2.20150413-2215 (org.eclipse.m2e.logback.configuration 1.5.2.20150413-2215) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 13:45:22.807
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:45:22.807
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.5.2.20150413-2215 (org.eclipse.m2e.logback.feature.feature.group 1.5.2.20150413-2215)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:45:22.807
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.5.2.20150413-2215]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 13:56:21.767
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 13:56:21.767
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:56:21.767
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:56:21.767
+!MESSAGE Missing requirement: m2e logback configuration 1.6.2.20150902-0002 (org.eclipse.m2e.logback.configuration 1.6.2.20150902-0002) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 13:56:21.767
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:56:21.767
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:56:21.767
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 13:56:21.782
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 13:56:21.782
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:56:21.782
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:56:21.782
+!MESSAGE Missing requirement: m2e logback configuration 1.6.2.20150902-0002 (org.eclipse.m2e.logback.configuration 1.6.2.20150902-0002) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 13:56:21.782
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:56:21.782
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:56:21.782
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.6.2.20150902-0002]
+!SESSION 2016-02-22 13:57:59.636 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.8.0_65
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 13:58:31.580
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 13:58:31.580
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:58:31.580
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:58:31.580
+!MESSAGE Missing requirement: m2e logback configuration 1.6.2.20150902-0002 (org.eclipse.m2e.logback.configuration 1.6.2.20150902-0002) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 13:58:31.580
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:58:31.580
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:58:31.580
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 13:58:31.597
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 13:58:31.597
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:58:31.597
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:58:31.598
+!MESSAGE Missing requirement: m2e logback configuration 1.6.2.20150902-0002 (org.eclipse.m2e.logback.configuration 1.6.2.20150902-0002) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 13:58:31.598
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:58:31.598
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:58:31.598
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 13:59:05.888
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 13:59:05.888
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:59:05.888
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:59:05.888
+!MESSAGE Missing requirement: m2e logback configuration 1.6.2.20150902-0002 (org.eclipse.m2e.logback.configuration 1.6.2.20150902-0002) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 13:59:05.889
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:59:05.889
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:59:05.889
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 13:59:05.902
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 13:59:05.902
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:59:05.902
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:59:05.902
+!MESSAGE Missing requirement: m2e logback configuration 1.6.2.20150902-0002 (org.eclipse.m2e.logback.configuration 1.6.2.20150902-0002) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 13:59:05.903
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:59:05.903
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 13:59:05.903
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 14:00:27.920
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 14:00:27.920
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:00:27.920
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:00:27.920
+!MESSAGE Missing requirement: m2e logback configuration 1.6.2.20150902-0002 (org.eclipse.m2e.logback.configuration 1.6.2.20150902-0002) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 14:00:27.920
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:00:27.920
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:00:27.920
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 14:00:27.933
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 14:00:27.933
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:00:27.933
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:00:27.933
+!MESSAGE Missing requirement: m2e logback configuration 1.6.2.20150902-0002 (org.eclipse.m2e.logback.configuration 1.6.2.20150902-0002) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 14:00:27.933
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:00:27.934
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:00:27.934
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 14:01:29.037
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 14:01:29.037
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:01:29.037
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:01:29.037
+!MESSAGE Missing requirement: m2e logback configuration 1.6.2.20150902-0002 (org.eclipse.m2e.logback.configuration 1.6.2.20150902-0002) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 14:01:29.037
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:01:29.037
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:01:29.037
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.6.2.20150902-0002]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 10053 2016-02-22 14:01:29.043
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 10053 2016-02-22 14:01:29.043
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:01:29.043
+!MESSAGE Software being installed: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:01:29.043
+!MESSAGE Missing requirement: m2e logback configuration 1.6.2.20150902-0002 (org.eclipse.m2e.logback.configuration 1.6.2.20150902-0002) requires 'bundle ch.qos.logback.slf4j 0.9.24' but it could not be found
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2016-02-22 14:01:29.043
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:01:29.043
+!MESSAGE From: m2e - slf4j over logback logging (Optional) 1.6.2.20150902-0002 (org.eclipse.m2e.logback.feature.feature.group 1.6.2.20150902-0002)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2016-02-22 14:01:29.044
+!MESSAGE To: org.eclipse.m2e.logback.configuration [1.6.2.20150902-0002]
+!SESSION 2016-02-22 14:07:04.452 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.8.0_65
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-02-22 14:08:08.524
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\tjb46_000'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-02-22 14:09:21.906
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-02-22 14:09:21.946
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-02-22 14:09:22.393
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2016-02-22 14:09:22.426
+!MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+!SESSION 2016-02-22 15:27:34.518 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.8.0_65
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -data C:\Users\tjb46_000\Documents\Farkle\workspace -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-02-22 15:27:47.833
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\tjb46_000'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

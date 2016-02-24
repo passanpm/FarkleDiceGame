@@ -1,0 +1,7 @@
+package farkle;
+import farkle.*;
+
+public class Player {
+	Dice die = new Dice();
+	Rules rule = new Rules();
+}

@@ -1,0 +1,17 @@
+package farkle;
+/*
+ * This class determines different rule sets. 
+ * The rule set will be chosen at the beginning of the game, and the selection
+ * will be found in the Player class.
+ */
+public class Rules {
+
+	public int choice= 0;
+	public void Rule1(){
+		choice = 1;
+	}
+	public void Rule2(){
+		choice = 2;
+	}
+	
+}
