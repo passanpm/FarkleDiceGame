@@ -6,8 +6,6 @@ public class Dice {
 	private static int[] roll = new int[6];
 	private static int[] bank = new int[6];
 	
-	public static int score;
-	
 	
 	/*
 	 * Will look in the roll array for a farkle. If there is a farkle found, it will return

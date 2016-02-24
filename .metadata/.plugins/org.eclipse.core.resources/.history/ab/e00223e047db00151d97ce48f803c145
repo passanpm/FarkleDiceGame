@@ -1,0 +1,16 @@
+package farkle;
+
+public class Standard {
+	
+	Dice die = new Dice();
+	
+	public static void scoreBanking(){
+		die.resetDice();
+	}
+	
+	public static void farkleRoll(){
+		Gameplay.endTurn();
+	}
+	
+
+}

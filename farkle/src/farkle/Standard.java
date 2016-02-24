@@ -1,13 +1,18 @@
 package farkle;
 
-public class Standard {
+public class Standard{
 	
-	Dice die = new Dice();
-	
-	public static void scoreBanking(){
+	//calculate value of bank
+	public static void scoreBanking(int bank){
+		
+		//Standard rules for banking
+		
+		int bankScore = 0;
+		Gameplay.updateScore(Gameplay.roller, bankScore);
 		
 	}
 	
+	//farkle
 	public static void farkleRoll(){
 		Gameplay.endTurn();
 	}

@@ -1,0 +1,15 @@
+package farkle;
+
+public class Standard {
+	
+	public static void scoreBanking(int bank){
+		int bankScore;
+		Gameplay.playerScores.get(Gameplay.roller);
+	}
+	
+	public static void farkleRoll(){
+		Gameplay.endTurn();
+	}
+	
+
+}

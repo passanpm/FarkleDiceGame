@@ -1,0 +1,14 @@
+package farkle;
+
+public class Standard {
+	
+	public static int scoreBanking(int bank){
+		
+	}
+	
+	public static void farkleRoll(){
+		Gameplay.endTurn();
+	}
+	
+
+}
