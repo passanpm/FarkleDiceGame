@@ -1,20 +1,36 @@
 package farkle;
 
-public class Standard{
+public class Standard extends FarkleUI{
 	
 	//calculate value of bank
-	public static void scoreBanking(int bank){
+	public void bank(int[] dice){
 		
-		//Standard rules for banking
+		//updates score of current roller
+		for (int i = 0; i<6; i++){
+			
+			if (dice[i+1] != dice[i]){
+				if (i == 0){
+					rollerScore += 100;
+				}else if (i == 4){
+					rollerScore += 50;
+				}
+			}
+			
+			
+		}
 		
-		int bankScore = 0;
-		Gameplay.updateScore(Gameplay.roller, bankScore);
+		
+		
 		
 	}
 	
-	//farkle
-	public static void farkleRoll(){
-		Gameplay.endTurn();
+	//farkle -> next player
+	public static void farkle(){
+		if (roller < players.size()-1){
+			roller++;
+		}else{
+			roller = 0;
+		};
 	}
 	
 

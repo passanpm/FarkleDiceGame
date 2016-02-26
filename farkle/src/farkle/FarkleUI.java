@@ -34,7 +34,7 @@ import java.awt.event.MouseListener;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
-public class FarkleUI {
+public class FarkleUI extends Gameplay{
 
 	private JFrame frmFarkle;
 	private JTextField txtScore;
