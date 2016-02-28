@@ -1,7 +1,7 @@
 package farkle;
 import java.util.Random;
 
-public class Dice {
+public class Dice{
 
 	private static int[] roll = new int[6];
 	private static int[] bank = new int[6];

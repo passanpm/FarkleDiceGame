@@ -40,6 +40,7 @@ public class FarkleUI extends Gameplay{
 	private JTextField txtScore;
 	int[] roll = new int[6];
 	private Dice d6 = new Dice();
+	Standard standard = new Standard();
 	boolean endTurn = false;
 	int die = 0;
 	private int score = 0;
@@ -69,6 +70,12 @@ public class FarkleUI extends Gameplay{
 	 */
 	public FarkleUI() {
 		initialize();
+	}
+	
+	public void updateScore() {
+		standard.bank();
+		score = standard.getScore();
+		txtScore.setText("Score: " + score);
 	}
 
 	/**
@@ -214,8 +221,10 @@ public class FarkleUI extends Gameplay{
 						d6.banking(0, roll[0]);
 						if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
 							lblDice.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+							standard.addToSet(0, roll[0]);
 			            }else{
 			            	lblDice.setBorder(border);
+			            	standard.addToSingle(0, roll[0]);
 			            }
 						borderOption=true;
 						//end turn button listener; blackout
@@ -230,6 +239,8 @@ public class FarkleUI extends Gameplay{
 						lblDice.setBorder(null);
 						borderOption=false;
 					}
+					
+					updateScore();
 				}
 			});
 		
@@ -266,8 +277,10 @@ public class FarkleUI extends Gameplay{
 					d6.banking(1, roll[1]);
 					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
 						label.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+						standard.addToSet(1, roll[1]);
 		            }else{
 		            	label.setBorder(border);
+		            	standard.addToSet(1, roll[1]);
 		            }
 					borderOption1=true;
 					//end turn button listener; blackout
@@ -282,6 +295,7 @@ public class FarkleUI extends Gameplay{
 					label.setBorder(null);
 					borderOption1=false;
 				}
+				updateScore();
 			}
 		});
 		
@@ -314,8 +328,10 @@ public class FarkleUI extends Gameplay{
 					d6.banking(2, roll[2]);
 					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
 						label_1.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+						standard.addToSet(2, roll[2]);
 		            }else{
 		            	label_1.setBorder(border);
+		            	standard.addToSet(2, roll[2]);
 		            }
 					borderOption2=true;
 					//end turn button listener; blackout
@@ -330,6 +346,7 @@ public class FarkleUI extends Gameplay{
 					label_1.setBorder(null);
 					borderOption2=false;
 				}
+				updateScore();
 			}
 		});
 		
@@ -361,8 +378,10 @@ public class FarkleUI extends Gameplay{
 					d6.banking(3, roll[3]);
 					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
 						label_2.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+						standard.addToSet(3, roll[3]);
 		            }else{
 		            	label_2.setBorder(border);
+		            	standard.addToSingle(3, roll[3]);
 		            }
 					borderOption3=true;
 					//end turn button listener; blackout
@@ -377,6 +396,7 @@ public class FarkleUI extends Gameplay{
 					label_2.setBorder(null);
 					borderOption3=false;
 				}
+				updateScore();
 			}
 		});
 		
@@ -408,8 +428,10 @@ public class FarkleUI extends Gameplay{
 					d6.banking(4, roll[4]);
 					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
 						label_3.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+						standard.addToSet(4, roll[4]);
 		            }else{
 		            	label_3.setBorder(border);
+		            	standard.addToSingle(4, roll[4]);
 		            }
 					borderOption4=true;
 					//end turn button listener; blackout
@@ -424,6 +446,7 @@ public class FarkleUI extends Gameplay{
 					label_3.setBorder(null);
 					borderOption4=false;
 				}
+				updateScore();
 			}
 		});
 		
@@ -452,12 +475,14 @@ public class FarkleUI extends Gameplay{
 			@Override
 			public void mouseClicked(MouseEvent e){
 				if(!borderOption5){
-					d6.banking(4, roll[4]);
+					d6.banking(5, roll[5]);
 
 					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
 						label_4.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+						standard.addToSet(5, roll[5]);
 		            }else{
 		            	label_4.setBorder(border);
+		            	standard.addToSingle(5, roll[5]);
 		            }
 					
 					borderOption5=true;
@@ -473,6 +498,7 @@ public class FarkleUI extends Gameplay{
 					label_4.setBorder(null);
 					borderOption5=false;
 				}
+				updateScore();
 			}
 		});
 		
