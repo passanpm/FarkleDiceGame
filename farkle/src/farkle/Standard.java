@@ -8,20 +8,29 @@ public class Standard{
 	ArrayList<Integer> set = new ArrayList<Integer>();
 	ArrayList<Integer> single = new ArrayList<Integer>();
 	
+	public void debug(){
+		System.out.println("single: " + single);
+		System.out.println("set: " + set);
+	}
+	
 	public void addToSingle(int value){
 		single.add(value);
+		System.out.println("single: " + single);
 	}
 	
 	public void addToSet(int value){
 		set.add(value);
+		System.out.println("set: " + set);
 	}
 	
 	public void removeFromSingle(int die){
-		single.remove(single.size()-1);
+		single.remove(Integer.valueOf(die));
+		System.out.println("single: " + single);
 	}
 	
 	public void removeFromSet(int die){
-		set.remove(single.size()-1);
+		set.remove(Integer.valueOf(die));
+		System.out.println("set: " + set);
 	}
 	
 	//calculate value of bank
@@ -32,21 +41,31 @@ public class Standard{
 		for (int i = 0; i < single.size(); i++){
 			if (single.get(i) == 1){
 				bank += 100;
-				single.set(i, 0);
+				single.remove(Integer.valueOf(1));
 			}else if (single.get(i) == 5){
 				bank += 50;
-				single.set(i, 0);
+				single.remove(Integer.valueOf(5));
 			}
 		}
 		
 		//set of 3 calc
 		if (set.size() == 3){
-			bank += set.get(0) * 100;
+			if (set.get(0) == 1){
+				bank += 1000;
+			}else{
+				bank += set.get(0) * 100;
+			}
 			set.clear();
 		}
 		if (set.size() == 6){
-			bank += set.get(0) * 100;
-			bank += set.get(3) * 100;
+			if (set.get(0) == 1){
+				bank += 1000;
+			}else if (set.get(3) == 1){
+				bank += 1000;
+			}else{
+				bank += set.get(0) * 100;
+				bank += set.get(3) * 100;
+			}
 			set.clear();
 		}
 		

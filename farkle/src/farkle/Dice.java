@@ -1,4 +1,5 @@
 package farkle;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Dice{
@@ -55,6 +56,7 @@ public class Dice{
 	
 	
 	public int[] getRoll(){
+		System.out.println("ROLL: " + Arrays.toString(roll));
 		return roll;
 	}
 	
@@ -69,7 +71,7 @@ public class Dice{
 		 * Add the dice to bank array.
 		*/
 		bank[die] = value;
-		System.out.println("DEBUG bank["+die+"] = "+ bank[die]);
+		//System.out.println("DEBUG bank["+die+"] = "+ bank[die]);
 		/*
 		 * if the dice that is banked in the same turn is clicked again...
 		 * Remove the dice from bank array and add back to roll array
@@ -80,7 +82,7 @@ public class Dice{
 	
 	public void unBank(int die){
 		bank[die]=0;
-		System.out.println("DEBUG unBank["+die+"] = "+ bank[die]);
+		//System.out.println("DEBUG unBank["+die+"] = "+ bank[die]);
 	}
 	
 }

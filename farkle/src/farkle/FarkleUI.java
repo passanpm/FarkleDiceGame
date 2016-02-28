@@ -2,7 +2,7 @@ package farkle;
 
 import java.awt.EventQueue;
 import java.awt.Image;
-
+import javax.swing.border.LineBorder;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -72,10 +72,77 @@ public class FarkleUI extends Gameplay{
 		initialize();
 	}
 	
+	public void restart(){
+		score = 0;
+		txtScore.setText("Score: " + score);
+		d6.roll(6, 1, 6);
+		roll = d6.getRoll();
+		standard = new Standard();
+		
+		lblDice.setBorder(null);
+		label.setBorder(null);
+		label_1.setBorder(null);
+		label_2.setBorder(null);
+		label_3.setBorder(null);
+		label_4.setBorder(null);
+		diceIMG(0, lblDice);
+		diceIMG(1, label);
+		diceIMG(2, label_1);
+		diceIMG(3, label_2);
+		diceIMG(4, label_3);
+		diceIMG(5, label_4);
+		
+	}
+	
+	public void diceIMG(int a, JLabel j){
+		die = roll[a];
+		switch(die){
+		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
+				j.setIcon(new ImageIcon(img));
+				
+				d6.banking(0, die);
+				break;
+		case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
+				j.setIcon(new ImageIcon(img));
+				value = 2;
+				break;
+		case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
+				j.setIcon(new ImageIcon(img));
+				value = 3;
+				break;
+		case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
+				j.setIcon(new ImageIcon(img));
+				value = 4;
+				break;
+		case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
+				j.setIcon(new ImageIcon(img));
+				value = 5;
+				break;
+		case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
+				j.setIcon(new ImageIcon(img));
+				value = 6;
+				break;
+		}
+	}
+	
+	public void removeDice(JLabel label, int i){
+		if ( ((LineBorder) label.getBorder()).getLineColor() == Color.RED ){
+			standard.removeFromSet(roll[i]);
+		}else{
+			standard.removeFromSingle(roll[i]);
+		}
+	}
+	
 	public void updateScore() {
 		standard.bank();
 		score = standard.getScore();
 		txtScore.setText("Score: " + score);
+	}
+	
+	public void blackout(JLabel dice){
+		if (borderOption==true){
+			dice.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
+		}
 	}
 
 	/**
@@ -227,14 +294,11 @@ public class FarkleUI extends Gameplay{
 			            	standard.addToSingle(roll[0]);
 			            }
 						borderOption=true;
-						//end turn button listener; blackout
-						btnRoll.addActionListener(new ActionListener(){
-							public void actionPerformed(ActionEvent e){
-								lblDice.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
-							}
-						});
 					}
 					else{
+						
+						removeDice(lblDice, 0);
+						
 						d6.unBank(0);
 						lblDice.setBorder(null);
 						borderOption=false;
@@ -280,17 +344,13 @@ public class FarkleUI extends Gameplay{
 						standard.addToSet(roll[1]);
 		            }else{
 		            	label.setBorder(border);
-		            	standard.addToSet(roll[1]);
+		            	standard.addToSingle(roll[1]);
 		            }
 					borderOption1=true;
-					//end turn button listener; blackout
-					btnRoll.addActionListener(new ActionListener(){
-						public void actionPerformed(ActionEvent e){
-							label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
-						}
-					});
 				}
 				else{
+					removeDice(label,1);
+					
 					d6.unBank(1);
 					label.setBorder(null);
 					borderOption1=false;
@@ -331,17 +391,12 @@ public class FarkleUI extends Gameplay{
 						standard.addToSet(roll[2]);
 		            }else{
 		            	label_1.setBorder(border);
-		            	standard.addToSet(roll[2]);
+		            	standard.addToSingle(roll[2]);
 		            }
 					borderOption2=true;
-					//end turn button listener; blackout
-					btnRoll.addActionListener(new ActionListener(){
-						public void actionPerformed(ActionEvent e){
-							label_1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
-						}
-					});
 				}
 				else{
+					removeDice(label_1, 2);
 					d6.unBank(2);
 					label_1.setBorder(null);
 					borderOption2=false;
@@ -384,14 +439,9 @@ public class FarkleUI extends Gameplay{
 		            	standard.addToSingle(roll[3]);
 		            }
 					borderOption3=true;
-					//end turn button listener; blackout
-					btnRoll.addActionListener(new ActionListener(){
-						public void actionPerformed(ActionEvent e){
-							label_2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
-						}
-					});
 				}
 				else{
+					removeDice(label_2, 3);
 					d6.unBank(3);
 					label_2.setBorder(null);
 					borderOption3=false;
@@ -434,14 +484,9 @@ public class FarkleUI extends Gameplay{
 		            	standard.addToSingle(roll[4]);
 		            }
 					borderOption4=true;
-					//end turn button listener; blackout
-					btnRoll.addActionListener(new ActionListener(){
-						public void actionPerformed(ActionEvent e){
-							label_3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
-						}
-					});
 				}
 				else{
+					removeDice(label_3, 4);
 					d6.unBank(4);
 					label_3.setBorder(null);
 					borderOption4=false;
@@ -486,14 +531,9 @@ public class FarkleUI extends Gameplay{
 		            }
 					
 					borderOption5=true;
-					//end turn button listener; blackout
-					btnRoll.addActionListener(new ActionListener(){
-						public void actionPerformed(ActionEvent e){
-							label_4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
-						}
-					});
 				}
 				else{
+					removeDice(label_4, 5);
 					d6.unBank(4);
 					label_4.setBorder(null);
 					borderOption5=false;
@@ -505,8 +545,14 @@ public class FarkleUI extends Gameplay{
 		//end turn button listener
 		btnEndTurn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				
-				
+				blackout(lblDice);
+				blackout(label);
+				blackout(label_1);
+				blackout(label_2);
+				blackout(label_3);
+				blackout(label_4);
+				restart();
+				standard.debug();
 			}
 		});
 		
@@ -516,148 +562,23 @@ public class FarkleUI extends Gameplay{
 			public void actionPerformed(ActionEvent e){
 				
 				
-				
 				d6.roll(6, 1, 6);
 				roll = d6.getRoll();
 				die = roll[0];
 				
-				switch(die){
-				case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-						lblDice.setIcon(new ImageIcon(img));
-						break;
-				case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-						lblDice.setIcon(new ImageIcon(img));
-						break;
-				case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-						lblDice.setIcon(new ImageIcon(img));
-						break;
-				case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-						lblDice.setIcon(new ImageIcon(img));
-						break;
-				case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-						lblDice.setIcon(new ImageIcon(img));
-						break;
-				case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-						lblDice.setIcon(new ImageIcon(img));
-						break;
-				}
+				lblDice.setBorder(null);
+				label.setBorder(null);
+				label_1.setBorder(null);
+				label_2.setBorder(null);
+				label_3.setBorder(null);
+				label_4.setBorder(null);
 				
-				
-				
-				
-				
-				die = roll[1];
-				switch(die){
-				case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-						label.setIcon(new ImageIcon(img));
-						break;
-				case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-						label.setIcon(new ImageIcon(img));
-						break;
-				case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-						label.setIcon(new ImageIcon(img));
-						break;
-				case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-						label.setIcon(new ImageIcon(img));
-						break;
-				case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-						label.setIcon(new ImageIcon(img));
-						break;
-				case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-						label.setIcon(new ImageIcon(img));
-						break;
-				}
-				
-				
-				
-				die = roll[2];
-				switch(die){
-				case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-						label_1.setIcon(new ImageIcon(img));
-						break;
-				case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-						label_1.setIcon(new ImageIcon(img));
-						break;
-				case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-						label_1.setIcon(new ImageIcon(img));
-						break;
-				case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-						label_1.setIcon(new ImageIcon(img));
-						break;
-				case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-						label_1.setIcon(new ImageIcon(img));
-						break;
-				case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-						label_1.setIcon(new ImageIcon(img));
-						break;
-				}
-				
-				die = roll[3];
-				switch(die){
-				case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-						label_2.setIcon(new ImageIcon(img));
-						break;
-				case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-						label_2.setIcon(new ImageIcon(img));
-						break;
-				case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-						label_2.setIcon(new ImageIcon(img));
-						break;
-				case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-						label_2.setIcon(new ImageIcon(img));
-						break;
-				case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-						label_2.setIcon(new ImageIcon(img));
-						break;
-				case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-						label_2.setIcon(new ImageIcon(img));
-						break;
-				}
-				
-				die = roll[4];
-				switch(die){
-				case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-						label_3.setIcon(new ImageIcon(img));
-						break;
-				case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-						label_3.setIcon(new ImageIcon(img));
-						break;
-				case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-						label_3.setIcon(new ImageIcon(img));
-						break;
-				case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-						label_3.setIcon(new ImageIcon(img));
-						break;
-				case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-						label_3.setIcon(new ImageIcon(img));
-						break;
-				case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-						label_3.setIcon(new ImageIcon(img));
-						break;
-				}
-				
-				die = roll[5];
-				switch(die){
-				case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-						label_4.setIcon(new ImageIcon(img));
-						break;
-				case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-						label_4.setIcon(new ImageIcon(img));
-						break;
-				case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-						label_4.setIcon(new ImageIcon(img));
-						break;
-				case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-						label_4.setIcon(new ImageIcon(img));
-						break;
-				case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-						label_4.setIcon(new ImageIcon(img));
-						break;
-				case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-						label_4.setIcon(new ImageIcon(img));
-						break;
-				}
-				
+				diceIMG(0, lblDice);
+				diceIMG(1, label);
+				diceIMG(2, label_1);
+				diceIMG(3, label_2);
+				diceIMG(4, label_3);
+				diceIMG(5, label_4);
 				
 				
 			}
