@@ -139,8 +139,8 @@ public class FarkleUI extends Gameplay{
 		txtScore.setText("Score: " + score);
 	}
 	
-	public void blackout(JLabel dice){
-		if (borderOption==true){
+	public void blackout(JLabel dice, boolean b){
+		if (b){
 			dice.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
 		}
 	}
@@ -545,12 +545,12 @@ public class FarkleUI extends Gameplay{
 		//end turn button listener
 		btnEndTurn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				blackout(lblDice);
-				blackout(label);
-				blackout(label_1);
-				blackout(label_2);
-				blackout(label_3);
-				blackout(label_4);
+				blackout(lblDice, borderOption);
+				blackout(label, borderOption1);
+				blackout(label_1, borderOption2);
+				blackout(label_2, borderOption3);
+				blackout(label_3, borderOption4);
+				blackout(label_4, borderOption5);
 				restart();
 				standard.debug();
 			}
@@ -560,7 +560,6 @@ public class FarkleUI extends Gameplay{
 		
 		btnRoll.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				
 				
 				d6.roll(6, 1, 6);
 				roll = d6.getRoll();
@@ -572,6 +571,12 @@ public class FarkleUI extends Gameplay{
 				label_2.setBorder(null);
 				label_3.setBorder(null);
 				label_4.setBorder(null);
+				blackout(lblDice, borderOption);
+				blackout(label, borderOption1);
+				blackout(label_1, borderOption2);
+				blackout(label_2, borderOption3);
+				blackout(label_3, borderOption4);
+				blackout(label_4, borderOption5);
 				
 				diceIMG(0, lblDice);
 				diceIMG(1, label);
