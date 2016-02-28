@@ -1,44 +1,59 @@
 package farkle;
 
+import java.util.ArrayList;
+
 public class Standard{
 	
 	int score = 0;
-	int[] set = new int[6];
-	int[] single = new int[6];
+	ArrayList<Integer> set = new ArrayList<Integer>();
+	ArrayList<Integer> single = new ArrayList<Integer>();
 	
-	public void addToSingle(int die, int value){
-		single[die] = value;
+	public void addToSingle(int value){
+		single.add(value);
 	}
 	
-	public void addToSet(int die, int value){
-		single[die] = value;
+	public void addToSet(int value){
+		set.add(value);
 	}
 	
 	public void removeFromSingle(int die){
-		single[die]=0;
+		single.remove(single.size()-1);
 	}
 	
 	public void removeFromSet(int die){
-		set[die]=0;
+		set.remove(single.size()-1);
 	}
 	
 	//calculate value of bank
 	public void bank(){
 		int bank = 0;
 		
-		for (int i = 0; i < 6; i++){
-			if (single[i] == 1){
+		//single calculation
+		for (int i = 0; i < single.size(); i++){
+			if (single.get(i) == 1){
 				bank += 100;
-				single[i] = 0;
-			}else if (single[i] == 5){
+				single.set(i, 0);
+			}else if (single.get(i) == 5){
 				bank += 50;
-				single[i] = 0;
+				single.set(i, 0);
 			}
 		}
 		
+		//set of 3 calc
+		if (set.size() == 3){
+			bank += set.get(0) * 100;
+			set.clear();
+		}
+		if (set.size() == 6){
+			bank += set.get(0) * 100;
+			bank += set.get(3) * 100;
+			set.clear();
+		}
+		
+		
 		score += bank;
 		
-		System.out.println(bank);
+		
 		
 	}
 	
