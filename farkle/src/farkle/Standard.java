@@ -55,7 +55,6 @@ public class Standard{
 			}else{
 				bank += set.get(0) * 100;
 			}
-			set.clear();
 		}
 		if (set.size() == 6){
 			if (set.get(0) == 1){
@@ -66,7 +65,6 @@ public class Standard{
 				bank += set.get(0) * 100;
 				bank += set.get(3) * 100;
 			}
-			set.clear();
 		}
 		
 		
