@@ -1,6 +1,6 @@
 package farkle;
 
-public class Standard extends FarkleUI{
+public class Standard extends Gameplay{
 	
 	//calculate value of bank
 	public void bank(int[] dice){

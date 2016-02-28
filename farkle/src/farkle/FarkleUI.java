@@ -1,7 +1,5 @@
 package farkle;
 
-import farkle.*;
-
 import java.awt.EventQueue;
 import java.awt.Image;
 
@@ -25,6 +23,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -32,6 +31,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 public class FarkleUI extends Gameplay{
@@ -212,8 +212,18 @@ public class FarkleUI extends Gameplay{
 					
 					if(!borderOption){
 						d6.banking(0, roll[0]);
-						lblDice.setBorder(border);
+						if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
+							lblDice.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			            }else{
+			            	lblDice.setBorder(border);
+			            }
 						borderOption=true;
+						//end turn button listener; blackout
+						btnRoll.addActionListener(new ActionListener(){
+							public void actionPerformed(ActionEvent e){
+								lblDice.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
+							}
+						});
 					}
 					else{
 						d6.unBank(0);
@@ -254,8 +264,18 @@ public class FarkleUI extends Gameplay{
 			public void mouseClicked(MouseEvent e){
 				if(!borderOption1){
 					d6.banking(1, roll[1]);
-					label.setBorder(border);
+					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
+						label.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+		            }else{
+		            	label.setBorder(border);
+		            }
 					borderOption1=true;
+					//end turn button listener; blackout
+					btnRoll.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent e){
+							label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
+						}
+					});
 				}
 				else{
 					d6.unBank(1);
@@ -292,8 +312,18 @@ public class FarkleUI extends Gameplay{
 			public void mouseClicked(MouseEvent e){
 				if(!borderOption2){
 					d6.banking(2, roll[2]);
-					label_1.setBorder(border);
+					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
+						label_1.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+		            }else{
+		            	label_1.setBorder(border);
+		            }
 					borderOption2=true;
+					//end turn button listener; blackout
+					btnRoll.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent e){
+							label_1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
+						}
+					});
 				}
 				else{
 					d6.unBank(2);
@@ -329,8 +359,18 @@ public class FarkleUI extends Gameplay{
 			public void mouseClicked(MouseEvent e){
 				if(!borderOption3){
 					d6.banking(3, roll[3]);
-					label_2.setBorder(border);
+					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
+						label_2.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+		            }else{
+		            	label_2.setBorder(border);
+		            }
 					borderOption3=true;
+					//end turn button listener; blackout
+					btnRoll.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent e){
+							label_2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
+						}
+					});
 				}
 				else{
 					d6.unBank(3);
@@ -366,8 +406,18 @@ public class FarkleUI extends Gameplay{
 			public void mouseClicked(MouseEvent e){
 				if(!borderOption4){
 					d6.banking(4, roll[4]);
-					label_3.setBorder(border);
+					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
+						label_3.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+		            }else{
+		            	label_3.setBorder(border);
+		            }
 					borderOption4=true;
+					//end turn button listener; blackout
+					btnRoll.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent e){
+							label_3.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
+						}
+					});
 				}
 				else{
 					d6.unBank(4);
@@ -403,14 +453,34 @@ public class FarkleUI extends Gameplay{
 			public void mouseClicked(MouseEvent e){
 				if(!borderOption5){
 					d6.banking(4, roll[4]);
-					label_4.setBorder(border);
+
+					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
+						label_4.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+		            }else{
+		            	label_4.setBorder(border);
+		            }
+					
 					borderOption5=true;
+					//end turn button listener; blackout
+					btnRoll.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent e){
+							label_4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
+						}
+					});
 				}
 				else{
 					d6.unBank(4);
 					label_4.setBorder(null);
 					borderOption5=false;
 				}
+			}
+		});
+		
+		//end turn button listener
+		btnEndTurn.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				
+				
 			}
 		});
 		
@@ -566,6 +636,8 @@ public class FarkleUI extends Gameplay{
 				
 			}
 		});
+		
+		
 		
 		}
 }
