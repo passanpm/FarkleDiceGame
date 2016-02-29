@@ -2,13 +2,19 @@ package farkle;
 
 public class Player {
 	
-	public Player(){
+	public Player(String n){
+		name = n;
 		totalScore = 0;
 		currentScore = 0;
 	}
-
+	private String name;
 	private int totalScore;
 	private int currentScore;
+	
+	
+	public String getName(){
+		return name;
+	}
 	
 	public int getCurrent(){
 		return currentScore;

@@ -8,12 +8,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import java.awt.Canvas;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Panel;
 import java.awt.TextField;
+import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.TextArea;
@@ -33,6 +37,9 @@ import java.awt.event.MouseListener;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.border.BevelBorder;
 
 public class FarkleUI extends Gameplay{
 
@@ -44,11 +51,17 @@ public class FarkleUI extends Gameplay{
 	boolean endTurn = false;
 	int die = 0;
 	private int score = 0;
+	private int totalScore = 0;
 	private int value = 0;
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
 	private int rolling = 1;
 	Image img;
 	JLabel lblDice, label, label_1, label_2, label_3, label_4;
+	private JTextField txtOverallScore;
+	private JTextField textField;
+	private Player player;
+	
+	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	/**
 	 * Launch the application.
 	 */
@@ -69,6 +82,7 @@ public class FarkleUI extends Gameplay{
 	 * Create the application.
 	 */
 	public FarkleUI() {
+		
 		initialize();
 	}
 	
@@ -167,12 +181,20 @@ public class FarkleUI extends Gameplay{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		
 		d6.roll(6, 1, 6);
 		roll = d6.getRoll();
 		frmFarkle = new JFrame();
+		frmFarkle.setResizable(false);
 		frmFarkle.setTitle("Farkle");
 		frmFarkle.setBounds(100, 100, 450, 300);
 		frmFarkle.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JOptionPane input = new JOptionPane();
+		String name = input.showInputDialog(frmFarkle, "Enter Name");
+		input.setVisible(true);
+		player = new Player(name);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmFarkle.setJMenuBar(menuBar);
@@ -252,15 +274,37 @@ public class FarkleUI extends Gameplay{
 		StartPanel.setLayout(null);
 		
 		Panel panel = new Panel();
-		panel.setBounds(151, 5, 132, 38);
+		panel.setBounds(10, 5, 403, 62);
 		StartPanel.add(panel);
 		panel.setBackground(Color.GREEN);
+		panel.setLayout(null);
 		
 		txtScore = new JTextField();
+		txtScore.setBounds(134, 0, 115, 20);
 		txtScore.setEditable(false);
-		txtScore.setText("Score: " + score);
+		txtScore.setText("Score: 0");
 		panel.add(txtScore);
 		txtScore.setColumns(10);
+		
+		txtOverallScore = new JTextField();
+		txtOverallScore.setBounds(134, 31, 115, 20);
+		txtOverallScore.setText("Overall Score: "+totalScore);
+		txtOverallScore.setEditable(false);
+		txtOverallScore.setColumns(10);
+		panel.add(txtOverallScore);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel_1.setBackground(Color.GREEN);
+		panel_1.setBounds(140, 193, 151, 34);
+		StartPanel.add(panel_1);
+		
+		textField = new JTextField();
+		textField.setBackground(Color.GREEN);
+		textField.setText(player.getName());
+		textField.setEditable(false);
+		panel_1.add(textField);
+		textField.setColumns(10);
 		
 		die = roll[0];
 		/*img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
@@ -563,6 +607,8 @@ public class FarkleUI extends Gameplay{
 		//end turn button listener
 		btnEndTurn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				totalScore += score;
+				txtOverallScore.setText("Overall Score: " + totalScore);
 				score = 0;
 				standard = new Standard();
 				lblDice.setBorder(null);
@@ -573,6 +619,7 @@ public class FarkleUI extends Gameplay{
 				label_4.setBorder(null);
 				restart();
 				standard.debug();
+				
 			}
 		});
 		
