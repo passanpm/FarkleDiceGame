@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Standard{
 	
 	int score = 0;
-	ArrayList<Integer> set = new ArrayList<Integer>();
-	ArrayList<Integer> single = new ArrayList<Integer>();
+	static ArrayList<Integer> set = new ArrayList<Integer>();
+	static ArrayList<Integer> single = new ArrayList<Integer>();
 	
 	public void debug(){
 		System.out.println("single: " + single);

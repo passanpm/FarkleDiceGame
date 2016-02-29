@@ -73,11 +73,9 @@ public class FarkleUI extends Gameplay{
 	}
 	
 	public void restart(){
-		score = 0;
 		txtScore.setText("Score: " + score);
 		d6.roll(6, 1, 6);
 		roll = d6.getRoll();
-		standard = new Standard();
 		borderOption = false;
 		borderOption1= false;
 		borderOption2= false;
@@ -145,11 +143,25 @@ public class FarkleUI extends Gameplay{
 		txtScore.setText("Score: " + score);
 	}
 	
-	public void blackout(JLabel dice, boolean b){
+	public boolean blackout(JLabel dice, boolean b){
 		if (b){
 			dice.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
 		}
+		return b;	
 	}
+	
+	public void removeBlackout(){
+		if (blackout(lblDice, borderOption)==blackout(label, borderOption1)&&
+				blackout(label, borderOption1==blackout(label_1, borderOption2)&&
+				blackout(label_1, borderOption2)==blackout(label_2, borderOption3)&&
+				blackout(label_2, borderOption3)==blackout(label_3, borderOption4)&&
+				blackout(label_3, borderOption4)==blackout(label_4, borderOption5)&&
+						blackout(label_4, borderOption5)==true
+			)){
+			restart();
+		}
+	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -551,6 +563,8 @@ public class FarkleUI extends Gameplay{
 		//end turn button listener
 		btnEndTurn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				score = 0;
+				standard = new Standard();
 				lblDice.setBorder(null);
 				label.setBorder(null);
 				label_1.setBorder(null);
@@ -571,12 +585,7 @@ public class FarkleUI extends Gameplay{
 				roll = d6.getRoll();
 				die = roll[0];
 				
-				lblDice.setBorder(null);
-				label.setBorder(null);
-				label_1.setBorder(null);
-				label_2.setBorder(null);
-				label_3.setBorder(null);
-				label_4.setBorder(null);
+
 				blackout(lblDice, borderOption);
 				blackout(label, borderOption1);
 				blackout(label_1, borderOption2);
@@ -584,12 +593,15 @@ public class FarkleUI extends Gameplay{
 				blackout(label_3, borderOption4);
 				blackout(label_4, borderOption5);
 				
+				removeBlackout();
+				
 				diceIMG(0, lblDice);
 				diceIMG(1, label);
 				diceIMG(2, label_1);
 				diceIMG(3, label_2);
 				diceIMG(4, label_3);
 				diceIMG(5, label_4);
+				
 				
 				
 			}
