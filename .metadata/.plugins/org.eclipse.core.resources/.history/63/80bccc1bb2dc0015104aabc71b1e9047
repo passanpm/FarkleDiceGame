@@ -1,0 +1,19 @@
+package farkle;
+
+import java.util.ArrayList;
+
+public class Gameplay {
+	static ArrayList<Player> players = new ArrayList<>();
+	
+	static int rollerScore;
+	static int roller = 0;
+	
+	public static void endTurn(){
+		if (roller < players.size()-1){
+			roller++;
+		}else{
+			roller = 0;
+		};
+	}
+	
+}

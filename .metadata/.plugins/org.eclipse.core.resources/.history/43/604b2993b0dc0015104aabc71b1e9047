@@ -1,0 +1,23 @@
+package farkle;
+
+import java.util.ArrayList;
+
+public class Gameplay {
+	ArrayList<Player> players = new ArrayList<>();
+	ArrayList<Object> version = new ArrayList<>();
+	
+	int rollerScore;
+	int roller = 0;
+	
+	
+	Standard standard = new Standard();
+	
+	public void endTurn(){
+		if (roller < players.size()-1){
+			roller++;
+		}else{
+			roller = 0;
+		};
+	}
+	
+}

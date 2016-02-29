@@ -1,0 +1,26 @@
+package farkle;
+import farkle.*;
+
+public class Player {
+	private Dice die = new Dice();
+	
+	private int totalScore;
+	private int currentScore;
+	
+	public int getCurrent(){
+		return currentScore;
+	}
+	
+	public setCurrent(int score){
+		currentScore += score;	
+	}
+	
+	public int getTotal(){
+		return totalScore;
+	}
+	
+	public setTotal(int score){
+		totalScore += score;
+	}
+	
+}

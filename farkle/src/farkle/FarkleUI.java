@@ -78,6 +78,12 @@ public class FarkleUI extends Gameplay{
 		d6.roll(6, 1, 6);
 		roll = d6.getRoll();
 		standard = new Standard();
+		borderOption = false;
+		borderOption1= false;
+		borderOption2= false;
+		borderOption3= false;
+		borderOption4= false;
+		borderOption5= false;
 		
 		lblDice.setBorder(null);
 		label.setBorder(null);
@@ -545,12 +551,12 @@ public class FarkleUI extends Gameplay{
 		//end turn button listener
 		btnEndTurn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				blackout(lblDice, borderOption);
-				blackout(label, borderOption1);
-				blackout(label_1, borderOption2);
-				blackout(label_2, borderOption3);
-				blackout(label_3, borderOption4);
-				blackout(label_4, borderOption5);
+				lblDice.setBorder(null);
+				label.setBorder(null);
+				label_1.setBorder(null);
+				label_2.setBorder(null);
+				label_3.setBorder(null);
+				label_4.setBorder(null);
 				restart();
 				standard.debug();
 			}
