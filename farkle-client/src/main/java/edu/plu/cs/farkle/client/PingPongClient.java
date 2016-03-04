@@ -1,5 +1,7 @@
 package edu.plu.cs.farkle.client;
 
+import java.util.Set;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation;
@@ -8,6 +10,10 @@ import javax.ws.rs.core.HttpHeaders;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 /**
  * A simple example client program, not to be used in the final product.
@@ -18,10 +24,12 @@ public class PingPongClient {
 
 	public static void main(String[] args) {
 		
+		
 		// Create a new HTTP client object
 		Client client = ClientBuilder.newClient();
 
 		try {
+		
 			// The target URL
 			WebTarget target = client.target("http://localhost:8080/farkle/ping");
 
@@ -50,12 +58,16 @@ public class PingPongClient {
 			System.out.println("\nResponse with Authorization header: ");
 			printResponse(node);
 			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			// Make sure that we always close the client.
 			client.close();
 		}
+		
+		
+		
 	}
 	
 	public static void printResponse( JsonNode node )
