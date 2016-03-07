@@ -7186,3 +7186,6 @@ Binding(ALT+CTRL+P,
 
 !ENTRY org.eclipse.core.net 1 0 2016-03-07 10:10:35.774
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jdt.launching 4 150 2016-03-07 10:42:54.698
+!MESSAGE The archive: /farkle-client/jgoodies-common-1.8.0-sources.jar which is referenced by the classpath, does not exist.
