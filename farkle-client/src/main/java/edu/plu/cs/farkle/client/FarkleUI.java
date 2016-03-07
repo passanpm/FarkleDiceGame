@@ -20,6 +20,9 @@ import java.awt.Toolkit;
 
 import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+
+import redis.clients.jedis.Jedis;
+
 import java.awt.TextArea;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
@@ -33,6 +36,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -66,6 +71,17 @@ public class FarkleUI extends Gameplay{
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		Jedis jedis = new Jedis("localhost");
+		jedis.set("player", "Gabe");
+		String value = jedis.get("player");
+		System.out.println(value);
+		
+		String key = "javapointers";
+        Map<String, String> map = new HashMap<>();  
+        map.put("name", "Gabe");  
+        map.put("score", "0");  
+        map.put("topScore", "7"); 
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

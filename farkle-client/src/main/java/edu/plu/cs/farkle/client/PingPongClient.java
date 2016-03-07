@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.HttpHeaders;
@@ -35,6 +36,11 @@ public class PingPongClient {
 
 			// Attempt a request without the Authorization header
 			Invocation.Builder builder = target.request();
+			//String content = "Hello";
+			//Entity<String> body = Entity.json(content);
+			//String response = builder.post(body, String.class);
+			
+			
 			String response = builder.get(String.class);
 
 			// We expect the response to be JSON, so use the ObjectMapper to

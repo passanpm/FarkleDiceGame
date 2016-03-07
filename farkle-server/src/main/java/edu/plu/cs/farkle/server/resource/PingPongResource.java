@@ -26,7 +26,7 @@ public class PingPongResource {
 	 */
 	@GET
 	@Produces("application/json")
-	public String getPing( @Context SecurityContext ctx ) {
+	public String getPing(@Context SecurityContext ctx ) {
 		
 		// If the principal is null, then authentication failed.
 		String authString = "yes";

@@ -15,6 +15,7 @@
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="redis.clients.jedis.JedisPool"/>
 <fullyQualifiedTypeName name="redis.clients.jedis.JedisPoolConfig"/>
-<fullyQualifiedTypeName name="redis.clients.jedis.Jedis"/>
 <fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="javax.ws.rs.client.Entity"/>
+<fullyQualifiedTypeName name="redis.clients.jedis.Jedis"/>
 </qualifiedTypeNameHistroy>
