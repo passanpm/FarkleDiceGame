@@ -144,6 +144,30 @@ public class FarkleUI{
 		}
 	}
 	
+	public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, boolean bdrCheck){
+		if(!bdrCheck){
+			d6.banking(diceID, roll[diceID]);
+			if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
+				name.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+				standard.addToSet(roll[diceID]);
+            }else{
+            	name.setBorder(border);
+            	standard.addToSingle(roll[diceID]);
+            }
+			bdrCheck=true;
+		}
+		else{
+			
+			removeDice(name, diceID);
+			
+			d6.unBank(diceID);
+			name.setBorder(null);
+			bdrCheck=false;
+		}
+		
+		updateScore();
+	}
+	
 	public void removeDice(JLabel label, int i){
 		if ( ((LineBorder) label.getBorder()).getLineColor() == Color.RED ){
 			standard.removeFromSet(roll[i]);
@@ -318,295 +342,78 @@ public class FarkleUI{
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
-		die = roll[0];
-
-		switch(die){
-		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-				lblDice.setIcon(new ImageIcon(img));
-				
-				d6.banking(0, die);
-				break;
-		case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-				lblDice.setIcon(new ImageIcon(img));
-				value = 2;
-				break;
-		case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-				lblDice.setIcon(new ImageIcon(img));
-				value = 3;
-				break;
-		case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-				lblDice.setIcon(new ImageIcon(img));
-				value = 4;
-				break;
-		case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-				lblDice.setIcon(new ImageIcon(img));
-				value = 5;
-				break;
-		case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-				lblDice.setIcon(new ImageIcon(img));
-				value = 6;
-				break;
-		}
-	
+		/*
+		 * Handle Dice 0
+		 */
+		
+		diceIMG(0,lblDice);
 			lblDice.addMouseListener(new MouseAdapter(){
 				@Override
 				public void mouseClicked(MouseEvent e){
-					
-					if(!borderOption){
-						d6.banking(0, roll[0]);
-						if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
-							lblDice.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-							standard.addToSet(roll[0]);
-			            }else{
-			            	lblDice.setBorder(border);
-			            	standard.addToSingle(roll[0]);
-			            }
-						borderOption=true;
-					}
-					else{
-						
-						removeDice(lblDice, 0);
-						
-						d6.unBank(0);
-						lblDice.setBorder(null);
-						borderOption=false;
-					}
-					
-					updateScore();
+					diceClick(0,lblDice, e, border, borderOption);
+
 				}
 			});
 		
 		
 		
+		/*
+		 * Handle Dice 1
+		 */
 		
-		
-		
-		die = roll[1];
-		switch(die){
-		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-				label.setIcon(new ImageIcon(img));
-				break;
-		case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-				label.setIcon(new ImageIcon(img));
-				break;
-		case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-				label.setIcon(new ImageIcon(img));
-				break;
-		case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-				label.setIcon(new ImageIcon(img));
-				break;
-		case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-				label.setIcon(new ImageIcon(img));
-				break;
-		case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-				label.setIcon(new ImageIcon(img));
-				break;
-		}
+		diceIMG(1,label);
 		label.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e){
-				if(!borderOption1){
-					d6.banking(1, roll[1]);
-					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
-						label.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-						standard.addToSet(roll[1]);
-		            }else{
-		            	label.setBorder(border);
-		            	standard.addToSingle(roll[1]);
-		            }
-					borderOption1=true;
-				}
-				else{
-					removeDice(label,1);
-					
-					d6.unBank(1);
-					label.setBorder(null);
-					borderOption1=false;
-				}
-				updateScore();
+				diceClick(1, label, e, border, borderOption1);
+
 			}
 		});
 		
-		
-		die = roll[2];
-		switch(die){
-		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-				label_1.setIcon(new ImageIcon(img));
-				break;
-		case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-				label_1.setIcon(new ImageIcon(img));
-				break;
-		case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-				label_1.setIcon(new ImageIcon(img));
-				break;
-		case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-				label_1.setIcon(new ImageIcon(img));
-				break;
-		case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-				label_1.setIcon(new ImageIcon(img));
-				break;
-		case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-				label_1.setIcon(new ImageIcon(img));
-				break;
-		}
+		/*
+		 * Handle Dice 2
+		 */
+		diceIMG(2,label_1);
 		label_1.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e){
-				if(!borderOption2){
-					d6.banking(2, roll[2]);
-					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
-						label_1.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-						standard.addToSet(roll[2]);
-		            }else{
-		            	label_1.setBorder(border);
-		            	standard.addToSingle(roll[2]);
-		            }
-					borderOption2=true;
-				}
-				else{
-					removeDice(label_1, 2);
-					d6.unBank(2);
-					label_1.setBorder(null);
-					borderOption2=false;
-				}
-				updateScore();
+				diceClick(2, label_1, e, border, borderOption2);
+
 			}
 		});
 		
-		die = roll[3];
-		switch(die){
-		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-				label_2.setIcon(new ImageIcon(img));
-				break;
-		case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-				label_2.setIcon(new ImageIcon(img));
-				break;
-		case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-				label_2.setIcon(new ImageIcon(img));
-				break;
-		case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-				label_2.setIcon(new ImageIcon(img));
-				break;
-		case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-				label_2.setIcon(new ImageIcon(img));
-				break;
-		case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-				label_2.setIcon(new ImageIcon(img));
-				break;
-		}
+		/*
+		 * Handle Dice 3
+		 */
+		diceIMG(3,label_2);
 		label_2.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e){
-				if(!borderOption3){
-					d6.banking(3, roll[3]);
-					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
-						label_2.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-						standard.addToSet(roll[3]);
-		            }else{
-		            	label_2.setBorder(border);
-		            	standard.addToSingle(roll[3]);
-		            }
-					borderOption3=true;
-				}
-				else{
-					removeDice(label_2, 3);
-					d6.unBank(3);
-					label_2.setBorder(null);
-					borderOption3=false;
-				}
-				updateScore();
+				diceClick(3, label_2, e, border, borderOption3);
+
 			}
 		});
-		
-		die = roll[4];
-		switch(die){
-		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-				label_3.setIcon(new ImageIcon(img));
-				break;
-		case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-				label_3.setIcon(new ImageIcon(img));
-				break;
-		case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-				label_3.setIcon(new ImageIcon(img));
-				break;
-		case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-				label_3.setIcon(new ImageIcon(img));
-				break;
-		case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-				label_3.setIcon(new ImageIcon(img));
-				break;
-		case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-				label_3.setIcon(new ImageIcon(img));
-				break;
-		}
+		/*
+		 * Handle Dice 4
+		 */
+		diceIMG(4,label_3);
 		label_3.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e){
-				if(!borderOption4){
-					d6.banking(4, roll[4]);
-					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
-						label_3.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-						standard.addToSet(roll[4]);
-		            }else{
-		            	label_3.setBorder(border);
-		            	standard.addToSingle(roll[4]);
-		            }
-					borderOption4=true;
-				}
-				else{
-					removeDice(label_3, 4);
-					d6.unBank(4);
-					label_3.setBorder(null);
-					borderOption4=false;
-				}
-				updateScore();
+				diceClick(4,label_3, e, border, borderOption4);
+
 			}
 		});
 		
-		die = roll[5];
-		switch(die){
-		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-				label_4.setIcon(new ImageIcon(img));
-				break;
-		case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-				label_4.setIcon(new ImageIcon(img));
-				break;
-		case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-				label_4.setIcon(new ImageIcon(img));
-				break;
-		case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-				label_4.setIcon(new ImageIcon(img));
-				break;
-		case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-				label_4.setIcon(new ImageIcon(img));
-				break;
-		case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-				label_4.setIcon(new ImageIcon(img));
-				break;
-		}
+		/*
+		 * Handle Dice 5
+		 */
+		diceIMG(5,label_4);
 		label_4.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e){
-				if(!borderOption5){
-					d6.banking(5, roll[5]);
+				diceClick(5, label_4, e, border, borderOption5);
 
-					if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
-						label_4.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-						standard.addToSet(roll[5]);
-		            }else{
-		            	label_4.setBorder(border);
-		            	standard.addToSingle(roll[5]);
-		            }
-					
-					borderOption5=true;
-				}
-				else{
-					removeDice(label_4, 5);
-					d6.unBank(4);
-					label_4.setBorder(null);
-					borderOption5=false;
-				}
-				updateScore();
 			}
 		});
 		
@@ -628,8 +435,6 @@ public class FarkleUI{
 				
 			}
 		});
-		
-		
 		
 		btnRoll.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
