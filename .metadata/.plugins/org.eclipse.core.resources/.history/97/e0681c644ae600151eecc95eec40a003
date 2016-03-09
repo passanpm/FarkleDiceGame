@@ -64,7 +64,6 @@ public class FarkleUI{
 	JLabel lblDice, label, label_1, label_2, label_3, label_4;
 	private JTextField txtOverallScore;
 	private JTextField textField;
-	Player player = new Player();
 	
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	/**

@@ -64,7 +64,6 @@ public class FarkleUI{
 	JLabel lblDice, label, label_1, label_2, label_3, label_4;
 	private JTextField txtOverallScore;
 	private JTextField textField;
-	Player player = new Player();
 	
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	/**
@@ -74,17 +73,6 @@ public class FarkleUI{
 	public FarkleUI() {
 		
 		initialize();
-	}
-	
-	public static void main(String[] args) {
-		
-		redis server = new redis();
-		server.initiateServer(); 
-		
-		FarkleUI ui = new FarkleUI();
-		ui.deployUI();
-		
-		
 	}
 	
 	public void restart(){
