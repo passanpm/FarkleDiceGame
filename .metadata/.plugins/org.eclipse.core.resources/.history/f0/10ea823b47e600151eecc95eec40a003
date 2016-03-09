@@ -1,0 +1,15 @@
+package edu.plu.cs.farkle.client;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import redis.clients.jedis.Jedis;
+
+public class Gameplay {
+	//Stores all players in game
+	
+	Standard standard = new Standard();
+	Player player = new Player();
+	redis server = new redis();
+	
+}

@@ -1,19 +1,25 @@
 package edu.plu.cs.farkle.client;
 public class Player {
 	
-	public Player(String n){
-		name = n;
+	String name;
+	private int totalScore;
+	private int currentScore;
+	
+	public Player(){
+		name = "user";
 		totalScore = 0;
 		currentScore = 0;
 	}
-	private String name;
-	private int totalScore;
-	private int currentScore;
 	
 	
 	public String getName(){
 		return name;
 	}
+	
+	public void setName(String n){
+		name = n;
+	}
+	
 	
 	public int getCurrent(){
 		return currentScore;

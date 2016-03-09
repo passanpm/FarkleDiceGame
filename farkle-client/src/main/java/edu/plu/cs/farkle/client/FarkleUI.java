@@ -46,9 +46,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.border.BevelBorder;
 
-public class FarkleUI extends Gameplay{
+public class FarkleUI{
 
-	private JFrame frmFarkle;
+	JFrame frmFarkle;
 	private JTextField txtScore;
 	int[] roll = new int[6];
 	private Dice d6 = new Dice();
@@ -64,42 +64,12 @@ public class FarkleUI extends Gameplay{
 	JLabel lblDice, label, label_1, label_2, label_3, label_4;
 	private JTextField txtOverallScore;
 	private JTextField textField;
-	private Player player;
 	
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		
-		
-		
-		initiateServer(); 
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FarkleUI window = new FarkleUI();
-					window.frmFarkle.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
-		
-	}
-
-	private static void initiateServer() {
-	    Jedis jedis = new Jedis("pub-redis-14065.us-east-1-3.1.ec2.garantiadata.com", 14065);
-	    jedis.auth("farkle");
-	    System.out.println("Connected to Redis");
-		
-	}
-
-	/**
-	 * Create the application.
-	 */
+	
 	public FarkleUI() {
 		
 		initialize();
@@ -195,7 +165,19 @@ public class FarkleUI extends Gameplay{
 		}
 	}
 	
-
+	void deployUI(){
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FarkleUI window = new FarkleUI();
+					window.frmFarkle.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -210,10 +192,9 @@ public class FarkleUI extends Gameplay{
 		frmFarkle.setBounds(100, 100, 450, 300);
 		frmFarkle.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JOptionPane input = new JOptionPane();
-		String name = input.showInputDialog(frmFarkle, "Enter Name");
-		input.setVisible(true);
-		player = new Player(name);
+		//JOptionPane input = new JOptionPane();
+		//String name = input.showInputDialog(frmFarkle, "Enter Name");
+		//input.setVisible(true);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmFarkle.setJMenuBar(menuBar);
@@ -320,19 +301,13 @@ public class FarkleUI extends Gameplay{
 		
 		textField = new JTextField();
 		textField.setBackground(Color.GREEN);
-		textField.setText(player.getName());
+		//------------------------------------------>textField.setText(player.getName());
 		textField.setEditable(false);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
 		die = roll[0];
-		/*img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-		lblDice.setIcon(new ImageIcon(img));
-		label.setIcon(new ImageIcon(img));
-		label_1.setIcon(new ImageIcon(img));
-		label_2.setIcon(new ImageIcon(img));
-		label_3.setIcon(new ImageIcon(img));
-		label_4.setIcon(new ImageIcon(img));*/
+
 		switch(die){
 		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
 				lblDice.setIcon(new ImageIcon(img));

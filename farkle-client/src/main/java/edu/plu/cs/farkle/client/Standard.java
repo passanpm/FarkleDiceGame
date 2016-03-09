@@ -69,11 +69,7 @@ public class Standard{
 	
 	//farkle -> next player
 	public static void farkle(){
-		if (Gameplay.roller < Gameplay.players.size()-1){
-			Gameplay.roller++;
-		}else{
-			Gameplay.roller = 0;
-		};
+
 	}
 	
 
