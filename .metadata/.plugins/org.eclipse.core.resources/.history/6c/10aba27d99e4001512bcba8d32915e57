@@ -72,9 +72,16 @@ public class FarkleUI extends Gameplay{
 	 */
 	public static void main(String[] args) {
 		
+		Jedis jedis = new Jedis("localhost");
+		jedis.set("player", "Gabe");
+		String value = jedis.get("player");
+		System.out.println(value);
 		
-		
-		initiateServer(); 
+		String key = "players";
+        Map<String, String> map = new HashMap<>();  
+        map.put("name", "Gabe");  
+        map.put("score", "0");  
+        map.put("topScore", "7"); 
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -87,13 +94,6 @@ public class FarkleUI extends Gameplay{
 			}
 		});
 		
-		
-	}
-
-	private static void initiateServer() {
-	    Jedis jedis = new Jedis("pub-redis-14065.us-east-1-3.1.ec2.garantiadata.com", 14065);
-	    jedis.auth("farkle");
-	    System.out.println("Connected to Redis");
 		
 	}
 

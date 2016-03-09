@@ -63,10 +63,7 @@ public class PingPongClient {
 
 			System.out.println("\nResponse with Authorization header: ");
 			printResponse(node);
-			System.out.println(" ======> " + mapper.toString() + " <====== ");
-			System.out.println(" ======> " + response.toString() + " <====== ");
-			System.out.println(" ======> " + builder.toString() + " <====== ");
-			System.out.println(" ======> " + node.toString() + " <====== ");
+			System.out.println(mapper.toString());
 			
 		} catch (Exception e) {
 			e.printStackTrace();

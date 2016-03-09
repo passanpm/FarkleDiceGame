@@ -66,7 +66,6 @@ public class PingPongClient {
 			System.out.println(" ======> " + mapper.toString() + " <====== ");
 			System.out.println(" ======> " + response.toString() + " <====== ");
 			System.out.println(" ======> " + builder.toString() + " <====== ");
-			System.out.println(" ======> " + node.toString() + " <====== ");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

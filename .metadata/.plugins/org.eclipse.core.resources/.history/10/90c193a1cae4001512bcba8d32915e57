@@ -36,6 +36,7 @@ public class PingPongClient {
 
 			// Attempt a request without the Authorization header
 			Invocation.Builder builder = target.request();
+			builder = builder.header(HttpHeaders.AUTHORIZATION, "secret");
 			//String content = "Hello";
 			//Entity<String> body = Entity.json(content);
 			//String response = builder.post(body, String.class);
@@ -63,10 +64,7 @@ public class PingPongClient {
 
 			System.out.println("\nResponse with Authorization header: ");
 			printResponse(node);
-			System.out.println(" ======> " + mapper.toString() + " <====== ");
-			System.out.println(" ======> " + response.toString() + " <====== ");
-			System.out.println(" ======> " + builder.toString() + " <====== ");
-			System.out.println(" ======> " + node.toString() + " <====== ");
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
