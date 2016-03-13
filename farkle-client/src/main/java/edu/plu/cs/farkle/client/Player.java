@@ -6,7 +6,7 @@ public class Player {
 	private int currentScore;
 	
 	public Player(){
-		name = "user";
+		this.name = "user";
 		totalScore = 0;
 		currentScore = 0;
 	}

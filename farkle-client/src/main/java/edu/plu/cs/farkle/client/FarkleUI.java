@@ -64,7 +64,8 @@ public class FarkleUI{
 	JLabel lblDice, label, label_1, label_2, label_3, label_4;
 	private JTextField txtOverallScore;
 	private JTextField textField;
-	Player player = new Player();
+	static redis server = new redis();
+	Player user;
 	
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	/**
@@ -72,17 +73,22 @@ public class FarkleUI{
 	 */
 	
 	public FarkleUI() {
-		
+		server.initiateServer(); 
 		initialize();
 	}
 	
 	public static void main(String[] args) {
 		
-		redis server = new redis();
-		server.initiateServer(); 
-		
-		FarkleUI ui = new FarkleUI();
-		ui.deployUI();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FarkleUI window = new FarkleUI();
+					window.frmFarkle.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		
 		
 	}
@@ -201,19 +207,6 @@ public class FarkleUI{
 		}
 	}
 	
-	void deployUI(){
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FarkleUI window = new FarkleUI();
-					window.frmFarkle.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -228,9 +221,14 @@ public class FarkleUI{
 		frmFarkle.setBounds(100, 100, 450, 300);
 		frmFarkle.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//JOptionPane input = new JOptionPane();
-		//String name = input.showInputDialog(frmFarkle, "Enter Name");
-		//input.setVisible(true);
+		JOptionPane input = new JOptionPane();
+		String name = input.showInputDialog(frmFarkle, "Enter UserName");
+		user = new Player();
+		user.setName(name);
+		user = server.auth(user);
+		//score = user.getCurrent();
+		//totalScore = user.getTotal();
+		input.setVisible(true);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmFarkle.setJMenuBar(menuBar);
@@ -337,7 +335,7 @@ public class FarkleUI{
 		
 		textField = new JTextField();
 		textField.setBackground(Color.GREEN);
-		//------------------------------------------>textField.setText(player.getName());
+		textField.setText(name);///////////////////////////////////////////dfgjbasjkdbfgajksbfkadsbfjkvbadsk.fbadjks,bgfkjasbdf
 		textField.setEditable(false);
 		panel_1.add(textField);
 		textField.setColumns(10);
@@ -432,7 +430,6 @@ public class FarkleUI{
 				label_4.setBorder(null);
 				restart();
 				standard.debug();
-				
 			}
 		});
 		
@@ -459,7 +456,6 @@ public class FarkleUI{
 				diceIMG(3, label_2);
 				diceIMG(4, label_3);
 				diceIMG(5, label_4);
-				
 				
 				
 			}

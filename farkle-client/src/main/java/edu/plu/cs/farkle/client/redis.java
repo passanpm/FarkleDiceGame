@@ -16,17 +16,46 @@ public class redis {
 	    
 	}
 	
-	void addUser(Player user) {
-		Map<String, String> players = new HashMap<String, String>();
-		 players.put("name", user.getName() );
-		 players.put("current", Integer.toString(user.getCurrent()));
-		 players.put("highScore", Integer.toString(user.getTotal()));
+	public Player auth(Player player){
+		if (jedis.exists(player.getName())){
+			return loadUser(player.getName());
+		}else{
+			return addUser(player);
+		}
+	}
+	
+	public Player addUser(Player user) {
+		Map<String, String> info = new HashMap<String, String>();
+		Player p = new Player();
+		 info.put("name", user.getName() );
+		 info.put("current", Integer.toString(user.getCurrent()));
+		 info.put("total", Integer.toString(user.getTotal()));
+		 
+		 jedis.hmset(user.getName(), info);
+		 System.out.println("Welcome " + info.get("name"));
+		 return p;
 		 
 	}
 	
-	void loadUser(Player user){
-	    Map<String, String> properties = jedis.hgetAll("user:" + user.getName());
-	    
+	public Player loadUser(String user){
+	    Map<String, String> users = jedis.hgetAll(user);
+	    Player p = new Player();
+	    p.setName(user);
+	    p.setCurrent(Integer.parseInt(users.get("current")));
+	    p.setTotal(Integer.parseInt(users.get("total")));
+	    System.out.println("Welcome back " + users.get("name"));
+	    return p;
 	}
+	
+	public void updateCurrent(Player user){
+	    jedis.hset(user.getName(), "current", Integer.toString(user.getCurrent()));
+	    System.out.println("current: " + user.getCurrent());
+	}
+	
+	public void updateTotal(Player user){
+	    jedis.hset(user.getName(), "total", Integer.toString(user.getTotal()));
+	    System.out.println("current: " + user.getTotal());
+	}
+	
 	
 }
