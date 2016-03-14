@@ -266,9 +266,9 @@ public class FarkleUI{
 		String name = input.showInputDialog(frmFarkle, "Enter UserName");
 		user = new Player();
 		user.setName(name);
-		user = server.auth(user);//////////////////////////////////////////////////////////////////////
-		score = server.getCurrent(user);
-		totalScore = server.getTotal(user);
+		user = server.auth(user);
+		score = user.getCurrent();
+		totalScore = user.getTotal();
 		input.setVisible(true);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -460,9 +460,6 @@ public class FarkleUI{
 		btnEndTurn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				totalScore += score;
-				user.setTotal(score);
-				server.updateTotal(user);
-				System.out.println(server.getTotal(user));
 				txtOverallScore.setText("Overall Score: " + totalScore);
 				score = 0;
 				standard = new Standard();
@@ -501,9 +498,6 @@ public class FarkleUI{
 				diceIMG(4, label_3);
 				diceIMG(5, label_4);
 				
-				user.setCurrent(score);
-				server.updateCurrent(user);
-				System.out.println(server.getCurrent(user));
 			}
 		});
 		

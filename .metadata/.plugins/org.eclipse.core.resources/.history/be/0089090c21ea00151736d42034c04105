@@ -503,7 +503,7 @@ public class FarkleUI{
 				
 				user.setCurrent(score);
 				server.updateCurrent(user);
-				System.out.println(server.getCurrent(user));
+				System.out.println(server.getCurrent(user)));
 			}
 		});
 		

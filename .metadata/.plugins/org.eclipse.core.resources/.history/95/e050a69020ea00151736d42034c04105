@@ -65,14 +65,16 @@ public class redis {
 	
 	public void updateCurrent(Player user){
 	    jedis.hset(user.getName(), "current", Integer.toString(user.getCurrent()));
+	    System.out.println("current: " + user.getCurrent());
 	}
 	
-	public int getCurrent(Player user){
+	public void getCurrent(Player user){
 		return Integer.parseInt(jedis.hget(user.getName(), "current"));
 	}
 	
 	public void updateTotal(Player user){
 	    jedis.hset(user.getName(), "total", Integer.toString(user.getTotal()));
+	    System.out.println("current: " + user.getTotal());
 	}
 	
 	public int getTotal(Player user){

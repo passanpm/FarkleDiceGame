@@ -462,7 +462,7 @@ public class FarkleUI{
 				totalScore += score;
 				user.setTotal(score);
 				server.updateTotal(user);
-				System.out.println(server.getTotal(user));
+				System.out.println(server.updateTotal(user));
 				txtOverallScore.setText("Overall Score: " + totalScore);
 				score = 0;
 				standard = new Standard();
@@ -503,7 +503,6 @@ public class FarkleUI{
 				
 				user.setCurrent(score);
 				server.updateCurrent(user);
-				System.out.println(server.getCurrent(user));
 			}
 		});
 		
