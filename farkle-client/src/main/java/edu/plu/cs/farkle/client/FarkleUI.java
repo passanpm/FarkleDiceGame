@@ -337,7 +337,7 @@ public class FarkleUI{
 		
 		textField = new JTextField();
 		textField.setBackground(Color.GREEN);
-		textField.setText(name);///////////////////////////////////////////dfgjbasjkdbfgajksbfkadsbfjkvbadsk.fbadjks,bgfkjasbdf
+		textField.setText(name);
 		textField.setEditable(false);
 		panel_1.add(textField);
 		textField.setColumns(10);
@@ -462,7 +462,6 @@ public class FarkleUI{
 				
 			}
 		});
-		
 		
 		
 		}

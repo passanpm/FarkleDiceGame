@@ -53,8 +53,9 @@ public class Dice{
 		}
 	
 	}
-	
-	
+	/*
+	 * 
+	 */
 	public int[] getRoll(){
 		System.out.println("ROLL: " + Arrays.toString(roll));
 		return roll;
@@ -78,7 +79,9 @@ public class Dice{
 		 */
 	}
 	
-	
+	/*
+	 * 
+	 */
 	public void unBank(int die){
 		bank[die]=0;
 		//System.out.println("DEBUG unBank["+die+"] = "+ bank[die]);

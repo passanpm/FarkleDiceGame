@@ -48,6 +48,7 @@ public class Standard{
 		}
 		
 		//set of 3 calc
+		//Remember: Requires holding down shift to work
 		if (set.size() == 3){
 			if (set.get(0) == 1){
 				bank += 1000;
