@@ -46,6 +46,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.border.BevelBorder;
 
+//changes
+
 public class FarkleUI{
 
 	JFrame frmFarkle;
