@@ -48,6 +48,7 @@ import javax.swing.border.BevelBorder;
 
 public class FarkleUI{
 
+	String n;
 	JFrame frmFarkle;
 	private JTextField txtScore;
 	int[] roll = new int[6];
@@ -68,6 +69,7 @@ public class FarkleUI{
 	Player user;
 	
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private JTextField textField_1;
 	/**
 	 * Launch the application.
 	 */
@@ -210,25 +212,57 @@ public class FarkleUI{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		
+	public void initialize() {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double width = screenSize.getWidth();
+		double height = screenSize.getHeight();
 		
 		d6.roll(6, 1, 6);
 		roll = d6.getRoll();
 		frmFarkle = new JFrame();
 		frmFarkle.setResizable(false);
 		frmFarkle.setTitle("Farkle");
-		frmFarkle.setBounds(100, 100, 450, 300);
+		frmFarkle.setSize((int)width, (int)height);
 		frmFarkle.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JOptionPane input = new JOptionPane();
-		String name = input.showInputDialog(frmFarkle, "Enter UserName");
+		
 		user = new Player();
-		user.setName(name);
-		user = server.auth(user);
+		
+		
 		//score = user.getCurrent();
 		//totalScore = user.getTotal();
-		input.setVisible(true);
+		//input.setVisible(true);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(0, 0, (int)width, (int)height);
+		frmFarkle.getContentPane().add(panel_2);
+		panel_2.setLayout(null);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(649, 378, 86, 20);
+		panel_2.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField = new JTextField();
+		textField.setBackground(Color.GREEN);
+		System.out.println("name = " + n);
+		
+		textField.setEditable(false);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				n = textField_1.getText();
+				System.out.println(n);
+				user.setName(n);
+				user = server.auth(user);
+				textField.setText(n);
+				panel_2.setVisible(false);
+			
+			}
+		});
+		btnLogin.setBounds(781, 377, 89, 23);
+		panel_2.add(btnLogin);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmFarkle.setJMenuBar(menuBar);
@@ -264,6 +298,8 @@ public class FarkleUI{
 		//Sets up Dice
 		
 		 Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
+		
+		
 		
 		
 		
@@ -303,9 +339,19 @@ public class FarkleUI{
 		JPanel StartPanel = new JPanel();
 		StartPanel.setBackground(Color.GREEN);
 		StartPanel.setForeground(Color.GREEN);
-		StartPanel.setBounds(0, 0, 434, 238);
+		StartPanel.setSize((int)width, (int)height);
 		frmFarkle.getContentPane().add(StartPanel);
 		StartPanel.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel_1.setBackground(Color.GREEN);
+		panel_1.setBounds(140, 193, 151, 34);
+		StartPanel.add(panel_1);
+		
+		
+		panel_1.add(textField);
+		textField.setColumns(10);
 		
 		Panel panel = new Panel();
 		panel.setBounds(10, 5, 403, 62);
@@ -327,18 +373,7 @@ public class FarkleUI{
 		txtOverallScore.setColumns(10);
 		panel.add(txtOverallScore);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel_1.setBackground(Color.GREEN);
-		panel_1.setBounds(140, 193, 151, 34);
-		StartPanel.add(panel_1);
 		
-		textField = new JTextField();
-		textField.setBackground(Color.GREEN);
-		textField.setText(name);///////////////////////////////////////////dfgjbasjkdbfgajksbfkadsbfjkvbadsk.fbadjks,bgfkjasbdf
-		textField.setEditable(false);
-		panel_1.add(textField);
-		textField.setColumns(10);
 		
 		/*
 		 * Handle Dice 0
