@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 public class Standard{
 	
-	int score = 0;
-	static ArrayList<Integer> set = new ArrayList<Integer>();
-	static ArrayList<Integer> single = new ArrayList<Integer>();
+	protected int score = 0;
+	protected static ArrayList<Integer> set = new ArrayList<Integer>();
+	protected static ArrayList<Integer> single = new ArrayList<Integer>();
 	
 	public void debug(){
 		System.out.println("single: " + single);
