@@ -14,14 +14,31 @@ public class Dice{
 	 * 
 	 * The "definition" of farkle is determined by game rules
 	 */
-	public static boolean farkle(){
+	public boolean farkle(){
 		
-		boolean farkle = false;
+		for(int i = 0; i < roll.length; i++){
+			
+			if(roll[i]==1||roll[i]==5){
+				return false;
+			}
+			
+			for(int j = roll.length-3; j > i; j--){
+				
+				for(int k = roll.length-1; k>j; k--){
+					
+					if( roll[i] == roll[j] && roll[i] == roll[k]){
+					
+						return false;
+					}
+					
+				}
+					
+				
+			}
+				
+		}
 		
-		if(farkle)
-			resetDice();
-		
-		return farkle;
+		return true;
 	}
 	
 	/*
@@ -53,8 +70,9 @@ public class Dice{
 		}
 	
 	}
-	
-	
+	/*
+	 * 
+	 */
 	public int[] getRoll(){
 		System.out.println("ROLL: " + Arrays.toString(roll));
 		return roll;
@@ -78,7 +96,9 @@ public class Dice{
 		 */
 	}
 	
-	
+	/*
+	 * 
+	 */
 	public void unBank(int die){
 		bank[die]=0;
 		//System.out.println("DEBUG unBank["+die+"] = "+ bank[die]);

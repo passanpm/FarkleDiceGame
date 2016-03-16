@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 public class Standard{
 	
-	int score = 0;
-	static ArrayList<Integer> set = new ArrayList<Integer>();
-	static ArrayList<Integer> single = new ArrayList<Integer>();
+	protected int score = 0;
+	protected static ArrayList<Integer> set = new ArrayList<Integer>();
+	protected static ArrayList<Integer> single = new ArrayList<Integer>();
 	
 	public void debug(){
 		System.out.println("single: " + single);
@@ -48,6 +48,7 @@ public class Standard{
 		}
 		
 		//set of 3 calc
+		//Remember: Requires holding down shift to work
 		if (set.size() == 3){
 			if (set.get(0) == 1){
 				bank += 1000;
@@ -68,8 +69,11 @@ public class Standard{
 	}
 	
 	//farkle -> next player
-	public static void farkle(){
-
+	public static boolean farkle(){
+		
+		
+		
+		return false;
 	}
 	
 

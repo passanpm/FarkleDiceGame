@@ -1,7 +1,9 @@
 package edu.plu.cs.farkle.client;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import redis.clients.jedis.Jedis;
 
@@ -18,10 +20,24 @@ public class redis {
 	
 	public Player auth(Player player){
 		if (jedis.exists(player.getName())){
+			listPlayers();
 			return loadUser(player.getName());
 		}else{
+			listPlayers();
 			return addUser(player);
 		}
+	}
+	
+	public void listPlayers(){
+	    Set<String> names=jedis.keys("*");
+	    int count = 1;
+	    System.out.println("PLAYERS: ");
+	    Iterator<String> it = names.iterator();
+	    while (it.hasNext()) {
+	        String s = it.next();
+	        System.out.println(count + ": " + s);
+	        count ++;
+	    }
 	}
 	
 	public Player addUser(Player user) {
@@ -49,12 +65,18 @@ public class redis {
 	
 	public void updateCurrent(Player user){
 	    jedis.hset(user.getName(), "current", Integer.toString(user.getCurrent()));
-	    System.out.println("current: " + user.getCurrent());
+	}
+	
+	public int getCurrent(Player user){
+		return Integer.parseInt(jedis.hget(user.getName(), "current"));
 	}
 	
 	public void updateTotal(Player user){
 	    jedis.hset(user.getName(), "total", Integer.toString(user.getTotal()));
-	    System.out.println("current: " + user.getTotal());
+	}
+	
+	public int getTotal(Player user){
+		return Integer.parseInt(jedis.hget(user.getName(), "total"));
 	}
 	
 	

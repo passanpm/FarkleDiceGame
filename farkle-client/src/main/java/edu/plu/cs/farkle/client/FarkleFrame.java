@@ -36,7 +36,7 @@ public class FarkleFrame {
 	////////////////VARIABLES\\\\\\\\\\\\\\\\
 	private JFrame frame;
 	
-	private int die, value, score, bankScore;
+	private int die, value, score, bankScore=0;
 	
 	private Image img;
 	
@@ -271,6 +271,8 @@ public class FarkleFrame {
 	}
 	
 	public void restart(){
+		//txtScore.setText(score);
+		txtScore = new JTextField(100);
 		txtScore.setText("Score: " + score);
 		diceObj.roll(6, 1, 6);
 		roll = diceObj.getRoll();
@@ -450,6 +452,9 @@ public class FarkleFrame {
 		diceObj.roll(6, 1, 6);
 		roll = diceObj.getRoll();
 		
+		if(diceObj.farkle()){
+			System.out.println("FARKLED");
+		}
 		
 		
 		//Game Panel
@@ -583,10 +588,33 @@ public class FarkleFrame {
 		lblBankScore.setBounds(683, 82, 162, 57);
 		game.add(lblBankScore);
 		
+		
+		//ROLL BUTTON\\
+		
 		btnRoll = new JButton("Roll");
 		btnRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				diceObj.roll(6, 1, 6);
+				
+				if(diceObj.farkle()==true){
+					/*System.out.println("FARKLE");
+					JInternalFrame fark = new JInternalFrame();
+					fark.setBounds(1095,11, 239, 271);
+					game.add(fark);
+					fark.setVisible(true);
+					fark.getContentPane().setLayout(null);*/
+				
+					JTextPane farkText = new JTextPane();
+					farkText.setText("YOU FARKLED!!!");
+					farkText.setEditable(false);
+					farkText.setBounds((int)width/2, (int)height/2, 213, 230);
+					game.add(farkText);
+					
+					
+					
+				}
+					
 				roll = diceObj.getRoll();
 				die = roll[0];
 				
