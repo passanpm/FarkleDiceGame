@@ -1,10 +1,11 @@
 package edu.plu.cs.farkle.client;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 public class Dice{
 
-	private static int[] roll = new int[6];
+	private static ArrayList<Integer> roll = new ArrayList<Integer>();
 	private static int[] bank = new int[6];
 	
 	
@@ -16,17 +17,17 @@ public class Dice{
 	 */
 	public boolean farkle(){
 		
-		for(int i = 0; i < roll.length; i++){
+		for(int i = 0; i < roll.size(); i++){
 			
-			if(roll[i]==1||roll[i]==5){
+			if(roll.get(i)==1||roll.get(i)==5){
 				return false;
 			}
 			
-			for(int j = roll.length-3; j > i; j--){
+			for(int j = roll.size()-3; j > i; j--){
 				
-				for(int k = roll.length-1; k>j; k--){
+				for(int k = roll.size()-1; k>j; k--){
 					
-					if( roll[i] == roll[j] && roll[i] == roll[k]){
+					if( roll.get(i) == roll.get(j) && roll.get(i) == roll.get(k)){
 					
 						return false;
 					}
@@ -45,9 +46,9 @@ public class Dice{
 	 * initializes dice arrays back to 0
 	 */
 	public static void resetDice(){
-		for(int i = 0; i < roll.length; i++){
+		for(int i = 0; i < roll.size(); i++){
 			for(int j = 0; j < bank.length; j++){
-				roll[i] = 0;
+				roll.add(i,0);
 				bank [j] = 0;
 			}
 		}
@@ -62,19 +63,20 @@ public class Dice{
 	 * TODO: Add in animations and other UI things for when the dice roll
 	 */
 	public void roll(int dieMax, int dieMin, int amount){
+		roll.clear();
 		Random r = new Random();
 		int randomNumber = 0;
 		for(int i = 0; i < amount; i++){
 			randomNumber = r.nextInt((dieMax - dieMin) + 1) + dieMin;
-			roll[i] = randomNumber;
+			roll.add(i,randomNumber);
 		}
 	
 	}
 	/*
 	 * 
 	 */
-	public int[] getRoll(){
-		System.out.println("ROLL: " + Arrays.toString(roll));
+	public ArrayList<Integer> getRoll(){
+		System.out.println("ROLL: " + roll.toString());
 		return roll;
 	}
 	

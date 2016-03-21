@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -36,13 +37,14 @@ public class FarkleFrame {
 	////////////////VARIABLES\\\\\\\\\\\\\\\\
 	private JFrame frame;
 	
-	private int die, value, score, bankScore=0;
+	private int die, value, score, bankScore = 0;
+	private int diceAmount =6 ;
 	
 	private Image img;
 	
 	private Dice diceObj = new Dice();
 	
-	private int[] roll = new int[6];
+	private ArrayList<Integer> roll = new ArrayList<Integer>();
 	
 	private Standard standard = new Standard();
 	
@@ -128,7 +130,7 @@ public class FarkleFrame {
 	 * @param j
 	 */
 	public void diceIMG(int a, JLabel j){
-		die = roll[a];
+		die = roll.get(a);
 		switch(die){
 		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
 				j.setIcon(new ImageIcon(img));		
@@ -167,13 +169,14 @@ public class FarkleFrame {
 	 */
 	public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, boolean bdrCheck){
 		if(!bdrCheck){
-			diceObj.banking(diceID, roll[diceID]);
+			diceAmount--;
+			diceObj.banking(diceID, roll.get(diceID));
 			if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
 				name.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-				standard.addToSet(roll[diceID]);
+				standard.addToSet(roll.get(diceID));
             }else{
             	name.setBorder(border);
-            	standard.addToSingle(roll[diceID]);
+            	standard.addToSingle(roll.get(diceID));
             }
 			switch ( diceID ) {
 			case 0: 
@@ -200,7 +203,7 @@ public class FarkleFrame {
 		else{
 			
 			removeDice(name, diceID);
-			
+			diceAmount++;
 			diceObj.unBank(diceID);
 			name.setBorder(null);
 			switch ( diceID ) {
@@ -236,9 +239,9 @@ public class FarkleFrame {
 	 */
 	public void removeDice(JLabel label, int i){
 		if ( ((LineBorder) label.getBorder()).getLineColor() == Color.RED ){
-			standard.removeFromSet(roll[i]);
+			standard.removeFromSet(roll.get(i));
 		}else{
-			standard.removeFromSingle(roll[i]);
+			standard.removeFromSingle(roll.get(i));
 		}
 	}
 	
@@ -595,7 +598,7 @@ public class FarkleFrame {
 		btnRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				diceObj.roll(6, 1, 6);
+				diceObj.roll(6, 1, diceAmount);
 				
 				if(diceObj.farkle()==true){
 					/*System.out.println("FARKLE");
@@ -616,7 +619,7 @@ public class FarkleFrame {
 				}
 					
 				roll = diceObj.getRoll();
-				die = roll[0];
+				die = roll.get(0);
 				
 
 				blackout(lblDice, borderOption);
