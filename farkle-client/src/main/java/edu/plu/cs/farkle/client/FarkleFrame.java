@@ -77,6 +77,8 @@ public class FarkleFrame {
 	 private JButton endTurn;
 	 private JTable table;
 	 private JLabel currentPlayer;
+	 
+	 private JTextPane farkText;
 	
 
 	/**
@@ -130,8 +132,17 @@ public class FarkleFrame {
 	 * @param j
 	 */
 	public void diceIMG(int a, JLabel j){
+		
+		//BUG HERE\\
+		
+		//FIX NOW\\
+		
 		if(a < roll.size())
 			die = roll.get(a);
+		
+		
+		
+		//////////////////////////////////////////////////////////////
 		switch(die){
 		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
 				j.setIcon(new ImageIcon(img));		
@@ -299,6 +310,8 @@ public class FarkleFrame {
 		diceIMG(3, label_2);
 		diceIMG(4, label_3);
 		diceIMG(5, label_4);
+		
+		farkText.setVisible(false);
 		
 	}
 	
@@ -580,7 +593,7 @@ public class FarkleFrame {
 		/*
 		 * Handle Dice 5
 		 */
-		diceIMG(5,label_4);
+		diceIMG(roll.size()-1,label_4);
 		
 		lblScore = new JLabel("Score: "+score);
 		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 21));
@@ -604,7 +617,7 @@ public class FarkleFrame {
 				if(diceObj.farkle()==true){
 					
 				
-					JTextPane farkText = new JTextPane();
+					farkText = new JTextPane();
 					farkText.setText("YOU FARKLED!!!");
 					farkText.setEditable(false);
 					farkText.setBounds((int)width/2, (int)height/2, 213, 230);
