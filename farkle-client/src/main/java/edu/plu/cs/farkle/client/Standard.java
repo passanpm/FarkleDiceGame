@@ -124,17 +124,6 @@ public class Standard{
 	public int getScore(){
 		return score;
 	}
-<<<<<<< HEAD
-	
-	//farkle -> next player
-	public static boolean farkle(){
-		
-		
-		
-		return false;
-	}
-	
-=======
->>>>>>> origin
+
 
 }

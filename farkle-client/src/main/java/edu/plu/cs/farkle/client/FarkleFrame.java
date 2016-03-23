@@ -130,7 +130,8 @@ public class FarkleFrame {
 	 * @param j
 	 */
 	public void diceIMG(int a, JLabel j){
-		die = roll.get(a);
+		if(a < roll.size())
+			die = roll.get(a);
 		switch(die){
 		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
 				j.setIcon(new ImageIcon(img));		
@@ -601,12 +602,7 @@ public class FarkleFrame {
 				diceObj.roll(6, 1, diceAmount);
 				
 				if(diceObj.farkle()==true){
-					/*System.out.println("FARKLE");
-					JInternalFrame fark = new JInternalFrame();
-					fark.setBounds(1095,11, 239, 271);
-					game.add(fark);
-					fark.setVisible(true);
-					fark.getContentPane().setLayout(null);*/
+					
 				
 					JTextPane farkText = new JTextPane();
 					farkText.setText("YOU FARKLED!!!");
