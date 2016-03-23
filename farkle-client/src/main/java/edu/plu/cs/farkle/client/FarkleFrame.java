@@ -30,6 +30,9 @@ import javax.swing.DropMode;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
 
 public class FarkleFrame {
 	
@@ -87,6 +90,7 @@ public class FarkleFrame {
 	 private JLabel currentPlayer;
 	 
 	 private JTextPane farkText;
+	 private JMenuItem mntmExit;
 	
 
 	/**
@@ -704,6 +708,38 @@ public class FarkleFrame {
 		currentPlayer.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		currentPlayer.setBounds(106, 42, 232, 57);
 		game.add(currentPlayer);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 1356, 21);
+		game.add(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		//Sign out button
+		
+		JMenuItem mntmSignOut = new JMenuItem("Sign Out");
+		mntmSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.setVisible(false);
+				login();
+				
+			}
+		});
+		mnFile.add(mntmSignOut);
+		
+		
+		//Exit button
+		
+		mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		mnFile.add(mntmExit);
+		
+		
 		label_4.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e){
