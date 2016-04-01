@@ -4,32 +4,38 @@ import java.util.ArrayList;
 public class Standard{
 	
 	protected int score = 0;
+	protected int tempScore = 0;
 	protected static ArrayList<Integer> set = new ArrayList<Integer>();
 	protected static ArrayList<Integer> single = new ArrayList<Integer>();
 	
 	public void debug(){
-		System.out.println("single: " + single);
-		System.out.println("set: " + set);
+		//System.out.println("single: " + single);
+		//System.out.println("set: " + set);
 	}
 	
 	public void addToSingle(int value){
 		single.add(value);
-		System.out.println("single: " + single);
+		//System.out.println("single: " + single);
 	}
 	
 	public void addToSet(int value){
 		set.add(value);
-		System.out.println("set: " + set);
+		//System.out.println("set: " + set);
 	}
 	
 	public void removeFromSingle(int die){
 		single.remove(Integer.valueOf(die));
-		System.out.println("single: " + single);
+		//System.out.println("single: " + single);
 	}
 	
 	public void removeFromSet(int die){
 		set.remove(Integer.valueOf(die));
-		System.out.println("set: " + set);
+		//System.out.println("set: " + set);
+	}
+	
+	public void clear(){
+		set.clear();
+		single.clear();
 	}
 	
 	//calculate value of bank
@@ -116,9 +122,13 @@ public class Standard{
 		*/
 		
 		score += bank;
+		tempScore =bank;
 		
 		
-		
+	}
+	
+	public int getTemp(){
+		return tempScore;
 	}
 	
 	public int getScore(){

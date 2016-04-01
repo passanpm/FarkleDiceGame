@@ -27,7 +27,7 @@ public class Dice{
 				
 				for(int k = roll.size()-1; k>j; k--){
 					
-					if( roll.get(i) == roll.get(j) && roll.get(i) == roll.get(k)){
+					if( roll.get(i) == roll.get(j) && roll.get(i) == roll.get(k) && roll.get(i)>0 && roll.get(j) > 0 && roll.get(k) > 0){
 					
 						return false;
 					}
@@ -62,7 +62,21 @@ public class Dice{
 	 * 
 	 * TODO: Add in animations and other UI things for when the dice roll
 	 */
-	public void roll(int dieMax, int dieMin, int amount){
+	public void roll(int dieMax, int dieMin, ArrayList<Integer> amount){
+		//roll.clear();
+		roll = amount;
+		Random r = new Random();
+		int randomNumber = 0;
+		for(int i = 0; i < amount.size(); i++){
+			randomNumber = r.nextInt((dieMax - dieMin) + 1) + dieMin;
+			if(amount.get(i)>=0)
+				roll.set(i,randomNumber);
+		}
+	
+	}
+	
+	
+	public void rollInit(int dieMax, int dieMin, int amount){
 		roll.clear();
 		Random r = new Random();
 		int randomNumber = 0;
@@ -91,7 +105,11 @@ public class Dice{
 		 * Add the dice to bank array.
 		*/
 		bank[die] = value;
-		//System.out.println("DEBUG bank["+die+"] = "+ bank[die]);
+		roll.set(die,value*-1);
+		System.out.println("Die: " +die);
+		System.out.println("DEBUG bank["+die+"] = "+ bank[die]);
+		System.out.println("DEBUG roll: "+roll.toString());
+		
 		/*
 		 * if the dice that is banked in the same turn is clicked again...
 		 * Remove the dice from bank array and add back to roll array
@@ -101,8 +119,13 @@ public class Dice{
 	/*
 	 * 
 	 */
-	public void unBank(int die){
+	public void unBank(int die, int value){
+		roll.set(die, value*-1);
+		System.out.println("Die: " +die);
 		bank[die]=0;
+		
+		System.out.println("DEBUG bank["+die+"] = "+ bank[die]);
+		System.out.println("DEBUG roll: "+roll.toString());
 		//System.out.println("DEBUG unBank["+die+"] = "+ bank[die]);
 	}
 	
