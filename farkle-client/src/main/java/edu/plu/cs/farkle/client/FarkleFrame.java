@@ -745,7 +745,7 @@ public class FarkleFrame {
 				label_4.setBorder(null);
 				restart();
 				standard.debug();
-				
+				standard.clear();
 				
 				
 				

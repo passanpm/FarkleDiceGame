@@ -34,8 +34,10 @@ public class Standard{
 	}
 	
 	public void clear(){
+		score = 0;
 		set.clear();
 		single.clear();
+		System.out.println("set: " + set.toString() + "\nsingle: " + single.toString() + "\nScore: + " + score);
 	}
 	
 	//calculate value of bank
@@ -46,10 +48,10 @@ public class Standard{
 		for (int i = 0; i < single.size(); i++){
 			if (single.get(i) == 1){
 				bank += 100;
-				single.remove(Integer.valueOf(1));
+				//single.remove(Integer.valueOf(1));
 			}else if (single.get(i) == 5){
 				bank += 50;
-				single.remove(Integer.valueOf(5));
+				//single.remove(Integer.valueOf(5));
 			}
 		}
 		
@@ -154,7 +156,7 @@ public class Standard{
 		score += bank;
 		tempScore =bank;
 		
-		
+		single.clear();
 	}
 	
 	public int getTemp(){
