@@ -81,7 +81,8 @@ public class Standard{
 		
 		/* This doesn't work yet, stil working on this...
 		if(set.size() == 6){
-			boolean checkA, checkB, checkC = false;
+			boolean checkA = false, checkB = false, checkC = false;
+			
 			//All 6 are the same, compare all together
 			if(set.get(0) == set.get(3)){
 				int comp = set.get(0);
@@ -94,6 +95,16 @@ public class Standard{
 						break;
 					}
 				}
+				
+				if(checkA){
+					if(set.get(0) == 1){
+						bank += 2000;
+					}
+					else{
+						bank += (set.get(0) * 100) * 2;
+					}	
+					set.clear();
+				}
 			}
 			
 			//Two sets of 3 check both sets
@@ -105,6 +116,7 @@ public class Standard{
 				}
 				else{
 					checkB = false;
+					break;
 				}
 			}
 			for(int i=3; i<6; i++){
@@ -115,7 +127,25 @@ public class Standard{
 				}
 				else{
 					checkC = false;
+					break;
 				}
+			}
+			
+			if(checkB){
+				if (set.get(0) == 1){
+						bank += 1000;
+					}else{
+						bank += set.get(0) * 100;
+					}
+					set.clear();
+			}
+			if(checkC){
+				if (set.get(3) == 1){
+						bank += 1000;
+					}else{
+						bank += set.get(3) * 100;
+					}
+					set.clear();
 			}
 			
 		}
