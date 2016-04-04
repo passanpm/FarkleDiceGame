@@ -2,13 +2,13 @@ package edu.plu.cs.farkle.client;
 public class Player {
 	
 	String name;
-	String pass;
+
 	private int totalScore;
 	private int currentScore;
 	
-	public Player(String user, String key){
-		this.name = user;
-		this.pass = key;
+
+	public Player(){
+		name = "user";
 		totalScore = 0;
 		currentScore = 0;
 	}
@@ -36,7 +36,7 @@ public class Player {
 	}
 	
 	public void setTotal(int score){
-		totalScore += score;
+		totalScore = score;
 	}
 	
 }

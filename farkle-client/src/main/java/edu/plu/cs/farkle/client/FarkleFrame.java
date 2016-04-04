@@ -40,8 +40,7 @@ public class FarkleFrame {
 	////////////////VARIABLES\\\\\\\\\\\\\\\\
 	private JFrame frame;
 	
-	private int die, value, score, bankScore = 0;
-	private int diceAmount =6 ;
+	private int die, value, score, bankScore, tempScore = 0;
 	
 	private Image img;
 	
@@ -55,10 +54,7 @@ public class FarkleFrame {
 	private boolean registerScreen = false;
 	
 	
-	////////////////WINDOW VARIABLES\\\\\\\\\\
-	
-	
-	
+	////////////////WINDOW VARIABLES\\\\\\\\\\	
 	
 	private JTextField txtScore;
 	
@@ -79,6 +75,8 @@ public class FarkleFrame {
 	private JPasswordField passwordField;
 	
 	private JPanel welcomePanel, register, game;
+	
+	private ArrayList<Player> playerList = new ArrayList<Player>();
 	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
 	 Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
@@ -158,7 +156,7 @@ public class FarkleFrame {
 		switch(die){
 		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
 				j.setIcon(new ImageIcon(img));		
-				diceObj.banking(0, die);
+				//diceObj.banking(0, die);
 				break;
 		case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
 				j.setIcon(new ImageIcon(img));
@@ -192,67 +190,98 @@ public class FarkleFrame {
 	 * @param bdrCheck
 	 */
 	public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, boolean bdrCheck){
-		if(!bdrCheck){
-			diceAmount--;
-			diceObj.banking(diceID, roll.get(diceID));
+		System.out.println(bdrCheck);
+		if(!bdrCheck && roll.get(diceID)>0){
+			
 			if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
 				name.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 				standard.addToSet(roll.get(diceID));
             }else{
             	name.setBorder(border);
             	standard.addToSingle(roll.get(diceID));
+            	bdrCheck = true;
             }
+			
 			switch ( diceID ) {
-			case 0: 
+			case 0:
+				System.out.println(roll.get(0));
+				if(roll.get(0) > 0)
+					System.out.println("________________________");
 				borderOption = true;
 				break;
 			case 1: 
+				if(roll.get(1) > 0)
 				borderOption1 = true;
 				break;
 			case 2: 
+				if(roll.get(2) > 0)
 				borderOption2 = true;
 				break;
 			case 3: 
+				if(roll.get(3) > 0)
 				borderOption3 = true;
 				break;
 			case 4: 
+				if(roll.get(4) > 0)
 				borderOption4 = true;
 				break;
 			case 5: 
+				if(roll.get(5) > 0)
 				borderOption5 = true;
 				break;
 			}
-
+			diceObj.banking(diceID, roll.get(diceID));
+			updateScore();
+			tempScore += standard.getTemp();
+			lblBankScore.setText("Bank Score: " + tempScore);
 		}
-		else{
+		else if(bdrCheck && roll.get(diceID)<0){
+			System.out.println("UNBANKING");
+			
+			standard.removeFromSingle(roll.get(diceID));
+			//updateScore();
+			bankScore -= tempScore;
+			tempScore -= standard.getTemp();
+			
+			lblBankScore.setText("Bank Score: " + tempScore);
+			
 			
 			removeDice(name, diceID);
-			diceAmount++;
-			diceObj.unBank(diceID);
+			
+			
+			
+			
 			name.setBorder(null);
 			switch ( diceID ) {
 			case 0: 
+				if(roll.get(0) < 0)
 				borderOption = false;
 				break;
 			case 1: 
+				if(roll.get(1) < 0)
 				borderOption1 = false;
 				break;
 			case 2: 
+				if(roll.get(2) < 0)
 				borderOption2 = false;
 				break;
 			case 3: 
+				if(roll.get(3) < 0)
 				borderOption3 = false;
 				break;
 			case 4: 
+				if(roll.get(4) < 0)
 				borderOption4 = false;
 				break;
 			case 5: 
+				if(roll.get(5) < 0)
 				borderOption5 = false;
 				break;
 			}
+			diceObj.unBank(diceID, roll.get(diceID));
 		}
 		
-		updateScore();
+		
 	}
 	
 	
@@ -279,8 +308,9 @@ public class FarkleFrame {
 	}
 	
 	public boolean blackout(JLabel dice, boolean b){
+		Color c=new Color(1f,0f,0f,0f );
 		if (b){
-			dice.setBorder(BorderFactory.createLineBorder(Color.BLACK, 50));
+			dice.setBorder(BorderFactory.createLineBorder(c, 50));
 		}
 		return b;	
 	}
@@ -299,9 +329,11 @@ public class FarkleFrame {
 	
 	public void restart(){
 		//txtScore.setText(score);
+		tempScore = 0;
 		txtScore = new JTextField(100);
 		txtScore.setText("Score: " + score);
-		diceObj.roll(6, 1, 6);
+		lblBankScore.setText("Bank Score: " + tempScore);
+		diceObj.rollInit(6, 1, 6);
 		roll = diceObj.getRoll();
 		borderOption = false;
 		borderOption1= false;
@@ -323,9 +355,13 @@ public class FarkleFrame {
 		diceIMG(4, label_3);
 		diceIMG(5, label_4);
 		
-		farkText.setVisible(false);
+		if(farkText != null && farkText.isVisible())
+			farkText.setVisible(false);
 		
-	}
+		
+		btnRoll.setEnabled(true);
+		
+		}
 	
 	
 	
@@ -361,6 +397,7 @@ public class FarkleFrame {
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setBounds((int)width/2-offsetWidth, (int)height/2, 86, 20);
 		welcomePanel.add(lblUsername);
+		
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds((int)width/2, (int)height/2+offsetHeight, 86, 20);
@@ -484,23 +521,24 @@ public class FarkleFrame {
 	
 	
 	private void start(){
-		diceObj.roll(6, 1, 6);
-		roll = diceObj.getRoll();
-		
-		if(diceObj.farkle()){
-			System.out.println("FARKLED");
-		}
-		
-		
-		//Game Panel
 		game = new JPanel();
 		game.setBackground(new Color(0, 128, 0));
 		game.setBounds(0, 0, (int)width, (int)height);
 		frame.getContentPane().add(game);
 		game.setLayout(null);
 		
-		JInternalFrame rules = new JInternalFrame();
-		rules.setBounds(1095,11, 239, 271);
+		
+		diceObj.rollInit(6, 1, 6);
+		roll = diceObj.getRoll();
+		
+		
+		
+		
+		//Game Panel
+	
+		
+		JInternalFrame rules = new JInternalFrame("Rules");
+		rules.setBounds((int)width-offsetWidth*3, offsetHeight, 239, 271);
 		game.add(rules);
 		rules.setVisible(true);
 		rules.getContentPane().setLayout(null);
@@ -548,70 +586,93 @@ public class FarkleFrame {
 		/*
 		 * Handle Dice 0
 		 */
-		
-		diceIMG(0,lblDice);
-			lblDice.addMouseListener(new MouseAdapter(){
-				@Override
-				public void mouseClicked(MouseEvent e){
-					diceClick(0,lblDice, e, border, borderOption);
-
-				}
-			});
-		
+		int temp = roll.get(0);
+		if( temp >0){
+			diceIMG(0,lblDice);
+				lblDice.addMouseListener(new MouseAdapter(){
+					@Override
+					public void mouseClicked(MouseEvent e){
+						diceClick(0,lblDice, e, border, borderOption);
+	
+					}
+				});
+		}
 		
 		
 		/*
 		 * Handle Dice 1
 		 */
-		
-		diceIMG(1,label);
-		label.addMouseListener(new MouseAdapter(){
-			@Override
-			public void mouseClicked(MouseEvent e){
-				diceClick(1, label, e, border, borderOption1);
-
-			}
-		});
+		temp = roll.get(1);
+		if( temp > 0){
+			diceIMG(1,label);
+			label.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e){
+					diceClick(1, label, e, border, borderOption1);
+	
+				}
+			});
+		}
 		
 		/*
 		 * Handle Dice 2
 		 */
-		diceIMG(2,label_1);
-		label_1.addMouseListener(new MouseAdapter(){
-			@Override
-			public void mouseClicked(MouseEvent e){
-				diceClick(2, label_1, e, border, borderOption2);
-
-			}
-		});
+		temp = roll.get(2);
+		if( temp > 0){
+			diceIMG(2,label_1);
+			label_1.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e){
+					diceClick(2, label_1, e, border, borderOption2);
+	
+				}
+			});
+		}
 		
 		/*
 		 * Handle Dice 3
 		 */
-		diceIMG(3,label_2);
-		label_2.addMouseListener(new MouseAdapter(){
-			@Override
-			public void mouseClicked(MouseEvent e){
-				diceClick(3, label_2, e, border, borderOption3);
-
-			}
-		});
+		temp = roll.get(3);
+		if( temp > 0){
+			diceIMG(3,label_2);
+			label_2.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e){
+					diceClick(3, label_2, e, border, borderOption3);
+	
+				}
+			});
+		}
+		
 		/*
 		 * Handle Dice 4
 		 */
-		diceIMG(4,label_3);
-		label_3.addMouseListener(new MouseAdapter(){
-			@Override
-			public void mouseClicked(MouseEvent e){
-				diceClick(4,label_3, e, border, borderOption4);
-
-			}
-		});
+		temp = roll.get(4);
+		if( temp > 0){
+			diceIMG(4,label_3);
+			label_3.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e){
+					diceClick(4,label_3, e, border, borderOption4);
+	
+				}
+			});
+		}
 		
 		/*
 		 * Handle Dice 5
 		 */
-		diceIMG(roll.size()-1,label_4);
+		temp = roll.get(5);
+		if( temp > 0){
+			diceIMG(5,label_4);
+			label_4.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e){
+					diceClick(5, label_4, e, border, borderOption5);
+	
+				}
+			});
+		}
 		
 		lblScore = new JLabel("Score: "+score);
 		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 21));
@@ -620,7 +681,7 @@ public class FarkleFrame {
 		
 		lblBankScore = new JLabel("Bank Score: "+bankScore);
 		lblBankScore.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblBankScore.setBounds(683, 82, 162, 57);
+		lblBankScore.setBounds((int)width/2, 82, 162, 57);
 		game.add(lblBankScore);
 		
 		
@@ -630,18 +691,22 @@ public class FarkleFrame {
 		btnRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				diceObj.roll(6, 1, diceAmount);
+				diceObj.roll(6, 1, roll);
 				
-				if(diceObj.farkle()==true){
-					
-				
+				if(diceObj.farkle()){
+					bankScore = 0;
+					tempScore = 0;
 					farkText = new JTextPane();
 					farkText.setText("YOU FARKLED!!!");
+					farkText.setBackground(new Color(0, 128, 0));
+					farkText.setFont(new Font("Arial", Font.BOLD, 24));
 					farkText.setEditable(false);
-					farkText.setBounds((int)width/2, (int)height/2, 213, 230);
+					farkText.setBounds((int)width/2, (int)height/2+offsetHeight, 500, 500);
 					game.add(farkText);
 					
+					btnRoll.setEnabled(false);
 					
+					standard.clear();
 					
 				}
 					
@@ -664,6 +729,11 @@ public class FarkleFrame {
 				diceIMG(3, label_2);
 				diceIMG(4, label_3);
 				diceIMG(5, label_4);
+				
+				updateScore();
+				
+				tempScore += standard.getTemp();
+				lblBankScore.setText("Bank Score: " + tempScore);
 			}
 		});
 		btnRoll.setBounds(106, 472, 164, 76);
@@ -673,6 +743,7 @@ public class FarkleFrame {
 		endTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				score += bankScore;
+				playerList.get(0).setTotal(score);
 				lblScore.setText("Score: " + score);
 				bankScore = 0;
 				standard = new Standard();
@@ -684,24 +755,29 @@ public class FarkleFrame {
 				label_4.setBorder(null);
 				restart();
 				standard.debug();
+				standard.clear();
 				
 				
+				
+				table.setValueAt(playerList.get(0).getTotal(), 1, 1);
 			}
 		});
 		endTurn.setBounds(106, 568, 164, 76);
 		game.add(endTurn);
 		
+		playerList.get(0).setName(usernameText.getText());
+		System.out.println("name " + playerList.get(0).name);
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"Player", "Score"},
-				{null, null},
+				{playerList.get(0).name, playerList.get(0).getTotal()},
 			},
 			new String[] {
 				"New column", "New column"
 			}
 		));
-		table.setBounds(1095, 329, 239, 131);
+		table.setBounds((int)width/2, (int)height/2-offsetHeight, 239, 131);
 		game.add(table);
 		
 		currentPlayer = new JLabel("Current Player: "+usernameText.getText());
@@ -709,8 +785,9 @@ public class FarkleFrame {
 		currentPlayer.setBounds(106, 42, 232, 57);
 		game.add(currentPlayer);
 		
+
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1356, 21);
+		menuBar.setBounds(0, 0, (int)width, 21);
 		game.add(menuBar);
 		
 		JMenu mnFile = new JMenu("File");
@@ -740,15 +817,31 @@ public class FarkleFrame {
 		mnFile.add(mntmExit);
 		
 		
-		label_4.addMouseListener(new MouseAdapter(){
-			@Override
-			public void mouseClicked(MouseEvent e){
-				diceClick(5, label_4, e, border, borderOption5);
-
-			}
-		});
+		
+		if(diceObj.farkle()){
+			
+			
+			farkText = new JTextPane();
+			farkText.setText("YOU FARKLED!!!");
+			farkText.setBackground(new Color(0, 128, 0));
+			farkText.setFont(new Font("Arial", Font.BOLD, 24));
+			farkText.setEditable(false);
+			farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
+			game.add(farkText);
+			
+			
+			btnRoll.setEnabled(true);
+			
+			standard.clear();
+			
+		}
 		
 	}
+	
+	
+	
+	
+	
 	
 	
 	/**
@@ -761,13 +854,24 @@ public class FarkleFrame {
 		offsetWidth = (int)width/15;
 		offsetHeight = (int)height/15;
 		
+		
+		
+		
 		frame = new JFrame();
 		frame.setSize((int)width, (int)height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		
+		
+		
+		
 		login();
+		
+		
+		Player play = new Player();
+		
+		playerList.add(play);
 		
 		
 		//start();
