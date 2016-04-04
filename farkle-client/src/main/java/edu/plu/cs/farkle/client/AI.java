@@ -18,6 +18,10 @@ public class AI {
 
 	public void roll(){
 		diceRoll = die.getRoll();
+		
+		for(int i = 0; i < difficulty; i++){
+			
+		}
 	}
 	
 	

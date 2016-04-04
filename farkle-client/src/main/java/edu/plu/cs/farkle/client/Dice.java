@@ -13,32 +13,20 @@ public class Dice{
 	 * Will look in the roll array for a farkle. If there is a farkle found, it will return
 	 * true. If not, the player will be able to keep rolling.
 	 * 
-	 * The "definition" of farkle is determined by game rules
 	 */
-	public boolean farkle(){
-		
-		for(int i = 0; i < roll.size(); i++){
-			
+	public boolean farkle(){		
+		for(int i = 0; i < roll.size(); i++){			
 			if(roll.get(i)==1||roll.get(i)==5){
 				return false;
-			}
-			
-			for(int j = roll.size()-3; j > i; j--){
-				
-				for(int k = roll.size()-1; k>j; k--){
-					
-					if( roll.get(i) == roll.get(j) && roll.get(i) == roll.get(k) && roll.get(i)>0 && roll.get(j) > 0 && roll.get(k) > 0){
-					
+			}			
+			for(int j = roll.size()-3; j > i; j--){				
+				for(int k = roll.size()-1; k>j; k--){					
+					if( roll.get(i) == roll.get(j) && roll.get(i) == roll.get(k) && roll.get(i)>0 && roll.get(j) > 0 && roll.get(k) > 0){					
 						return false;
-					}
-					
-				}
-					
-				
-			}
-				
-		}
-		
+					}					
+				}									
+			}				
+		}		
 		return true;
 	}
 	
@@ -86,11 +74,11 @@ public class Dice{
 		}
 	
 	}
+	
 	/*
-	 * 
+	 * Returns the roll
 	 */
 	public ArrayList<Integer> getRoll(){
-		System.out.println("ROLL: " + roll.toString());
 		return roll;
 	}
 	
@@ -99,34 +87,15 @@ public class Dice{
 	 * in a given turn.
 	 */
 	public void banking(int die, int value){
-		
-		/*
-		 * if the dice is clicked...
-		 * Add the dice to bank array.
-		*/
 		bank[die] = value;
 		roll.set(die,value*-1);
-		System.out.println("Die: " +die);
-		System.out.println("DEBUG bank["+die+"] = "+ bank[die]);
-		System.out.println("DEBUG roll: "+roll.toString());
-		
-		/*
-		 * if the dice that is banked in the same turn is clicked again...
-		 * Remove the dice from bank array and add back to roll array
-		 */
 	}
 	
 	/*
-	 * 
+	 * Removes value from bank
 	 */
 	public void unBank(int die, int value){
-		roll.set(die, value*-1);
-		System.out.println("Die: " +die);
-		bank[die]=0;
-		
-		System.out.println("DEBUG bank["+die+"] = "+ bank[die]);
-		System.out.println("DEBUG roll: "+roll.toString());
-		//System.out.println("DEBUG unBank["+die+"] = "+ bank[die]);
+		roll.set(die, value*-1);		
+		bank[die]=0;		
 	}
-	
 }

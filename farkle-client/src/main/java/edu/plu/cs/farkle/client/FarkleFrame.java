@@ -20,6 +20,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
+import javax.swing.JRootPane;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -143,16 +145,10 @@ public class FarkleFrame {
 	 */
 	public void diceIMG(int a, JLabel j){
 		
-		//BUG HERE\\
-		
-		//FIX NOW\\
-		
 		if(a < roll.size())
 			die = roll.get(a);
-		
-		
-		
-		//////////////////////////////////////////////////////////////
+	
+
 		switch(die){
 		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
 				j.setIcon(new ImageIcon(img));		
@@ -190,7 +186,7 @@ public class FarkleFrame {
 	 * @param bdrCheck
 	 */
 	public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, boolean bdrCheck){
-		System.out.println(bdrCheck);
+		
 		if(!bdrCheck && roll.get(diceID)>0){
 			
 			if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
@@ -204,30 +200,29 @@ public class FarkleFrame {
 			
 			switch ( diceID ) {
 			case 0:
-				System.out.println(roll.get(0));
+				
 				if(roll.get(0) > 0)
-					System.out.println("________________________");
-				borderOption = true;
+					borderOption = true;
 				break;
 			case 1: 
 				if(roll.get(1) > 0)
-				borderOption1 = true;
+					borderOption1 = true;
 				break;
 			case 2: 
 				if(roll.get(2) > 0)
-				borderOption2 = true;
+					borderOption2 = true;
 				break;
 			case 3: 
 				if(roll.get(3) > 0)
-				borderOption3 = true;
+					borderOption3 = true;
 				break;
 			case 4: 
 				if(roll.get(4) > 0)
-				borderOption4 = true;
+					borderOption4 = true;
 				break;
 			case 5: 
 				if(roll.get(5) > 0)
-				borderOption5 = true;
+					borderOption5 = true;
 				break;
 			}
 			diceObj.banking(diceID, roll.get(diceID));
@@ -235,11 +230,9 @@ public class FarkleFrame {
 			tempScore += standard.getTemp();
 			lblBankScore.setText("Bank Score: " + tempScore);
 		}
-		else if(bdrCheck && roll.get(diceID)<0){
-			System.out.println("UNBANKING");
-			
+		else if(bdrCheck && roll.get(diceID)<0){		
 			standard.removeFromSingle(roll.get(diceID));
-			//updateScore();
+
 			bankScore -= tempScore;
 			tempScore -= standard.getTemp();
 			
@@ -248,40 +241,35 @@ public class FarkleFrame {
 			
 			removeDice(name, diceID);
 			
-			
-			
-			
 			name.setBorder(null);
 			switch ( diceID ) {
 			case 0: 
 				if(roll.get(0) < 0)
-				borderOption = false;
+					borderOption = false;
 				break;
 			case 1: 
 				if(roll.get(1) < 0)
-				borderOption1 = false;
+					borderOption1 = false;
 				break;
 			case 2: 
 				if(roll.get(2) < 0)
-				borderOption2 = false;
+					borderOption2 = false;
 				break;
 			case 3: 
 				if(roll.get(3) < 0)
-				borderOption3 = false;
+					borderOption3 = false;
 				break;
 			case 4: 
 				if(roll.get(4) < 0)
-				borderOption4 = false;
+					borderOption4 = false;
 				break;
 			case 5: 
 				if(roll.get(5) < 0)
-				borderOption5 = false;
+					borderOption5 = false;
 				break;
 			}
 			diceObj.unBank(diceID, roll.get(diceID));
 		}
-		
-		
 	}
 	
 	
@@ -298,9 +286,7 @@ public class FarkleFrame {
 		}
 	}
 	
-	/**
-	 * 
-	 */
+
 	public void updateScore() {
 		standard.bank();
 		bankScore = standard.getScore();
@@ -328,7 +314,6 @@ public class FarkleFrame {
 	}
 	
 	public void restart(){
-		//txtScore.setText(score);
 		tempScore = 0;
 		txtScore = new JTextField(100);
 		txtScore.setText("Score: " + score);
@@ -387,6 +372,9 @@ public class FarkleFrame {
 		});
 		btnLogin.setBounds((int)width/2+offsetWidth, (int)height/2, 89, 23);
 		welcomePanel.add(btnLogin);
+		
+		JRootPane root = frame.getRootPane();
+		root.setDefaultButton(btnLogin);
 		
 		usernameText = new JTextField();
 		usernameText.setBounds((int)width/2, (int)height/2, 86, 20);
@@ -857,7 +845,7 @@ public class FarkleFrame {
 		
 		
 		
-		frame = new JFrame();
+		frame = new JFrame("Farkle");
 		frame.setSize((int)width, (int)height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
