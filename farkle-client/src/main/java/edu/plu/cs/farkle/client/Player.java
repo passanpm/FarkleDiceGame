@@ -2,11 +2,13 @@ package edu.plu.cs.farkle.client;
 public class Player {
 	
 	String name;
+	String pass;
 	private int totalScore;
 	private int currentScore;
 	
-	public Player(){
-		this.name = "user";
+	public Player(String user, String key){
+		this.name = user;
+		this.pass = key;
 		totalScore = 0;
 		currentScore = 0;
 	}

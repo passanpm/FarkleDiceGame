@@ -1,0 +1,88 @@
+package edu.plu.cs.farkle.server.auth;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.annotation.Priority;
+import javax.ws.rs.Priorities;
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.ext.Provider;
+
+import org.jboss.resteasy.core.Headers;
+import org.jboss.resteasy.core.ServerResponse;
+
+@Provider
+@Priority(Priorities.AUTHENTICATION)
+public class AuthenticatorFilter implements ContainerRequestFilter {
+	
+	private static final String AUTHORIZATION_PROPERTY = "Authorization";
+    private static final String AUTHENTICATION_SCHEME = "Basic";
+    private static final ServerResponse ACCESS_DENIED = new ServerResponse("Access denied for this resource", 401, new Headers<Object>());;
+    private static final ServerResponse ACCESS_FORBIDDEN = new ServerResponse("Nobody can access this resource", 403, new Headers<Object>());;
+    private static final ServerResponse SERVER_ERROR = new ServerResponse("INTERNAL SERVER ERROR", 500, new Headers<Object>());;
+
+	/**
+	 * This method is called prior to every request.  It reads the HTTP 
+	 * Authorization header and attempts to authenticate the client.  If successful,
+	 * it inserts a SecurityContext object into the request.  Otherwise, it does
+	 * nothing.
+	 */
+	public void filter(ContainerRequestContext request) throws IOException {
+		
+		// Get the authorization header (if it exists)
+		String authorization = request.getHeaderString(HttpHeaders.AUTHORIZATION);
+		
+		// If there is no authorization header, do nothing
+		if( authorization == null ) 
+			return;
+		
+		// Whether or not this request is over HTTPS
+		boolean secure = request.getSecurityContext().isSecure();
+				
+		// If we get this far, we have an authorization header, so validate the 
+		// authorization.
+		
+		//Get request headers
+		final String headers = request.getHeaderString(HttpHeaders.AUTHORIZATION);
+		 
+		//Fetch authorization header
+		final List<String> auth = headers.getHeaderString(HttpHeaders.AUTHORIZATION);
+		 
+		//If no authorization information present; block access
+		if(authorization == null || authorization.isEmpty())
+		{
+		    return ACCESS_DENIED;
+		}
+		 
+		//Get encoded username and password
+		final String encodedUserPassword = authorization.get(0).replaceFirst(AUTHENTICATION_SCHEME + " ", "");
+		 
+		//Decode username and password
+		String usernameAndPassword;
+		try {
+		    usernameAndPassword = new String(Base64.decode(encodedUserPassword));
+		} catch (IOException e) {
+		    return SERVER_ERROR;
+		}
+		 
+		//Split username and password tokens
+		final StringTokenizer tokenizer = new StringTokenizer(usernameAndPassword, ":");
+		final String username = tokenizer.nextToken();
+		final String password = tokenizer.nextToken();
+		
+		
+		//
+		// Currently, this just checks to see if the header is the word "secret".  
+		// TODO: Update this to handle a username/password on initial authorization, and
+		//     session keys for session management.
+		if( authorization.equals("secret") )
+		{
+			// TODO: Create a "real" UserPrincipal
+			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+			UserPrincipal user = new UserPrincipal("dummy-user");
+			request.setSecurityContext(new FarkleSecurityContext(user, secure));
+		}		
+	}
+}
