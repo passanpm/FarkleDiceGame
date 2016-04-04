@@ -16,13 +16,18 @@ public class AI {
 		die = new Dice();
 	}
 
+	//Picks best roll based on difficulty the player selected
 	public void roll(){
 		diceRoll = die.getRoll();
 		
-		for(int i = 0; i < difficulty; i++){
-			
-		}
+		
 	}
 	
+	
+	private int bestRoll(int roll){
+		int score = 0;
+		
+		return score;
+	}
 	
 }
