@@ -76,6 +76,8 @@ public class FarkleFrame {
 	
 	private JPanel welcomePanel, register, game;
 	
+	private ArrayList<Player> playerList = new ArrayList<Player>();
+	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
 	 Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
 	 private JLabel lblScore;
@@ -396,6 +398,7 @@ public class FarkleFrame {
 		lblUsername.setBounds((int)width/2-offsetWidth, (int)height/2, 86, 20);
 		welcomePanel.add(lblUsername);
 		
+		
 		passwordField = new JPasswordField();
 		passwordField.setBounds((int)width/2, (int)height/2+offsetHeight, 86, 20);
 		welcomePanel.add(passwordField);
@@ -518,35 +521,24 @@ public class FarkleFrame {
 	
 	
 	private void start(){
-		diceObj.rollInit(6, 1, 6);
-		roll = diceObj.getRoll();
-		
-		if(diceObj.farkle()){
-			
-			
-			farkText = new JTextPane();
-			farkText.setText("YOU FARKLED!!!");
-			farkText.setEditable(false);
-			farkText.setBounds((int)width/2, (int)height/2, 213, 230);
-			game.add(farkText);
-			
-			
-			btnRoll.setEnabled(true);
-			
-			standard.clear();
-			
-		}
-		
-		
-		//Game Panel
 		game = new JPanel();
 		game.setBackground(new Color(0, 128, 0));
 		game.setBounds(0, 0, (int)width, (int)height);
 		frame.getContentPane().add(game);
 		game.setLayout(null);
 		
-		JInternalFrame rules = new JInternalFrame();
-		rules.setBounds(1095,11, 239, 271);
+		
+		diceObj.rollInit(6, 1, 6);
+		roll = diceObj.getRoll();
+		
+		
+		
+		
+		//Game Panel
+	
+		
+		JInternalFrame rules = new JInternalFrame("Rules");
+		rules.setBounds((int)width-offsetWidth*3, offsetHeight, 239, 271);
 		game.add(rules);
 		rules.setVisible(true);
 		rules.getContentPane().setLayout(null);
@@ -706,8 +698,10 @@ public class FarkleFrame {
 					tempScore = 0;
 					farkText = new JTextPane();
 					farkText.setText("YOU FARKLED!!!");
+					farkText.setBackground(new Color(0, 128, 0));
+					farkText.setFont(new Font("Arial", Font.BOLD, 24));
 					farkText.setEditable(false);
-					farkText.setBounds((int)width/2, (int)height/2, 213, 230);
+					farkText.setBounds((int)width/2, (int)height/2+offsetHeight, 500, 500);
 					game.add(farkText);
 					
 					btnRoll.setEnabled(false);
@@ -749,6 +743,7 @@ public class FarkleFrame {
 		endTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				score += bankScore;
+				playerList.get(0).setTotal(score);
 				lblScore.setText("Score: " + score);
 				bankScore = 0;
 				standard = new Standard();
@@ -764,22 +759,25 @@ public class FarkleFrame {
 				
 				
 				
+				table.setValueAt(playerList.get(0).getTotal(), 1, 1);
 			}
 		});
 		endTurn.setBounds(106, 568, 164, 76);
 		game.add(endTurn);
 		
+		playerList.get(0).setName(usernameText.getText());
+		System.out.println("name " + playerList.get(0).name);
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"Player", "Score"},
-				{null, null},
+				{playerList.get(0).name, playerList.get(0).getTotal()},
 			},
 			new String[] {
 				"New column", "New column"
 			}
 		));
-		table.setBounds(1095, 329, 239, 131);
+		table.setBounds((int)width/2, (int)height/2-offsetHeight, 239, 131);
 		game.add(table);
 		
 		currentPlayer = new JLabel("Current Player: "+usernameText.getText());
@@ -819,7 +817,31 @@ public class FarkleFrame {
 		mnFile.add(mntmExit);
 		
 		
+		
+		if(diceObj.farkle()){
+			
+			
+			farkText = new JTextPane();
+			farkText.setText("YOU FARKLED!!!");
+			farkText.setBackground(new Color(0, 128, 0));
+			farkText.setFont(new Font("Arial", Font.BOLD, 24));
+			farkText.setEditable(false);
+			farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
+			game.add(farkText);
+			
+			
+			btnRoll.setEnabled(true);
+			
+			standard.clear();
+			
+		}
+		
 	}
+	
+	
+	
+	
+	
 	
 	
 	/**
@@ -832,13 +854,24 @@ public class FarkleFrame {
 		offsetWidth = (int)width/15;
 		offsetHeight = (int)height/15;
 		
+		
+		
+		
 		frame = new JFrame();
 		frame.setSize((int)width, (int)height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		
+		
+		
+		
 		login();
+		
+		
+		Player play = new Player();
+		
+		playerList.add(play);
 		
 		
 		//start();

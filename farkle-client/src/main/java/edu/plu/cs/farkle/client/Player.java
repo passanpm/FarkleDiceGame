@@ -6,7 +6,7 @@ public class Player {
 	private int currentScore;
 	
 	public Player(){
-		this.name = "user";
+		name = "user";
 		totalScore = 0;
 		currentScore = 0;
 	}
@@ -34,7 +34,7 @@ public class Player {
 	}
 	
 	public void setTotal(int score){
-		totalScore += score;
+		totalScore = score;
 	}
 	
 }
