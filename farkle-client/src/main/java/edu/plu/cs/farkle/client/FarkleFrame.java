@@ -229,10 +229,25 @@ public class FarkleFrame {
 				break;
 			}
 			diceObj.banking(diceID, roll.get(diceID));
+			updateScore();
+			tempScore += standard.getTemp();
+			lblBankScore.setText("Bank Score: " + tempScore);
 		}
 		else if(bdrCheck && roll.get(diceID)<0){
 			System.out.println("UNBANKING");
+			
+			standard.removeFromSingle(roll.get(diceID));
+			//updateScore();
+			bankScore -= tempScore;
+			tempScore -= standard.getTemp();
+			
+			lblBankScore.setText("Bank Score: " + tempScore);
+			
+			
 			removeDice(name, diceID);
+			
+			
+			
 			
 			name.setBorder(null);
 			switch ( diceID ) {
@@ -338,7 +353,7 @@ public class FarkleFrame {
 		diceIMG(4, label_3);
 		diceIMG(5, label_4);
 		
-		if(farkText.isVisible())
+		if(farkText != null && farkText.isVisible())
 			farkText.setVisible(false);
 		
 		
