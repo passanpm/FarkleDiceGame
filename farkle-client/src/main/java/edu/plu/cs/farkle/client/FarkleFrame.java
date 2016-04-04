@@ -341,7 +341,7 @@ public class FarkleFrame {
 		if(farkText.isVisible())
 			farkText.setVisible(false);
 		
-	}
+		}
 	
 	
 	
@@ -651,7 +651,7 @@ public class FarkleFrame {
 		 */
 		temp = roll.get(5);
 		if( temp > 0){
-			diceIMG(roll.size()-1,label_4);
+			diceIMG(5,label_4);
 			label_4.addMouseListener(new MouseAdapter(){
 				@Override
 				public void mouseClicked(MouseEvent e){
@@ -795,14 +795,6 @@ public class FarkleFrame {
 		});
 		mnFile.add(mntmExit);
 		
-		
-		label_4.addMouseListener(new MouseAdapter(){
-			@Override
-			public void mouseClicked(MouseEvent e){
-				diceClick(5, label_4, e, border, borderOption5);
-
-			}
-		});
 		
 	}
 	
