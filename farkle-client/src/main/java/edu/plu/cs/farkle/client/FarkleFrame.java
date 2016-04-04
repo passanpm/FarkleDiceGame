@@ -341,6 +341,9 @@ public class FarkleFrame {
 		if(farkText.isVisible())
 			farkText.setVisible(false);
 		
+		
+		btnRoll.setEnabled(true);
+		
 		}
 	
 	
@@ -511,6 +514,9 @@ public class FarkleFrame {
 			farkText.setEditable(false);
 			farkText.setBounds((int)width/2, (int)height/2, 213, 230);
 			game.add(farkText);
+			
+			
+			btnRoll.setEnabled(true);
 			
 			standard.clear();
 			
@@ -689,6 +695,8 @@ public class FarkleFrame {
 					farkText.setBounds((int)width/2, (int)height/2, 213, 230);
 					game.add(farkText);
 					
+					btnRoll.setEnabled(false);
+					
 					standard.clear();
 					
 				}
@@ -766,7 +774,7 @@ public class FarkleFrame {
 		
 
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1356, 21);
+		menuBar.setBounds(0, 0, (int)width, 21);
 		game.add(menuBar);
 		
 		JMenu mnFile = new JMenu("File");
