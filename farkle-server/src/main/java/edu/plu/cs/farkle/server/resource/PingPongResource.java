@@ -74,6 +74,7 @@ public class PingPongResource {
 				+ " \"passWord\" : \"%s\","
 				+ " \"location\" : \"%s\" }"
 				, authString, header, username, password, exists);
+		System.out.println(json);
 		return json;
 	}
 	
