@@ -8,14 +8,14 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="head"/>
+			<item value="die"/>
+			<item value="add"/>
+			<item value="main"/>
+			<item value="main method"/>
+			<item value="produce"/>
 			<item value="header"/>
 			<item value="getuser"/>
-			<item value="getping"/>
-			<item value="authstring"/>
-			<item value="imageicon"/>
-			<item value="location"/>
-			<item value="restart"/>
-			<item value="blackout"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -24,7 +24,7 @@
 		<item value="265" key="DIALOG_WIDTH"/>
 		<item value="1|.SF NS Text|11.0|0|COCOA|1|.SFNSText-Regular" key="DIALOG_FONT_NAME"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="1003" key="DIALOG_X_ORIGIN"/>
-		<item value="355" key="DIALOG_Y_ORIGIN"/>
+		<item value="535" key="DIALOG_X_ORIGIN"/>
+		<item value="197" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

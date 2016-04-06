@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.StringTokenizer;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -74,8 +75,8 @@ public class PingPongResource {
 				+ " \"passWord\" : \"%s\","
 				+ " \"location\" : \"%s\" }"
 				, authString, header, username, password, exists);
-		System.out.println(json);
-		return json;
+		System.out.println(exists);
+		return exists;
 	}
 	
 	@PUT
@@ -116,7 +117,50 @@ public class PingPongResource {
 				+ " \"passWord\" : \"%s\","
 				+ " \"action\" : \"%s\" }"
 				, authString, header, username, password, exists);
-		return json;
+		System.out.println(exists);
+		return exists;
+	}
+	
+	@DELETE
+	@Produces("application/json")
+	public String deletePing(@Context SecurityContext ctx ) {
+		
+		// If the principal is null, then authentication failed.
+		String authString = "yes";
+		if( ctx.getUserPrincipal() == null ) {
+			authString = "no";
+		}
+		
+		 //Split username and password tokens
+        final StringTokenizer tokenizer = new StringTokenizer(ctx.getUserPrincipal().getName(), ":");
+        final String username = tokenizer.nextToken();
+        final String password = tokenizer.nextToken();
+        final String header = tokenizer.nextToken();
+        
+        redis database = new redis();
+        database.initiateServer();
+        player player = new player(username, password);
+		
+        String exists;
+        
+        try{
+        	database.removePlayer(player.getName());
+        	exists = "Player removed from database";
+
+        }catch (NullPointerException e){
+        	exists = "Player not removed from database!";
+        }
+
+		
+		String json = String.format("{ \"response\" : \"pong\","
+				+ " \"authenticated\" : \"%s\","
+				+ " \"header\" : \"%s\","
+				+ " \"userName\" : \"%s\","
+				+ " \"passWord\" : \"%s\","
+				+ " \"action\" : \"%s\" }"
+				, authString, header, username, password, exists);
+		System.out.println(exists);
+		return exists;
 	}
 	
 

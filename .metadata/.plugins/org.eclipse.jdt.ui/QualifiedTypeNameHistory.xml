@@ -24,4 +24,8 @@
 <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
 <fullyQualifiedTypeName name="java.util.Base64"/>
 <fullyQualifiedTypeName name="org.jboss.resteasy.util.Base64"/>
+<fullyQualifiedTypeName name="javax.ws.rs.PUT"/>
+<fullyQualifiedTypeName name="edu.plu.cs.farkle.server.auth.player"/>
+<fullyQualifiedTypeName name="org.jboss.resteasy.client.jaxrs.ResteasyWebTarget"/>
+<fullyQualifiedTypeName name="org.jboss.resteasy.client.jaxrs.BasicAuthentication"/>
 </qualifiedTypeNameHistroy>

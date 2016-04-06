@@ -1,0 +1,12 @@
+package edu.plu.cs.farkle.client;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+
+public interface client {
+	   @PUT
+	   @Path("http://localhost:8080/farkle/ping")
+	   @Consumes("text/plain")
+	   void putPing(String body);
+}

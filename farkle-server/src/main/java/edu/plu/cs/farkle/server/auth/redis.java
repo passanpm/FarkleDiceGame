@@ -14,7 +14,7 @@ public class redis {
 	public void initiateServer() {
 	    jedis = new Jedis("pub-redis-14065.us-east-1-3.1.ec2.garantiadata.com", 14065);
 	    jedis.auth("farkle");
-	    System.out.println("Connected to Redis");
+
 	    
 	}
 	
@@ -40,6 +40,10 @@ public class redis {
 	    }
 	}
 	
+	public void removePlayer(String name){
+	    jedis.del(name);
+	}
+	
 	public player addUser(player user) {
 		Map<String, String> info = new HashMap<String, String>();
 		player p = new player(user.getName(), user.getPass());
@@ -49,7 +53,6 @@ public class redis {
 		 info.put("total", Integer.toString(user.getTotal()));
 		 
 		 jedis.hmset(user.getName(), info);
-		 System.out.println("Welcome " + info.get("name"));
 		 return p;
 		 
 	}
