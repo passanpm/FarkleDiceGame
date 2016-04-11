@@ -43,7 +43,7 @@ import javax.swing.JComboBox;
 
 public class FarkleFrame {
 	
-	
+	String test;
 	////////////////VARIABLES\\\\\\\\\\\\\\\\
 	private JFrame frame;
 	
@@ -364,7 +364,7 @@ public class FarkleFrame {
 		
 		welcomePanel = new JPanel();
 		welcomePanel.setBackground(new Color(255, 250, 205));
-		welcomePanel.setBounds(-26, 0, (int)width, (int)height);
+		welcomePanel.setBounds(0, 0, (int)width, (int)height);
 		frame.getContentPane().add(welcomePanel);
 		welcomePanel.setLayout(null);
 		
@@ -372,15 +372,15 @@ public class FarkleFrame {
 		
 		
 		
-		JRootPane root = frame.getRootPane();
-		root.setDefaultButton(btnLogin);
+		
 		
 		usernameText = new JTextField();
 		usernameText.setBounds((int)width/2, (int)height/2, 86, 20);
 		welcomePanel.add(usernameText);
 		usernameText.setColumns(10);
 		
-		String username = usernameText.getText();
+		
+		
 		
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setBounds((int)width/2-offsetWidth, (int)height/2, 86, 20);
@@ -405,9 +405,12 @@ public class FarkleFrame {
 				btnLogin = new JButton("Login");
 				btnLogin.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						test = usernameText.getText();
+						System.out.println("Username: " + test);
+						
 						welcomePanel.setVisible(false);
 
-						Database db = new Database(username, password);
+						Database db = new Database(test, password);
 						db.get();
 						
 						
@@ -417,7 +420,10 @@ public class FarkleFrame {
 				btnLogin.setBounds((int)width/2+offsetWidth, (int)height/2, 89, 23);
 				welcomePanel.add(btnLogin);
 		
-		
+		JRootPane root = frame.getRootPane();
+		root.setDefaultButton(btnLogin);
+				
+				
 		//REGISTER BUTTON\\
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener() {
@@ -452,65 +458,10 @@ public class FarkleFrame {
 	
 	
 	private void register(){
-		register = new JPanel();
-		register.setBackground(new Color(255, 250, 205));
-		register.setBounds(0, 0, (int)width, (int)height);
-		frame.getContentPane().add(register);
-		register.setLayout(null);
+		Register reg = new Register();
+		register = reg.register(frame);
 		
-		usernameText = new JTextField();
-		usernameText.setBounds((int)width/2, (int)height/2, 86, 20);
-		register.add(usernameText);
-		usernameText.setColumns(10);
-		
-		String username = usernameText.getText();
-		
-		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds((int)width/2-offsetWidth, (int)height/2, 86, 20);
-		register.add(lblUsername);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds((int)width/2, (int)height/2+offsetHeight, 86, 20);
-		register.add(passwordField);
-		
-		@SuppressWarnings("deprecation")
-		String password = passwordField.getText();
-		
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds((int)width/2-offsetWidth, (int)height/2+offsetHeight, 65, 14);
-		register.add(lblPassword);
-		
-		
-		//REGISTER\\
-		JButton btnRegister = new JButton("Register");
-		btnRegister.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-				//ENTER CODE HERE FOR REGISTERING USERNAMES AND PASSWORDS\\
-				
-				
-				Database db = new Database(username, password);
-				
-				db.put();
-				
-			}
-		});
-		btnRegister.setBounds((int)width/2+offsetWidth, (int)height/2+offsetHeight/2, 89, 23);
-		register.add(btnRegister);
-		
-		
-		JButton goBack = new JButton("Go Back");
-		goBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				register.setVisible(false);
-				login();
-			}
-		
-		});
-		goBack.setBounds((int)width/2, (int)height/2+offsetHeight*2, 89, 23);
-		register.add(goBack);
+		frame.add(register);
 	}
 	
 	private void options(){
