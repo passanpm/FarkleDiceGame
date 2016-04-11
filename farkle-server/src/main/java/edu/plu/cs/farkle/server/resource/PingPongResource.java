@@ -25,6 +25,7 @@ import edu.plu.cs.farkle.server.auth.redis;
 @Path("/ping")
 public class PingPongResource {
 	
+	
 	/**
 	 * Returns a JSON object with two fields, "response" and "authenticated".
 	 * 
@@ -60,6 +61,8 @@ public class PingPongResource {
         try{
         	if (database.auth(player)){
         		exists = "Player exists in database";
+        		player.setCurrent(Integer.parseInt(database.getCurrent(player)));
+        		player.setTotal(database.getTotal(player));
         	}else{
         		exists = "Player does not exist in database";
         	}
