@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -21,9 +22,12 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JRootPane;
+import javax.swing.JScrollPane;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
@@ -31,6 +35,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import java.awt.GridLayout;
+import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import javax.swing.JComboBox;
 
 public class FarkleFrame {
 	
@@ -74,7 +83,7 @@ public class FarkleFrame {
 	
 	private JPanel welcomePanel, register, game;
 	
-	private ArrayList<Player> playerList = new ArrayList<Player>();
+	private ArrayList<Player> playerList;
 	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
 	 Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
@@ -87,6 +96,7 @@ public class FarkleFrame {
 	 
 	 private JTextPane farkText;
 	 private JMenuItem mntmExit;
+	 private JComboBox comboBox;
 	
 
 	/**
@@ -354,23 +364,13 @@ public class FarkleFrame {
 		
 		welcomePanel = new JPanel();
 		welcomePanel.setBackground(new Color(255, 250, 205));
-		welcomePanel.setBounds(0, 0, (int)width, (int)height);
+		welcomePanel.setBounds(-26, 0, (int)width, (int)height);
 		frame.getContentPane().add(welcomePanel);
 		welcomePanel.setLayout(null);
 		
 		
 		
-		//LOGIN BUTTON\\
-		btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				welcomePanel.setVisible(false);
-				//SEE START METHOD
-				start();
-			}
-		});
-		btnLogin.setBounds((int)width/2+offsetWidth, (int)height/2, 89, 23);
-		welcomePanel.add(btnLogin);
+		
 		
 		JRootPane root = frame.getRootPane();
 		root.setDefaultButton(btnLogin);
@@ -380,20 +380,42 @@ public class FarkleFrame {
 		welcomePanel.add(usernameText);
 		usernameText.setColumns(10);
 		
+		String username = usernameText.getText();
 		
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setBounds((int)width/2-offsetWidth, (int)height/2, 86, 20);
 		welcomePanel.add(lblUsername);
 		
 		
+		
 		passwordField = new JPasswordField();
 		passwordField.setBounds((int)width/2, (int)height/2+offsetHeight, 86, 20);
 		welcomePanel.add(passwordField);
+		
+		@SuppressWarnings("deprecation")
+		String password = passwordField.getText();
+		System.out.println(password);
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds((int)width/2-offsetWidth, (int)height/2+offsetHeight, 65, 14);
 		welcomePanel.add(lblPassword);
 		
+		
+		//LOGIN BUTTON\\
+				btnLogin = new JButton("Login");
+				btnLogin.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						welcomePanel.setVisible(false);
+
+						Database db = new Database(username, password);
+						db.get();
+						
+						
+						options();
+					}
+				});
+				btnLogin.setBounds((int)width/2+offsetWidth, (int)height/2, 89, 23);
+				welcomePanel.add(btnLogin);
 		
 		
 		//REGISTER BUTTON\\
@@ -441,6 +463,8 @@ public class FarkleFrame {
 		register.add(usernameText);
 		usernameText.setColumns(10);
 		
+		String username = usernameText.getText();
+		
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setBounds((int)width/2-offsetWidth, (int)height/2, 86, 20);
 		register.add(lblUsername);
@@ -448,6 +472,9 @@ public class FarkleFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds((int)width/2, (int)height/2+offsetHeight, 86, 20);
 		register.add(passwordField);
+		
+		@SuppressWarnings("deprecation")
+		String password = passwordField.getText();
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds((int)width/2-offsetWidth, (int)height/2+offsetHeight, 65, 14);
@@ -464,28 +491,9 @@ public class FarkleFrame {
 				//ENTER CODE HERE FOR REGISTERING USERNAMES AND PASSWORDS\\
 				
 				
+				Database db = new Database(username, password);
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+				db.put();
 				
 			}
 		});
@@ -497,7 +505,7 @@ public class FarkleFrame {
 		goBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				register.setVisible(false);
-				welcomePanel.setVisible(true);
+				login();
 			}
 		
 		});
@@ -505,7 +513,41 @@ public class FarkleFrame {
 		register.add(goBack);
 	}
 	
-	
+	private void options(){
+		JPanel mode = new JPanel();
+		mode.setBackground(new Color(255, 250, 205));
+		mode.setBounds(0, 0, (int)width, (int)height);
+		frame.getContentPane().add(mode);
+		mode.setLayout(null);
+		
+		JLabel lblWelcomeBack = new JLabel("Welcome Back, " + usernameText.getText() + "!");
+		lblWelcomeBack.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblWelcomeBack.setBounds((int)width/2, offsetHeight*2, 423, 77);
+		mode.add(lblWelcomeBack);
+		
+		JButton btnPlayStandard = new JButton("Play Standard");
+		btnPlayStandard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mode.setVisible(false);
+				start();
+			}
+		});
+		btnPlayStandard.setBounds((int)width/2-offsetWidth, (int)height/2-offsetHeight, 240, 109);
+		mode.add(btnPlayStandard);
+		
+		comboBox = new JComboBox();
+		comboBox.setBounds((int)width/2+offsetWidth*2, (int)height/2, 54, 30);
+		comboBox.addItem("1");
+		comboBox.addItem("2");
+		comboBox.addItem("3");
+		comboBox.addItem("4");
+		mode.add(comboBox);
+		
+		
+		
+		
+		
+	}
 	
 	private void start(){
 		game = new JPanel();
@@ -522,6 +564,12 @@ public class FarkleFrame {
 		
 		//Game Panel
 	
+		playerList = new ArrayList<Player>();
+		int temp1 = comboBox.getSelectedIndex()+1;
+		System.out.println(temp1);
+		for(int i = 0; i <= temp1; i++){
+			playerList.add(new Player());		
+		}
 		
 		JInternalFrame rules = new JInternalFrame("Rules");
 		rules.setBounds((int)width-offsetWidth*3, offsetHeight, 239, 271);
@@ -732,7 +780,7 @@ public class FarkleFrame {
 		endTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				score += bankScore;
-				playerList.get(0).setTotal(score);
+				//playerList.get(0).setTotal(score);
 				lblScore.setText("Score: " + score);
 				bankScore = 0;
 				standard = new Standard();
@@ -748,26 +796,30 @@ public class FarkleFrame {
 				
 				
 				
-				table.setValueAt(playerList.get(0).getTotal(), 1, 1);
+				//table.setValueAt(playerList.get(0).getTotal(), 1, 1);
 			}
 		});
 		endTurn.setBounds(106, 568, 164, 76);
 		game.add(endTurn);
 		
-		playerList.get(0).setName(usernameText.getText());
-		System.out.println("name " + playerList.get(0).name);
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Player", "Score"},
-				{playerList.get(0).name, playerList.get(0).getTotal()},
-			},
-			new String[] {
-				"New column", "New column"
-			}
-		));
+		
+		String data[][] = new String[playerList.size()-1][2];
+		for(int i = 0; i < playerList.size()-1; i++){
+			data[i][0] = playerList.get(i).name;
+			data[i][1] = String.valueOf(playerList.get(i).getTotal());
+		}
+		
+		String columnNames[] = {"Player", "Score"};
+		
+		table = new JTable(data, columnNames);
+		
 		table.setBounds((int)width/2, (int)height/2-offsetHeight, 239, 131);
-		game.add(table);
+		table.setVisible(true);
+		
+		JScrollPane pane = new JScrollPane();
+		pane.setBounds((int)width/2, (int)height/2-offsetHeight, 239, 131);
+		pane.setViewportView(table);
+		game.add(pane);
 		
 		currentPlayer = new JLabel("Current Player: "+usernameText.getText());
 		currentPlayer.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -847,6 +899,8 @@ public class FarkleFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		frame.addComponentListener(new ResizeListener());
+		
 		screenSize = frame.getBounds().getSize();
 		width = screenSize.getWidth();
 		height = screenSize.getHeight();
@@ -860,15 +914,31 @@ public class FarkleFrame {
 		login();
 		
 		
+		//options();
 		
 		
-		Player play = new Player();
-		
-		playerList.add(play);
 		
 		
 		//start();
 		
 		
 	}
+	class ResizeListener implements ComponentListener {
+
+	    public void componentHidden(ComponentEvent e) {}
+	    public void componentMoved(ComponentEvent e) {}
+	    public void componentShown(ComponentEvent e) {}
+
+	    public void componentResized(ComponentEvent e) {
+	        Dimension newSize = e.getComponent().getBounds().getSize(); 
+	        width = newSize.getWidth();
+	        height = newSize.getHeight();
+	        frame.setSize((int)width, (int)height);
+	        frame.validate();
+	        frame.repaint();
+	        
+	    }   
+	}
 }
+
+
