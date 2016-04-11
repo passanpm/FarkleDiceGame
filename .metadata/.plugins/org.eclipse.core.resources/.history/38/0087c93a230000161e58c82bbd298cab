@@ -44,7 +44,7 @@ public class redis {
 	
 	public void removePlayer(String name){
 	    jedis.del(name);
-	    System.out.println("Removed " + name + " from Database");
+	    System.out.println("Removed " + p.getName() + " from Database");
 	}
 	
 	public player addUser(player user) {
@@ -68,7 +68,6 @@ public class redis {
 	    p.setCurrent(Integer.parseInt(users.get("current")));
 	    p.setTotal(Integer.parseInt(users.get("total")));
 	    System.out.println("Welcome back " + users.get("name"));
-	    System.out.println("Retrieved " + p.getName() + " from Database");
 	    return p;
 	}
 	

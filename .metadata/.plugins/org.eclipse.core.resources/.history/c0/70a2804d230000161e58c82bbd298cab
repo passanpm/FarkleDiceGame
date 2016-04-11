@@ -44,7 +44,7 @@ public class redis {
 	
 	public void removePlayer(String name){
 	    jedis.del(name);
-	    System.out.println("Removed " + name + " from Database");
+	    System.out.println("Removed " + p.getName() + " from Database");
 	}
 	
 	public player addUser(player user) {
