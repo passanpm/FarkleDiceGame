@@ -370,17 +370,7 @@ public class FarkleFrame {
 		
 		
 		
-		//LOGIN BUTTON\\
-		btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				welcomePanel.setVisible(false);
-				//SEE START METHOD
-				options();
-			}
-		});
-		btnLogin.setBounds((int)width/2+offsetWidth, (int)height/2, 89, 23);
-		welcomePanel.add(btnLogin);
+		
 		
 		JRootPane root = frame.getRootPane();
 		root.setDefaultButton(btnLogin);
@@ -390,20 +380,42 @@ public class FarkleFrame {
 		welcomePanel.add(usernameText);
 		usernameText.setColumns(10);
 		
+		String username = usernameText.getText();
 		
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setBounds((int)width/2-offsetWidth, (int)height/2, 86, 20);
 		welcomePanel.add(lblUsername);
 		
 		
+		
 		passwordField = new JPasswordField();
 		passwordField.setBounds((int)width/2, (int)height/2+offsetHeight, 86, 20);
 		welcomePanel.add(passwordField);
+		
+		@SuppressWarnings("deprecation")
+		String password = passwordField.getText();
+		System.out.println(password);
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds((int)width/2-offsetWidth, (int)height/2+offsetHeight, 65, 14);
 		welcomePanel.add(lblPassword);
 		
+		
+		//LOGIN BUTTON\\
+				btnLogin = new JButton("Login");
+				btnLogin.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						welcomePanel.setVisible(false);
+
+						Database db = new Database(username, password);
+						db.get();
+						
+						
+						options();
+					}
+				});
+				btnLogin.setBounds((int)width/2+offsetWidth, (int)height/2, 89, 23);
+				welcomePanel.add(btnLogin);
 		
 		
 		//REGISTER BUTTON\\
@@ -451,6 +463,8 @@ public class FarkleFrame {
 		register.add(usernameText);
 		usernameText.setColumns(10);
 		
+		String username = usernameText.getText();
+		
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setBounds((int)width/2-offsetWidth, (int)height/2, 86, 20);
 		register.add(lblUsername);
@@ -458,6 +472,9 @@ public class FarkleFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds((int)width/2, (int)height/2+offsetHeight, 86, 20);
 		register.add(passwordField);
+		
+		@SuppressWarnings("deprecation")
+		String password = passwordField.getText();
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds((int)width/2-offsetWidth, (int)height/2+offsetHeight, 65, 14);
@@ -474,28 +491,9 @@ public class FarkleFrame {
 				//ENTER CODE HERE FOR REGISTERING USERNAMES AND PASSWORDS\\
 				
 				
+				Database db = new Database(username, password);
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+				db.put();
 				
 			}
 		});
