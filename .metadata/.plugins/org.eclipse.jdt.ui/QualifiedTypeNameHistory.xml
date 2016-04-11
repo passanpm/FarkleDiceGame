@@ -15,7 +15,6 @@
 <fullyQualifiedTypeName name="redis.clients.jedis.JedisPool"/>
 <fullyQualifiedTypeName name="redis.clients.jedis.JedisPoolConfig"/>
 <fullyQualifiedTypeName name="java.util.Set"/>
-<fullyQualifiedTypeName name="javax.ws.rs.client.Entity"/>
 <fullyQualifiedTypeName name="redis.clients.jedis.Jedis"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="org.jboss.resteasy.core.ServerResponse"/>
@@ -24,8 +23,23 @@
 <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
 <fullyQualifiedTypeName name="java.util.Base64"/>
 <fullyQualifiedTypeName name="org.jboss.resteasy.util.Base64"/>
-<fullyQualifiedTypeName name="javax.ws.rs.PUT"/>
 <fullyQualifiedTypeName name="edu.plu.cs.farkle.server.auth.player"/>
 <fullyQualifiedTypeName name="org.jboss.resteasy.client.jaxrs.ResteasyWebTarget"/>
 <fullyQualifiedTypeName name="org.jboss.resteasy.client.jaxrs.BasicAuthentication"/>
+<fullyQualifiedTypeName name="javax.ws.rs.client.Entity"/>
+<fullyQualifiedTypeName name="javax.ws.rs.PUT"/>
+<fullyQualifiedTypeName name="javax.ws.rs.Path"/>
+<fullyQualifiedTypeName name="javax.ws.rs.Consumes"/>
+<fullyQualifiedTypeName name="org.jboss.resteasy.plugins.providers.RegisterBuiltin"/>
+<fullyQualifiedTypeName name="org.jboss.resteasy.spi.ResteasyProviderFactory"/>
+<fullyQualifiedTypeName name="org.jboss.resteasy.client.ProxyFactory"/>
+<fullyQualifiedTypeName name="org.jboss.resteasy.client.ClientRequest"/>
+<fullyQualifiedTypeName name="org.jboss.resteasy.client.ClientResponse"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="org.jboss.resteasy.client.jaxrs.ResteasyClient"/>
+<fullyQualifiedTypeName name="org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder"/>
+<fullyQualifiedTypeName name="org.apache.http.impl.client.BasicResponseHandler"/>
+<fullyQualifiedTypeName name="org.jboss.resteasy.spi.HttpResponse"/>
+<fullyQualifiedTypeName name="edu.plu.cs.farkle.client.Database"/>
+<fullyQualifiedTypeName name="javax.ws.rs.DELETE"/>
 </qualifiedTypeNameHistroy>
