@@ -84,8 +84,8 @@ public class LoginScreen {
 					//Goes to register method 
 					//SEE REGISTER METHOD
 					welcomePanel.setVisible(false);
-					RegisterScreen reg = new RegisterScreen();
-					JPanel regScreen = reg.register(welcomePanel);
+					Register reg = new Register();
+					JPanel regScreen = reg.register(frame);
 					frame.add(regScreen);
 				
 			}
