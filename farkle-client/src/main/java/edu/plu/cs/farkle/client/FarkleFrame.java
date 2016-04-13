@@ -1,76 +1,20 @@
 package edu.plu.cs.farkle.client;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JPasswordField;
-import javax.swing.JRootPane;
-import javax.swing.JScrollPane;
-
-import java.awt.Font;
-import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.awt.event.MouseAdapter;
-import javax.swing.JTextPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
-import java.awt.GridLayout;
-import javax.swing.SwingConstants;
-import java.awt.BorderLayout;
-import java.awt.Button;
-import javax.swing.JComboBox;
 
-public class FarkleFrame {
-	
-	String test;
+public class FarkleFrame {	
 	////////////////VARIABLES\\\\\\\\\\\\\\\\
-	private JFrame frame;
-	
-	private int die, score, bankScore, tempScore = 0;
-	
-	private Image img;
-	
-	private Dice diceObj = new Dice();
-	
-	private ArrayList<Integer> roll = new ArrayList<Integer>();
-	
-	private Standard standard = new Standard();
-	
-	
-	private boolean registerScreen = false;
-	
-	
-	////////////////WINDOW VARIABLES\\\\\\\\\\	
-	
-	private JTextField txtScore;
-	
-	private Dimension screenSize;
-	
+	private JFrame frame;	
+	private Dimension screenSize;	
 	private double width, height;
-	
-	//amount to offset dimensions
 	private int offsetWidth = (int)width/10;
+<<<<<<< HEAD
 	private int offsetHeight;
 	
 	private JTextField usernameText;
@@ -99,6 +43,10 @@ public class FarkleFrame {
 	 private JComboBox comboBox;
 	
 
+=======
+	private int offsetHeight;	
+	private JPanel welcomePanel;
+>>>>>>> 7842a25cc8170aa320df4c658d4b1dd4b41dcfe2
 	/**
 	 * Launch the application.
 	 */
@@ -123,337 +71,16 @@ public class FarkleFrame {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	////////////METHODS///////////////
-	
-	/**
-	 * 
-	 * @param a
-	 * @param j
-	 */
-	public void diceIMG(int a, JLabel j){
-		
-		if(a < roll.size())
-			die = roll.get(a);
-	
-
-		switch(die){
-		case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
-				j.setIcon(new ImageIcon(img));		
-				break;
-		case 2: img = new ImageIcon(this.getClass().getResource("/Dice2.png")).getImage();
-				j.setIcon(new ImageIcon(img));
-				break;
-		case 3: img = new ImageIcon(this.getClass().getResource("/Dice3.png")).getImage();
-				j.setIcon(new ImageIcon(img));
-				break;
-		case 4: img = new ImageIcon(this.getClass().getResource("/Dice4.png")).getImage();
-				j.setIcon(new ImageIcon(img));
-				break;
-		case 5: img = new ImageIcon(this.getClass().getResource("/Dice5.png")).getImage();
-				j.setIcon(new ImageIcon(img));
-				break;
-		case 6: img = new ImageIcon(this.getClass().getResource("/Dice6.png")).getImage();
-				j.setIcon(new ImageIcon(img));
-				break;
-		}
-	}
-
-	/**
-	 * 
-	 * @param diceID
-	 * @param name
-	 * @param e
-	 * @param border
-	 * @param bdrCheck
-	 */
-	public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, boolean bdrCheck){
-		
-		if(!bdrCheck && roll.get(diceID)>0){
-			
-			if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
-				name.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-				standard.addToSet(roll.get(diceID));
-            }else{
-            	name.setBorder(border);
-            	standard.addToSingle(roll.get(diceID));
-            	bdrCheck = true;
-            }
-			
-			switch ( diceID ) {
-			case 0:
-				
-				if(roll.get(0) > 0)
-					borderOption = true;
-				break;
-			case 1: 
-				if(roll.get(1) > 0)
-					borderOption1 = true;
-				break;
-			case 2: 
-				if(roll.get(2) > 0)
-					borderOption2 = true;
-				break;
-			case 3: 
-				if(roll.get(3) > 0)
-					borderOption3 = true;
-				break;
-			case 4: 
-				if(roll.get(4) > 0)
-					borderOption4 = true;
-				break;
-			case 5: 
-				if(roll.get(5) > 0)
-					borderOption5 = true;
-				break;
-			}
-			diceObj.banking(diceID, roll.get(diceID));
-			updateScore();
-			tempScore += standard.getTemp();
-			lblBankScore.setText("Bank Score: " + tempScore);
-			if(standard.getTemp() > 0)
-				btnRoll.setEnabled(true);
-		}
-		else if(bdrCheck && roll.get(diceID)<0){		
-			standard.removeFromSingle(roll.get(diceID));
-
-			bankScore -= tempScore;
-			tempScore -= standard.getTemp();
-			
-			lblBankScore.setText("Bank Score: " + tempScore);
-			
-			
-			removeDice(name, diceID);
-			
-			name.setBorder(null);
-			switch ( diceID ) {
-			case 0: 
-				if(roll.get(0) < 0)
-					borderOption = false;
-				break;
-			case 1: 
-				if(roll.get(1) < 0)
-					borderOption1 = false;
-				break;
-			case 2: 
-				if(roll.get(2) < 0)
-					borderOption2 = false;
-				break;
-			case 3: 
-				if(roll.get(3) < 0)
-					borderOption3 = false;
-				break;
-			case 4: 
-				if(roll.get(4) < 0)
-					borderOption4 = false;
-				break;
-			case 5: 
-				if(roll.get(5) < 0)
-					borderOption5 = false;
-				break;
-			}
-			diceObj.unBank(diceID, roll.get(diceID));
-			if(tempScore == 0){
-				btnRoll.setEnabled(false);
-			}
-			else
-				btnRoll.setEnabled(true);
-		}
-		
-	}
-	
-	
-	/**
-	 * 
-	 * @param label
-	 * @param i
-	 */
-	public void removeDice(JLabel label, int i){
-		if ( ((LineBorder) label.getBorder()).getLineColor() == Color.RED ){
-			standard.removeFromSet(roll.get(i));
-		}else{
-			standard.removeFromSingle(roll.get(i));
-		}
-	}
-	
-
-	public void updateScore() {
-		standard.bank();
-		bankScore = standard.getScore();
-		
-	}
-	
-	public boolean blackout(JLabel dice, boolean b){
-		Color c=new Color(1f,0f,0f,0f );
-		if (b){
-			dice.setBorder(BorderFactory.createLineBorder(c, 50));
-		}
-		return b;	
-	}
-	
-	public void removeBlackout(){
-		if (blackout(lblDice, borderOption)==blackout(label, borderOption1)&&
-				blackout(label, borderOption1==blackout(label_1, borderOption2)&&
-				blackout(label_1, borderOption2)==blackout(label_2, borderOption3)&&
-				blackout(label_2, borderOption3)==blackout(label_3, borderOption4)&&
-				blackout(label_3, borderOption4)==blackout(label_4, borderOption5)&&
-						blackout(label_4, borderOption5)==true
-			)){
-			restart();
-		}
-	}
-	
-	public void restart(){
-		tempScore = 0;
-		txtScore = new JTextField(100);
-		txtScore.setText("Score: " + score);
-		lblBankScore.setText("Bank Score: " + tempScore);
-		diceObj.rollInit(6, 1, 6);
-		roll = diceObj.getRoll();
-		borderOption = false;
-		borderOption1= false;
-		borderOption2= false;
-		borderOption3= false;
-		borderOption4= false;
-		borderOption5= false;
-		
-		btnRoll.setEnabled(false);
-		
-		lblDice.setBorder(null);
-		label.setBorder(null);
-		label_1.setBorder(null);
-		label_2.setBorder(null);
-		label_3.setBorder(null);
-		label_4.setBorder(null);
-		diceIMG(0, lblDice);
-		diceIMG(1, label);
-		diceIMG(2, label_1);
-		diceIMG(3, label_2);
-		diceIMG(4, label_3);
-		diceIMG(5, label_4);
-		
-		if(farkText != null && farkText.isVisible())
-			farkText.setVisible(false);
-		
-		
-		
-		}
-	
-	
-	
-	
 	private void login(){
 		
-		welcomePanel = new JPanel();
-		welcomePanel.setBackground(new Color(255, 250, 205));
-		welcomePanel.setBounds(0, 0, (int)width, (int)height);
-		frame.getContentPane().add(welcomePanel);
-		welcomePanel.setLayout(null);
+		LoginScreen log = new LoginScreen();
 		
+		welcomePanel = log.Login(frame);
 		
+		frame.add(welcomePanel);
 		
-		
-		
-		
-		
-		usernameText = new JTextField();
-		usernameText.setBounds((int)width/2, (int)height/2, 86, 20);
-		welcomePanel.add(usernameText);
-		usernameText.setColumns(10);
-		
-		
-		
-		
-		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds((int)width/2-offsetWidth, (int)height/2, 86, 20);
-		welcomePanel.add(lblUsername);
-		
-		
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds((int)width/2, (int)height/2+offsetHeight, 86, 20);
-		welcomePanel.add(passwordField);
-		
-		@SuppressWarnings("deprecation")
-		String password = passwordField.getText();
-		System.out.println(password);
-		
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds((int)width/2-offsetWidth, (int)height/2+offsetHeight, 65, 14);
-		welcomePanel.add(lblPassword);
-		
-		
-		//LOGIN BUTTON\\
-				btnLogin = new JButton("Login");
-				btnLogin.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						test = usernameText.getText();
-						System.out.println("Username: " + test);
-						
-						welcomePanel.setVisible(false);
-
-						Database db = new Database(test, password);
-						db.get();
-						
-						
-						options();
-					}
-				});
-				btnLogin.setBounds((int)width/2+offsetWidth, (int)height/2, 89, 23);
-				welcomePanel.add(btnLogin);
-		
-		JRootPane root = frame.getRootPane();
-		root.setDefaultButton(btnLogin);
-				
-				
-		//REGISTER BUTTON\\
-		JButton btnRegister = new JButton("Register");
-		btnRegister.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-					//Goes to register method 
-					//SEE REGISTER METHOD
-					welcomePanel.setVisible(false);
-					register();
-				
-				
-			}
-		});
-		btnRegister.setBounds((int)width/2+offsetWidth, (int)height/2+offsetHeight, 89, 23);
-		welcomePanel.add(btnRegister);
-		
-		
-		JLabel lblFarkle = new JLabel("FARKLE");
-		lblFarkle.setFont(new Font("Tahoma", Font.PLAIN, 99));
-		lblFarkle.setBounds(526, 114, 445, 149);
-		welcomePanel.add(lblFarkle);
-		
-		JLabel DiceDisplay = new JLabel("New label");
-		DiceDisplay.setBackground(new Color(0, 0, 128));
-		DiceDisplay.setBounds(902, 93, 252, 186);
-		welcomePanel.add(DiceDisplay);
-		
-		img = new ImageIcon(this.getClass().getResource("/3dDice.png")).getImage();
-		DiceDisplay.setIcon(new ImageIcon(img));
 	}
+<<<<<<< HEAD
 	
 	
 	
@@ -777,69 +404,9 @@ public class FarkleFrame {
 		currentPlayer.setBounds(106, 42, 232, 57);
 		game.add(currentPlayer);
 		
+=======
+>>>>>>> 7842a25cc8170aa320df4c658d4b1dd4b41dcfe2
 
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, (int)width, 21);
-		game.add(menuBar);
-		
-		JMenu mnFile = new JMenu("File");
-		menuBar.add(mnFile);
-		
-		//Sign out button
-		
-		JMenuItem mntmSignOut = new JMenuItem("Sign Out");
-		mntmSignOut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				game.setVisible(false);
-				login();
-				
-			}
-		});
-		mnFile.add(mntmSignOut);
-		
-		
-		//Exit button
-		
-		mntmExit = new JMenuItem("Exit");
-		mntmExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		mnFile.add(mntmExit);
-		
-		
-		
-		if(diceObj.farkle()){
-			
-			
-			farkText = new JTextPane();
-			farkText.setText("YOU FARKLED!!!");
-			farkText.setBackground(new Color(0, 128, 0));
-			farkText.setFont(new Font("Arial", Font.BOLD, 24));
-			farkText.setEditable(false);
-			farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
-			game.add(farkText);
-			
-			
-			btnRoll.setEnabled(true);
-			
-			standard.clear();
-			
-		}
-	
-		
-		frame.setSize((int)width, (int)height);
-		frame.repaint();
-		frame.revalidate();
-	}
-	
-	
-	
-	
-	
-	
-	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -856,23 +423,8 @@ public class FarkleFrame {
 		width = screenSize.getWidth();
 		height = screenSize.getHeight();
 		offsetWidth = (int)width/15;
-		offsetHeight = (int)height/15;
-		
-		
-		
-		
-		
-		login();
-		
-		
-		//options();
-		
-		
-		
-		
-		//start();
-		
-		
+		offsetHeight = (int)height/15;	
+		login();	
 	}
 	class ResizeListener implements ComponentListener {
 
@@ -891,5 +443,3 @@ public class FarkleFrame {
 	    }   
 	}
 }
-
-
