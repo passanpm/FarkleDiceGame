@@ -43,22 +43,7 @@ public class PlayerScreen {
 		
 		mode.add(n);
 		
-		JButton btnPlay = new JButton("Play");
-		btnPlay.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mode.setVisible(false);
-				
-				
-				StartGame start = new StartGame();
-				JPanel strt = start.start(frame, players);
-				
-				
-				
-				frame.getContentPane().add(strt);
-			}
-		});
-		btnPlay.setBounds(605, 595, 89, 23);
-		mode.add(btnPlay);
+		
 		
 		JTextField[] names = new JTextField[players+1];
 		
@@ -74,6 +59,26 @@ public class PlayerScreen {
 		}
 		
 		
+		
+		JButton btnPlay = new JButton("Play");
+		btnPlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mode.setVisible(false);
+				
+				for(int i = 0; i < playerList.size(); i++){
+					playerList.get(i).setName(names[i].getText());
+				}
+				
+				StartGame start = new StartGame();
+				JPanel strt = start.start(frame, players, playerList);
+				
+				
+				
+				frame.getContentPane().add(strt);
+			}
+		});
+		btnPlay.setBounds(605, 595, 89, 23);
+		mode.add(btnPlay);
 		
 	
 		return mode;

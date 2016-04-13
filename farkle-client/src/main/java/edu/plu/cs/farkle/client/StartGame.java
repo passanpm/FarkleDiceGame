@@ -70,7 +70,7 @@ public class StartGame {
 	
 	private JPanel welcomePanel, register, game;
 	
-	private ArrayList<player> playerList;
+	//private ArrayList<Player> playerList;
 	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
 	 Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
@@ -304,7 +304,7 @@ public void restart(){
 
 	 
 
-	public JPanel start(JFrame frame, int players) {
+	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList) {
 		
 		
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -346,13 +346,11 @@ public void restart(){
 			
 			//Game Panel
 		
-			playerList = new ArrayList<player>();
 			
 			
 			
-			for(int i = 0; i <= players+1; i++){
-				playerList.add(new player());		
-			}
+			
+		
 			
 			JInternalFrame rules = new JInternalFrame("Rules");
 			rules.setBounds((int)width-offsetWidth*3, offsetHeight, 239, 271);
@@ -586,8 +584,8 @@ public void restart(){
 			game.add(endTurn);
 			
 			
-			String data[][] = new String[playerList.size()-1][2];
-			for(int i = 0; i < playerList.size()-1; i++){
+			String data[][] = new String[playerList.size()][2];
+			for(int i = 0; i < playerList.size(); i++){
 				data[i][0] = playerList.get(i).getName();
 				data[i][1] = String.valueOf(playerList.get(i).getTotal());
 			}
