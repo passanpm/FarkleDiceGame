@@ -38,12 +38,13 @@ public class PingPongResource {
 	 */
 	@GET
 	@Produces("application/json")
-	public String getPing(@Context SecurityContext ctx ) {
+	public boolean getPing(@Context SecurityContext ctx ) {
 		
 		// If the principal is null, then authentication failed.
 		String authString = "yes";
 		if( ctx.getUserPrincipal() == null ) {
 			authString = "no";
+			return false;
 		}
 		
 		 //Split username and password tokens
@@ -63,14 +64,20 @@ public class PingPongResource {
         		exists = "Player exists in database";
         		player.setCurrent(Integer.parseInt(database.getCurrent(player)));
         		player.setTotal(database.getTotal(player));
+        		System.out.println(exists);
+        		return true;
         	}else{
         		exists = "Player does not exist in database";
+        		System.out.println(exists);
+        		return false;
         	}
         }catch (NullPointerException e){
         	exists = "error";
+        	System.out.println(exists);
+        	return false;
         }
 
-		
+		/*
 		String json = String.format("{ \"response\" : \"pong\","
 				+ " \"authenticated\" : \"%s\","
 				+ " \"header\" : \"%s\","
@@ -78,18 +85,19 @@ public class PingPongResource {
 				+ " \"passWord\" : \"%s\","
 				+ " \"location\" : \"%s\" }"
 				, authString, header, username, password, exists);
-		System.out.println(exists);
-		return exists;
+				*/
+		
 	}
 	
 	@PUT
 	@Produces("application/json")
-	public String putPing(@Context SecurityContext ctx ) {
+	public boolean putPing(@Context SecurityContext ctx ) {
 		
 		// If the principal is null, then authentication failed.
 		String authString = "yes";
 		if( ctx.getUserPrincipal() == null ) {
 			authString = "no";
+			return false;
 		}
 		
 		 //Split username and password tokens
@@ -107,31 +115,27 @@ public class PingPongResource {
         try{
         	database.addUser(player);
         	exists = "Player loaded in database";
+        	System.out.println(exists);
+
+        	return true;
 
         }catch (NullPointerException e){
         	exists = "Player not loaded in database!";
-        }
+        	System.out.println(exists);
 
-		
-		String json = String.format("{ \"response\" : \"pong\","
-				+ " \"authenticated\" : \"%s\","
-				+ " \"header\" : \"%s\","
-				+ " \"userName\" : \"%s\","
-				+ " \"passWord\" : \"%s\","
-				+ " \"action\" : \"%s\" }"
-				, authString, header, username, password, exists);
-		System.out.println(exists);
-		return exists;
+        	return false;
+        }
 	}
 	
 	@DELETE
 	@Produces("application/json")
-	public String deletePing(@Context SecurityContext ctx ) {
+	public boolean deletePing(@Context SecurityContext ctx ) {
 		
 		// If the principal is null, then authentication failed.
 		String authString = "yes";
 		if( ctx.getUserPrincipal() == null ) {
 			authString = "no";
+			return false;
 		}
 		
 		 //Split username and password tokens
@@ -149,21 +153,15 @@ public class PingPongResource {
         try{
         	database.removePlayer(player.getName());
         	exists = "Player removed from database";
+        	System.out.println(exists);
+        	return true;
 
         }catch (NullPointerException e){
         	exists = "Player not removed from database!";
+        	System.out.println(exists);
+        	return false;
         }
 
-		
-		String json = String.format("{ \"response\" : \"pong\","
-				+ " \"authenticated\" : \"%s\","
-				+ " \"header\" : \"%s\","
-				+ " \"userName\" : \"%s\","
-				+ " \"passWord\" : \"%s\","
-				+ " \"action\" : \"%s\" }"
-				, authString, header, username, password, exists);
-		System.out.println(exists);
-		return exists;
 	}
 	
 
