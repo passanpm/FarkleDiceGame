@@ -74,6 +74,13 @@ public class Register {
 		goBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				register.setVisible(false);
+				
+				LoginScreen login = new LoginScreen();
+				JPanel log = login.Login(frame);
+				
+				frame.add(log);
+				
+				
 				//login();
 			}
 		
