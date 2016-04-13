@@ -26,20 +26,22 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 public class Database {
 	static String username = "Gabjhkjkjdghhljbklkjbkde";
 	static String password = "pecacjhjkhgfdhdfghheee";
-	
-	public static void main(String[] args){
-		Database db = new Database(username, password);
-		db.init("get");
-		db.init("put");
-		db.init("get");
-		db.init("delete");
-		db.init("get");
-	}
+
 	
 	public Database(String username, String password) {
 			Database.username = username;
 			Database.password = password;
-			
+			System.out.println("DEBUG: " + username);
+	}
+	
+	public void put(){
+		init("put");
+	}
+	public void get(){
+		init("get");
+	}
+	public void delete(){
+		init("delete");
 	}
 	
 	public void init(String action){
