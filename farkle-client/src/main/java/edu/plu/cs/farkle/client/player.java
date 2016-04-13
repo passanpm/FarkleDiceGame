@@ -8,13 +8,14 @@ public class Player {
 	
 	public Player(){
 		name = "user";
+		pass = "pass";
 		totalScore = 0;
 		currentScore = 0;
 	}
 	
 	public Player(String user, String key){
 		this.name = user;
-		this.setPass(key);
+		this.pass = key;
 		totalScore = 0;
 		currentScore = 0;
 	}

@@ -25,16 +25,23 @@ import org.jboss.resteasy.spi.HttpResponse;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 public class Database {
-	Player user = new Player();
+
+	/*Player user = new Player();
 	static String username = "Gabjhkjkjdghhljbklkjbkde";
-	static String password = "pecacjhjkhgfdhdfghheee";
+	static String password = "pecacjhjkhgfdhdfghheee";*/
+
+	Player user = new Player();
+	static String username = "Gabe";
+	static String password = "pecache";
+
 
 	public static void main(String[] args){
 		Database d = new Database(username, password);
+		d.get();
 		d.put();
-		//System.out.println(d.get().getTotal());
 		d.get();
 		d.delete();
+		d.get();
 	}
 	
 	public Database(String username, String password) {
@@ -69,13 +76,21 @@ public class Database {
 				case "put":
 					Response response = resteasyWebTarget.request().put(u);
 				case "get":
-					Response getUser = resteasyWebTarget.request().get();
 					
-					System.out.println("-----------------------------------> " + getUser);
+					Invocation.Builder builder = resteasyWebTarget.request();
+					String r = builder.get(String.class);
+					ObjectMapper mapper = new ObjectMapper();
+					JsonNode node = mapper.readTree(r);
+					System.out.println(node.toString());
+					System.out.println("Name: " + node.get("username"));
+					
 				case "delete":
 					Response remove = resteasyWebTarget.request().delete();
 				case "post":
-					Response update = resteasyWebTarget.request().post(u);
+					Invocation.Builder builder2 = resteasyWebTarget.request();
+					String newName = "0";
+					Entity<String> username = Entity.json(newName);
+					String r2 = builder2.post(username, String.class);
 			}
 			
 		} catch (Exception e) {

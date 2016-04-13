@@ -70,7 +70,7 @@ public class StartGame {
 	
 	private JPanel welcomePanel, register, game;
 	
-	private ArrayList<Player> playerList;
+	private ArrayList<player> playerList;
 	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
 	 Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
@@ -346,12 +346,12 @@ public void restart(){
 			
 			//Game Panel
 		
-			playerList = new ArrayList<Player>();
+			playerList = new ArrayList<player>();
 			
 			
 			
 			for(int i = 0; i <= players+1; i++){
-				playerList.add(new Player());		
+				playerList.add(new player());		
 			}
 			
 			JInternalFrame rules = new JInternalFrame("Rules");
