@@ -11,9 +11,12 @@ import javax.swing.JPanel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class PlayerScreen {
+	private JTextField textField;
 
 	//private JFrame frame;
 
@@ -51,11 +54,27 @@ public class PlayerScreen {
 				
 				
 				
-				frame.add(strt);
+				frame.getContentPane().add(strt);
 			}
 		});
 		btnPlay.setBounds(605, 595, 89, 23);
 		mode.add(btnPlay);
+		
+		JTextField[] names = new JTextField[players+1];
+		
+		ArrayList<Player> playerList = new ArrayList<Player>();
+		
+		for(int i = 0; i < players+1; i ++){
+			names[i] = new JTextField();
+			names[i].setBounds((int)width/2, (offsetHeight*4)+offsetHeight*i, 86, 20);
+			mode.add(names[i]);
+			names[i].setColumns(100);
+			
+			playerList.add(new Player());
+		}
+		
+		
+		
 	
 		return mode;
 	}

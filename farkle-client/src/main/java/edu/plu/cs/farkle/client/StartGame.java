@@ -588,7 +588,7 @@ public void restart(){
 			
 			String data[][] = new String[playerList.size()-1][2];
 			for(int i = 0; i < playerList.size()-1; i++){
-				data[i][0] = playerList.get(i).name;
+				data[i][0] = playerList.get(i).getName();
 				data[i][1] = String.valueOf(playerList.get(i).getTotal());
 			}
 			

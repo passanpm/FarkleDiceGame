@@ -25,7 +25,7 @@ import org.jboss.resteasy.spi.HttpResponse;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 public class Database {
-	player user = new player();
+	Player user = new Player();
 	static String username = "Gabjhkjkjdghhljbklkjbkde";
 	static String password = "pecacjhjkhgfdhdfghheee";
 
@@ -62,8 +62,8 @@ public class Database {
 
 			ResteasyWebTarget resteasyWebTarget = (ResteasyWebTarget)client.target("http://localhost:8080/farkle/ping");
 			resteasyWebTarget.register(new BasicAuthentication(username, password));
-			player p = new player();
-			Entity<player> u = Entity.json(p);
+			Player p = new Player();
+			Entity<Player> u = Entity.json(p);
 			
 			switch (action){
 				case "put":
