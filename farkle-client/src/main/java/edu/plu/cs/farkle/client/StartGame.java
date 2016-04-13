@@ -304,7 +304,7 @@ public void restart(){
 
 	 
 
-	public JPanel StartGame(JFrame frame, int players) {
+	public JPanel start(JFrame frame, int players) {
 		
 		
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -325,6 +325,23 @@ public void restart(){
 			
 			roll = diceObj.getRoll();
 			
+			if(diceObj.farkle()){
+				
+				
+				farkText = new JTextPane();
+				farkText.setText("YOU FARKLED!!!");
+				farkText.setBackground(new Color(0, 128, 0));
+				farkText.setFont(new Font("Arial", Font.BOLD, 24));
+				farkText.setEditable(false);
+				farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
+				game.add(farkText);
+				
+				
+				btnRoll.setEnabled(true);
+				
+				standard.clear();
+				
+			}
 			
 			
 			//Game Panel
