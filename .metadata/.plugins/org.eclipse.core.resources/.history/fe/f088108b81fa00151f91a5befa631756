@@ -1,5 +1,0 @@
-package edu.plu.cs.farkle.server.auth;
-
-public class redis {
-
-}

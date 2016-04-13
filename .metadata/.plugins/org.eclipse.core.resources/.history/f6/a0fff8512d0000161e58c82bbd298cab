@@ -1,0 +1,6 @@
+package edu.plu.cs.farkle.client;
+
+@Entity
+public class playerEntity {
+
+}
