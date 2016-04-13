@@ -38,13 +38,13 @@ public class PingPongResource {
 	 */
 	@GET
 	@Produces("application/json")
-	public boolean getPing(@Context SecurityContext ctx ) {
+	public player getPing(@Context SecurityContext ctx ) {
 		
 		// If the principal is null, then authentication failed.
 		String authString = "yes";
 		if( ctx.getUserPrincipal() == null ) {
 			authString = "no";
-			return false;
+			return null;
 		}
 		
 		 //Split username and password tokens
@@ -65,16 +65,16 @@ public class PingPongResource {
         		player.setCurrent(Integer.parseInt(database.getCurrent(player)));
         		player.setTotal(database.getTotal(player));
         		System.out.println(exists);
-        		return true;
+        		return player;
         	}else{
         		exists = "Player does not exist in database";
         		System.out.println(exists);
-        		return false;
+        		return null;
         	}
         }catch (NullPointerException e){
         	exists = "error";
         	System.out.println(exists);
-        	return false;
+        	return null;
         }
 
 		/*

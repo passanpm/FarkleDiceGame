@@ -83,7 +83,7 @@ public class FarkleFrame {
 	
 	private JPanel welcomePanel, register, game;
 	
-	private ArrayList<Player> playerList;
+	private ArrayList<player> playerList;
 	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
 	 Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
@@ -515,11 +515,11 @@ public class FarkleFrame {
 		
 		//Game Panel
 	
-		playerList = new ArrayList<Player>();
+		playerList = new ArrayList<player>();
 		int temp1 = comboBox.getSelectedIndex()+1;
 		System.out.println(temp1);
 		for(int i = 0; i <= temp1; i++){
-			playerList.add(new Player());		
+			playerList.add(new player());		
 		}
 		
 		JInternalFrame rules = new JInternalFrame("Rules");
@@ -756,7 +756,7 @@ public class FarkleFrame {
 		
 		String data[][] = new String[playerList.size()-1][2];
 		for(int i = 0; i < playerList.size()-1; i++){
-			data[i][0] = playerList.get(i).name;
+			data[i][0] = playerList.get(i).getName();
 			data[i][1] = String.valueOf(playerList.get(i).getTotal());
 		}
 		
