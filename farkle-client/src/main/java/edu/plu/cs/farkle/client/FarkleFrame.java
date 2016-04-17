@@ -147,19 +147,20 @@ public class FarkleFrame {
 		frame.getContentPane().add(game);
 		game.setLayout(null);
 		
+		Dice diceObj = new Dice();
 		
 		diceObj.rollInit(6, 1, 6);
-		roll = diceObj.getRoll();
+		//roll = diceObj.getRoll();
 		
 		
 		
 		//Game Panel
 	
-		playerList = new ArrayList<player>();
+		playerList = new ArrayList<Player>();
 		int temp1 = comboBox.getSelectedIndex()+1;
 		System.out.println(temp1);
 		for(int i = 0; i <= temp1; i++){
-			playerList.add(new player());		
+			playerList.add(new Player());		
 		}
 		
 		JInternalFrame rules = new JInternalFrame("Rules");
