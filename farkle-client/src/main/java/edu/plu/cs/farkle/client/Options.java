@@ -55,15 +55,12 @@ public class Options {
 				System.out.println("Number: "+numPlayers);
 				mode.setVisible(false);
 				
-				StartGame start = new StartGame();
-				JPanel strt = start.StartGame(frame, numPlayers);
 				
 				
+				PlayerScreen player = new PlayerScreen();
+				JPanel start = player.initialize(frame, numPlayers);
 				
-				frame.add(strt);
-				
-				
-				
+				frame.add(start);
 				
 			}
 		});

@@ -70,7 +70,7 @@ public class StartGame {
 	
 	private JPanel welcomePanel, register, game;
 	
-	private ArrayList<Player> playerList;
+	//private ArrayList<Player> playerList;
 	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
 	 Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
@@ -304,7 +304,7 @@ public void restart(){
 
 	 
 
-	public JPanel StartGame(JFrame frame, int players) {
+	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList) {
 		
 		
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -325,17 +325,32 @@ public void restart(){
 			
 			roll = diceObj.getRoll();
 			
+			if(diceObj.farkle()){
+				
+				
+				farkText = new JTextPane();
+				farkText.setText("YOU FARKLED!!!");
+				farkText.setBackground(new Color(0, 128, 0));
+				farkText.setFont(new Font("Arial", Font.BOLD, 24));
+				farkText.setEditable(false);
+				farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
+				game.add(farkText);
+				
+				
+				btnRoll.setEnabled(true);
+				
+				standard.clear();
+				
+			}
 			
 			
 			//Game Panel
 		
-			playerList = new ArrayList<Player>();
 			
 			
 			
-			for(int i = 0; i <= players+1; i++){
-				playerList.add(new Player());		
-			}
+			
+		
 			
 			JInternalFrame rules = new JInternalFrame("Rules");
 			rules.setBounds((int)width-offsetWidth*3, offsetHeight, 239, 271);
@@ -569,9 +584,9 @@ public void restart(){
 			game.add(endTurn);
 			
 			
-			String data[][] = new String[playerList.size()-1][2];
-			for(int i = 0; i < playerList.size()-1; i++){
-				data[i][0] = playerList.get(i).name;
+			String data[][] = new String[playerList.size()][2];
+			for(int i = 0; i < playerList.size(); i++){
+				data[i][0] = playerList.get(i).getName();
 				data[i][1] = String.valueOf(playerList.get(i).getTotal());
 			}
 			

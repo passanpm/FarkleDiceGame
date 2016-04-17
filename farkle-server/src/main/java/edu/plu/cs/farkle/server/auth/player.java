@@ -9,7 +9,7 @@ public class player {
 	
 	public player(String user, String key){
 		this.name = user;
-		this.setPass(key);
+		this.pass = key;
 		totalScore = 0;
 		currentScore = 0;
 	}

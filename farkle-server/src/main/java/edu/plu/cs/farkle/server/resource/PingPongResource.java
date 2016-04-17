@@ -6,12 +6,14 @@ import java.util.StringTokenizer;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 import edu.plu.cs.farkle.server.auth.player;
@@ -38,7 +40,7 @@ public class PingPongResource {
 	 */
 	@GET
 	@Produces("application/json")
-	public player getPing(@Context SecurityContext ctx ) {
+	public String getPing(@Context SecurityContext ctx ) {
 		
 		// If the principal is null, then authentication failed.
 		String authString = "yes";
@@ -64,11 +66,10 @@ public class PingPongResource {
         		exists = "Player exists in database";
         		player.setCurrent(Integer.parseInt(database.getCurrent(player)));
         		player.setTotal(database.getTotal(player));
-        		System.out.println(exists);
-        		return player;
+
         	}else{
         		exists = "Player does not exist in database";
-        		System.out.println(exists);
+
         		return null;
         	}
         }catch (NullPointerException e){
@@ -77,15 +78,14 @@ public class PingPongResource {
         	return null;
         }
 
-		/*
+		
 		String json = String.format("{ \"response\" : \"pong\","
-				+ " \"authenticated\" : \"%s\","
-				+ " \"header\" : \"%s\","
-				+ " \"userName\" : \"%s\","
-				+ " \"passWord\" : \"%s\","
-				+ " \"location\" : \"%s\" }"
-				, authString, header, username, password, exists);
-				*/
+				+ " \"username\" : \"%s\","
+				+ " \"password\" : \"%s\","
+				+ " \"current\" : \"%s\","
+				+ " \"total\" : \"%s\" }"
+				, player.getName(), player.getPass(), player.getCurrent(), player.getTotal());
+		return json;
 		
 	}
 	
@@ -115,13 +115,13 @@ public class PingPongResource {
         try{
         	database.addUser(player);
         	exists = "Player loaded in database";
-        	System.out.println(exists);
+
 
         	return true;
 
         }catch (NullPointerException e){
         	exists = "Player not loaded in database!";
-        	System.out.println(exists);
+
 
         	return false;
         }
@@ -153,15 +153,66 @@ public class PingPongResource {
         try{
         	database.removePlayer(player.getName());
         	exists = "Player removed from database";
-        	System.out.println(exists);
+
         	return true;
 
         }catch (NullPointerException e){
         	exists = "Player not removed from database!";
-        	System.out.println(exists);
+
         	return false;
         }
 
+	}
+	
+	@POST
+	@Produces("application/json")
+	public String postPing(@Context SecurityContext ctx ) {
+		
+		// If the principal is null, then authentication failed.
+		String authString = "yes";
+		if( ctx.getUserPrincipal() == null ) {
+			authString = "no";
+			return null;
+		}
+		
+		 //Split username and password tokens
+        final StringTokenizer tokenizer = new StringTokenizer(ctx.getUserPrincipal().getName(), ":");
+        final String username = tokenizer.nextToken();
+        final String password = tokenizer.nextToken();
+        final String header = tokenizer.nextToken();
+        
+        redis database = new redis();
+        database.initiateServer();
+        player player = new player(username, password);
+		
+        String exists;
+        
+        try{
+        	if (database.auth(player)){
+        		exists = "Player exists in database";
+        		player.setCurrent(Integer.parseInt(database.getCurrent(player)));
+        		player.setTotal(database.getTotal(player));
+
+        	}else{
+        		exists = "Player does not exist in database";
+
+        		return null;
+        	}
+        }catch (NullPointerException e){
+        	exists = "error";
+        	System.out.println(exists);
+        	return null;
+        }
+
+		
+		String json = String.format("{ \"response\" : \"pong\","
+				+ " \"username\" : \"%s\","
+				+ " \"password\" : \"%s\","
+				+ " \"current\" : \"%s\","
+				+ " \"total\" : \"%s\" }"
+				, player.getName(), player.getPass(), player.getCurrent(), player.getTotal());
+		return json;
+		
 	}
 	
 
