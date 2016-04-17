@@ -1,12 +1,19 @@
 package edu.plu.cs.farkle.client;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Toolkit;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.util.ArrayList;
 
 public class FarkleFrame {	
 	////////////////VARIABLES\\\\\\\\\\\\\\\\
@@ -28,7 +35,7 @@ public class FarkleFrame {
 	
 	private JPanel welcomePanel, register, game;
 	
-	private ArrayList<player> playerList;
+	private ArrayList<Player> playerList;
 	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
 	 Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
@@ -45,12 +52,12 @@ public class FarkleFrame {
 	
 
 
-	private int offsetHeight;	
+	/*private int offsetHeight;	
 	private JPanel welcomePanel;
 
 
 	private int offsetHeight;	
-	private JPanel welcomePanel;
+	private JPanel welcomePanel; */
 
 	/**
 	 * Launch the application.
