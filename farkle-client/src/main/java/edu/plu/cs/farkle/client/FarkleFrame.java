@@ -14,7 +14,7 @@ public class FarkleFrame {
 	private Dimension screenSize;	
 	private double width, height;
 	private int offsetWidth = (int)width/10;
-<<<<<<< HEAD
+
 	private int offsetHeight;
 	
 	private JTextField usernameText;
@@ -43,10 +43,10 @@ public class FarkleFrame {
 	 private JComboBox comboBox;
 	
 
-=======
+
 	private int offsetHeight;	
 	private JPanel welcomePanel;
->>>>>>> 7842a25cc8170aa320df4c658d4b1dd4b41dcfe2
+
 	/**
 	 * Launch the application.
 	 */
@@ -80,7 +80,7 @@ public class FarkleFrame {
 		frame.add(welcomePanel);
 		
 	}
-<<<<<<< HEAD
+
 	
 	
 	
@@ -404,8 +404,7 @@ public class FarkleFrame {
 		currentPlayer.setBounds(106, 42, 232, 57);
 		game.add(currentPlayer);
 		
-=======
->>>>>>> 7842a25cc8170aa320df4c658d4b1dd4b41dcfe2
+
 
 	/**
 	 * Initialize the contents of the frame.
