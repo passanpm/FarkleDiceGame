@@ -31,9 +31,12 @@ public class Options{
 		frame.getContentPane().add(mode);
 		mode.setLayout(null);
 		
-
-		JLabel lblWelcomeBack = new JLabel("Welcome Back!");
+<<<<<<< HEAD
+		JLabel lblWelcomeBack = new JLabel("Welcome Back, "  + "");
+=======
+		JLabel lblWelcomeBack = new JLabel("Welcome Back, "  + "!");
 		
+>>>>>>> 00b0de0a1122a075e06689f4a2e291fa2fb65db2
 		lblWelcomeBack.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblWelcomeBack.setBounds((int)width/2, offsetHeight*2, 423, 77);
 		mode.add(lblWelcomeBack);

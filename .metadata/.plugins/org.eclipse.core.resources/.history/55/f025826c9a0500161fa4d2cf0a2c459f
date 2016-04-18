@@ -79,7 +79,9 @@ public class LoginScreen {
 						
 						String password = passwordField.getText();
 						System.out.println(password);
-					
+						
+						welcomePanel.setVisible(false);
+						System.out.println ("Test: " +test+" Password: "+password);
 
 						Database db = new Database(test, password);
 						System.out.println(db.get());
