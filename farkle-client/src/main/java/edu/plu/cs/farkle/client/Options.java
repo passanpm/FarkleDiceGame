@@ -18,7 +18,7 @@ public class Options{
 	private int numPlayers=0;
 	private JComboBox<String> comboBox ;
 	
-	public JPanel options(JFrame frame){
+	public JPanel options(JFrame frame, String name){
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		double width = screen.getWidth();
 		double height = screen.getHeight();
@@ -31,8 +31,9 @@ public class Options{
 		frame.getContentPane().add(mode);
 		mode.setLayout(null);
 		
-
-		JLabel lblWelcomeBack = new JLabel("Welcome Back!");
+		
+		
+		JLabel lblWelcomeBack = new JLabel("Welcome Back, "+ name + "!");
 		
 		lblWelcomeBack.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblWelcomeBack.setBounds((int)width/2, offsetHeight*2, 423, 77);

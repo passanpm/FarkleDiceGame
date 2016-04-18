@@ -20,6 +20,7 @@ public class Standard{
 	}
 	
 	public void removeFromSingle(int die){
+		System.out.println("Single: " + single.toString());
 		single.remove(Integer.valueOf(die));
 	}
 	

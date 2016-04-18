@@ -84,7 +84,7 @@ public class LoginScreen {
 						if (db.get()){
 							welcomePanel.setVisible(false);
 							Options options = new Options();
-							JPanel mode = options.options(frame);
+							JPanel mode = options.options(frame, test);
 							frame.add(mode);
 						}
 						}
