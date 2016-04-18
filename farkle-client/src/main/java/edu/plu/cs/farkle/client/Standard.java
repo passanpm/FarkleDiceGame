@@ -43,6 +43,7 @@ public class Standard{
 	//calculate value of bank
 	public void bank(){
 		int bank = 0;
+		boolean check, check1;
 		
 		//single calculation
 		for (int i = 0; i < single.size(); i++){
@@ -58,20 +59,9 @@ public class Standard{
 		//set of 3 calc
 		//Remember: Requires holding down shift to work
 		if (set.size() == 3){
-			boolean check1 = false;
-			//Check dice 0-2 are equal
-			for(int i=0; i<3; i++){
-				if(set.get(0) == set.get(1)){
-					if(set.get(1) == set.get(2)){
-						check1 = true;
-					}
-				}
-				else{
-					check1 = false;
-				}
-			}
+			check = checkSet(0,2);
 			
-			if(check1){
+			if(check){
 				if (set.get(0) == 1){
 					bank += 1000;
 				}else{
@@ -81,82 +71,57 @@ public class Standard{
 			}
 		}
 		
-		/* This doesn't work yet, stil working on this...
-		if(set.size() == 6){
-			boolean checkA = false, checkB = false, checkC = false;
+		//set of 6 calculation
+		//Remember: Requires holding down shift
+		if (set.size() == 6){
+			check = checkSet(0,2);
+			check1 = checkSet(3,5);
 			
-			//All 6 are the same, compare all together
-			if(set.get(0) == set.get(3)){
-				int comp = set.get(0);
-				for(int i=1; i<6; i++){
-					if(set.get(i) == comp){
-						checkA = true;
-					}
-					else{
-						checkA = false;
-						break;
-					}
-				}
-				
-				if(checkA){
+			if(check && check1){
+				if(set.get(0) == set.get(3)){
 					if(set.get(0) == 1){
 						bank += 2000;
 					}
 					else{
 						bank += (set.get(0) * 100) * 2;
-					}	
+					}
 					set.clear();
 				}
-			}
-			
-			//Two sets of 3 check both sets
-			for(int i=0; i<3; i++){
-				if(set.get(0) == set.get(1)){
-					if(set.get(1) == set.get(2)){
-						checkB = true;
-					}
-				}
 				else{
-					checkB = false;
-					break;
-				}
-			}
-			for(int i=3; i<6; i++){
-				if(set.get(3) == set.get(4)){
-					if(set.get(4) == set.get(5)){
-						checkC = true;
-					}
-				}
-				else{
-					checkC = false;
-					break;
-				}
-			}
-			
-			if(checkB){
-				if (set.get(0) == 1){
+					if (set.get(0) == 1){
 						bank += 1000;
 					}else{
 						bank += set.get(0) * 100;
 					}
-					set.clear();
-			}
-			if(checkC){
-				if (set.get(3) == 1){
+					if (set.get(3) == 1){
 						bank += 1000;
 					}else{
 						bank += set.get(3) * 100;
 					}
 					set.clear();
+				}
 			}
-			
 		}
-		*/
 		
 		score += bank;
 		tempScore =bank;
 		
 		single.clear();
+	}
+	
+	private boolean checkSet(int start, int end){
+		boolean check = false;
+		for(int i=start; i<end; i++){
+			if(set.get(start) == set.get(start+1)){
+				if(set.get(start+1) == set.get(end)){
+					check = true;
+				}
+			}
+			else{
+				check = false;
+			}
+		}
+		return check;
 	}
 	
 	public int getTemp(){
