@@ -22,11 +22,11 @@ public class redis {
 		if (jedis.exists(player.getName())){
 			//listPlayers();
 			//loadUser(player.getName());
-			if (jedis.hgetAll(player.getName()).get("pass").equals(player.getPass())){
+			if (jedis.get("pass") == player.getPass()){
 				System.out.println("Player password is authenticated");
 			}else{
 				
-				System.out.println("Player password is not authenticated " + jedis.hgetAll(player.getName()).get("pass"));
+				System.out.println("Player password is not authenticated " + jedis.get("pass") + " " + player.getPass());
 			}
 			System.out.println(player.getName() + " exists in database");
 			return true;
