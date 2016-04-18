@@ -32,6 +32,7 @@ public class Options {
 		mode.setLayout(null);
 		
 		JLabel lblWelcomeBack = new JLabel("Welcome Back, "  + "!");
+		
 		lblWelcomeBack.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblWelcomeBack.setBounds((int)width/2, offsetHeight*2, 423, 77);
 		mode.add(lblWelcomeBack);
