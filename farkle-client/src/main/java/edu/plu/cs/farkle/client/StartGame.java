@@ -70,6 +70,8 @@ public class StartGame {
 	
 	private JPanel welcomePanel, register, game;
 	
+	private int turn = 0;
+	
 	//private ArrayList<Player> playerList;
 	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
@@ -308,10 +310,10 @@ public void restart(){
 		
 		
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-			double width = screen.getWidth();
-			double height = screen.getHeight();
-			int offsetWidth = (int)width/15;
-			int offsetHeight = (int)height/15;
+			width = screen.getWidth();
+			height = screen.getHeight();
+			offsetWidth = (int)width/15;
+			offsetHeight = (int)height/15;
 			
 			game = new JPanel();
 			game.setBackground(new Color(0, 128, 0));
@@ -319,38 +321,6 @@ public void restart(){
 			frame.getContentPane().add(game);
 			game.setLayout(null);
 			
-			
-			
-			diceObj.rollInit(6, 1, 6);
-			
-			roll = diceObj.getRoll();
-			
-			if(diceObj.farkle()){
-				
-				
-				farkText = new JTextPane();
-				farkText.setText("YOU FARKLED!!!");
-				farkText.setBackground(new Color(0, 128, 0));
-				farkText.setFont(new Font("Arial", Font.BOLD, 24));
-				farkText.setEditable(false);
-				farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
-				game.add(farkText);
-				
-				
-				btnRoll.setEnabled(true);
-				
-				standard.clear();
-				
-			}
-			
-			
-			//Game Panel
-		
-			
-			
-			
-			
-		
 			
 			JInternalFrame rules = new JInternalFrame("Rules");
 			rules.setBounds((int)width-offsetWidth*3, offsetHeight, 239, 271);
@@ -391,99 +361,7 @@ public void restart(){
 			label_4.setBounds(220, 374, 50, 50);
 			game.add(label_4);
 			
-			
-			/*
-			 * Handle Dice 0
-			 */
-			int temp = roll.get(0);
-			if( temp >0){
-				diceIMG(0,lblDice);
-					lblDice.addMouseListener(new MouseAdapter(){
-						@Override
-						public void mouseClicked(MouseEvent e){
-							diceClick(0,lblDice, e, border, borderOption);
-		
-						}
-					});
-			}
-			
-			
-			/*
-			 * Handle Dice 1
-			 */
-			temp = roll.get(1);
-			if( temp > 0){
-				diceIMG(1,label);
-				label.addMouseListener(new MouseAdapter(){
-					@Override
-					public void mouseClicked(MouseEvent e){
-						diceClick(1, label, e, border, borderOption1);
-		
-					}
-				});
-			}
-			
-			/*
-			 * Handle Dice 2
-			 */
-			temp = roll.get(2);
-			if( temp > 0){
-				diceIMG(2,label_1);
-				label_1.addMouseListener(new MouseAdapter(){
-					@Override
-					public void mouseClicked(MouseEvent e){
-						diceClick(2, label_1, e, border, borderOption2);
-		
-					}
-				});
-			}
-			
-			/*
-			 * Handle Dice 3
-			 */
-			temp = roll.get(3);
-			if( temp > 0){
-				diceIMG(3,label_2);
-				label_2.addMouseListener(new MouseAdapter(){
-					@Override
-					public void mouseClicked(MouseEvent e){
-						diceClick(3, label_2, e, border, borderOption3);
-		
-					}
-				});
-			}
-			
-			/*
-			 * Handle Dice 4
-			 */
-			temp = roll.get(4);
-			if( temp > 0){
-				diceIMG(4,label_3);
-				label_3.addMouseListener(new MouseAdapter(){
-					@Override
-					public void mouseClicked(MouseEvent e){
-						diceClick(4,label_3, e, border, borderOption4);
-		
-					}
-				});
-			}
-			
-			/*
-			 * Handle Dice 5
-			 */
-			temp = roll.get(5);
-			if( temp > 0){
-				diceIMG(5,label_4);
-				label_4.addMouseListener(new MouseAdapter(){
-					@Override
-					public void mouseClicked(MouseEvent e){
-						diceClick(5, label_4, e, border, borderOption5);
-		
-					}
-				});
-			}
-			
-			lblScore = new JLabel("Score: "+score);
+			lblScore = new JLabel("Score: 0");
 			lblScore.setFont(new Font("Tahoma", Font.PLAIN, 21));
 			lblScore.setBounds((int)width/2, 42, 162, 57);
 			game.add(lblScore);
@@ -493,96 +371,14 @@ public void restart(){
 			lblBankScore.setBounds((int)width/2, 82, 162, 57);
 			game.add(lblBankScore);
 			
-			
-			//ROLL BUTTON\\
-			
 			btnRoll = new JButton("Roll");
-			btnRoll.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-					
-					
-					diceObj.roll(6, 1, roll);
-					
-					if(diceObj.farkle()){
-						bankScore = 0;
-						tempScore = 0;
-						farkText = new JTextPane();
-						farkText.setText("YOU FARKLED!!!");
-						farkText.setBackground(new Color(0, 128, 0));
-						farkText.setFont(new Font("Arial", Font.BOLD, 24));
-						farkText.setEditable(false);
-						farkText.setBounds((int)width/2, (int)height/2+offsetHeight, 500, 500);
-						game.add(farkText);
-						
-						btnRoll.setEnabled(false);
-						
-						standard.clear();
-						
-					}
-						
-					roll = diceObj.getRoll();
-					die = roll.get(0);
-					
-
-					blackout(lblDice, borderOption);
-					blackout(label, borderOption1);
-					blackout(label_1, borderOption2);
-					blackout(label_2, borderOption3);
-					blackout(label_3, borderOption4);
-					blackout(label_4, borderOption5);
-					
-					removeBlackout();
-					
-					diceIMG(0, lblDice);
-					diceIMG(1, label);
-					diceIMG(2, label_1);
-					diceIMG(3, label_2);
-					diceIMG(4, label_3);
-					diceIMG(5, label_4);
-					
-					updateScore();
-					
-					tempScore += standard.getTemp();
-					
-					lblBankScore.setText("Bank Score: " + tempScore);
-					btnRoll.setEnabled(false);
-				}
-			});
 			btnRoll.setBounds(106, 472, 164, 76);
 			game.add(btnRoll);
 			btnRoll.setEnabled(false);
 			
-			
-			
-			
-			
 			endTurn = new JButton("End Turn");
-			endTurn.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					score += bankScore;
-					//playerList.get(0).setTotal(score);
-					lblScore.setText("Score: " + score);
-					bankScore = 0;
-					standard = new Standard();
-					lblDice.setBorder(null);
-					label.setBorder(null);
-					label_1.setBorder(null);
-					label_2.setBorder(null);
-					label_3.setBorder(null);
-					label_4.setBorder(null);
-					restart();
-					standard.debug();
-					standard.clear();
-					
-					
-					
-					//table.setValueAt(playerList.get(0).getTotal(), 1, 1);
-				}
-			});
 			endTurn.setBounds(106, 568, 164, 76);
 			game.add(endTurn);
-			
 			
 			String data[][] = new String[playerList.size()][2];
 			for(int i = 0; i < playerList.size(); i++){
@@ -616,7 +412,6 @@ public void restart(){
 			menuBar.add(mnFile);
 			
 			//Sign out button
-			
 			JMenuItem mntmSignOut = new JMenuItem("Sign Out");
 			mntmSignOut.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -640,33 +435,260 @@ public void restart(){
 			mnFile.add(mntmExit);
 			
 			
-			
-			if(diceObj.farkle()){
-				
-				
-				farkText = new JTextPane();
-				farkText.setText("YOU FARKLED!!!");
-				farkText.setBackground(new Color(0, 128, 0));
-				farkText.setFont(new Font("Arial", Font.BOLD, 24));
-				farkText.setEditable(false);
-				farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
-				game.add(farkText);
-				
-				
-				btnRoll.setEnabled(true);
-				
-				standard.clear();
-				
-			}
-		
-			
-			frame.setSize((int)width, (int)height);
-			frame.repaint();
-			frame.revalidate();
+			playerTurn(playerList);
 			
 			return game;
 		
 		
+	}
+	
+	
+	private void playerTurn(ArrayList<Player> playerList){
+		
+		currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
+		System.out.println(playerList.get(turn).getName());
+		diceObj.rollInit(6, 1, 6);
+		
+		roll = diceObj.getRoll();
+		
+		if(diceObj.farkle()){
+			farkText = new JTextPane();
+			farkText.setText("YOU FARKLED!!!");
+			farkText.setBackground(new Color(0, 128, 0));
+			farkText.setFont(new Font("Arial", Font.BOLD, 24));
+			farkText.setEditable(false);
+			farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
+			game.add(farkText);
+			
+			btnRoll.setEnabled(true);
+			standard.clear();
+		}
+		
+		/*
+		 * Handle Dice 0
+		 */
+		int temp = roll.get(0);
+		if( temp >0){
+			diceIMG(0,lblDice);
+				lblDice.addMouseListener(new MouseAdapter(){
+					@Override
+					public void mouseClicked(MouseEvent e){
+						diceClick(0,lblDice, e, border, borderOption);
+	
+					}
+				});
+		}
+		
+		
+		/*
+		 * Handle Dice 1
+		 */
+		temp = roll.get(1);
+		if( temp > 0){
+			diceIMG(1,label);
+			label.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e){
+					diceClick(1, label, e, border, borderOption1);
+	
+				}
+			});
+		}
+		
+		/*
+		 * Handle Dice 2
+		 */
+		temp = roll.get(2);
+		if( temp > 0){
+			diceIMG(2,label_1);
+			label_1.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e){
+					diceClick(2, label_1, e, border, borderOption2);
+	
+				}
+			});
+		}
+		
+		/*
+		 * Handle Dice 3
+		 */
+		temp = roll.get(3);
+		if( temp > 0){
+			diceIMG(3,label_2);
+			label_2.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e){
+					diceClick(3, label_2, e, border, borderOption3);
+	
+				}
+			});
+		}
+		
+		/*
+		 * Handle Dice 4
+		 */
+		temp = roll.get(4);
+		if( temp > 0){
+			diceIMG(4,label_3);
+			label_3.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e){
+					diceClick(4,label_3, e, border, borderOption4);
+	
+				}
+			});
+		}
+		
+		/*
+		 * Handle Dice 5
+		 */
+		temp = roll.get(5);
+		if( temp > 0){
+			diceIMG(5,label_4);
+			label_4.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e){
+					diceClick(5, label_4, e, border, borderOption5);
+	
+				}
+			});
+		}
+		
+		
+		
+		
+		//ROLL BUTTON\\
+		
+	
+		
+		btnRoll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				diceObj.roll(6, 1, roll);
+				
+				if(diceObj.farkle()){
+					bankScore = 0;
+					tempScore = 0;
+					farkText = new JTextPane();
+					farkText.setText("YOU FARKLED!!!");
+					farkText.setBackground(new Color(0, 128, 0));
+					farkText.setFont(new Font("Arial", Font.BOLD, 24));
+					farkText.setEditable(false);
+					farkText.setBounds((int)width/2, (int)height/2+offsetHeight, 500, 500);
+					game.add(farkText);
+					
+					btnRoll.setEnabled(false);
+					
+					standard.clear();
+					
+				}
+					
+				roll = diceObj.getRoll();
+				die = roll.get(0);
+				
+
+				blackout(lblDice, borderOption);
+				blackout(label, borderOption1);
+				blackout(label_1, borderOption2);
+				blackout(label_2, borderOption3);
+				blackout(label_3, borderOption4);
+				blackout(label_4, borderOption5);
+				
+				removeBlackout();
+				
+				diceIMG(0, lblDice);
+				diceIMG(1, label);
+				diceIMG(2, label_1);
+				diceIMG(3, label_2);
+				diceIMG(4, label_3);
+				diceIMG(5, label_4);
+				
+				updateScore();
+				
+				tempScore += standard.getTemp();
+				
+				lblBankScore.setText("Bank Score: " + tempScore);
+				btnRoll.setEnabled(false);
+			}
+		});
+	
+		
+		
+		//End turn button
+		endTurn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(turn == playerList.size()){
+					turn = 0;
+					currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
+				}
+				
+				
+				
+				score += bankScore;
+				playerList.get(turn).setTotal(bankScore);
+				lblScore.setText("Score: " + playerList.get(turn).getTotal());
+				bankScore = 0;
+				standard = new Standard();
+				lblDice.setBorder(null);
+				label.setBorder(null);
+				label_1.setBorder(null);
+				label_2.setBorder(null);
+				label_3.setBorder(null);
+				label_4.setBorder(null);
+				restart();
+				standard.debug();
+				standard.clear();
+
+				table.setValueAt(String.valueOf(playerList.get(turn).getTotal()), turn, 1);
+				
+				
+				turn++;
+				if(turn >= playerList.size()){
+					currentPlayer.setText("Current Player: " + playerList.get(0).getName());
+					lblScore.setText("Score: " + playerList.get(0).getTotal());
+				}
+				else{
+					currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
+					lblScore.setText("Score: " + playerList.get(turn).getTotal());
+				}
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		if(diceObj.farkle()){
+			
+			
+			farkText = new JTextPane();
+			farkText.setText("YOU FARKLED!!!");
+			farkText.setBackground(new Color(0, 128, 0));
+			farkText.setFont(new Font("Arial", Font.BOLD, 24));
+			farkText.setEditable(false);
+			farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
+			game.add(farkText);
+			
+			
+			btnRoll.setEnabled(true);
+			
+			standard.clear();
+			
+		}
+	
+		
+		//frame.setSize((int)width, (int)height);
+		//frame.repaint();
+		//frame.revalidate();
 	}
 
 }

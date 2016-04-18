@@ -63,9 +63,7 @@ public class LoginScreen {
 		passwordField.setBounds((int)width/2, (int)height/2+offsetHeight, 86, 20);
 		welcomePanel.add(passwordField);
 		
-		@SuppressWarnings("deprecation")
-		String password = passwordField.getText();
-		System.out.println(password);
+		
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds((int)width/2-offsetWidth, (int)height/2+offsetHeight, 65, 14);
@@ -79,7 +77,16 @@ public class LoginScreen {
 						String test = usernameText.getText();
 						System.out.println("Username: " + test);
 						
+<<<<<<< HEAD
 
+=======
+						@SuppressWarnings("deprecation")
+						String password = passwordField.getText();
+						System.out.println(password);
+						
+						welcomePanel.setVisible(false);
+						System.out.println ("Test: " +test+" Password: "+password);
+>>>>>>> 00b0de0a1122a075e06689f4a2e291fa2fb65db2
 						Database db = new Database(test, password);
 						System.out.println(db.get());
 						
