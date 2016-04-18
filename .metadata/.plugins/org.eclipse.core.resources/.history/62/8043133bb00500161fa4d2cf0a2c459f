@@ -27,11 +27,13 @@ public class redis {
 				System.out.println(player.getName() + " exists in database");
 				return true;
 			}else{
-				System.out.println("Player password is incorrect");
-				return false;
+				
+				System.out.println("Player password is not authenticated");
 			}
+		}else{
+			System.out.println(player.getName() + " does not exist in database");
+			return false;
 		}
-		return false;
 	}
 	
 	public void listPlayers(){
