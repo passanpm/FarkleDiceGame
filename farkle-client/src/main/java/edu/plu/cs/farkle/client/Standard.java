@@ -5,55 +5,51 @@ public class Standard{
 	
 	protected int score = 0;
 	protected int tempScore = 0;
+	
+	protected int oneScore = 0;
+	
 	protected static ArrayList<Integer> set = new ArrayList<Integer>();
 	protected static ArrayList<Integer> single = new ArrayList<Integer>();
 	
-	public void debug(){
-		//System.out.println("single: " + single);
-		//System.out.println("set: " + set);
-	}
-	
 	public void addToSingle(int value){
 		single.add(value);
-		//System.out.println("single: " + single);
 	}
 	
 	public void addToSet(int value){
 		set.add(value);
-		//System.out.println("set: " + set);
 	}
 	
 	public void removeFromSingle(int die){
 		single.remove(Integer.valueOf(die));
-		//System.out.println("single: " + single);
 	}
 	
 	public void removeFromSet(int die){
 		set.remove(Integer.valueOf(die));
-		//System.out.println("set: " + set);
 	}
 	
 	public void clear(){
 		score = 0;
 		set.clear();
 		single.clear();
-		System.out.println("set: " + set.toString() + "\nsingle: " + single.toString() + "\nScore: + " + score);
 	}
 	
 	//calculate value of bank
 	public void bank(){
 		int bank = 0;
+		oneScore = 0;
 		boolean check, check1;
 		
 		//single calculation
 		for (int i = 0; i < single.size(); i++){
 			if (single.get(i) == 1){
 				bank += 100;
-				//single.remove(Integer.valueOf(1));
+				oneScore = 100;
 			}else if (single.get(i) == 5){
 				bank += 50;
-				//single.remove(Integer.valueOf(5));
+				oneScore = 50;
 			}
+			if(single.get(i) != 1 && single.get(i) != 5)
+				bank = 0;
 		}
 		
 		//set of 3 calc
@@ -130,6 +126,10 @@ public class Standard{
 	
 	public int getScore(){
 		return score;
+	}
+	
+	public int getOne(){
+		return oneScore;
 	}
 
 

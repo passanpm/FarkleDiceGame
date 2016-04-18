@@ -174,8 +174,14 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		updateScore();
 		tempScore += standard.getTemp();
 		lblBankScore.setText("Bank Score: " + tempScore);
-		if(standard.getTemp() > 0)
+		
+		
+		if(standard.getTemp() > 0 && standard.getOne() != 0){
 			btnRoll.setEnabled(true);
+			
+		}
+		else
+			btnRoll.setEnabled(false);
 	}
 	else if(bdrCheck && roll.get(diceID)<0){		
 		standard.removeFromSingle(roll.get(diceID));
@@ -216,11 +222,7 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 			break;
 		}
 		diceObj.unBank(diceID, roll.get(diceID));
-		if(tempScore == 0){
-			btnRoll.setEnabled(false);
-		}
-		else
-			btnRoll.setEnabled(true);
+		
 	}
 	
 }
@@ -460,7 +462,7 @@ public void restart(){
 			farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
 			game.add(farkText);
 			
-			btnRoll.setEnabled(true);
+			btnRoll.setEnabled(false);
 			standard.clear();
 		}
 		
@@ -564,9 +566,6 @@ public void restart(){
 		
 		btnRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
 				diceObj.roll(6, 1, roll);
 				
 				if(diceObj.farkle()){
@@ -578,18 +577,15 @@ public void restart(){
 					farkText.setFont(new Font("Arial", Font.BOLD, 24));
 					farkText.setEditable(false);
 					farkText.setBounds((int)width/2, (int)height/2+offsetHeight, 500, 500);
-					game.add(farkText);
-					
+					game.add(farkText);				
 					btnRoll.setEnabled(false);
 					
-					standard.clear();
-					
+					standard.clear();					
 				}
 					
 				roll = diceObj.getRoll();
 				die = roll.get(0);
-				
-
+			
 				blackout(lblDice, borderOption);
 				blackout(label, borderOption1);
 				blackout(label_1, borderOption2);
@@ -639,7 +635,6 @@ public void restart(){
 				label_3.setBorder(null);
 				label_4.setBorder(null);
 				restart();
-				standard.debug();
 				standard.clear();
 
 				table.setValueAt(String.valueOf(playerList.get(turn).getTotal()), turn, 1);
@@ -679,7 +674,7 @@ public void restart(){
 			game.add(farkText);
 			
 			
-			btnRoll.setEnabled(true);
+			btnRoll.setEnabled(false);
 			
 			standard.clear();
 			
