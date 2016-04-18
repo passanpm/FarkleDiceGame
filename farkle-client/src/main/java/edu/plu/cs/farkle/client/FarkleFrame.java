@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class FarkleFrame {	
@@ -148,9 +150,9 @@ public class FarkleFrame {
 		game.setLayout(null);
 		
 		Dice diceObj = new Dice();
-		
+		ArrayList<Integer> roll = new ArrayList<Integer>();
 		diceObj.rollInit(6, 1, 6);
-		//roll = diceObj.getRoll();
+		roll = diceObj.getRoll();
 		
 		
 		
@@ -229,10 +231,10 @@ public class FarkleFrame {
 				@Override
 				public void mouseClicked(MouseEvent e){
 					diceClick(1, label, e, border, borderOption1);
-	
 				}
-			});
-		}
+				}
+			}
+		
 		
 		/*
 		 * Handle Dice 2
@@ -246,7 +248,7 @@ public class FarkleFrame {
 					diceClick(2, label_1, e, border, borderOption2);
 	
 				}
-			});
+			}
 		}
 		
 		/*
@@ -417,7 +419,7 @@ public class FarkleFrame {
 		currentPlayer.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		currentPlayer.setBounds(106, 42, 232, 57);
 		game.add(currentPlayer);
-		
+			}
 
 
 

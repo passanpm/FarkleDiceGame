@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.node.ObjectNode;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.client.ProxyFactory;
@@ -26,9 +27,7 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 public class Database {
 
-	/*Player user = new Player();
-	static String username = "Gabjhkjkjdghhljbklkjbkde";
-	static String password = "pecacjhjkhgfdhdfghheee";*/
+
 
 	Player user = new Player();
 	static String username = "Gabe";
@@ -42,6 +41,7 @@ public class Database {
 		d.get();
 		d.delete();
 		d.get();
+		d.post();
 	}
 	
 	public Database(String username, String password) {
@@ -59,6 +59,9 @@ public class Database {
 	public void delete(){
 		init("delete");
 	}
+	public void post(){
+		init("post");
+	}
 	
 	public void init(String action){
 		Client client = null;
@@ -72,25 +75,41 @@ public class Database {
 			Player p = new Player();
 			Entity<Player> u = Entity.json(p);
 			
+			
 			switch (action){
 				case "put":
 					Response response = resteasyWebTarget.request().put(u);
 				case "get":
-					
 					Invocation.Builder builder = resteasyWebTarget.request();
 					String r = builder.get(String.class);
 					ObjectMapper mapper = new ObjectMapper();
 					JsonNode node = mapper.readTree(r);
+					
+					
 					System.out.println(node.toString());
 					System.out.println("Name: " + node.get("username"));
+					client.close();
 					
 				case "delete":
 					Response remove = resteasyWebTarget.request().delete();
 				case "post":
-					Invocation.Builder builder2 = resteasyWebTarget.request();
-					String newName = "0";
-					Entity<String> username = Entity.json(newName);
-					String r2 = builder2.post(username, String.class);
+					Invocation.Builder builder1 = resteasyWebTarget.request();
+					String r1 = builder1.get(String.class);
+					ObjectMapper mapper1 = new ObjectMapper();
+					JsonNode node1 = mapper1.readTree(r1);
+					
+					
+					System.out.println("BEFORE;");
+					System.out.println(node1.toString());
+					((ObjectNode)node1).put("username", "Gabriel");
+					System.out.println("AFTER;");
+					System.out.println(node1.toString());
+					
+					
+					
+					((ObjectNode)node1).put("username", "Gabe");
+					client.close();
+					
 			}
 			
 		} catch (Exception e) {
