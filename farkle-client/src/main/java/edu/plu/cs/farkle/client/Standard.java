@@ -154,7 +154,7 @@ public class Standard{
 		*/
 		
 		score += bank;
-		tempScore =bank;
+		tempScore = bank;
 		
 		single.clear();
 	}
