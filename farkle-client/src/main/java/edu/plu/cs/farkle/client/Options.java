@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Options {
+public class Options{
 	
 	private int numPlayers=0;
 	private JComboBox<String> comboBox ;
@@ -31,7 +31,7 @@ public class Options {
 		frame.getContentPane().add(mode);
 		mode.setLayout(null);
 		
-		JLabel lblWelcomeBack = new JLabel("Welcome Back, "  + "!");
+		JLabel lblWelcomeBack = new JLabel("Welcome Back, "  + "");
 		lblWelcomeBack.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblWelcomeBack.setBounds((int)width/2, offsetHeight*2, 423, 77);
 		mode.add(lblWelcomeBack);

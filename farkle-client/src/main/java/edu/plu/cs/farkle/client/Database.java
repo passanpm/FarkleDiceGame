@@ -33,7 +33,7 @@ public class Database {
 	static String username = "Gabe";
 	static String password = "pecache";
 
-
+/*
 	public static void main(String[] args){
 		Database d = new Database(username, password);
 		d.get();
@@ -43,7 +43,7 @@ public class Database {
 		d.get();
 		d.post();
 	}
-	
+*/
 	public Database(String username, String password) {
 			Database.username = username;
 			Database.password = password;
@@ -53,8 +53,8 @@ public class Database {
 	public void put(){
 		init("put");
 	}
-	public void get(){
-		init("get");
+	public boolean get(){
+		return init("get");
 	}
 	public void delete(){
 		init("delete");
@@ -63,14 +63,14 @@ public class Database {
 		init("post");
 	}
 	
-	public void init(String action){
+	public boolean init(String action){
 		Client client = null;
 		try {
 			client = ClientBuilder.newClient();
 			// The target URL
-			WebTarget target = client.target("http://localhost:8080/farkle/ping");
+			WebTarget target = client.target("http://localhost:8080/farkle/crud");
 
-			ResteasyWebTarget resteasyWebTarget = (ResteasyWebTarget)client.target("http://localhost:8080/farkle/ping");
+			ResteasyWebTarget resteasyWebTarget = (ResteasyWebTarget)client.target("http://localhost:8080/farkle/crud");
 			resteasyWebTarget.register(new BasicAuthentication(username, password));
 			Player p = new Player();
 			Entity<Player> u = Entity.json(p);
@@ -78,20 +78,40 @@ public class Database {
 			
 			switch (action){
 				case "put":
-					Response response = resteasyWebTarget.request().put(u);
+					try {
+						Response response = resteasyWebTarget.request().put(u);
+						return true;
+					} catch (Exception e) {
+						return false;
+					}
+					
 				case "get":
 					Invocation.Builder builder = resteasyWebTarget.request();
 					String r = builder.get(String.class);
 					ObjectMapper mapper = new ObjectMapper();
 					JsonNode node = mapper.readTree(r);
+					System.out.println(node.get("username"));
+					if (node.get("username") == null){
+						return false;
+					}
+					return true;
+						
+				
 					
 					
-					System.out.println(node.toString());
-					System.out.println("Name: " + node.get("username"));
-					client.close();
+					
+					//System.out.println(node.toString());
+					//System.out.println("Name: " + node.get("username"));
+					
 					
 				case "delete":
-					Response remove = resteasyWebTarget.request().delete();
+					try {
+						Response remove = resteasyWebTarget.request().delete();
+						return true;
+					} catch (Exception e) {
+						return false;
+					}
+					
 				case "post":
 					Invocation.Builder builder1 = resteasyWebTarget.request();
 					String r1 = builder1.get(String.class);
@@ -108,7 +128,16 @@ public class Database {
 					
 					
 					((ObjectNode)node1).put("username", "Gabe");
-					client.close();
+					
+					//temp
+					try {
+						Response remove = resteasyWebTarget.request().delete();
+						return true;
+					} catch (Exception e) {
+						return false;
+					}
+					
+					
 					
 			}
 			
@@ -116,6 +145,7 @@ public class Database {
 		}finally{
 			client.close();
 		}
+		return false;
 	}
 	
 	

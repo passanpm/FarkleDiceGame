@@ -42,4 +42,6 @@
 <fullyQualifiedTypeName name="org.jboss.resteasy.spi.HttpResponse"/>
 <fullyQualifiedTypeName name="edu.plu.cs.farkle.client.Database"/>
 <fullyQualifiedTypeName name="javax.ws.rs.DELETE"/>
+<fullyQualifiedTypeName name="javax.ws.rs.core.Response"/>
+<fullyQualifiedTypeName name="javax.ws.rs.POST"/>
 </qualifiedTypeNameHistroy>

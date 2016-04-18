@@ -7,7 +7,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import edu.plu.cs.farkle.server.auth.AuthenticatorFilter;
-import edu.plu.cs.farkle.server.resource.PingPongResource;
+import edu.plu.cs.farkle.server.resource.crud;
 
 /**
  * This is the central "control" for the Farkle application.  It manages
@@ -27,7 +27,7 @@ public class FarkleServerApplication extends Application {
 	 * Instantiates the resources and adds them to the singletons Set.
 	 */
 	public FarkleServerApplication() {
-		singletons.add( new PingPongResource() );  // Example resource, to be removed later
+		singletons.add( new crud() );  // Example resource, to be removed later
 		singletons.add( new AuthenticatorFilter() );  // Authentication filter
 	}
 	
