@@ -16,6 +16,7 @@ public class FarkleFrame {
 	private int offsetWidth = (int)width/10;
 	private int offsetHeight;	
 	private JPanel welcomePanel;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -39,7 +40,9 @@ public class FarkleFrame {
 		initialize();
 	}
 	
-	
+	/**
+	 * Launch Initial Screen (Login and option to register)
+	 */
 	private void login(){
 		
 		LoginScreen log = new LoginScreen();
