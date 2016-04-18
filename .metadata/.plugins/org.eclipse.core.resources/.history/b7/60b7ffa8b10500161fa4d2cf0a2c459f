@@ -49,10 +49,14 @@ public class crud {
 			return null;
 		}
 		
+		System.out.println(authString);
 		 //Split username and password tokens
         final StringTokenizer tokenizer = new StringTokenizer(ctx.getUserPrincipal().getName(), ":");
+        System.out.println(tokenizer);
         final String username = tokenizer.nextToken();
+        System.out.println("username");
         final String password = tokenizer.nextToken();
+        System.out.println("password");
         
         redis database = new redis();
         database.initiateServer();

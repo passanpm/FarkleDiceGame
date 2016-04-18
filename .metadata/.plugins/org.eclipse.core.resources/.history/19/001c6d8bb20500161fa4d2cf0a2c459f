@@ -75,11 +75,14 @@ public class LoginScreen {
 				btnLogin.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String test = usernameText.getText();
+						System.out.println("Username: " + test);
 						
 						String password = passwordField.getText();
+						System.out.println(password);
 					
 
 						Database db = new Database(test, password);
+						System.out.println(db.get());
 						
 						if (db.get()){
 							welcomePanel.setVisible(false);

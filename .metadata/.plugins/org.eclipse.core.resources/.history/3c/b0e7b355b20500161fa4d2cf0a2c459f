@@ -47,6 +47,7 @@ public class Database {
 	public Database(String username, String password) {
 			Database.username = username;
 			Database.password = password;
+			System.out.println("DEBUG: " + username);
 	}
 	
 	public void put(){

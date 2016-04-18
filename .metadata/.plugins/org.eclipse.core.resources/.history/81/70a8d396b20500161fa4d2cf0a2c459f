@@ -58,6 +58,7 @@ public class Register {
 				//ENTER CODE HERE FOR REGISTERING USERNAMES AND PASSWORDS\\
 				@SuppressWarnings("deprecation")
 				String password = passwordField.getText();
+				System.out.println("Username: " + username + " Password: " + password);
 				
 				
 				Database db = new Database(username, password);

@@ -47,6 +47,7 @@ public class Database {
 	public Database(String username, String password) {
 			Database.username = username;
 			Database.password = password;
+			System.out.println("DEBUG: " + username);
 	}
 	
 	public void put(){
@@ -89,7 +90,7 @@ public class Database {
 					String r = builder.get(String.class);
 					ObjectMapper mapper = new ObjectMapper();
 					JsonNode node = mapper.readTree(r);
-					System.out.println("GET: " + node.get("username"));
+					System.out.println(node.get("username"));
 					if (node.get("username") == null){
 						return false;
 					}

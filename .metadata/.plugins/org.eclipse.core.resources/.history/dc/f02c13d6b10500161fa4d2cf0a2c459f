@@ -49,6 +49,7 @@ public class crud {
 			return null;
 		}
 		
+		System.out.println(authString);
 		 //Split username and password tokens
         final StringTokenizer tokenizer = new StringTokenizer(ctx.getUserPrincipal().getName(), ":");
         final String username = tokenizer.nextToken();
