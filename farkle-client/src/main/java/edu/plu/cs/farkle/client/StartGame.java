@@ -628,7 +628,7 @@ public void restart(){
 				
 				
 				score += bankScore;
-				playerList.get(turn).setTotal(playerList.get(turn).getTotal()+bankScore);
+				playerList.get(turn).setTotal(bankScore);
 				lblScore.setText("Score: " + playerList.get(turn).getTotal());
 				bankScore = 0;
 				standard = new Standard();
@@ -646,10 +646,14 @@ public void restart(){
 				
 				
 				turn++;
-				if(turn >= playerList.size())
+				if(turn >= playerList.size()){
 					currentPlayer.setText("Current Player: " + playerList.get(0).getName());
-				else
+					lblScore.setText("Score: " + playerList.get(0).getTotal());
+				}
+				else{
 					currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
+					lblScore.setText("Score: " + playerList.get(turn).getTotal());
+				}
 			}
 		});
 		
