@@ -36,8 +36,8 @@ public class player {
 		return this.wins;
 	}
 	
-	public void setWins(int wins) {
-		this.wins = wins;
+	public void setWins(int current) {
+		this.wins = current;
 	}
 	
 }

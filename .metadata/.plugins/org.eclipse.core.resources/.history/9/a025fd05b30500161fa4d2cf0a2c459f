@@ -64,7 +64,6 @@ public class Register {
 				
 				db.put();
 				
-				
 			}
 		});
 		btnRegister.setBounds((int)width/2+offsetWidth, (int)height/2+offsetHeight/2, 89, 23);

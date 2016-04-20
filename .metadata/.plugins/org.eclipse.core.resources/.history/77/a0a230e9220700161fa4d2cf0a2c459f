@@ -4,7 +4,8 @@ public class player {
 	
 	private String name;
 	private String pass;
-	private int wins;
+	private int totalScore;
+	private int currentScore;
 	
 	public player(String user, String key){
 		this.name = user;
@@ -33,11 +34,11 @@ public class player {
 
 
 	public int getWins() {
-		return this.wins;
+		return this.currentScore;
 	}
 	
-	public void setWins(int wins) {
-		this.wins = wins;
+	public void setWins(int current) {
+		this.currentScore = current;
 	}
 	
 }

@@ -204,8 +204,9 @@ public class crud {
 		String json = String.format("{ \"response\" : \"pong\","
 				+ " \"username\" : \"%s\","
 				+ " \"password\" : \"%s\","
-				+ " \"wins\" : \"%s\" }"
-				, player.getName(), player.getPass(), player.getWins());
+				+ " \"current\" : \"%s\","
+				+ " \"total\" : \"%s\" }"
+				, player.getName(), player.getPass(), player.getCurrent(), player.getTotal());
 		return json;
 		
 	}

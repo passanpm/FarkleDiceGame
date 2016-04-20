@@ -82,5 +82,13 @@ public class redis {
 		return (jedis.hget(user.getName(), "wins"));
 	}
 	
+	public void updateTotal(player user){
+	    jedis.hset(user.getName(), "total", Integer.toString(user.getTotal()));
+	}
+	
+	public int getTotal(player user){
+		return Integer.parseInt(jedis.hget(user.getName(), "total"));
+	}
+	
 	
 }
