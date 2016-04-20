@@ -134,14 +134,12 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 	
 	if(!bdrCheck && roll.get(diceID)>0){
 		
-		if ((e.getModifiers() & ActionEvent.SHIFT_MASK) == ActionEvent.SHIFT_MASK) {
-			name.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
-			standard.addToSet(roll.get(diceID));
-     }else{
+
+    
      	name.setBorder(border);
      	standard.addToSingle(roll.get(diceID));
      	bdrCheck = true;
-     }
+     
 		
 		switch ( diceID ) {
 		case 0:
@@ -177,7 +175,7 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		lblBankScore.setText("Bank Score: " + tempScore);
 		
 		
-		if(standard.getTemp() > 0 && standard.getOne() != 0){
+		if(standard.getTemp() > 0){
 			btnRoll.setEnabled(true);
 			
 		}
@@ -186,15 +184,10 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 	}
 	else if(bdrCheck && roll.get(diceID)<0){		
 		standard.removeFromSingle(roll.get(diceID));
-
-		//bankScore -= tempScore;
 		updateScore();
 		tempScore = standard.bankScore();
 		
 		lblBankScore.setText("Bank Score: " + tempScore);
-		
-		
-		//removeDice(name, diceID);
 		
 		name.setBorder(null);
 		switch ( diceID ) {
@@ -225,29 +218,19 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		}
 		diceObj.unBank(diceID, roll.get(diceID));
 		
+		if(standard.getTemp()==0)
+			btnRoll.setEnabled(false);
+		
 	}
 	
 }
 
-
-/**
-* 
-* @param label
-* @param i
-*/
 public void removeDice(JLabel label, int i){
-	if ( ((LineBorder) label.getBorder()).getLineColor() == Color.RED ){
-		standard.removeFromSet(roll.get(i));
-	}else{
 		standard.removeFromSingle(roll.get(i));
-	}
 }
-
 
 public void updateScore() {
-	standard.bank();
 	bankScore = standard.bankScore();
-	
 }
 
 public boolean blackout(JLabel dice, boolean b){
@@ -306,13 +289,7 @@ public void restart(){
 	
 	}
 
-
-
-	 
-
-	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList) {
-		
-		
+	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList) {		
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 			width = screen.getWidth();
 			height = screen.getHeight();
