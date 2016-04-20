@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -22,13 +21,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
+
 
 public class StartGame {
 	
@@ -45,14 +43,11 @@ public class StartGame {
 	private Standard standard = new Standard();
 	
 	
-	private boolean registerScreen = false;
-	
-	
 	////////////////WINDOW VARIABLES\\\\\\\\\\	
 	
 	private JTextField txtScore;
 	
-	private Dimension screenSize;
+
 	
 	private double width, height;
 	
@@ -60,15 +55,9 @@ public class StartGame {
 	private int offsetWidth = (int)width/10;
 	private int offsetHeight;
 	
-	private JTextField usernameText;
-	
-	private JButton btnLogin;
-	
 	private JLabel lblDice, label, label_1, label_2, label_3, label_4;
 	
-	private JPasswordField passwordField;
-	
-	private JPanel welcomePanel, register, game;
+	private JPanel  game;
 	
 	private int turn = 0;
 	
@@ -85,7 +74,6 @@ public class StartGame {
 	 
 	 private JTextPane farkText;
 	 private JMenuItem mntmExit;
-	 private JComboBox comboBox;
 	 
 ////////////METHODS///////////////
 		
@@ -239,25 +227,6 @@ public void updateScore() {
 	bankScore = standard.bankScore();
 }
 
-public boolean blackout(JLabel dice, boolean b){
-	Color c=new Color(1f,0f,0f,0f );
-	if (b){
-		dice.setBorder(BorderFactory.createLineBorder(c, 50));
-	}
-	return b;	
-}
-
-public void removeBlackout(){
-	if (blackout(lblDice, borderOption)==blackout(label, borderOption1)&&
-			blackout(label, borderOption1==blackout(label_1, borderOption2)&&
-			blackout(label_1, borderOption2)==blackout(label_2, borderOption3)&&
-			blackout(label_2, borderOption3)==blackout(label_3, borderOption4)&&
-			blackout(label_3, borderOption4)==blackout(label_4, borderOption5)&&
-					blackout(label_4, borderOption5)==true
-		)){
-		restart();
-	}
-}
 
 public void restart(){
 	tempScore = 0;
@@ -571,14 +540,14 @@ public void restart(){
 				roll = diceObj.getRoll();
 				die = roll.get(0);
 			
-				blackout(lblDice, borderOption);
+				/*blackout(lblDice, borderOption);
 				blackout(label, borderOption1);
 				blackout(label_1, borderOption2);
 				blackout(label_2, borderOption3);
 				blackout(label_3, borderOption4);
 				blackout(label_4, borderOption5);
 				
-				removeBlackout();
+				removeBlackout();*/
 				
 				diceIMG(0, lblDice);
 				diceIMG(1, label);
@@ -608,7 +577,7 @@ public void restart(){
 				
 				
 				score += bankScore;
-				playerList.get(turn).setTotal(bankScore);
+				playerList.get(turn).setTotal(score);
 				lblScore.setText("Score: " + playerList.get(turn).getTotal());
 				bankScore = 0;
 				standard = new Standard();

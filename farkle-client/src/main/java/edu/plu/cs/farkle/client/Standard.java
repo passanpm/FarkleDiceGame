@@ -1,6 +1,5 @@
 package edu.plu.cs.farkle.client;
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class Standard{
 	
@@ -67,14 +66,11 @@ public class Standard{
 					break;
 			}
 			
-			if(single.get(i) == 1){
-				bank += 100;
-				//change = true;
-			}
-			else if (single.get(i) == 5){
+			if(single.get(i) == 1)
+				bank += 100;			
+			else if (single.get(i) == 5)
 				bank += 50;
-				//change = true;
-			}
+			
 		}
 		
 		if(nums[0] == 3){
