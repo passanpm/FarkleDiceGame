@@ -34,10 +34,13 @@ public class Standard{
 		score = 0;
 		single.clear();
 	}
-	
+	public void reset(){
+		single.clear();
+	}
 	
 	public int bankScore(){
 		change = false;
+		
 		int bank = 0;
 		int[] nums = new int[6];
 		
@@ -95,6 +98,7 @@ public class Standard{
 		}
 		
 		tempScore = bank;
+		
 		return bank;
 	}
 	

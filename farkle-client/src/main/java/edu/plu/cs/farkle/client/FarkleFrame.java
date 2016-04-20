@@ -83,7 +83,7 @@ public class FarkleFrame {
 	        width = newSize.getWidth();
 	        height = newSize.getHeight();
 	        frame.setSize((int)width, (int)height);
-	        frame.validate();
+	        frame.revalidate();
 	        frame.repaint();
 	        
 	    }   

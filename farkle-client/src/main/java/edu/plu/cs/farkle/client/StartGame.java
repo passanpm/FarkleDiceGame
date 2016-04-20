@@ -32,7 +32,7 @@ public class StartGame {
 	
 
 	
-	private int die, score, bankScore, tempScore = 0;
+	private int die, score, bankScore, tempScore, temptemp = 0;
 	
 	private Image img;
 	
@@ -160,7 +160,7 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		updateScore();
 		
 		tempScore = standard.bankScore();
-		lblBankScore.setText("Bank Score: " + tempScore);
+		lblBankScore.setText("Bank Score: " + (bankScore+temptemp));
 		
 		
 		if(standard.getTemp() > 0 && standard.isChange()){
@@ -227,9 +227,29 @@ public void updateScore() {
 	bankScore = standard.bankScore();
 }
 
+public boolean blackout(JLabel dice, boolean b){
+	Color c=new Color(1f,0f,0f,0f );
+	if (b){
+		dice.setBorder(BorderFactory.createLineBorder(c, 50));
+	}
+	return b;	
+}
+
+public void removeBlackout(){
+	if (blackout(lblDice, borderOption)==blackout(label, borderOption1)&&
+			blackout(label, borderOption1==blackout(label_1, borderOption2)&&
+			blackout(label_1, borderOption2)==blackout(label_2, borderOption3)&&
+			blackout(label_2, borderOption3)==blackout(label_3, borderOption4)&&
+			blackout(label_3, borderOption4)==blackout(label_4, borderOption5)&&
+					blackout(label_4, borderOption5)==true
+		)){
+		restart();
+	}
+}
 
 public void restart(){
 	tempScore = 0;
+	temptemp = 0;
 	txtScore = new JTextField(100);
 	txtScore.setText("Score: " + score);
 	lblBankScore.setText("Bank Score: " + tempScore);
@@ -525,6 +545,7 @@ public void restart(){
 				if(diceObj.farkle()){
 					bankScore = 0;
 					tempScore = 0;
+					temptemp = 0;
 					farkText = new JTextPane();
 					farkText.setText("YOU FARKLED!!!");
 					farkText.setBackground(new Color(0, 128, 0));
@@ -540,14 +561,14 @@ public void restart(){
 				roll = diceObj.getRoll();
 				die = roll.get(0);
 			
-				/*blackout(lblDice, borderOption);
+				blackout(lblDice, borderOption);
 				blackout(label, borderOption1);
 				blackout(label_1, borderOption2);
 				blackout(label_2, borderOption3);
 				blackout(label_3, borderOption4);
 				blackout(label_4, borderOption5);
 				
-				removeBlackout();*/
+				removeBlackout();
 				
 				diceIMG(0, lblDice);
 				diceIMG(1, label);
@@ -561,6 +582,9 @@ public void restart(){
 				
 				lblBankScore.setText("Bank Score: " + tempScore);
 				btnRoll.setEnabled(false);
+				
+				temptemp += tempScore;
+				standard.reset();
 			}
 		});
 	
@@ -576,7 +600,7 @@ public void restart(){
 				
 				
 				
-				score += bankScore;
+				score += bankScore+temptemp;
 				playerList.get(turn).setTotal(score);
 				lblScore.setText("Score: " + playerList.get(turn).getTotal());
 				bankScore = 0;
