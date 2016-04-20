@@ -18,6 +18,9 @@ public class Options{
 	private int numPlayers=0;
 	private JComboBox<String> comboBox ;
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JPanel options(JFrame frame, String name){
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		double width = screen.getWidth();
@@ -36,7 +39,7 @@ public class Options{
 		JLabel lblWelcomeBack = new JLabel("Welcome Back, "+ name + "!");
 		
 		lblWelcomeBack.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblWelcomeBack.setBounds((int)width/2, offsetHeight*2, 423, 77);
+		lblWelcomeBack.setBounds((int)width/2-offsetWidth, offsetHeight*2, 423, 77);
 		mode.add(lblWelcomeBack);
 		
 		
@@ -49,9 +52,12 @@ public class Options{
 		comboBox.addItem("4");
 		mode.add(comboBox);
 		
+		JLabel num = new JLabel("Select Number of Players");
+		num.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		num.setBounds((int)width/2+offsetWidth*3, (int)height/2, 741,30);
+		mode.add(num);
 		
-		
-		JButton btnPlayStandard = new JButton("Play Standard");
+		JButton btnPlayStandard = new JButton("Play Locally");
 		btnPlayStandard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				numPlayers = comboBox.getSelectedIndex();
@@ -63,12 +69,21 @@ public class Options{
 				PlayerScreen player = new PlayerScreen();
 				JPanel start = player.initialize(frame, numPlayers);
 				
-				frame.add(start);
+				frame.getContentPane().add(start);
 				
 			}
 		});
 		btnPlayStandard.setBounds((int)width/2-offsetWidth, (int)height/2-offsetHeight, 240, 109);
 		mode.add(btnPlayStandard);
+		
+		JButton btnPlayAI = new JButton("Play Against AI");
+		btnPlayAI.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				
+			}
+		});
+		btnPlayAI.setBounds((int)width/2-offsetWidth, (int)height/2+offsetHeight*2, 240, 109);
+		mode.add(btnPlayAI);
 		
 		return mode;
 		

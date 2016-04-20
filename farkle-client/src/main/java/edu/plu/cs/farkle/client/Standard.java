@@ -1,5 +1,6 @@
 package edu.plu.cs.farkle.client;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Standard{
 	
@@ -11,8 +12,11 @@ public class Standard{
 	protected static ArrayList<Integer> set = new ArrayList<Integer>();
 	protected static ArrayList<Integer> single = new ArrayList<Integer>();
 	
+	
 	public void addToSingle(int value){
+		System.out.println("\nSingle before add: " + single.toString());
 		single.add(value);
+		System.out.println("Single after add: " + single.toString());
 	}
 	
 	public void addToSet(int value){
@@ -20,8 +24,19 @@ public class Standard{
 	}
 	
 	public void removeFromSingle(int die){
-		System.out.println("Single: " + single.toString());
-		single.remove(Integer.valueOf(die));
+		System.out.println("\nSingle before remove: " + single.toString());
+		
+		boolean found = false;
+		int i = 0;
+		while(!found){
+			if(single.get(i)*-1==die){
+				single.remove(i);
+				found = true;
+			}
+			else
+				i++;
+		}
+		System.out.println("Single After remove: " + single.toString());
 	}
 	
 	public void removeFromSet(int die){
@@ -32,7 +47,28 @@ public class Standard{
 		score = 0;
 		set.clear();
 		single.clear();
+		System.out.println("Single after clear: " + single.toString());
 	}
+	
+	
+	public int bankScore(){
+		int bank = 0;
+		
+		for(int i = 0; i < single.size(); i++){
+			if(single.get(i) == 1){
+				bank += 100;
+				System.out.println("BANKING Single: " + single.toString());
+			}
+			else if (single.get(i) == 5){
+				bank += 50;
+				System.out.println("BANKING Single: " + single.toString());
+			}
+		}
+		
+		return bank;
+	}
+	
+
 	
 	//calculate value of bank
 	public void bank(){
@@ -103,7 +139,8 @@ public class Standard{
 		score += bank;
 		tempScore = bank;
 		
-		single.clear();
+		bank = 0;
+		//single.clear();
 	}
 	
 	private boolean checkSet(int start, int end){

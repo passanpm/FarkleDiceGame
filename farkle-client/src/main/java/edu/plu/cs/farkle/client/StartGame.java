@@ -172,7 +172,8 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		}
 		diceObj.banking(diceID, roll.get(diceID));
 		updateScore();
-		tempScore += standard.getTemp();
+		
+		tempScore = standard.bankScore();
 		lblBankScore.setText("Bank Score: " + tempScore);
 		
 		
@@ -186,13 +187,14 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 	else if(bdrCheck && roll.get(diceID)<0){		
 		standard.removeFromSingle(roll.get(diceID));
 
-		bankScore -= tempScore;
-		tempScore -= standard.getTemp();
+		//bankScore -= tempScore;
+		updateScore();
+		tempScore = standard.bankScore();
 		
 		lblBankScore.setText("Bank Score: " + tempScore);
 		
 		
-		removeDice(name, diceID);
+		//removeDice(name, diceID);
 		
 		name.setBorder(null);
 		switch ( diceID ) {
@@ -244,7 +246,7 @@ public void removeDice(JLabel label, int i){
 
 public void updateScore() {
 	standard.bank();
-	bankScore = standard.getScore();
+	bankScore = standard.bankScore();
 	
 }
 
@@ -604,7 +606,6 @@ public void restart(){
 				
 				updateScore();
 				
-				tempScore += standard.getTemp();
 				
 				lblBankScore.setText("Bank Score: " + tempScore);
 				btnRoll.setEnabled(false);

@@ -23,9 +23,12 @@ public class AI {
 		
 	}
 	
-	
 	private int bestRoll(int roll){
 		int score = 0;
+		
+		for(int i = 0; i < difficulty; i++){
+			
+		}
 		
 		return score;
 	}
