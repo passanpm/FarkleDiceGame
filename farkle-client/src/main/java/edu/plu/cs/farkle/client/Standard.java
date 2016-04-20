@@ -11,6 +11,7 @@ public class Standard{
 
 	protected static ArrayList<Integer> single = new ArrayList<Integer>();
 	
+	boolean change = false;
 	
 	public void addToSingle(int value){
 		single.add(value);
@@ -37,10 +38,13 @@ public class Standard{
 	
 	
 	public int bankScore(){
+		change = false;
 		int bank = 0;
 		int[] nums = new int[6];
+		
 		for(int i = 0; i < nums.length; i++)
 			nums[i] = 0;
+		
 		for(int i = 0; i < single.size(); i++){
 			switch(single.get(i)){
 				case 1:
@@ -65,20 +69,33 @@ public class Standard{
 			
 			if(single.get(i) == 1){
 				bank += 100;
+				//change = true;
 			}
 			else if (single.get(i) == 5){
 				bank += 50;
+				//change = true;
 			}
 		}
 		
 		if(nums[0] == 3){
 			bank += 700;
 		}
+		
+		if(nums[0] > 0 || nums[4] > 0)
+			change = true;
+		
+		
+		
 
 		for(int i = 1; i < nums.length; i++){
 			if(nums[i]==3){
 				bank += (i+1)*100;
+				change = true;
 			}
+		}
+		
+		if( (nums[1] < 3 && nums[1] > 0) || (nums[2] < 3 && nums[2] > 0) || (nums[3] < 3 && nums[3] > 0) || (nums[5] < 3 && nums[5] > 0)){
+			change = false;
 		}
 		
 		tempScore = bank;
@@ -93,8 +110,8 @@ public class Standard{
 		return score;
 	}
 	
-	public int getOne(){
-		return oneScore;
+	public boolean isChange(){
+		return change;
 	}
 
 

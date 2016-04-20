@@ -175,7 +175,7 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		lblBankScore.setText("Bank Score: " + tempScore);
 		
 		
-		if(standard.getTemp() > 0){
+		if(standard.getTemp() > 0 && standard.isChange()){
 			btnRoll.setEnabled(true);
 			
 		}
@@ -218,8 +218,14 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		}
 		diceObj.unBank(diceID, roll.get(diceID));
 		
-		if(standard.getTemp()==0)
+		if(tempScore > 0){
+			btnRoll.setEnabled(true);
+		}
+		
+		if(standard.getTemp()==0){
 			btnRoll.setEnabled(false);
+			
+		}
 		
 	}
 	
