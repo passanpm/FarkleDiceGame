@@ -187,7 +187,8 @@ public class crud {
         try{
         	if (database.auth(player)){
         		exists = "Player exists in database";
-        		player.setWins(Integer.parseInt(database.getWins(player)));
+        		player.setCurrent(Integer.parseInt(database.getCurrent(player)));
+        		player.setTotal(database.getTotal(player));
 
         	}else{
         		exists = "Player does not exist in database";
@@ -204,8 +205,9 @@ public class crud {
 		String json = String.format("{ \"response\" : \"pong\","
 				+ " \"username\" : \"%s\","
 				+ " \"password\" : \"%s\","
-				+ " \"wins\" : \"%s\" }"
-				, player.getName(), player.getPass(), player.getWins());
+				+ " \"current\" : \"%s\","
+				+ " \"total\" : \"%s\" }"
+				, player.getName(), player.getPass(), player.getCurrent(), player.getTotal());
 		return json;
 		
 	}

@@ -33,11 +33,11 @@ public class player {
 
 
 	public int getWins() {
-		return this.wins;
+		return this.currentScore;
 	}
 	
-	public void setWins(int wins) {
-		this.wins = wins;
+	public void setWins(int current) {
+		this.currentScore = current;
 	}
 	
 }

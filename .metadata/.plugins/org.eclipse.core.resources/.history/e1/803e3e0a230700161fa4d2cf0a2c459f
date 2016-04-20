@@ -75,11 +75,19 @@ public class redis {
 	}
 	
 	public void updateWins(player user){
-	    jedis.hset(user.getName(), "current", Integer.toString(user.getWins()));
+	    jedis.hset(user.getName(), "current", Integer.toString(user.getCurrent()));
 	}
 	
-	public String getWins(player user){
-		return (jedis.hget(user.getName(), "wins"));
+	public String getCurrent(player user){
+		return (jedis.hget(user.getName(), "current"));
+	}
+	
+	public void updateTotal(player user){
+	    jedis.hset(user.getName(), "total", Integer.toString(user.getTotal()));
+	}
+	
+	public int getTotal(player user){
+		return Integer.parseInt(jedis.hget(user.getName(), "total"));
 	}
 	
 	
