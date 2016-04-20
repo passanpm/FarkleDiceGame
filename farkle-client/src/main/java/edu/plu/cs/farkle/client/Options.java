@@ -45,7 +45,7 @@ public class Options{
 		
 		
 		comboBox = new JComboBox<String>();
-		comboBox.setBounds((int)width/2+offsetWidth*2, (int)height/2, 54, 30);
+		comboBox.setBounds((int)width/2+offsetWidth*2, (int)height/2, 60, 30);
 		comboBox.addItem("1");
 		comboBox.addItem("2");
 		comboBox.addItem("3");
@@ -80,10 +80,19 @@ public class Options{
 		btnPlayAI.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				
+				
+				
 			}
 		});
 		btnPlayAI.setBounds((int)width/2-offsetWidth, (int)height/2+offsetHeight*2, 240, 109);
 		mode.add(btnPlayAI);
+		
+		JComboBox<String> gameplayBox = new JComboBox<String>();
+		gameplayBox.setBounds((int)width/2, (int)height/2-offsetHeight*2, 100, 20);
+		mode.add(gameplayBox);
+		gameplayBox.addItem("Standard");
+		gameplayBox.addItem("Alternate");
+		
 		
 		return mode;
 		
@@ -94,5 +103,4 @@ public class Options{
 		System.out.println("Players: " + numPlayers);
 		return numPlayers;
 	}
-
 }
