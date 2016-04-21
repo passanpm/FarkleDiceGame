@@ -75,9 +75,14 @@ public class Standard{
 				bank += 50;
 			
 		}
-		
+		//There is a set of dice with value 1
 		if(nums[0] == 3){
 			bank += 700;
+		}
+		
+		//There is a set of dice with value 5
+		if(nums[4] == 3){
+			bank += 350;
 		}
 		
 		if(nums[0] > 0 || nums[4] > 0)
@@ -88,8 +93,10 @@ public class Standard{
 
 		for(int i = 1; i < nums.length; i++){
 			if(nums[i]==3){
-				bank += (i+1)*100;
-				change = true;
+				if(i != 4){
+					bank += (i+1)*100;
+					change = true;
+				}
 			}
 		}
 		

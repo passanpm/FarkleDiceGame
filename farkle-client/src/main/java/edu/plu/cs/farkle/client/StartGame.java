@@ -555,7 +555,8 @@ public void restart(){
 					game.add(farkText);				
 					btnRoll.setEnabled(false);
 					
-					standard.clear();					
+					standard.clear();	
+
 				}
 					
 				roll = diceObj.getRoll();
