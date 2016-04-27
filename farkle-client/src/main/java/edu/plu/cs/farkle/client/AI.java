@@ -8,11 +8,14 @@ public class AI {
 	
 	private Dice die;
 	
+	private String name;
+	
 	private ArrayList<Integer> diceRoll;
 	
 	//Constructor
-	public AI(int d){
+	public AI(int d, String n){
 		difficulty = d;
+		name = n;
 		die = new Dice();
 	}
 
