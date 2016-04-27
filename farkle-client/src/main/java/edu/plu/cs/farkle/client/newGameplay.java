@@ -1,8 +1,8 @@
 package edu.plu.cs.farkle.client;
+
 import java.util.ArrayList;
 
-public class Standard{
-	
+public class newGameplay extends Standard{
 	protected int score = 0;
 	protected int tempScore = 0;
 	protected int oneScore = 0;
@@ -10,49 +10,6 @@ public class Standard{
 	protected static ArrayList<Integer> single = new ArrayList<Integer>();
 	
 	boolean change = false;
-	
-	/**
-	 * Add a value of a dice to the single ArrayList to be banked
-	 * @param value int face value of die to be added
-	 */
-	public void addToSingle(int value){
-		single.add(value);
-	}
-
-	
-	/**
-	 * Remove a value of a dice from the ArrayList to be unbanked
-	 * @param value int face value of die to be removed
-	 */
-	public void removeFromSingle(int die){
-		
-		boolean found = false;
-		int i = 0;
-		while(!found){
-			if(single.get(i)*-1==die){
-				single.remove(i);
-				found = true;
-			}
-			else
-				i++;
-		}
-	}
-	
-	/**
-	 * Clear all stored values of score and dice
-	 */
-	public void clear(){
-		score = 0;
-		single.clear();
-	}
-	
-	/**
-	 * Reset all values of game type to a new object
-	 */
-	public void reset(){
-		single.clear();
-	}
-	
 	
 	/**
 	 * Calculate the score of banked dice
@@ -95,9 +52,14 @@ public class Standard{
 				bank += 50;
 			
 		}
-		
+		//There is a set of dice with value 1
 		if(nums[0] == 3){
 			bank += 700;
+		}
+		
+		//There is a set of dice with value 5
+		if(nums[4] == 3){
+			bank += 350;
 		}
 		
 		if(nums[0] > 0 || nums[4] > 0)
@@ -108,11 +70,10 @@ public class Standard{
 
 		for(int i = 1; i < nums.length; i++){
 			if(nums[i]==3){
-				if(i == 4)
-					bank += 350;
-				else
+				if(i != 4){
 					bank += (i+1)*100;
-				change = true;
+					change = true;
+				}
 			}
 		}
 		
@@ -126,30 +87,4 @@ public class Standard{
 	}
 	
 	
-	/**
-	 * Return the temporary value of the users score
-	 * @return
-	 */
-	public int getTemp(){
-		return tempScore;
-	}
-	
-	/**
-	 * Return the overall value of the users score
-	 * @return
-	 */
-	public int getScore(){
-		return score;
-	}
-	
-	
-	/**
-	 * Return if the values stored in bank are valid
-	 * @return
-	 */
-	public boolean isChange(){
-		return change;
-	}
-
-
 }
