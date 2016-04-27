@@ -1,43 +1,20 @@
 package edu.plu.cs.farkle.client;
+
 import java.util.ArrayList;
 
-public class Standard{
-	
+public class newGameplay extends Standard{
 	protected int score = 0;
 	protected int tempScore = 0;
-	
 	protected int oneScore = 0;
 
 	protected static ArrayList<Integer> single = new ArrayList<Integer>();
 	
 	boolean change = false;
 	
-	public void addToSingle(int value){
-		single.add(value);
-	}
-
-	public void removeFromSingle(int die){
-		
-		boolean found = false;
-		int i = 0;
-		while(!found){
-			if(single.get(i)*-1==die){
-				single.remove(i);
-				found = true;
-			}
-			else
-				i++;
-		}
-	}
-	
-	public void clear(){
-		score = 0;
-		single.clear();
-	}
-	public void reset(){
-		single.clear();
-	}
-	
+	/**
+	 * Calculate the score of banked dice
+	 * @return the value of the scoring banked dice
+	 */
 	public int bankScore(){
 		change = false;
 		
@@ -75,9 +52,14 @@ public class Standard{
 				bank += 50;
 			
 		}
-		
+		//There is a set of dice with value 1
 		if(nums[0] == 3){
 			bank += 700;
+		}
+		
+		//There is a set of dice with value 5
+		if(nums[4] == 3){
+			bank += 350;
 		}
 		
 		if(nums[0] > 0 || nums[4] > 0)
@@ -88,11 +70,10 @@ public class Standard{
 
 		for(int i = 1; i < nums.length; i++){
 			if(nums[i]==3){
-				if(i == 4)
-					bank += 350;
-				else
+				if(i != 4){
 					bank += (i+1)*100;
-				change = true;
+					change = true;
+				}
 			}
 		}
 		
@@ -105,17 +86,5 @@ public class Standard{
 		return bank;
 	}
 	
-	public int getTemp(){
-		return tempScore;
-	}
 	
-	public int getScore(){
-		return score;
-	}
-	
-	public boolean isChange(){
-		return change;
-	}
-
-
 }

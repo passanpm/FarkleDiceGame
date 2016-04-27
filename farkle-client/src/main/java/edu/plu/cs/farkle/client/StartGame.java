@@ -32,7 +32,7 @@ public class StartGame {
 	
 
 	
-	private int die, score, bankScore, tempScore, temptemp = 0;
+	private int die, score, bankScore, tempScore, zach = 0;
 	
 	private Image img;
 	
@@ -160,7 +160,7 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		updateScore();
 		
 		tempScore = standard.bankScore();
-		lblBankScore.setText("Bank Score: " + (bankScore+temptemp));
+		lblBankScore.setText("Bank Score: " + (bankScore+zach));
 		
 		
 		if(standard.getTemp() > 0 && standard.isChange()){
@@ -249,7 +249,7 @@ public void removeBlackout(){
 
 public void restart(){
 	tempScore = 0;
-	temptemp = 0;
+	zach = 0;
 	txtScore = new JTextField(100);
 	txtScore.setText("Score: " + score);
 	lblBankScore.setText("Bank Score: " + tempScore);
@@ -545,7 +545,7 @@ public void restart(){
 				if(diceObj.farkle()){
 					bankScore = 0;
 					tempScore = 0;
-					temptemp = 0;
+					zach = 0;
 					farkText = new JTextPane();
 					farkText.setText("YOU FARKLED!!!");
 					farkText.setBackground(new Color(0, 128, 0));
@@ -584,7 +584,7 @@ public void restart(){
 				lblBankScore.setText("Bank Score: " + tempScore);
 				btnRoll.setEnabled(false);
 				
-				temptemp += tempScore;
+				zach += tempScore;
 				standard.reset();
 			}
 		});
@@ -601,8 +601,8 @@ public void restart(){
 				
 				
 				
-				score += bankScore+temptemp;
-				playerList.get(turn).setTotal(score);
+				playerList.get(turn).setTotal(playerList.get(turn).getTotal()+bankScore+zach);
+
 				lblScore.setText("Score: " + playerList.get(turn).getTotal());
 				bankScore = 0;
 				standard = new Standard();
