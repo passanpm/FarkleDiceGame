@@ -5,25 +5,17 @@ public class Standard{
 	
 	protected int score = 0;
 	protected int tempScore = 0;
+	
 	protected int oneScore = 0;
 
 	protected static ArrayList<Integer> single = new ArrayList<Integer>();
 	
 	boolean change = false;
 	
-	/**
-	 * Add a value of a dice to the single ArrayList to be banked
-	 * @param value int face value of die to be added
-	 */
 	public void addToSingle(int value){
 		single.add(value);
 	}
 
-	
-	/**
-	 * Remove a value of a dice from the ArrayList to be unbanked
-	 * @param value int face value of die to be removed
-	 */
 	public void removeFromSingle(int die){
 		
 		boolean found = false;
@@ -38,26 +30,14 @@ public class Standard{
 		}
 	}
 	
-	/**
-	 * Clear all stored values of score and dice
-	 */
 	public void clear(){
 		score = 0;
 		single.clear();
 	}
-	
-	/**
-	 * Reset all values of game type to a new object
-	 */
 	public void reset(){
 		single.clear();
 	}
 	
-	
-	/**
-	 * Calculate the score of banked dice
-	 * @return the value of the scoring banked dice
-	 */
 	public int bankScore(){
 		change = false;
 		
@@ -125,28 +105,14 @@ public class Standard{
 		return bank;
 	}
 	
-	
-	/**
-	 * Return the temporary value of the users score
-	 * @return
-	 */
 	public int getTemp(){
 		return tempScore;
 	}
 	
-	/**
-	 * Return the overall value of the users score
-	 * @return
-	 */
 	public int getScore(){
 		return score;
 	}
 	
-	
-	/**
-	 * Return if the values stored in bank are valid
-	 * @return
-	 */
 	public boolean isChange(){
 		return change;
 	}
