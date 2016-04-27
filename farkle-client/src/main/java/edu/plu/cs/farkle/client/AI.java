@@ -22,7 +22,9 @@ public class AI {
 	//Picks best roll based on difficulty the player selected
 	public void roll(){
 		diceRoll = die.getRoll();
-		
+		for(int i = 0; i < diceRoll.size(); i++){
+			
+		}
 		
 	}
 	
