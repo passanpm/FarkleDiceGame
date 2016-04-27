@@ -12,6 +12,11 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import javax.swing.SpringLayout;
+import java.awt.CardLayout;
+import java.awt.FlowLayout;
 
 public class Options{
 	
@@ -32,38 +37,69 @@ public class Options{
 		mode.setBackground(new Color(255, 250, 205));
 		mode.setBounds(0, 0, (int)width, (int)height);
 		frame.getContentPane().add(mode);
-		mode.setLayout(null);
+		mode.setLayout(new BorderLayout(0, 0));
+		
+		JPanel welcomeBack = new JPanel();
+		welcomeBack.setBackground(new Color(255, 250, 205));
+		mode.add(welcomeBack, BorderLayout.NORTH);
 		
 		
 		
 		JLabel lblWelcomeBack = new JLabel("Welcome Back, "+ name + "!");
+		welcomeBack.add(lblWelcomeBack);
 		
 		lblWelcomeBack.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblWelcomeBack.setBounds((int)width/2-offsetWidth, offsetHeight*2, 423, 77);
-		mode.add(lblWelcomeBack);
+		
+		JPanel middle = new JPanel();
+		middle.setBackground(new Color(255, 250, 205));
+		mode.add(middle, BorderLayout.CENTER);
+		middle.setLayout(new BorderLayout(0, 0));
+		
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setBackground(new Color(255, 250, 205));
+		middle.add(buttonPanel, BorderLayout.NORTH);
+		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JComboBox<String> gameplayBox = new JComboBox<String>();
+		buttonPanel.add(gameplayBox);
+		gameplayBox.addItem("Standard");
+		gameplayBox.addItem("Alternate");
+		
+		JButton btnPlayStandard = new JButton("Play Locally");
+		buttonPanel.add(btnPlayStandard);
+		
+		JButton btnPlayAI = new JButton("Play Against AI");
+		buttonPanel.add(btnPlayAI);
+		
+		JPanel playerPanel = new JPanel();
+		playerPanel.setBackground(new Color(255, 250, 205));
+		middle.add(playerPanel, BorderLayout.CENTER);
 		
 		
 		
 		comboBox = new JComboBox<String>();
-		comboBox.setBounds((int)width/2+offsetWidth*2, (int)height/2, 60, 30);
+		playerPanel.add(comboBox);
+		
+		JLabel num = new JLabel("Select Number of Players");
+		playerPanel.add(num);
+		num.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		comboBox.addItem("1");
 		comboBox.addItem("2");
 		comboBox.addItem("3");
 		comboBox.addItem("4");
-		mode.add(comboBox);
-		
-		JLabel num = new JLabel("Select Number of Players");
-		num.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		num.setBounds((int)width/2+offsetWidth*3, (int)height/2, 741,30);
-		mode.add(num);
-		
-		JButton btnPlayStandard = new JButton("Play Locally");
+		btnPlayAI.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				
+				
+				
+			}
+		});
 		btnPlayStandard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				numPlayers = comboBox.getSelectedIndex();
 				System.out.println("Number: "+numPlayers);
 				mode.setVisible(false);
-				
+				frame.remove(mode);
 				
 				
 				PlayerScreen player = new PlayerScreen();
@@ -73,25 +109,6 @@ public class Options{
 				
 			}
 		});
-		btnPlayStandard.setBounds((int)width/2-offsetWidth, (int)height/2-offsetHeight, 240, 109);
-		mode.add(btnPlayStandard);
-		
-		JButton btnPlayAI = new JButton("Play Against AI");
-		btnPlayAI.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0){
-				
-				
-				
-			}
-		});
-		btnPlayAI.setBounds((int)width/2-offsetWidth, (int)height/2+offsetHeight*2, 240, 109);
-		mode.add(btnPlayAI);
-		
-		JComboBox<String> gameplayBox = new JComboBox<String>();
-		gameplayBox.setBounds((int)width/2, (int)height/2-offsetHeight*2, 100, 20);
-		mode.add(gameplayBox);
-		gameplayBox.addItem("Standard");
-		gameplayBox.addItem("Alternate");
 		
 		
 		return mode;
