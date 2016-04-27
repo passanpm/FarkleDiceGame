@@ -25,25 +25,37 @@ import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
 import org.jboss.resteasy.spi.HttpResponse;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
+import jdk.nashorn.internal.parser.JSONParser;
+
 public class Database {
 
 
 
-	Player user = new Player();
-	static String username = "Gabe";
-	static String password = "pecache";
+	static Player user = new Player();
+	static String username = "username";
+	static String password = "password";
 
-/*
+
 	public static void main(String[] args){
 		Database d = new Database(username, password);
+		System.out.println(1);
 		d.get();
+		System.out.println(2);
 		d.put();
+		System.out.println(3);
 		d.get();
-		d.delete();
-		d.get();
+		System.out.println(4);
+		user.setName("NEWNAME");
 		d.post();
+		System.out.println(5);
+		d.get();
+		System.out.println(6);
+		d.delete();
+		System.out.println(7);
+		d.get();
+
 	}
-*/
+
 	public Database(String username, String password) {
 			Database.username = username;
 			Database.password = password;
@@ -66,84 +78,75 @@ public class Database {
 		Client client = null;
 		try {
 			client = ClientBuilder.newClient();
-			// The target URL
-			WebTarget target = client.target("http://localhost:8080/farkle/crud");
+
 
 			ResteasyWebTarget resteasyWebTarget = (ResteasyWebTarget)client.target("http://localhost:8080/farkle/crud");
 			resteasyWebTarget.register(new BasicAuthentication(username, password));
-			Player p = new Player();
-			Entity<Player> u = Entity.json(p);
+
+			Entity<Player> u = Entity.json(user);
+			
+			Invocation.Builder builder = resteasyWebTarget.request();
+			String r = builder.get(String.class);
+			ObjectMapper mapper = new ObjectMapper();
+			JsonNode node = mapper.readTree(r);
 			
 			
 			switch (action){
 				case "put":
 					try {
-						Response response = resteasyWebTarget.request().put(u);
+						resteasyWebTarget.request().put(u);
+						System.out.println("PUT: " + username);
+						return true;
+					} catch (Exception e) {
+						return false;
+					}
+					
+				case "delete":
+					try {
+						resteasyWebTarget.request().delete();
+						System.out.println("DELETE: " + user.getName());
 						return true;
 					} catch (Exception e) {
 						return false;
 					}
 					
 				case "get":
-					Invocation.Builder builder = resteasyWebTarget.request();
-					String r = builder.get(String.class);
-					ObjectMapper mapper = new ObjectMapper();
-					JsonNode node = mapper.readTree(r);
-					System.out.println("GET: " + node.get("username"));
-					if (node.get("username") == null){
-						return false;
-					}
-					return true;
-						
-				
-					
-					
-					
-					//System.out.println(node.toString());
-					//System.out.println("Name: " + node.get("username"));
-					
-					
-				case "delete":
 					try {
-						Response remove = resteasyWebTarget.request().delete();
+						System.out.println("GET: " + node.get("name"));
+						System.out.println(node.toString());
 						return true;
 					} catch (Exception e) {
 						return false;
 					}
 					
 				case "post":
-					Invocation.Builder builder1 = resteasyWebTarget.request();
-					String r1 = builder1.get(String.class);
-					ObjectMapper mapper1 = new ObjectMapper();
-					JsonNode node1 = mapper1.readTree(r1);
+					
+					System.out.println("POST: " + user.getName());
+					((ObjectNode)node).put("name", user.getName());
+					
+	
+					//p.setName(node.get("name").getTextValue());
 					
 					
-					System.out.println("BEFORE;");
-					System.out.println(node1.toString());
-					((ObjectNode)node1).put("username", "Gabriel");
-					System.out.println("AFTER;");
-					System.out.println(node1.toString());
+					resteasyWebTarget.request().post(u);
+
+					System.out.println(node.toString());
+					System.out.println(node.get("name"));
 					
 					
 					
-					((ObjectNode)node1).put("username", "Gabe");
 					
-					//temp
-					try {
-						Response remove = resteasyWebTarget.request().delete();
-						return true;
-					} catch (Exception e) {
-						return false;
-					}
+					
+					
+					break;
 					
 					
 					
 			}
 			
 		} catch (Exception e) {
-		}finally{
-			client.close();
 		}
+		client.close();
 		return false;
 	}
 	

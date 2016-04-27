@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.StringTokenizer;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -16,6 +17,8 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
+import org.codehaus.jackson.JsonNode;
+
 import edu.plu.cs.farkle.server.auth.player;
 import edu.plu.cs.farkle.server.auth.redis;
 
@@ -26,6 +29,9 @@ import edu.plu.cs.farkle.server.auth.redis;
  */
 @Path("/crud")
 public class crud {
+	
+	redis database = new redis();
+    player player = new player();
 	
 	
 	/**
@@ -48,39 +54,30 @@ public class crud {
 			authString = "no";
 			return null;
 		}
-		
-		 //Split username and password tokens
-        final StringTokenizer tokenizer = new StringTokenizer(ctx.getUserPrincipal().getName(), ":");
-        final String username = tokenizer.nextToken();
-        final String password = tokenizer.nextToken();
         
-        redis database = new redis();
-        database.initiateServer();
-        player player = new player(username, password);
 		
-        String exists;
         
         try{
         	if (database.auth(player)){
-        		exists = "Player exists in database";
+        		player.setName(database.getName(player.getName()));
+        		player.setPass(database.getPass(player.getName()));
         		player.setWins(Integer.parseInt(database.getWins(player)));
+        		player.setTotal(Integer.parseInt(database.getTotal(player)));
+        		database = new redis();
         	}else{
-        		exists = "Player does not exist in database";
-
-        		return null;
+        		System.out.println("Player does not exist");
         	}
         }catch (NullPointerException e){
-        	exists = "error";
-        	System.out.println(exists);
-        	return null;
+        	System.out.println("error");
         }
 
 		
-		String json = String.format("{ \"response\" : \"pong\","
-				+ " \"username\" : \"%s\","
-				+ " \"password\" : \"%s\","
-				+ " \"wins\" : \"%s\" }"
-				, player.getName(), player.getPass(), player.getWins());
+		String json = String.format("{ "
+				+ " \"name\" : \"%s\","
+				+ " \"pass\" : \"%s\","
+				+ " \"wins\" : \"%s\","
+				+ " \"total\" : \"%s\" }"
+				, player.getName(), player.getPass(), player.getWins(), player.getTotal());
 		return json;
 	
 		
@@ -101,25 +98,21 @@ public class crud {
         final StringTokenizer tokenizer = new StringTokenizer(ctx.getUserPrincipal().getName(), ":");
         final String username = tokenizer.nextToken();
         final String password = tokenizer.nextToken();
-        final String header = tokenizer.nextToken();
-        
-        redis database = new redis();
-        database.initiateServer();
-        player player = new player(username, password);
-		
-        String exists;
+
+        player.setName(username);
+        player.setPass(password);
+
         
         try{
         	database.addUser(player);
-        	exists = "Player loaded in database";
+        	database = new redis();
 
 
         	return true;
 
         }catch (NullPointerException e){
-        	exists = "Player not loaded in database!";
 
-
+        	database = new redis();
         	return false;
         }
 	}
@@ -134,27 +127,16 @@ public class crud {
 			authString = "no";
 			return false;
 		}
-		
-		 //Split username and password tokens
-        final StringTokenizer tokenizer = new StringTokenizer(ctx.getUserPrincipal().getName(), ":");
-        final String username = tokenizer.nextToken();
-        final String password = tokenizer.nextToken();
-        final String header = tokenizer.nextToken();
-        
-        redis database = new redis();
-        database.initiateServer();
-        player player = new player(username, password);
-		
-        String exists;
         
         try{
         	database.removePlayer(player.getName());
-        	exists = "Player removed from database";
+        	player = new player();
+        	database = new redis();
 
         	return true;
 
         }catch (NullPointerException e){
-        	exists = "Player not removed from database!";
+        	database = new redis();
 
         	return false;
         }
@@ -162,51 +144,36 @@ public class crud {
 	}
 	
 	@POST
-	@Produces("application/json")
-	public String post(@Context SecurityContext ctx ) {
+	@Consumes("application/json")
+	public void post(JsonNode node, @Context SecurityContext ctx) {
+		
+		
 		
 		// If the principal is null, then authentication failed.
 		String authString = "yes";
 		if( ctx.getUserPrincipal() == null ) {
 			authString = "no";
-			return null;
 		}
-		
-		 //Split username and password tokens
-        final StringTokenizer tokenizer = new StringTokenizer(ctx.getUserPrincipal().getName(), ":");
-        final String username = tokenizer.nextToken();
-        final String password = tokenizer.nextToken();
-        final String header = tokenizer.nextToken();
         
-        redis database = new redis();
-        database.initiateServer();
-        player player = new player(username, password);
-		
-        String exists;
         
         try{
         	if (database.auth(player)){
-        		exists = "Player exists in database";
-        		player.setWins(Integer.parseInt(database.getWins(player)));
-
+        		database.setName(player.getName(), node.get("name").getTextValue());
+        		player.setName(node.get("name").getTextValue());
+        		
+        		database.setPass(player.getName(), node.get("pass").getTextValue());
+        		database.setWins(player.getName(), node.get("wins").getTextValue());
+        		database.setTotal(player.getName(), node.get("total").getTextValue());
         	}else{
-        		exists = "Player does not exist in database";
-
-        		return null;
+        		System.out.println("player not authenticated");
         	}
         }catch (NullPointerException e){
-        	exists = "error";
-        	System.out.println(exists);
-        	return null;
-        }
 
+        }
+        
+        
+        database = new redis();
 		
-		String json = String.format("{ \"response\" : \"pong\","
-				+ " \"username\" : \"%s\","
-				+ " \"password\" : \"%s\","
-				+ " \"wins\" : \"%s\" }"
-				, player.getName(), player.getPass(), player.getWins());
-		return json;
 		
 	}
 	

@@ -44,4 +44,5 @@
 <fullyQualifiedTypeName name="javax.ws.rs.DELETE"/>
 <fullyQualifiedTypeName name="javax.ws.rs.core.Response"/>
 <fullyQualifiedTypeName name="javax.ws.rs.POST"/>
+<fullyQualifiedTypeName name="java.util.NoSuchElementException"/>
 </qualifiedTypeNameHistroy>

@@ -11,7 +11,7 @@ public class redis {
 	
 	static Jedis jedis;
 	
-	public void initiateServer() {
+	public redis() {
 	    jedis = new Jedis("pub-redis-14065.us-east-1-3.1.ec2.garantiadata.com", 14065);
 	    jedis.auth("farkle");
 	    System.out.println(" \n\nDatabase initiated");
@@ -19,18 +19,24 @@ public class redis {
 	}
 	
 	public boolean auth(player player){
+		System.out.println("Attempting to authenticate...");
 		if (jedis.exists(player.getName())){
+			System.out.println("1");
 			//listPlayers();
 			//loadUser(player.getName());
 			if (jedis.hgetAll(player.getName()).get("pass").equals(player.getPass())){
+				System.out.println("2");
 				System.out.println("Player password is authenticated");
 				System.out.println(player.getName() + " exists in database");
 				return true;
 			}else{
+				System.out.println("3");
 				System.out.println("Player password is incorrect");
 				return false;
 			}
 		}
+		System.out.println("4");
+		System.out.println(player.getName() + " does not exist in database");
 		return false;
 	}
 	
@@ -57,6 +63,7 @@ public class redis {
 		 info.put("name", user.getName() );
 		 info.put("pass", user.getPass());
 		 info.put("wins", Integer.toString(user.getWins()));
+		 info.put("total", Integer.toString(user.getTotal()));
 		 
 		 jedis.hmset(user.getName(), info);
 		 System.out.println("Added " + p.getName() + " to Database");
@@ -74,12 +81,37 @@ public class redis {
 	    return p;
 	}
 	
-	public void updateWins(player user){
-	    jedis.hset(user.getName(), "current", Integer.toString(user.getWins()));
+	public void setWins(String s, String wins){
+	    jedis.hset(s, "wins", wins);
 	}
 	
 	public String getWins(player user){
 		return (jedis.hget(user.getName(), "wins"));
+	}
+	
+	public void setTotal(String s, String total){
+	    jedis.hset(s, "total", total);
+	}
+	
+	public String getTotal(player user){
+		return (jedis.hget(user.getName(), "wins"));
+	}
+	
+	public void setName(String string, String name){
+	    jedis.hset(string, "name", name);
+	}
+	
+	public String getName(String string){
+		jedis.hset(string, "name", string);
+		return jedis.hget(string, "name");
+	}
+	
+	public void setPass(String string, String pass){
+	    jedis.hset(string, "pass", pass);
+	}
+	
+	public String getPass(String string){
+		return (jedis.hget(string, "pass"));
 	}
 	
 	
