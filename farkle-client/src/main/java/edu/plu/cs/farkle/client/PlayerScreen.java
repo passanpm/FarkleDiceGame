@@ -52,12 +52,14 @@ public class PlayerScreen {
 		
 		ArrayList<Player> playerList = new ArrayList<Player>();
 		
-		
+		JPanel textBoxHolder = new JPanel();
+		mode.add(textBoxHolder);
+		textBoxHolder.setBackground(new Color(255, 250, 205));
+		textBoxHolder.setLayout(new GridLayout(4,2, 30, offsetHeight));
 		
 		JPanel textBoxPanel = new JPanel();
-		mode.add(textBoxPanel);
+		textBoxHolder.add(textBoxPanel);
 		textBoxPanel.setBackground(new Color(255, 250, 205));
-		textBoxPanel.setLayout(new GridLayout(4, 1, 0, offsetHeight));
 		
 		for(int i = 0; i < players+1; i ++){
 			names[i] = new JTextField();
