@@ -16,16 +16,23 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRootPane;
 import javax.swing.JTextField;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 public class LoginScreen {
 
 	JTextField usernameText;
 	String userName;
 	
+
 	public LoginScreen() {
 		
 	}
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JPanel Login(JFrame frame){
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		double width = screen.getWidth();
@@ -37,7 +44,47 @@ public class LoginScreen {
 		welcomePanel.setBackground(new Color(255, 250, 205));
 		welcomePanel.setBounds(0, 0, (int)width, (int)height);
 		frame.getContentPane().add(welcomePanel);
-		welcomePanel.setLayout(null);
+		welcomePanel.setLayout(new BorderLayout(0, 0));
+		
+		JRootPane root = frame.getRootPane();
+		
+		Image img = new ImageIcon(this.getClass().getResource("/3dDice.png")).getImage();
+		
+		JPanel titlePanel = new JPanel();
+		welcomePanel.add(titlePanel, BorderLayout.NORTH);
+		titlePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		titlePanel.setBackground(new Color(255, 250, 205));
+		
+		
+		JLabel lblFarkle = new JLabel("FARKLE");
+		titlePanel.add(lblFarkle);
+		lblFarkle.setFont(new Font("Tahoma", Font.PLAIN, 99));
+		
+		JLabel DiceDisplay = new JLabel("");
+		titlePanel.add(DiceDisplay);
+		DiceDisplay.setBackground(new Color(0, 0, 128));
+		DiceDisplay.setIcon(new ImageIcon(img));
+		
+		JPanel infoPanel = new JPanel();
+		welcomePanel.add(infoPanel, BorderLayout.CENTER);
+		infoPanel.setLayout(new GridLayout(2, 2, 0, 0));
+		infoPanel.setBackground(new Color(255, 250, 205));
+		
+		JPanel uName = new JPanel();
+		uName.setBackground(new Color(255, 250, 205));
+		infoPanel.add(uName);
+		
+		
+		
+		
+		JLabel lblUsername = new JLabel("Username");
+		uName.add(lblUsername);
+		
+		JPanel uNameText = new JPanel();
+		uNameText.setBackground(new Color(255, 250, 205));
+		infoPanel.add(uNameText);
+		infoPanel.setBackground(new Color(255, 250, 205));
+		uNameText.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		
 		
@@ -46,32 +93,41 @@ public class LoginScreen {
 		
 		
 		usernameText = new JTextField();
-		usernameText.setBounds((int)width/2, (int)height/2, 86, 20);
-		welcomePanel.add(usernameText);
+		uNameText.add(usernameText);
 		usernameText.setColumns(10);
 		
-		
-		
-		
-		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds((int)width/2-offsetWidth, (int)height/2, 86, 20);
-		welcomePanel.add(lblUsername);
-		
-		
-		
-		JPasswordField passwordField = new JPasswordField();
-		passwordField.setBounds((int)width/2, (int)height/2+offsetHeight, 86, 20);
-		welcomePanel.add(passwordField);
+		JPanel pWord = new JPanel();
+		pWord.setBackground(new Color(255, 250, 205));
+		infoPanel.add(pWord);
 		
 		
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds((int)width/2-offsetWidth, (int)height/2+offsetHeight, 65, 14);
-		welcomePanel.add(lblPassword);
+		pWord.add(lblPassword);
+		
+		JPanel pWordText = new JPanel();
+		pWordText.setBackground(new Color(255, 250, 205));
+		infoPanel.add(pWordText);
+		
+		
+		
+		JPasswordField passwordField = new JPasswordField();
+		passwordField.setColumns(10);
+		pWordText.add(passwordField);
+		
+		JPanel buttonPanel = new JPanel();
+		welcomePanel.add(buttonPanel, BorderLayout.EAST);
+		buttonPanel.setLayout(new GridLayout(2, 1, 0, 0));
+		buttonPanel.setBackground(new Color(255, 250, 205));
+		
+		JPanel logButton = new JPanel();
+		logButton.setBackground(new Color(255, 250, 205));
+		buttonPanel.add(logButton);
 		
 		
 		//LOGIN BUTTON\\
 				JButton btnLogin = new JButton("Login");
+				logButton.add(btnLogin);
 				btnLogin.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String test = usernameText.getText();
@@ -82,25 +138,27 @@ public class LoginScreen {
 						Database db = new Database(test, password);
 						
 						if (db.get()){
+							System.out.println("LOgin debug");
+							frame.remove(welcomePanel);
 							welcomePanel.setVisible(false);
 							Options options = new Options();
 							JPanel mode = options.options(frame, test);
-							frame.add(mode);
+							frame.getContentPane().add(mode);
 						}
 						}
 						
 						
 						
 				});
-				btnLogin.setBounds((int)width/2+offsetWidth, (int)height/2, 89, 23);
-				welcomePanel.add(btnLogin);
-		
-		JRootPane root = frame.getRootPane();
-		root.setDefaultButton(btnLogin);
+				root.setDefaultButton(btnLogin);
 				
+				JPanel regButton = new JPanel();
+				buttonPanel.add(regButton);
+				regButton.setBackground(new Color(255, 250, 205));
 				
-		//REGISTER BUTTON\\
-		JButton btnRegister = new JButton("Register");
+				//REGISTER BUTTON\\
+				JButton btnRegister = new JButton("Register");
+				regButton.add(btnRegister);
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -110,27 +168,11 @@ public class LoginScreen {
 					
 					Register reg = new Register();
 					JPanel regis = reg.register(frame);
-					frame.add(regis);
+					frame.getContentPane().add(regis);
 				
 				
 			}
 		});
-		btnRegister.setBounds((int)width/2+offsetWidth, (int)height/2+offsetHeight, 89, 23);
-		welcomePanel.add(btnRegister);
-		
-		
-		JLabel lblFarkle = new JLabel("FARKLE");
-		lblFarkle.setFont(new Font("Tahoma", Font.PLAIN, 99));
-		lblFarkle.setBounds(526, 114, 445, 149);
-		welcomePanel.add(lblFarkle);
-		
-		JLabel DiceDisplay = new JLabel("New label");
-		DiceDisplay.setBackground(new Color(0, 0, 128));
-		DiceDisplay.setBounds(902, 93, 252, 186);
-		welcomePanel.add(DiceDisplay);
-		
-		Image img = new ImageIcon(this.getClass().getResource("/3dDice.png")).getImage();
-		DiceDisplay.setIcon(new ImageIcon(img));
 		
 		return welcomePanel;
 	}
