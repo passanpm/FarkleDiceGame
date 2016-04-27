@@ -1,8 +1,10 @@
 package edu.plu.cs.farkle.client;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -53,17 +55,18 @@ public class PlayerScreen {
 		ArrayList<Player> playerList = new ArrayList<Player>();
 		
 		JPanel textBoxHolder = new JPanel();
-		mode.add(textBoxHolder);
+		mode.add(textBoxHolder, BorderLayout.CENTER);
 		textBoxHolder.setBackground(new Color(255, 250, 205));
-		textBoxHolder.setLayout(new GridLayout(4,2, 30, offsetHeight));
+		textBoxHolder.setLayout(new GridLayout(4,0,0, offsetHeight));
 		
 		JPanel textBoxPanel = new JPanel();
 		textBoxHolder.add(textBoxPanel);
 		textBoxPanel.setBackground(new Color(255, 250, 205));
+		textBoxPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		for(int i = 0; i < players+1; i ++){
 			names[i] = new JTextField();
-			names[i].setPreferredSize(new Dimension(86,20));
+			names[i].setPreferredSize(new Dimension(86, 20));
 			//names[i].setBounds((int)width/2, (offsetHeight*4)+offsetHeight*i, 86, 20);
 			textBoxPanel.add(names[i]);
 			names[i].setColumns(20);
