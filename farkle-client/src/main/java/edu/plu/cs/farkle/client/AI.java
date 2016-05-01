@@ -40,7 +40,9 @@ public class AI {
 	 * Rolls the dice and stores the result in diceRoll
 	 */
 	public void roll(){
+		die.rollInit(6, 1, 6);
 		diceRoll = die.getRoll();
+		System.out.println(diceRoll.toString());
 	}
 	
 	/**
