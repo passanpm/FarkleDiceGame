@@ -22,7 +22,20 @@ public class AI {
 		name = n;
 		die = new Dice();
 	}
-
+	/**
+	 * Returns the name of the AI.
+	 * @return the name of the AI
+	 */
+	public String getName(){
+		return name;
+	}
+	/**
+	 * Returns the difficulty of the AI
+	 * @return the difficulty of the AI as an int
+	 */
+	public int getDifficulty(){
+		return difficulty;
+	}
 	/**
 	 * Rolls the dice and stores the result in diceRoll
 	 */
