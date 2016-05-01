@@ -63,9 +63,9 @@ public class AI {
 	 * @return int[] index the array of indexes
 	 */
 	public int[] setOfThrees(){
-		int[] index = new int[3];
+		int[] index = {0, 0, 0};
 		ArrayList<Integer> check = new ArrayList<Integer>();
-		for(int i = 0; i< 6; i++){
+		for(int i = 1; i <= 6; i++){
 			check.add(i);
 			check.add(i);
 			check.add(i);
