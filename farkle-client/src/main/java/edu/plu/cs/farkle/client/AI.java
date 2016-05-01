@@ -69,7 +69,8 @@ public class AI {
 			check.add(i);
 			check.add(i);
 			check.add(i);
-			if(diceRoll.containsAll(check)){
+			boolean contains = diceRoll.containsAll(check); //this is returning true and it shouldn't
+			if(contains){
 				int count = 0;
 			for(int j = 0; j < diceRoll.size(); j++){
 				if(diceRoll.get(j) == i){
@@ -81,6 +82,7 @@ public class AI {
 			}
 			break;
 			}
+			check.clear();
 		}
 		return index;
 	}
