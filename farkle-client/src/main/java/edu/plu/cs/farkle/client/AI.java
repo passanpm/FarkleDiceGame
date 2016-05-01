@@ -12,7 +12,11 @@ public class AI {
 	
 	private ArrayList<Integer> diceRoll;
 	
-	//Constructor
+	/**
+	 * Constructor
+	 * @param d the difficulty of the AI as an int
+	 * @param n the name of the AI
+	 */
 	public AI(int d, String n){
 		difficulty = d;
 		name = n;
