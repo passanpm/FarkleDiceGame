@@ -34,7 +34,7 @@ public class AI {
 	 * Picks best roll based on difficulty the player selected
 	 * @return
 	 */
-	private int bestRoll(){
+	public int bestRoll(){
 		int score = 0;
 		
 		for(int i = 0; i < diceRoll.size(); i++){
@@ -47,17 +47,24 @@ public class AI {
 	 * Checks to see if diceRoll has a set of threes and returns an array of the indexes of that set of three
 	 * @return int[] index the array of indexes
 	 */
-	private int[] setOfThrees(){
+	public int[] setOfThrees(){
 		int[] index = new int[3];
 		ArrayList<Integer> check = new ArrayList<Integer>();
 		for(int i = 0; i< 6; i++){
 			check.add(i);
 			check.add(i);
 			check.add(i);
+			if(diceRoll.containsAll(check)){
+				int count = 0;
 			for(int j = 0; j < diceRoll.size(); j++){
-				if(diceRoll.containsAll(check)){
-					
+				if(diceRoll.get(j) == i){
+					index[count++] = j;
 				}
+				if(count > 2){
+					break;
+				}
+			}
+			break;
 			}
 		}
 		return index;
