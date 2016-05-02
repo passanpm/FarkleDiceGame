@@ -50,7 +50,7 @@ public class redis {
 	        String s = it.next();
 	        System.out.println(jedis.hget(s, "wins")+ ": " + s);
 	        
-	        thePlayers += jedis.hget(s, "wins") + ":" + s + ":";
+	        thePlayers += jedis.hget(s, "wins") + " " + s + " ";
 	    }
 	    return thePlayers;
 	    

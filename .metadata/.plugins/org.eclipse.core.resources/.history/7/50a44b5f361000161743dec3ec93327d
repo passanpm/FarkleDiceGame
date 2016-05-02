@@ -1,7 +1,6 @@
 package edu.plu.cs.farkle.client;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 public class Player {
 
@@ -65,19 +64,8 @@ public class Player {
 		return players;
 	}
 
-	public void setPlayers(String p) {
-		
-		final StringTokenizer tokenizer = new StringTokenizer(p, ":");
-		int count = tokenizer.countTokens()/2;
-		ArrayList<Player> l = new ArrayList<Player>();
-		
-		for (int i = 0; i < count; i++){
-			Player pl = new Player();
-			pl.setWins(Integer.parseInt(tokenizer.nextToken())); 
-			pl.setName(tokenizer.nextToken()); 
-			l.add(pl);
-		}
-		this.players = l;
+	public void setPlayers(String players) {
+		this.players = players;
 	}
 	
 }

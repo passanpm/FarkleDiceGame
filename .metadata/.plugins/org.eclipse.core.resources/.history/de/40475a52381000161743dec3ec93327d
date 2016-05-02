@@ -54,6 +54,7 @@ public class Database {
 		d.post();
 		System.out.println(5);
 		d.get();
+		System.out.println(user.getPlayers().toString());
 		System.out.println(6);
 		d.delete();
 		System.out.println(7);

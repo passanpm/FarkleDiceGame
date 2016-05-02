@@ -58,8 +58,6 @@ public class Database {
 		d.delete();
 		System.out.println(7);
 		d.get();
-		
-		System.out.println(user.getPlayers().toString());
 
 	}
 

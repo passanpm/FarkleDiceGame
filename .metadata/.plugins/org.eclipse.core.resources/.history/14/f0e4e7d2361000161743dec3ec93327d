@@ -77,7 +77,7 @@ public class Player {
 			pl.setName(tokenizer.nextToken()); 
 			l.add(pl);
 		}
-		this.players = l;
+		players = l;
 	}
 	
 }

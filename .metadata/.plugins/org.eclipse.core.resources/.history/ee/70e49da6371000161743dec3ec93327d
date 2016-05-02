@@ -58,8 +58,6 @@ public class Database {
 		d.delete();
 		System.out.println(7);
 		d.get();
-		
-		System.out.println(user.getPlayers().toString());
 
 	}
 
@@ -122,11 +120,7 @@ public class Database {
 					try {
 						System.out.println("GET: " + node.get("name"));
 						System.out.println(node.toString());
-						user.setName(node.get("name").asText());
-						user.setPass(node.get("pass").asText());
-						user.setTotal(Integer.parseInt(node.get("total").asText()));
-						user.setWins(Integer.parseInt(node.get("wins").asText()));
-						user.setPlayers(node.get("players").asText());
+						user.setName(node.get("name"));
 						return true;
 					} catch (Exception e) {
 						System.out.println("Player does not exist");
