@@ -63,13 +63,10 @@ public class Options{
 		middle.add(buttonPanel, BorderLayout.NORTH);
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JComboBox<String> gameplayBox = new JComboBox<String>();
-		buttonPanel.add(gameplayBox);
-		gameplayBox.addItem("Standard");
-		gameplayBox.addItem("Alternate");
 		
-		JButton btnPlayStandard = new JButton("Play Locally");
-		buttonPanel.add(btnPlayStandard);
+		
+		JButton btnPlayLocal = new JButton("Play Locally");
+		buttonPanel.add(btnPlayLocal);
 		
 		JButton btnPlayAI = new JButton("Play Against AI");
 		buttonPanel.add(btnPlayAI);
@@ -123,7 +120,7 @@ public class Options{
 				
 			}
 		});
-		btnPlayStandard.addActionListener(new ActionListener() {
+		btnPlayLocal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				numPlayers = comboBox.getSelectedIndex();
 				System.out.println("Number: "+numPlayers);
