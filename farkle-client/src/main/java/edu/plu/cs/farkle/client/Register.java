@@ -11,9 +11,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import javax.swing.SpringLayout;
+import java.awt.CardLayout;
 
 public class Register {
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JPanel register(JFrame frame){
 		Dimension screenSize = frame.getBounds().getSize();
 		double width = screenSize.getWidth();
@@ -23,33 +31,73 @@ public class Register {
 		
 		JPanel register = new JPanel();
 		register.setBackground(new Color(255, 250, 205));
-		register.setBounds(0, 0, (int)width, (int)height);
+	//	register.setBounds(0, 0, (int)width, (int)height);
 		frame.getContentPane().add(register);
-		register.setLayout(null);
+		register.setLayout(new BorderLayout(0, 0));
 		
-		JTextField usernameText = new JTextField();
-		usernameText.setBounds((int)width/2, (int)height/2, 86, 20);
-		register.add(usernameText);
-		usernameText.setColumns(10);
+		JPanel centerPanel = new JPanel();
+		centerPanel.setBackground(new Color(255, 250, 205));
+		register.add(centerPanel);
+		centerPanel.setLayout(new BorderLayout(0, 0));
 		
-		
-		
-		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds((int)width/2-offsetWidth, (int)height/2, 86, 20);
-		register.add(lblUsername);
-		
-		JPasswordField passwordField = new JPasswordField();
-		passwordField.setBounds((int)width/2, (int)height/2+offsetHeight, 86, 20);
-		register.add(passwordField);
-		
-		
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds((int)width/2-offsetWidth, (int)height/2+offsetHeight, 65, 14);
-		register.add(lblPassword);
+		JPanel buttons = new JPanel();
+		buttons.setBackground(new Color(255, 250, 205));
+		centerPanel.add(buttons, BorderLayout.SOUTH);
+		buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		
 		//REGISTER\\
 		JButton btnRegister = new JButton("Register");
+		buttons.add(btnRegister);
+		
+		
+		JButton goBack = new JButton("Go Back");
+		buttons.add(goBack);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 250, 205));
+		centerPanel.add(panel, BorderLayout.CENTER);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		JPanel userPanel = new JPanel();
+		userPanel.setBackground(new Color(255, 250, 205));
+		panel.add(userPanel, BorderLayout.NORTH);
+		
+		
+		
+		JLabel lblUsername = new JLabel("Username");
+		userPanel.add(lblUsername);
+		
+		JTextField usernameText = new JTextField();
+		userPanel.add(usernameText);
+		usernameText.setColumns(10);
+		
+		JPanel passPanel = new JPanel();
+		passPanel.setBackground(new Color(255, 250, 205));
+		panel.add(passPanel, BorderLayout.CENTER);
+		
+		
+		JLabel lblPassword = new JLabel("Password");
+		passPanel.add(lblPassword);
+		
+		JPasswordField passwordField = new JPasswordField();
+		passwordField.setColumns(10);
+		passPanel.add(passwordField);
+		goBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				register.setVisible(false);
+				frame.remove(register);
+				
+				LoginScreen login = new LoginScreen();
+				JPanel log = login.Login(frame);
+				
+				frame.getContentPane().add(log);
+				
+				
+				//login();
+			}
+		
+		});
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -67,27 +115,6 @@ public class Register {
 				
 			}
 		});
-		btnRegister.setBounds((int)width/2+offsetWidth, (int)height/2+offsetHeight/2, 89, 23);
-		register.add(btnRegister);
-		
-		
-		JButton goBack = new JButton("Go Back");
-		goBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				register.setVisible(false);
-				
-				LoginScreen login = new LoginScreen();
-				JPanel log = login.Login(frame);
-				
-				frame.add(log);
-				
-				
-				//login();
-			}
-		
-		});
-		goBack.setBounds((int)width/2, (int)height/2+offsetHeight*2, 89, 23);
-		register.add(goBack);
 		return register;
 	}
 	

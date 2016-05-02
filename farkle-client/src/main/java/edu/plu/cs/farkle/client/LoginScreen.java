@@ -162,8 +162,7 @@ public class LoginScreen {
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-					//Goes to register method 
-					//SEE REGISTER METHOD
+					frame.remove(welcomePanel);
 					welcomePanel.setVisible(false);
 					
 					Register reg = new Register();

@@ -284,6 +284,9 @@ public void restart(){
 	
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList) {		
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 			width = screen.getWidth();
@@ -394,7 +397,7 @@ public void restart(){
 					game.setVisible(false);
 					LoginScreen login = new LoginScreen();
 					JPanel log = login.Login(frame);
-					frame.add(log);
+					frame.getContentPane().add(log);
 				}
 			});
 			mnFile.add(mntmSignOut);
