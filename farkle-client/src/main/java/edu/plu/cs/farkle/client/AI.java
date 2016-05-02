@@ -2,7 +2,7 @@ package edu.plu.cs.farkle.client;
 
 import java.util.ArrayList;
 
-public class AI {
+public class AI extends Player{
 
 	private int difficulty;
 	
