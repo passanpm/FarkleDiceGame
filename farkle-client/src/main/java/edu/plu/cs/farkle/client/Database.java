@@ -1,6 +1,7 @@
 package edu.plu.cs.farkle.client;
 
 import java.io.BufferedReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.client.Client;
@@ -32,6 +33,7 @@ public class Database {
 
 
 	static Player user = new Player();
+	ArrayList<Player> pool = new ArrayList<Player>();
 	static String username = "username";
 	static String password = "password";
 
@@ -46,6 +48,9 @@ public class Database {
 		d.get();
 		System.out.println(4);
 		user.setName("NEWNAME");
+		user.setPass("NEWPASS");
+		user.setTotal(500);
+		user.setWins(5);
 		d.post();
 		System.out.println(5);
 		d.get();
@@ -111,11 +116,13 @@ public class Database {
 					}
 					
 				case "get":
+					
 					try {
 						System.out.println("GET: " + node.get("name"));
 						System.out.println(node.toString());
 						return true;
 					} catch (Exception e) {
+						System.out.println("Player does not exist");
 						return false;
 					}
 					
@@ -124,14 +131,18 @@ public class Database {
 					System.out.println("POST: " + user.getName());
 					((ObjectNode)node).put("name", user.getName());
 					
-	
-					//p.setName(node.get("name").getTextValue());
+					((ObjectNode)node).put("pass", user.getPass());
 					
+					
+					((ObjectNode)node).put("wins", Integer.toString(user.getWins()));
+					((ObjectNode)node).put("total", Integer.toString(user.getTotal()));
 					
 					resteasyWebTarget.request().post(u);
+					
+					
 
 					System.out.println(node.toString());
-					System.out.println(node.get("name"));
+					System.out.println("DEBUG");
 					
 					
 					

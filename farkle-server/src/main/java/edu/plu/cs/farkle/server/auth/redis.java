@@ -1,5 +1,6 @@
 package edu.plu.cs.farkle.server.auth;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -21,16 +22,13 @@ public class redis {
 	public boolean auth(player player){
 		System.out.println("Attempting to authenticate...");
 		if (jedis.exists(player.getName())){
-			System.out.println("1");
 			//listPlayers();
 			//loadUser(player.getName());
 			if (jedis.hgetAll(player.getName()).get("pass").equals(player.getPass())){
-				System.out.println("2");
 				System.out.println("Player password is authenticated");
 				System.out.println(player.getName() + " exists in database");
 				return true;
 			}else{
-				System.out.println("3");
 				System.out.println("Player password is incorrect");
 				return false;
 			}
@@ -40,16 +38,24 @@ public class redis {
 		return false;
 	}
 	
-	public void listPlayers(){
+	public String listPlayers(){
+		ArrayList<player> pool = new ArrayList<player>();
+		player p = new player();
+		String thePlayers = "";
 	    Set<String> names=jedis.keys("*");
-	    int count = 1;
 	    System.out.println("PLAYERS: ");
 	    Iterator<String> it = names.iterator();
+	    
 	    while (it.hasNext()) {
 	        String s = it.next();
-	        System.out.println(count + ": " + s);
-	        count ++;
+	        System.out.println(jedis.hget(s, "wins")+ ": " + s);
+	        
+	        thePlayers += jedis.hget(s, "wins") + " " + s + " ";
 	    }
+	    return thePlayers;
+	    
+	    
+	    
 	}
 	
 	public void removePlayer(String name){

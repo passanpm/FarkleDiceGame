@@ -4,6 +4,8 @@ public class player {
 	
 	private String name;
 	private String pass;
+	private String players;
+
 	private int wins;
 	private int total;
 	
@@ -21,6 +23,13 @@ public class player {
 		total = 0;
 	}
 	
+	public String getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(String players) {
+		this.players = players;
+	}
 	
 	public String getName(){
 		return name;
