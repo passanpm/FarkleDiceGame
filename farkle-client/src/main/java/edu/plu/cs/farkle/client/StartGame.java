@@ -9,8 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.ArrayList;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -134,8 +138,16 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 	
 	if(!bdrCheck && roll.get(diceID)>0){
 		
-
-    
+		try{
+		String soundName = "/click.wav";    
+		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+		Clip clip = AudioSystem.getClip();
+		clip.open(audioInputStream);
+		clip.start();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
      	name.setBorder(border);
      	standard.addToSingle(roll.get(diceID));
      	bdrCheck = true;
@@ -182,7 +194,17 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		else
 			btnRoll.setEnabled(false);
 	}
-	else if(bdrCheck && roll.get(diceID)<0){		
+	else if(bdrCheck && roll.get(diceID)<0){	
+		try{
+		String soundName = "/click.wav";    
+		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+		Clip clip = AudioSystem.getClip();
+		clip.open(audioInputStream);
+		clip.start();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
 		standard.removeFromSingle(roll.get(diceID));
 		updateScore();
 		tempScore = standard.bankScore();
@@ -590,9 +612,28 @@ public void restart(){
 		
 		btnRoll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try{
+					String soundName = "/diceThrow.wav";    
+					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+					Clip clip = AudioSystem.getClip();
+					clip.open(audioInputStream);
+					clip.start();
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
+				
 				diceObj.roll(6, 1, roll);
 				
 				if(diceObj.farkle()){
+					try{
+						String soundName = "/sadTrombone.wav";    
+						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+						Clip clip = AudioSystem.getClip();
+						clip.open(audioInputStream);
+						clip.start();
+					}catch(Exception ex){
+						ex.printStackTrace();
+					}
 					bankScore = 0;
 					tempScore = 0;
 					zach = 0;
@@ -642,6 +683,15 @@ public void restart(){
 		//End turn button
 		endTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try{
+					String soundName = "/diceThrow.wav";    
+					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+					Clip clip = AudioSystem.getClip();
+					clip.open(audioInputStream);
+					clip.start();
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
 				if(turn == playerList.size()){
 					turn = 0;
 					currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
