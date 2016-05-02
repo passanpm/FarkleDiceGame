@@ -42,14 +42,14 @@ public class Database {
 		System.out.println(1);
 		d.get();
 		
-		
+		/*
 		System.out.println(2);
 		d.put();
 		
 		System.out.println(3);
 		d.get();
 		
-		System.out.println("NUMBER OF PLAYERS: " + user.getPlayers().size());
+		System.out.println("NUMBER OF PLAYERS: " + user.getPlayers().get(2).getName());
 		
 		System.out.println(4);
 		user.setName("NEWNAME");
@@ -66,7 +66,7 @@ public class Database {
 		
 		System.out.println(7);
 		d.get();
-		
+		*/
 		
 
 	}
@@ -96,7 +96,7 @@ public class Database {
 
 
 			ResteasyWebTarget resteasyWebTarget = (ResteasyWebTarget)client.target("http://localhost:8080/farkle/crud");
-			resteasyWebTarget.register(new BasicAuthentication(user.getName(), user.getPass()));
+			resteasyWebTarget.register(new BasicAuthentication(username, password));
 
 			Entity<Player> u = Entity.json(user);
 			
@@ -128,16 +128,15 @@ public class Database {
 				case "get":
 					
 					try {
-						
-						resteasyWebTarget.request().get();
-						
+						System.out.println(user.getName());
+						/*
 						user.setName(node.get("name").asText());
 						user.setPass(node.get("pass").asText());
 						user.setTotal(Integer.parseInt(node.get("total").asText()));
 						user.setWins(Integer.parseInt(node.get("wins").asText()));
 						user.setPlayers(node.get("players").asText());
-						
-
+						*/
+						System.out.println(user.getName());
 						System.out.println("GET: " + node.get("name"));
 						System.out.println(node.toString());
 						return true;

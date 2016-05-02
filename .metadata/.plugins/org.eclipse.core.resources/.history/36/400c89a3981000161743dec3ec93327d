@@ -128,9 +128,7 @@ public class Database {
 				case "get":
 					
 					try {
-						
 						resteasyWebTarget.request().get();
-						
 						user.setName(node.get("name").asText());
 						user.setPass(node.get("pass").asText());
 						user.setTotal(Integer.parseInt(node.get("total").asText()));

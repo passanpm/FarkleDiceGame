@@ -20,7 +20,7 @@ public class redis {
 	}
 	
 	public boolean auth(player player){
-		System.out.println("Attempting to authenticate " + player.getName() + "...");
+		System.out.println("Attempting to authenticate...");
 		if (jedis.exists(player.getName())){
 			//listPlayers();
 			//loadUser(player.getName());

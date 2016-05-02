@@ -55,10 +55,6 @@ public class crud {
 			return null;
 		}
         
-		 //Split username and password tokens
-        final StringTokenizer tokenizer = new StringTokenizer(ctx.getUserPrincipal().getName(), ":");
-        player.setName(tokenizer.nextToken());
-        player.setPass(tokenizer.nextToken());
 		
         
         try{

@@ -42,14 +42,14 @@ public class Database {
 		System.out.println(1);
 		d.get();
 		
-		
+		/*
 		System.out.println(2);
 		d.put();
 		
 		System.out.println(3);
 		d.get();
 		
-		System.out.println("NUMBER OF PLAYERS: " + user.getPlayers().size());
+		System.out.println("NUMBER OF PLAYERS: " + user.getPlayers().get(2).getName());
 		
 		System.out.println(4);
 		user.setName("NEWNAME");
@@ -66,7 +66,7 @@ public class Database {
 		
 		System.out.println(7);
 		d.get();
-		
+		*/
 		
 
 	}
@@ -128,9 +128,7 @@ public class Database {
 				case "get":
 					
 					try {
-						
 						resteasyWebTarget.request().get();
-						
 						user.setName(node.get("name").asText());
 						user.setPass(node.get("pass").asText());
 						user.setTotal(Integer.parseInt(node.get("total").asText()));
