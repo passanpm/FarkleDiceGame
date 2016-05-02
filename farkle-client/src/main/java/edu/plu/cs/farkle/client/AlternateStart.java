@@ -32,7 +32,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 
-public class StartGame {
+public class AlternateStart {
 	
 
 	
@@ -44,7 +44,7 @@ public class StartGame {
 	
 	private ArrayList<Integer> roll = new ArrayList<Integer>();
 	
-	private Standard standard = new Standard();
+	private Alternate alt = new Alternate();
 	
 	
 	////////////////WINDOW VARIABLES\\\\\\\\\\	
@@ -137,7 +137,7 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 
     
      	name.setBorder(border);
-     	standard.addToSingle(roll.get(diceID));
+     	alt.addToSingle(roll.get(diceID));
      	bdrCheck = true;
      
 		
@@ -171,11 +171,11 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		diceObj.banking(diceID, roll.get(diceID));
 		updateScore();
 		
-		tempScore = standard.bankScore();
+		tempScore = alt.bankScore();
 		lblBankScore.setText("Bank Score: " + (bankScore+zach));
 		
 		
-		if(standard.getTemp() > 0 && standard.isChange()){
+		if(alt.getTemp() > 0 && alt.isChange()){
 			btnRoll.setEnabled(true);
 			
 		}
@@ -183,9 +183,9 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 			btnRoll.setEnabled(false);
 	}
 	else if(bdrCheck && roll.get(diceID)<0){		
-		standard.removeFromSingle(roll.get(diceID));
+		alt.removeFromSingle(roll.get(diceID));
 		updateScore();
-		tempScore = standard.bankScore();
+		tempScore = alt.bankScore();
 		
 		lblBankScore.setText("Bank Score: " + tempScore);
 		
@@ -222,7 +222,7 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 			btnRoll.setEnabled(true);
 		}
 		
-		if(standard.getTemp()==0){
+		if(alt.getTemp()==0){
 			btnRoll.setEnabled(false);
 			
 		}
@@ -232,11 +232,11 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 }
 
 public void removeDice(JLabel label, int i){
-		standard.removeFromSingle(roll.get(i));
+		alt.removeFromSingle(roll.get(i));
 }
 
 public void updateScore() {
-	bankScore = standard.bankScore();
+	bankScore = alt.bankScore();
 }
 
 public boolean blackout(JLabel dice, boolean b){
@@ -309,7 +309,7 @@ public void restart(){
 			offsetHeight = (int)height/15;
 			
 			game = new JPanel();
-			game.setBackground(new Color(0, 128, 0));
+			game.setBackground(new Color(0, 255, 255));
 			frame.getContentPane().add(game);
 			game.setLayout(new BorderLayout());
 			
@@ -366,12 +366,12 @@ public void restart(){
 			mnFile.add(mntmExit);
 			
 			WestPanel = new JPanel();
-			WestPanel.setBackground(new Color(0, 128, 0));
+			WestPanel.setBackground(new Color(0, 255, 255));
 			game.add(WestPanel, BorderLayout.WEST);
 			WestPanel.setLayout(new BorderLayout(0, 0));
 			
 			dicePanel = new JPanel();
-			dicePanel.setBackground(new Color(0, 128, 0));
+			dicePanel.setBackground(new Color(0, 255, 255));
 			WestPanel.add(dicePanel, BorderLayout.NORTH);
 			dicePanel.setLayout(new GridLayout(3, 2, 50, 50));
 			
@@ -401,7 +401,7 @@ public void restart(){
 			dicePanel.add(label_4);
 			
 			buttonPanel = new JPanel();
-			buttonPanel.setBackground(new Color(0, 128, 0));
+			buttonPanel.setBackground(new Color(0, 255, 255));
 			WestPanel.add(buttonPanel, BorderLayout.SOUTH);
 			
 			btnRoll = new JButton("Roll");
@@ -412,12 +412,12 @@ public void restart(){
 			buttonPanel.add(endTurn);
 			
 			NorthPanel = new JPanel();
-			NorthPanel.setBackground(new Color(0, 128, 0));
+			NorthPanel.setBackground(new Color(0, 255, 255));
 			game.add(NorthPanel, BorderLayout.NORTH);
 			NorthPanel.setLayout(new BorderLayout(0, 0));
 			
 			curPlayer = new JPanel();
-			curPlayer.setBackground(new Color(0, 128, 0));
+			curPlayer.setBackground(new Color(0, 255, 255));
 			NorthPanel.add(curPlayer, BorderLayout.WEST);
 			
 			currentPlayer = new JLabel("Current Player: ");
@@ -425,7 +425,7 @@ public void restart(){
 			currentPlayer.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			
 			scorePanels = new JPanel();
-			scorePanels.setBackground(new Color(0, 128, 0));
+			scorePanels.setBackground(new Color(0, 255, 255));
 			NorthPanel.add(scorePanels, BorderLayout.SOUTH);
 			scorePanels.setLayout(new GridLayout(0, 2, 0, 0));
 			
@@ -438,26 +438,26 @@ public void restart(){
 			lblBankScore.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			
 			CenterPanel = new JPanel();
-			CenterPanel.setBackground(new Color(0, 128, 0));
+			CenterPanel.setBackground(new Color(0, 255, 255));
 			game.add(CenterPanel, BorderLayout.CENTER);
 			
 			table = new JTable(data, columnNames);
-			table.setBackground(new Color(0, 128, 0));
-			table.setGridColor(new Color(0, 128, 0));
+			table.setBackground(new Color(0, 255, 255));
+			table.setGridColor(new Color(0, 255, 255));
 			JTableHeader head = table.getTableHeader();
-			head.setBackground(new Color(0, 128, 0));
+			head.setBackground(new Color(0, 255, 255));
 
 			table.setVisible(true);
 			
 			JScrollPane pane = new JScrollPane();
-			pane.getViewport().setBackground(new Color(0, 128, 0));
+			pane.getViewport().setBackground(new Color(0, 255, 255));
 			pane.setBorder(BorderFactory.createLineBorder(Color.black));
 			CenterPanel.add(pane);
 			pane.setViewportView(table);
 			
 			SouthPanel = new JPanel();
 			game.add(SouthPanel, BorderLayout.SOUTH);
-			SouthPanel.setBackground(new Color(0, 128, 0));
+			SouthPanel.setBackground(new Color(0, 255, 255));
 			farkText = new JTextPane();
 			farkText.setText("");
 			
@@ -480,14 +480,14 @@ public void restart(){
 		if(diceObj.farkle()){
 			farkText = new JTextPane();
 			farkText.setText("YOU FARKLED!!!");
-			farkText.setBackground(new Color(0, 128, 0));
+			farkText.setBackground(new Color(0, 255, 255));
 			farkText.setFont(new Font("Arial", Font.BOLD, 24));
 			farkText.setEditable(false);
 			//farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
 			SouthPanel.add(farkText);
 			
 			btnRoll.setEnabled(false);
-			standard.clear();
+			alt.clear();
 		}
 		
 		/*
@@ -598,14 +598,14 @@ public void restart(){
 					zach = 0;
 					farkText = new JTextPane();
 					farkText.setText("YOU FARKLED!!!");
-					farkText.setBackground(new Color(0, 128, 0));
+					farkText.setBackground(new Color(0, 255, 255));
 					farkText.setFont(new Font("Arial", Font.BOLD, 24));
 					farkText.setEditable(false);
 					//farkText.setBounds((int)width/2, (int)height/2+offsetHeight, 500, 500);
 					SouthPanel.add(farkText);				
 					btnRoll.setEnabled(false);
 					
-					standard.clear();	
+					alt.clear();	
 
 				}
 					
@@ -633,7 +633,7 @@ public void restart(){
 				btnRoll.setEnabled(false);
 				
 				zach += tempScore;
-				standard.reset();
+				alt.reset();
 			}
 		});
 	
@@ -659,7 +659,7 @@ public void restart(){
 				}
 				lblScore.setText("Score: " + playerList.get(turn).getTotal());
 				bankScore = 0;
-				standard = new Standard();
+				alt = new Alternate();
 				lblDice.setBorder(null);
 				label.setBorder(null);
 				label_1.setBorder(null);
@@ -667,7 +667,7 @@ public void restart(){
 				label_3.setBorder(null);
 				label_4.setBorder(null);
 				restart();
-				standard.clear();
+				alt.clear();
 
 				table.setValueAt(String.valueOf(playerList.get(turn).getTotal()), turn, 1);
 				
@@ -706,7 +706,7 @@ public void restart(){
 			
 			farkText = new JTextPane();
 			farkText.setText("YOU FARKLED!!!");
-			farkText.setBackground(new Color(0, 128, 0));
+			farkText.setBackground(new Color(0, 255, 255));
 			farkText.setFont(new Font("Arial", Font.BOLD, 24));
 			farkText.setEditable(false);
 			farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
@@ -715,7 +715,7 @@ public void restart(){
 			
 			btnRoll.setEnabled(false);
 			
-			standard.clear();
+			alt.clear();
 			
 		}
 	

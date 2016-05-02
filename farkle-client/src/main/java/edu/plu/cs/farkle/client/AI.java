@@ -63,14 +63,11 @@ public class AI {
 	 * @return int[] index the array of indexes
 	 */
 	public int[] setOfThrees(){
-		int[] index = {0, 0, 0};
-		ArrayList<Integer> check = new ArrayList<Integer>();
+		int[] index = new int[3];
+		ArrayList<Integer> check = hasThree();
+		System.out.println(check.toString());
 		for(int i = 1; i <= 6; i++){
-			check.add(i);
-			check.add(i);
-			check.add(i);
-			boolean contains = diceRoll.containsAll(check); //this is returning true and it shouldn't
-			if(contains){
+			if(check.contains(i)){
 				int count = 0;
 			for(int j = 0; j < diceRoll.size(); j++){
 				if(diceRoll.get(j) == i){
@@ -82,8 +79,36 @@ public class AI {
 			}
 			break;
 			}
-			check.clear();
 		}
 		return index;
+	}
+	
+	private ArrayList<Integer> hasThree(){
+		ArrayList<Integer> diceNumbers = new ArrayList<Integer>();
+		int count = 0;
+		for(int i = 1; i<= 6; i++){
+			for(int j = 0; j < diceRoll.size(); j++){
+				if( diceRoll.get(j) == i){
+					count++;
+				}
+				if(count == 3){
+					 diceNumbers.add(i);
+					 break;
+				}
+			}
+			count = 0;
+		}
+		return diceNumbers;
+	}
+	
+	private int[] oneOrFive(){
+		int[] indexes = new int[6];
+		int count = 0;
+		for(int j = 0; j < diceRoll.size(); j++){
+			if(diceRoll.get(j) == 1 || diceRoll.get(j) == 5){
+				indexes[count++] = j;
+			}
+			}
+		return indexes;
 	}
 }

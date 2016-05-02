@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -79,6 +81,12 @@ public class PlayerScreen {
 		mode.add(buttonPanel);
 		
 		
+		JComboBox<String> gameplayBox = new JComboBox<String>();
+		buttonPanel.add(gameplayBox);
+		gameplayBox.addItem("Standard");
+		gameplayBox.addItem("Alternate");
+		
+		
 		
 		JButton btnPlay = new JButton("Play");
 		buttonPanel.add(btnPlay);
@@ -86,20 +94,36 @@ public class PlayerScreen {
 			public void actionPerformed(ActionEvent arg0) {
 				mode.setVisible(false);
 				
+				String selection = (String) gameplayBox.getSelectedItem();
+				System.out.println(selection);
+				
 				for(int i = 0; i < playerList.size(); i++){
 					playerList.get(i).setName(names[i].getText());
 				}
 				
-				StartGame start = new StartGame();
-				JPanel strt = start.start(frame, players, playerList);
-				
-				
-				frame.remove(mode);
-				frame.getContentPane().add(strt);
+				if(selection.equals("Standard")){
+					StartGame start = new StartGame();
+					JPanel strt = start.start(frame, players, playerList);
+					
+					
+					frame.remove(mode);
+					frame.getContentPane().add(strt);
+				}
+				else if(selection.equals("Alternate")){
+					AlternateStart start = new AlternateStart();
+					JPanel strt = start.start(frame, players, playerList);
+					frame.remove(mode);
+					frame.getContentPane().add(strt);
+				}
 			}
 		});
 		
 	
+		
+		
+		
+		
+		
 		return mode;
 	}
 
