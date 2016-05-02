@@ -67,7 +67,6 @@ public class crud {
         		player.setPlayers(database.listPlayers());
         	}else{
         		System.out.println("Player does not exist");
-        		return null;
         	}
         }catch (NullPointerException e){
         	System.out.println("error");

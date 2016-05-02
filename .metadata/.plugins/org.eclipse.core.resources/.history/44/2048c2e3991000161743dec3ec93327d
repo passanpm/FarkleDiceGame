@@ -136,7 +136,7 @@ public class LoginScreen {
 					
 
 						Database db = new Database(test, password);
-						System.out.println(db.get());
+						
 						if (db.get()){
 							System.out.println(test + " : " + password);
 							System.out.println("LOgin debug");
