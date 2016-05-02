@@ -48,7 +48,7 @@ public class Database {
 		System.out.println(3);
 		d.get();
 		
-		System.out.println("NUMBER OF PLAYERS: " + user.getPlayers().get(2).getName());
+		System.out.println("NUMBER OF PLAYERS: " + user.getPlayers().size());
 		
 		System.out.println(4);
 		user.setName("NEWNAME");
@@ -59,7 +59,8 @@ public class Database {
 		
 		System.out.println(5);
 		d.get();
-		System.out.println("NUMBER OF PLAYERS: " + user.getPlayers().size());
+		System.out.println(d.user.getPlayers().size());
+		
 		System.out.println(6);
 		d.delete();
 		
@@ -127,11 +128,7 @@ public class Database {
 				case "get":
 					
 					try {
-						user.setName(node.get("name").asText());
-						user.setPass(node.get("pass").asText());
-						user.setTotal(Integer.parseInt(node.get("total").asText()));
-						user.setWins(Integer.parseInt(node.get("wins").asText()));
-						user.setPlayers(node.get("players").asText());
+						
 						System.out.println("GET: " + node.get("name"));
 						System.out.println(node.toString());
 						return true;
