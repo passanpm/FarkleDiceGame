@@ -37,7 +37,7 @@ public class Database {
 	static String password = user.getPass();
 
 
-	/*public static void main(String[] args){
+	public static void main(String[] args){
 		Database d = new Database(username, password);
 		System.out.println(1);
 		d.get();
@@ -68,7 +68,7 @@ public class Database {
 		
 		
 
-	}*/
+	}
 
 	public Database(String username, String password) {
 			Database.user.setName(username);
@@ -127,11 +127,7 @@ public class Database {
 				case "get":
 					
 					try {
-						user.setName(node.get("name").asText());
-						user.setPass(node.get("pass").asText());
-						user.setTotal(Integer.parseInt(node.get("total").asText()));
-						user.setWins(Integer.parseInt(node.get("wins").asText()));
-						user.setPlayers(node.get("players").asText());
+						
 						System.out.println("GET: " + node.get("name"));
 						System.out.println(node.toString());
 						return true;

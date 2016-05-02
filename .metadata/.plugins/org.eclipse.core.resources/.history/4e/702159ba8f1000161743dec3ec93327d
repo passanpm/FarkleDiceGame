@@ -33,46 +33,39 @@ public class Database {
 
 
 	static Player user = new Player();
-	static String username = user.getName();
-	static String password = user.getPass();
+	ArrayList<Player> pool = new ArrayList<Player>();
+	static String username = "username";
+	static String password = "password";
 
 
-	/*public static void main(String[] args){
+	public static void main(String[] args){
 		Database d = new Database(username, password);
 		System.out.println(1);
 		d.get();
-		
 		System.out.println(2);
 		d.put();
-		
 		System.out.println(3);
 		d.get();
-		
-		System.out.println("NUMBER OF PLAYERS: " + user.getPlayers().get(2).getName());
-		
 		System.out.println(4);
 		user.setName("NEWNAME");
 		user.setPass("NEWPASS");
 		user.setTotal(500);
 		user.setWins(5);
 		d.post();
-		
 		System.out.println(5);
 		d.get();
-		System.out.println("NUMBER OF PLAYERS: " + user.getPlayers().size());
 		System.out.println(6);
 		d.delete();
-		
 		System.out.println(7);
 		d.get();
 		
-		
+		System.out.println(user.getPlayers().toString());
 
-	}*/
+	}
 
 	public Database(String username, String password) {
-			Database.user.setName(username);
-			Database.user.setPass(password);
+			Database.username = username;
+			Database.password = password;
 	}
 	
 	public void put(){
@@ -127,13 +120,13 @@ public class Database {
 				case "get":
 					
 					try {
+						System.out.println("GET: " + node.get("name"));
+						System.out.println(node.toString());
 						user.setName(node.get("name").asText());
 						user.setPass(node.get("pass").asText());
 						user.setTotal(Integer.parseInt(node.get("total").asText()));
 						user.setWins(Integer.parseInt(node.get("wins").asText()));
 						user.setPlayers(node.get("players").asText());
-						System.out.println("GET: " + node.get("name"));
-						System.out.println(node.toString());
 						return true;
 					} catch (Exception e) {
 						System.out.println("Player does not exist");
