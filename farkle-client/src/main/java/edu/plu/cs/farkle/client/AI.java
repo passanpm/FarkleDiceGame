@@ -53,7 +53,7 @@ public class AI {
 	public int[] mergeIndexes(){
 		int[] triple = setOfThrees();
 		int[] singles = oneOrFive();
-		int[] allIndexes = new int[6];
+		int[] allIndexes = new int[triple.length + singles.length];
 		try{
 			System.arraycopy(triple, 0, allIndexes, 0, triple.length);
 			System.arraycopy(singles, 0, allIndexes, triple.length, singles.length);
