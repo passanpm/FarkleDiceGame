@@ -64,13 +64,9 @@ public class AI {
 	 */
 	public int[] setOfThrees(){
 		int[] index = {0, 0, 0};
-		ArrayList<Integer> check = new ArrayList<Integer>();
+		ArrayList<Integer> check = hasThree();
 		for(int i = 1; i <= 6; i++){
-			check.add(i);
-			check.add(i);
-			check.add(i);
-			boolean contains = diceRoll.containsAll(check); //this is returning true and it shouldn't
-			if(contains){
+			if(check.contains(i)){
 				int count = 0;
 			for(int j = 0; j < diceRoll.size(); j++){
 				if(diceRoll.get(j) == i){
@@ -82,8 +78,25 @@ public class AI {
 			}
 			break;
 			}
-			check.clear();
 		}
 		return index;
+	}
+	
+	private ArrayList<Integer> hasThree(){
+		ArrayList<Integer> diceNumbers = new ArrayList<Integer>();
+		int count = 0;
+		for(int i = 1; i<= 6; i++){
+			for(int j = 0; j < diceRoll.size(); j++){
+				if( diceRoll.get(j) == i){
+					count++;
+				}
+				if(count == 3){
+					 diceNumbers.add(i);
+					 count = 0;
+					 break;
+				}
+			}
+		}
+		return diceNumbers;
 	}
 }
