@@ -33,12 +33,11 @@ public class Database {
 
 
 	static Player user = new Player();
-	static String username = user.getName();
-	static String password = user.getPass();
-
+	String username = "user";
+	String password = "pass";
 
 	public static void main(String[] args){
-		Database d = new Database("tom", "pass");
+		Database d = new Database("user", "pass");
 		System.out.println(1);
 		d.get();
 		
@@ -51,11 +50,13 @@ public class Database {
 		
 		System.out.println("NUMBER OF PLAYERS: " + user.getPlayers().size());
 		
+		
 		System.out.println(4);
 		user.setName("NEWNAME");
 		user.setPass("NEWPASS");
 		user.setTotal(500);
 		user.setWins(5);
+		
 		d.post();
 		
 		System.out.println(5);
@@ -68,12 +69,13 @@ public class Database {
 		d.get();
 		
 		
+		
 
 	}
 
 	public Database(String username, String password) {
-			Database.user.setName(username);
-			Database.user.setPass(password);
+			this.username = username;
+			this.password = password;
 	}
 	
 	public void put(){
@@ -96,7 +98,7 @@ public class Database {
 
 
 			ResteasyWebTarget resteasyWebTarget = (ResteasyWebTarget)client.target("http://localhost:8080/farkle/crud");
-			resteasyWebTarget.register(new BasicAuthentication(user.getName(), user.getPass()));
+			resteasyWebTarget.register(new BasicAuthentication(username, password));
 
 			Entity<Player> u = Entity.json(user);
 			
@@ -109,7 +111,10 @@ public class Database {
 			switch (action){
 				case "put":
 					try {
+						//call put
 						resteasyWebTarget.request().put(u);
+						
+						//debug
 						System.out.println("PUT: " + username);
 						return true;
 					} catch (Exception e) {
@@ -118,26 +123,51 @@ public class Database {
 					
 				case "delete":
 					try {
+						//call delete
 						resteasyWebTarget.request().delete();
+						
+						//debug
 						System.out.println("DELETE: " + user.getName());
 						return true;
 					} catch (Exception e) {
 						return false;
 					}
 					
+				case "post":
+					//debug
+					System.out.println("POST: " + user.getName());
+					
+					
+					//build json with new data from player
+					((ObjectNode)node).put("name", user.getName());
+					((ObjectNode)node).put("pass", user.getPass());
+					((ObjectNode)node).put("wins", Integer.toString(user.getWins()));
+					((ObjectNode)node).put("total", Integer.toString(user.getTotal()));
+					
+					resteasyWebTarget.request().post(u);
+					
+					username = user.getName();
+					password = user.getPass();
+					//debug
+					System.out.println(node.toString());	
+					break;	
+					
 				case "get":
 					
 					try {
-						
+						//call get
 						resteasyWebTarget.request().get();
 						
+						
+						//update player class
 						user.setName(node.get("name").asText());
 						user.setPass(node.get("pass").asText());
 						user.setTotal(Integer.parseInt(node.get("total").asText()));
 						user.setWins(Integer.parseInt(node.get("wins").asText()));
 						user.setPlayers(node.get("players").asText());
 						
-
+						
+						//debug
 						System.out.println("GET: " + node.get("name"));
 						System.out.println(node.toString());
 						return true;
@@ -145,33 +175,6 @@ public class Database {
 						System.out.println("Player does not exist");
 						return false;
 					}
-					
-				case "post":
-					
-					System.out.println("POST: " + user.getName());
-					((ObjectNode)node).put("name", user.getName());
-					
-					((ObjectNode)node).put("pass", user.getPass());
-					
-					
-					((ObjectNode)node).put("wins", Integer.toString(user.getWins()));
-					((ObjectNode)node).put("total", Integer.toString(user.getTotal()));
-					
-					resteasyWebTarget.request().post(u);
-					
-					
-
-					System.out.println(node.toString());
-					System.out.println("DEBUG");
-					
-					
-					
-					
-					
-					
-					break;
-					
-					
 					
 			}
 			

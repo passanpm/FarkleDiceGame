@@ -47,7 +47,7 @@ public class crud {
 	@GET
 	@Produces("application/json")
 	public String get(@Context SecurityContext ctx ) {
-		
+		System.out.println("ATTEMPTING TO GET");
 		// If the principal is null, then authentication failed.
 		String authString = "yes";
 		if( ctx.getUserPrincipal() == null ) {
@@ -67,7 +67,7 @@ public class crud {
         		player.setPlayers(database.listPlayers());
         	}else{
         		System.out.println("Player does not exist");
-        		return null;
+        		//return null; ----------------------------
         	}
         }catch (NullPointerException e){
         	System.out.println("error");
@@ -89,7 +89,7 @@ public class crud {
 	@PUT
 	@Produces("application/json")
 	public boolean put(@Context SecurityContext ctx ) {
-		
+		System.out.println("ATTEMPTING TO PUT");
 		// If the principal is null, then authentication failed.
 		String authString = "yes";
 		if( ctx.getUserPrincipal() == null ) {
@@ -123,7 +123,7 @@ public class crud {
 	@DELETE
 	@Produces("application/json")
 	public boolean delete(@Context SecurityContext ctx ) {
-		
+		System.out.println("ATTEMPTING TO DELETE");
 		// If the principal is null, then authentication failed.
 		String authString = "yes";
 		if( ctx.getUserPrincipal() == null ) {
@@ -151,7 +151,7 @@ public class crud {
 	@POST
 	@Consumes("application/json")
 	public void post(JsonNode node, @Context SecurityContext ctx) {
-		
+		System.out.println("ATTEMPTING TO POST");
 		
 		
 		// If the principal is null, then authentication failed.
@@ -162,7 +162,6 @@ public class crud {
         
         
         try{
-        	if (database.auth(player)){
         		database.setName(player.getName(), node.get("name").getTextValue());
         		player.setName(node.get("name").getTextValue());
         		System.out.println("CHANGED NAME to " + player.getName());
@@ -182,9 +181,6 @@ public class crud {
         		System.out.println("CHANGED TOTAL");
         		
         		
-        	}else{
-        		System.out.println("player not authenticated");
-        	}
         }catch (NullPointerException e){
 
         }

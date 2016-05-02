@@ -43,13 +43,10 @@ public class redis {
 		player p = new player();
 		String thePlayers = "";
 	    Set<String> names=jedis.keys("*");
-	    System.out.println("PLAYERS: ");
 	    Iterator<String> it = names.iterator();
 	    
 	    while (it.hasNext()) {
 	        String s = it.next();
-	        System.out.println(jedis.hget(s, "wins")+ ": " + s);
-	        
 	        thePlayers += jedis.hget(s, "wins") + ":" + s + ":";
 	    }
 	    return thePlayers;
