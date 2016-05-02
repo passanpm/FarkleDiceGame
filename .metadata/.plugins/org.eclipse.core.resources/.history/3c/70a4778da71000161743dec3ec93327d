@@ -19,10 +19,6 @@ public class redis {
 	    
 	}
 	
-	public void kill(){
-		jedis.quit();
-	}
-	
 	public boolean auth(player player){
 		System.out.println("Attempting to authenticate " + player.getName() + "...");
 		if (jedis.exists(player.getName())){

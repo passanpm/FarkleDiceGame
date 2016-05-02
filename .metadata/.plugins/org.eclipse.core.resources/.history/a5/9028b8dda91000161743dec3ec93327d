@@ -54,30 +54,33 @@ public class crud {
         player.setName(tokenizer.nextToken());
         player.setPass(tokenizer.nextToken());
         
+        if (player.getName() == null){
         	
-    		// If the principal is null, then authentication failed.
-    		String authString = "yes";
-    		if( ctx.getUserPrincipal() == null ) {
-    			authString = "no";
-    			return null;
-    		}
-            
-    		 
-    		
-            
-            try{
-            	if (database.auth(player)){
-            		database = new redis();
-            		player.setPlayers(database.listPlayers());
-            	}else{
-            		System.out.println("Player does not exist");
-            		return "null"; 
-            	}
-            }catch (NullPointerException e){
-            	System.out.println("error");
-            }
-
+        }
 		
+		
+		// If the principal is null, then authentication failed.
+		String authString = "yes";
+		if( ctx.getUserPrincipal() == null ) {
+			authString = "no";
+			return null;
+		}
+        
+		 
+		
+        
+        try{
+        	if (database.auth(player)){
+        		database = new redis();
+        		player.setPlayers(database.listPlayers());
+        	}else{
+        		System.out.println("Player does not exist");
+        		return null; 
+        	}
+        }catch (NullPointerException e){
+        	System.out.println("error");
+        }
+
 		
 		String json = String.format("{ "
 				+ " \"name\" : \"%s\","

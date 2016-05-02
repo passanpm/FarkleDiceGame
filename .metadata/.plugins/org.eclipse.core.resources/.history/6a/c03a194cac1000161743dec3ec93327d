@@ -39,7 +39,7 @@ public class Database {
 	public static void main(String[] args){
 		Database d = new Database("jon", "pass");
 		System.out.println(1);
-		//d.get();
+		d.get();
 		
 		
 		System.out.println(2);
@@ -145,7 +145,6 @@ public class Database {
 					((ObjectNode)node).put("pass", user.getPass());
 					((ObjectNode)node).put("wins", Integer.toString(user.getWins()));
 					((ObjectNode)node).put("total", Integer.toString(user.getTotal()));
-					
 					
 					resteasyWebTarget.request().post(u);
 					

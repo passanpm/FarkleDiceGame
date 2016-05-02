@@ -20,7 +20,7 @@ public class redis {
 	}
 	
 	public void kill(){
-		jedis.quit();
+		jedis.close();
 	}
 	
 	public boolean auth(player player){

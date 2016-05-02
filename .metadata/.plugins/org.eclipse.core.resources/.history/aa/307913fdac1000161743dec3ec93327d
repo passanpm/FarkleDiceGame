@@ -146,7 +146,6 @@ public class Database {
 					((ObjectNode)node).put("wins", Integer.toString(user.getWins()));
 					((ObjectNode)node).put("total", Integer.toString(user.getTotal()));
 					
-					
 					resteasyWebTarget.request().post(u);
 					
 					username = user.getName();

@@ -54,6 +54,7 @@ public class crud {
         player.setName(tokenizer.nextToken());
         player.setPass(tokenizer.nextToken());
         
+        if (player.getName() != null){
         	
     		// If the principal is null, then authentication failed.
     		String authString = "yes";
@@ -71,12 +72,14 @@ public class crud {
             		player.setPlayers(database.listPlayers());
             	}else{
             		System.out.println("Player does not exist");
-            		return "null"; 
+            		return null; 
             	}
             }catch (NullPointerException e){
             	System.out.println("error");
             }
 
+        	
+        }
 		
 		
 		String json = String.format("{ "

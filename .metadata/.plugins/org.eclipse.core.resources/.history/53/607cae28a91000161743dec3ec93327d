@@ -33,13 +33,13 @@ public class Database {
 
 
 	static Player user = new Player();
-	String username = "user";
-	String password = "pass";
+	String username;
+	String password;
 
 	public static void main(String[] args){
-		Database d = new Database("jon", "pass");
+		Database d = new Database();
 		System.out.println(1);
-		//d.get();
+		d.get();
 		
 		
 		System.out.println(2);
@@ -76,6 +76,10 @@ public class Database {
 	public Database(String username, String password) {
 			this.username = username;
 			this.password = password;
+	}
+	
+	public Database() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public void put(){
@@ -129,7 +133,6 @@ public class Database {
 						
 						//debug
 						System.out.println("DELETE: " + user.getName());
-						user = new Player();
 						return true;
 					} catch (Exception e) {
 						return false;
@@ -146,7 +149,6 @@ public class Database {
 					((ObjectNode)node).put("wins", Integer.toString(user.getWins()));
 					((ObjectNode)node).put("total", Integer.toString(user.getTotal()));
 					
-					
 					resteasyWebTarget.request().post(u);
 					
 					username = user.getName();
@@ -159,10 +161,7 @@ public class Database {
 					
 					try {
 						//call get
-						if (resteasyWebTarget.request().get().equals("null")){
-							System.out.println("GET: Player does not exist");
-							return false;
-						}
+						resteasyWebTarget.request().get();
 						
 						
 						//update player class

@@ -129,7 +129,6 @@ public class Database {
 						
 						//debug
 						System.out.println("DELETE: " + user.getName());
-						user = new Player();
 						return true;
 					} catch (Exception e) {
 						return false;
@@ -146,7 +145,6 @@ public class Database {
 					((ObjectNode)node).put("wins", Integer.toString(user.getWins()));
 					((ObjectNode)node).put("total", Integer.toString(user.getTotal()));
 					
-					
 					resteasyWebTarget.request().post(u);
 					
 					username = user.getName();
@@ -159,10 +157,7 @@ public class Database {
 					
 					try {
 						//call get
-						if (resteasyWebTarget.request().get().equals("null")){
-							System.out.println("GET: Player does not exist");
-							return false;
-						}
+						resteasyWebTarget.request().get();
 						
 						
 						//update player class
