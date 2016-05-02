@@ -65,6 +65,7 @@ public class AI {
 	public int[] setOfThrees(){
 		int[] index = {0, 0, 0};
 		ArrayList<Integer> check = hasThree();
+		System.out.println(check.toString());
 		for(int i = 1; i <= 6; i++){
 			if(check.contains(i)){
 				int count = 0;
@@ -92,10 +93,10 @@ public class AI {
 				}
 				if(count == 3){
 					 diceNumbers.add(i);
-					 count = 0;
 					 break;
 				}
 			}
+			count = 0;
 		}
 		return diceNumbers;
 	}
