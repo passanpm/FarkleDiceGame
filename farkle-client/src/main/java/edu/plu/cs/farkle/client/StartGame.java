@@ -209,7 +209,7 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		updateScore();
 		tempScore = standard.bankScore();
 		
-		lblBankScore.setText("Bank Score: " + tempScore);
+		lblBankScore.setText("Bank Score: " + (tempScore+zach));
 		
 		name.setBorder(null);
 		switch ( diceID ) {
@@ -368,7 +368,9 @@ public void restart(){
 			JMenuItem mntmSignOut = new JMenuItem("Sign Out");
 			mntmSignOut.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
 					game.setVisible(false);
+					frame.remove(game);
 					LoginScreen login = new LoginScreen();
 					JPanel log = login.Login(frame);
 					frame.getContentPane().add(log);
@@ -500,6 +502,15 @@ public void restart(){
 		roll = diceObj.getRoll();
 		
 		if(diceObj.farkle()){
+			try{
+				String soundName = "/sadTrombone.wav";    
+				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioInputStream);
+				clip.start();
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
 			farkText = new JTextPane();
 			farkText.setText("YOU FARKLED!!!");
 			farkText.setBackground(new Color(0, 128, 0));
@@ -708,36 +719,61 @@ public void restart(){
 					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+(zach+tempScore));
 				}
 				lblScore.setText("Score: " + playerList.get(turn).getTotal());
-				bankScore = 0;
-				standard = new Standard();
-				lblDice.setBorder(null);
-				label.setBorder(null);
-				label_1.setBorder(null);
-				label_2.setBorder(null);
-				label_3.setBorder(null);
-				label_4.setBorder(null);
-				restart();
-				standard.clear();
-
-				table.setValueAt(String.valueOf(playerList.get(turn).getTotal()), turn, 1);
 				
-				
-				turn++;
-				if(turn >= playerList.size()){
-					currentPlayer.setText("Current Player: " + playerList.get(0).getName());
-					lblScore.setText("Score: " + playerList.get(0).getTotal());
+				if(playerList.get(turn).getTotal() > 10000){
+					farkText = new JTextPane();
+					farkText.setText(" " + playerList.get(turn).getName() + " Wins!");
+					farkText.setBackground(new Color(0, 128, 0));
+					farkText.setFont(new Font("Arial", Font.BOLD, 24));
+					farkText.setVisible(true);
+					farkText.setEditable(false);
+					SouthPanel.setVisible(true);
+					SouthPanel.add(farkText);
+					try{
+						String soundName = "/victory.wav";    
+						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+						Clip clip = AudioSystem.getClip();
+						clip.open(audioInputStream);
+						clip.start();
+					}catch(Exception ex){
+						ex.printStackTrace();
+					}
+					
+					endTurn.setEnabled(false);
+					btnRoll.setEnabled(false);
 				}
 				else{
-					currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
-					lblScore.setText("Score: " + playerList.get(turn).getTotal());
+					bankScore = 0;
+					standard = new Standard();
+					lblDice.setBorder(null);
+					label.setBorder(null);
+					label_1.setBorder(null);
+					label_2.setBorder(null);
+					label_3.setBorder(null);
+					label_4.setBorder(null);
+					restart();
+					standard.clear();
+	
+					table.setValueAt(String.valueOf(playerList.get(turn).getTotal()), turn, 1);
+					
+					
+					turn++;
+					if(turn >= playerList.size()){
+						currentPlayer.setText("Current Player: " + playerList.get(0).getName());
+						lblScore.setText("Score: " + playerList.get(0).getTotal());
+					}
+					else{
+						currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
+						lblScore.setText("Score: " + playerList.get(turn).getTotal());
+					}
+					
+					removeBlackout(lblDice);
+					removeBlackout(label);
+					removeBlackout(label_1);
+					removeBlackout(label_2);
+					removeBlackout(label_3);
+					removeBlackout(label_4);
 				}
-				
-				removeBlackout(lblDice);
-				removeBlackout(label);
-				removeBlackout(label_1);
-				removeBlackout(label_2);
-				removeBlackout(label_3);
-				removeBlackout(label_4);
 			}
 		});
 		
@@ -752,15 +788,22 @@ public void restart(){
 		
 		
 		if(diceObj.farkle()){
-			
+			try{
+				String soundName = "/sadTrombone.wav";    
+				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioInputStream);
+				clip.start();
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
 			
 			farkText = new JTextPane();
 			farkText.setText("YOU FARKLED!!!");
 			farkText.setBackground(new Color(0, 128, 0));
 			farkText.setFont(new Font("Arial", Font.BOLD, 24));
 			farkText.setEditable(false);
-			farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
-			game.add(farkText);
+			SouthPanel.add(farkText);
 			
 			
 			btnRoll.setEnabled(false);

@@ -116,20 +116,27 @@ public class Options{
 		btnPlayAI.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				
+				numPlayers = comboBox.getSelectedIndex();
+				mode.setVisible(false);
+				frame.remove(mode);
 				
+				
+				PlayerScreen player = new PlayerScreen();
+				JPanel start = player.initialize(frame, numPlayers, "AI");
+				
+				frame.getContentPane().add(start);
 				
 			}
 		});
 		btnPlayLocal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				numPlayers = comboBox.getSelectedIndex();
-				System.out.println("Number: "+numPlayers);
 				mode.setVisible(false);
 				frame.remove(mode);
 				
 				
 				PlayerScreen player = new PlayerScreen();
-				JPanel start = player.initialize(frame, numPlayers);
+				JPanel start = player.initialize(frame, numPlayers, "Local");
 				
 				frame.getContentPane().add(start);
 				

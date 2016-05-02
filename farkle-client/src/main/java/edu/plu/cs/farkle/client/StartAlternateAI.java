@@ -36,7 +36,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 
-public class AlternateStart {
+public class StartAlternateAI {
 	
 
 	

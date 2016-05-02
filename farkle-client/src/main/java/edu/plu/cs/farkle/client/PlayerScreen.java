@@ -29,7 +29,7 @@ public class PlayerScreen {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel initialize(JFrame frame, int players) {
+	public JPanel initialize(JFrame frame, int players, String type) {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		double width = screen.getWidth();
 		double height = screen.getHeight();
@@ -100,20 +100,37 @@ public class PlayerScreen {
 				for(int i = 0; i < playerList.size(); i++){
 					playerList.get(i).setName(names[i].getText());
 				}
-				
-				if(selection.equals("Standard")){
-					StartGame start = new StartGame();
-					JPanel strt = start.start(frame, players, playerList);
-					
-					
-					frame.remove(mode);
-					frame.getContentPane().add(strt);
+				if(type.equals("Local")){
+					if(selection.equals("Standard")){
+						StartGame start = new StartGame();
+						JPanel strt = start.start(frame, players, playerList);
+						
+						
+						frame.remove(mode);
+						frame.getContentPane().add(strt);
+					}
+					else if(selection.equals("Alternate")){
+						AlternateStart start = new AlternateStart();
+						JPanel strt = start.start(frame, players, playerList);
+						frame.remove(mode);
+						frame.getContentPane().add(strt);
+					}
 				}
-				else if(selection.equals("Alternate")){
-					AlternateStart start = new AlternateStart();
-					JPanel strt = start.start(frame, players, playerList);
-					frame.remove(mode);
-					frame.getContentPane().add(strt);
+				else if(type.equals("AI")){
+					if(selection.equals("Standard")){
+						StartStandardAI start = new StartStandardAI();
+						JPanel strt = start.start(frame, players, playerList);
+						
+						
+						frame.remove(mode);
+						frame.getContentPane().add(strt);
+					}
+					else if(selection.equals("Alternate")){
+						StartAlternateAI start = new StartAlternateAI();
+						JPanel strt = start.start(frame, players, playerList);
+						frame.remove(mode);
+						frame.getContentPane().add(strt);
+					}
 				}
 			}
 		});

@@ -3,10 +3,15 @@ package edu.plu.cs.farkle.client;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.io.File;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 
@@ -72,6 +77,17 @@ public class FarkleFrame {
 		height = screenSize.getHeight();
 		offsetWidth = (int)width/15;
 		offsetHeight = (int)height/15;	
+		
+		/*try{
+			String soundName = "/loop.wav";    
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.loop(clip.LOOP_CONTINUOUSLY);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}*/
+		
 		login();	
 	}
 	class ResizeListener implements ComponentListener {
