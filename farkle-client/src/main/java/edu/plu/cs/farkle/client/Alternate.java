@@ -2,7 +2,7 @@ package edu.plu.cs.farkle.client;
 
 import java.util.ArrayList;
 
-public class newGameplay extends Standard{
+public class Alternate extends Standard{
 	protected int score = 0;
 	protected int tempScore = 0;
 	protected int oneScore = 0;
