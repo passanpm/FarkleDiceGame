@@ -46,8 +46,9 @@ public class AI {
 	}
 	
 	/**
-	 * Picks best roll based on difficulty the player selected
-	 * @return
+	 * Picks best roll and returns and int[] array
+	 * Got help from here: http://stackoverflow.com/questions/80476/how-can-i-concatenate-two-arrays-in-java
+	 * @return allIndexes the int array that contains the indexes of scoring die
 	 */
 	public int[] mergeIndexes(){
 		int[] triple = setOfThrees();
