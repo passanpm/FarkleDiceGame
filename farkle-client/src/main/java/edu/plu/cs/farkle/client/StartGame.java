@@ -72,7 +72,7 @@ public class StartGame {
 	//private ArrayList<Player> playerList;
 	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
-	 Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
+	 Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
 	 private JLabel lblScore;
 	 private JLabel lblBankScore;
 	 private JButton btnRoll;
@@ -400,28 +400,33 @@ public void restart(){
 			dicePanel.setLayout(new GridLayout(3, 2, 50, 50));
 			
 			lblDice = new JLabel("");
-			lblDice.setPreferredSize(new Dimension(50, 50));
+			lblDice.setSize(new Dimension(50, 50));
 			dicePanel.add(lblDice);
 			
 			
 			label = new JLabel("");
-			label.setPreferredSize(new Dimension(50, 50));
+			label.setSize(new Dimension(50, 50));
+			label.setPreferredSize(new Dimension(50,50));
 			dicePanel.add(label);
 			
 			label_1 = new JLabel("");
-			label_1.setPreferredSize(new Dimension(50, 50));
+			label_1.setSize(new Dimension(50, 50));
+			label_1.setPreferredSize(new Dimension(50,50));
 			dicePanel.add(label_1);
 			
 			label_2 = new JLabel("");
-			label_2.setPreferredSize(new Dimension(50, 50));
+			label_2.setSize(new Dimension(50, 50));
+			label_2.setPreferredSize(new Dimension(50,50));
 			dicePanel.add(label_2);
 			
 			label_3 = new JLabel("");
-			label_3.setPreferredSize(new Dimension(50, 50));
+			label_3.setSize(new Dimension(50, 50));
+			label_3.setPreferredSize(new Dimension(50,50));
 			dicePanel.add(label_3);
 			
 			label_4 = new JLabel("");
-			label_4.setPreferredSize(new Dimension(50, 50));
+			label_4.setSize(new Dimension(50, 50));
+			label_4.setPreferredSize(new Dimension(50,50));
 			dicePanel.add(label_4);
 			
 			buttonPanel = new JPanel();
