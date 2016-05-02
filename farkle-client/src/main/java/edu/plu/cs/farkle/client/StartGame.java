@@ -604,7 +604,7 @@ public void restart(){
 				}
 					
 				roll = diceObj.getRoll();
-				die = roll.get(0);
+				//die = roll.get(0);
 			
 				blackout(lblDice, borderOption);
 				blackout(label, borderOption1);
@@ -622,13 +622,11 @@ public void restart(){
 				diceIMG(4, label_3);
 				diceIMG(5, label_4);
 				
-				updateScore();
-				
 				
 				lblBankScore.setText("Bank Score: " + tempScore);
 				btnRoll.setEnabled(false);
 				
-				zach = tempScore;
+				zach += tempScore;
 				standard.reset();
 			}
 		});
@@ -644,9 +642,15 @@ public void restart(){
 				}
 				
 				
-				
-				playerList.get(turn).setTotal(playerList.get(turn).getTotal()+zach+bankScore);
-
+				if(zach > 0){
+					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+zach+tempScore);
+				}
+				else if (tempScore > 0){
+					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+tempScore);
+				}
+				else if(tempScore > 0 && zach > 0){
+					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+(zach+tempScore));
+				}
 				lblScore.setText("Score: " + playerList.get(turn).getTotal());
 				bankScore = 0;
 				standard = new Standard();

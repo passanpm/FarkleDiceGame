@@ -37,7 +37,7 @@ public class Database {
 	static String password = user.getPass();
 
 
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		Database d = new Database(username, password);
 		System.out.println(1);
 		d.get();
@@ -68,7 +68,7 @@ public class Database {
 		
 		
 
-	}
+	}*/
 
 	public Database(String username, String password) {
 			Database.user.setName(username);

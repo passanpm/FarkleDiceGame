@@ -88,16 +88,29 @@ public class Options{
 		num.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		JPanel leaderPanel = new JPanel();
+		leaderPanel.setBackground(new Color(255, 250, 205));
 		mode.add(leaderPanel, BorderLayout.SOUTH);
 		
+		String data[][] = new String[db.user.getPlayers().size()][2];
+		System.out.println(db.user.getPlayers().size());
+		for(int i = 0; i < db.user.getPlayers().size(); i++){
+			data[i][0] = db.user.getPlayers().get(i).getName();
+			System.out.println("Username: " + db.user.getPlayers().get(i).getName());
+			
+			data[i][1] = String.valueOf(db.user.getPlayers().get(i).getWins());
+			System.out.println("Wins: " + db.user.getPlayers().get(i).getWins());
+		}
 		
+		String columnNames[] = {"Username", "Wins"};
 		
-		
-		//Leaderboard table
-		JTable leaderboard = new JTable();
+		//Leader board table
+		JTable leaderboard = new JTable(data, columnNames);
+		leaderboard.setVisible(true);
 		
 		
 		JScrollPane scroll = new JScrollPane();
+		leaderPanel.add(scroll);
+		scroll.setViewportView(leaderboard);
 		
 		comboBox.addItem("1");
 		comboBox.addItem("2");
