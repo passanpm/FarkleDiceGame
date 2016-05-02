@@ -64,10 +64,9 @@ public class newGameplay extends Standard{
 		
 		if(nums[0] > 0 || nums[4] > 0)
 			change = true;
-		
-		
-		
 
+		
+		int threePair = 0;
 		for(int i = 1; i < nums.length; i++){
 			if(nums[i]==3){
 				if(i != 4){
@@ -75,16 +74,97 @@ public class newGameplay extends Standard{
 					change = true;
 				}
 			}
+			//added for Full House
+			if(nums[i]==2){
+				bank+= 250;
+				threePair += 1;
+				change = true;
+				//if there have been three pairs add score
+				if(threePair == 3){
+					bank += 1500;
+					change = true;
+				}
+			}
+			//four of a kind
+			if(nums[i]==4){
+				bank += 2000;
+				change = true;
+			}
+			//five of a kind
+			if(nums[i]==5){
+				bank += 4000;
+				change = true;
+			}
+			//six of a kind
+			if(nums[i] == 6){
+				bank += 6000;
+				change = true;
+			}
+			
 		}
 		
+		//Straight Calculation
+		if(nums[0] == 1 && nums[1] == 1 && nums[2] == 1  && nums[3] == 1 && nums[4] == 1 && nums[5] == 1 ){
+			bank += 2500;
+			change = true;
+		}
+		
+		//no scoring dice automatic 500
+		if( (nums[1] < 3 && nums[1] > 0) && (nums[2] < 3 && nums[2] > 0) && (nums[3] < 3 && nums[3] > 0) && (nums[5] < 3 && nums[5] > 0)){
+			bank += 500;
+			change = true;
+		}
+		
+		
+		//farkle check
 		if( (nums[1] < 3 && nums[1] > 0) || (nums[2] < 3 && nums[2] > 0) || (nums[3] < 3 && nums[3] > 0) || (nums[5] < 3 && nums[5] > 0)){
 			change = false;
 		}
 		
 		tempScore = bank;
-		
 		return bank;
 	}
 	
+	/*
+	 * Unsure if this will be needed, but it's here just in case.
 	
+	public void addToSingle(int value){
+		single.add(value);
+	}
+
+	public void removeFromSingle(int die){
+		
+		boolean found = false;
+		int i = 0;
+		while(!found){
+			if(single.get(i)*-1==die){
+				single.remove(i);
+				found = true;
+			}
+			else
+				i++;
+		}
+	}
+	
+	public void clear(){
+		score = 0;
+		single.clear();
+	}
+	public void reset(){
+		single.clear();
+	}
+	
+	public int getTemp(){
+		return tempScore;
+	}
+	
+	public int getScore(){
+		return score;
+	}
+	
+	public boolean isChange(){
+		return change;
+	}
+	
+	*/
 }
