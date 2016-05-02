@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 
 public class FarkleFrame {	
@@ -62,7 +63,7 @@ public class FarkleFrame {
 		Dimension temp = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setSize(temp.width, temp.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		frame.addComponentListener(new ResizeListener());
 		

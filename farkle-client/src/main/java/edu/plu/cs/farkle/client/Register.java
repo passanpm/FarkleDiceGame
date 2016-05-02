@@ -23,11 +23,11 @@ public class Register {
 	 * @wbp.parser.entryPoint
 	 */
 	public JPanel register(JFrame frame){
-		Dimension screenSize = frame.getBounds().getSize();
-		double width = screenSize.getWidth();
-		double height = screenSize.getHeight();
-		int offsetWidth = (int)width/15;
-		int offsetHeight = (int)height/15;
+		//Dimension screenSize = frame.getBounds().getSize();
+		//double width = screenSize.getWidth();
+		//double height = screenSize.getHeight();
+		//int offsetWidth = (int)width/15;
+		//int offsetHeight = (int)height/15;
 		
 		JPanel register = new JPanel();
 		register.setBackground(new Color(255, 250, 205));

@@ -12,6 +12,9 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import javax.swing.SpringLayout;
@@ -26,7 +29,7 @@ public class Options{
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel options(JFrame frame, String name){
+	public JPanel options(JFrame frame, String name, Database db){
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		double width = screen.getWidth();
 		double height = screen.getHeight();
@@ -35,7 +38,7 @@ public class Options{
 		
 		JPanel mode = new JPanel();
 		mode.setBackground(new Color(255, 250, 205));
-		mode.setBounds(0, 0, (int)width, (int)height);
+	//	mode.setBounds(0, 0, (int)width, (int)height);
 		frame.getContentPane().add(mode);
 		mode.setLayout(new BorderLayout(0, 0));
 		
@@ -83,6 +86,19 @@ public class Options{
 		JLabel num = new JLabel("Select Number of Players");
 		playerPanel.add(num);
 		num.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
+		JPanel leaderPanel = new JPanel();
+		mode.add(leaderPanel, BorderLayout.SOUTH);
+		
+		
+		
+		
+		//Leaderboard table
+		JTable leaderboard = new JTable();
+		
+		
+		JScrollPane scroll = new JScrollPane();
+		
 		comboBox.addItem("1");
 		comboBox.addItem("2");
 		comboBox.addItem("3");

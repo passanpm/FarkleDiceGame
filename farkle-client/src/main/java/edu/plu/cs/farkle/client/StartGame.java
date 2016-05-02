@@ -26,6 +26,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.Border;
+import javax.swing.table.JTableHeader;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 
 public class StartGame {
@@ -74,6 +78,13 @@ public class StartGame {
 	 
 	 private JTextPane farkText;
 	 private JMenuItem mntmExit;
+	 private JPanel dicePanel;
+	 private JPanel WestPanel;
+	 private JPanel buttonPanel;
+	 private JPanel NorthPanel;
+	 private JPanel curPlayer;
+	 private JPanel scorePanels;
+	 private JPanel CenterPanel;
 	 
 ////////////METHODS///////////////
 		
@@ -230,21 +241,23 @@ public void updateScore() {
 public boolean blackout(JLabel dice, boolean b){
 	Color c=new Color(1f,0f,0f,0f );
 	if (b){
-		dice.setBorder(BorderFactory.createLineBorder(c, 50));
+		//dice.setBorder(BorderFactory.createLineBorder(c, 10));
+		dice.setVisible(false);
 	}
 	return b;	
 }
 
-public void removeBlackout(){
-	if (blackout(lblDice, borderOption)==blackout(label, borderOption1)&&
+public void removeBlackout(JLabel dice){
+	/*if (blackout(lblDice, borderOption)==blackout(label, borderOption1)&&
 			blackout(label, borderOption1==blackout(label_1, borderOption2)&&
 			blackout(label_1, borderOption2)==blackout(label_2, borderOption3)&&
 			blackout(label_2, borderOption3)==blackout(label_3, borderOption4)&&
 			blackout(label_3, borderOption4)==blackout(label_4, borderOption5)&&
 					blackout(label_4, borderOption5)==true
-		)){
+		)){*/
+		dice.setVisible(true);
 		restart();
-	}
+	//}
 }
 
 public void restart(){
@@ -296,13 +309,11 @@ public void restart(){
 			
 			game = new JPanel();
 			game.setBackground(new Color(0, 128, 0));
-			game.setBounds(0, 0, (int)width, (int)height);
 			frame.getContentPane().add(game);
-			game.setLayout(null);
+			game.setLayout(new BorderLayout());
 			
 			
-			JInternalFrame rules = new JInternalFrame("Rules");
-			rules.setBounds((int)width-offsetWidth*3, offsetHeight, 239, 271);
+			/*JInternalFrame rules = new JInternalFrame("Rules");
 			game.add(rules);
 			rules.setVisible(true);
 			rules.getContentPane().setLayout(null);
@@ -313,51 +324,7 @@ public void restart(){
 					+ "3 1's are worth 1000 points\n3 2's are worth 200 points\n");
 			txtpnWelcomeToFarkle.setEditable(false);
 			txtpnWelcomeToFarkle.setBounds(0, 0, 213, 230);
-			rules.getContentPane().add(txtpnWelcomeToFarkle);
-			
-			lblDice = new JLabel("");
-			lblDice.setBounds(106, 175, 50, 50);
-			game.add(lblDice);
-			
-			
-			label = new JLabel("");
-			label.setBounds(220, 175, 50, 50);
-			game.add(label);
-			
-			label_1 = new JLabel("");
-			label_1.setBounds(106, 274, 50, 50);
-			game.add(label_1);
-					
-			label_2 = new JLabel("");
-			label_2.setBounds(220, 274, 50, 50);
-			game.add(label_2);
-			
-			label_3 = new JLabel("");
-			label_3.setBounds(106, 374, 50, 50);
-			game.add(label_3);
-			
-			label_4 = new JLabel("");
-			label_4.setBounds(220, 374, 50, 50);
-			game.add(label_4);
-			
-			lblScore = new JLabel("Score: 0");
-			lblScore.setFont(new Font("Tahoma", Font.PLAIN, 21));
-			lblScore.setBounds((int)width/2, 42, 162, 57);
-			game.add(lblScore);
-			
-			lblBankScore = new JLabel("Bank Score: "+bankScore);
-			lblBankScore.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			lblBankScore.setBounds((int)width/2, 82, 162, 57);
-			game.add(lblBankScore);
-			
-			btnRoll = new JButton("Roll");
-			btnRoll.setBounds(106, 472, 164, 76);
-			game.add(btnRoll);
-			btnRoll.setEnabled(false);
-			
-			endTurn = new JButton("End Turn");
-			endTurn.setBounds(106, 568, 164, 76);
-			game.add(endTurn);
+			rules.getContentPane().add(txtpnWelcomeToFarkle);*/
 			
 			String data[][] = new String[playerList.size()][2];
 			for(int i = 0; i < playerList.size(); i++){
@@ -367,25 +334,9 @@ public void restart(){
 			
 			String columnNames[] = {"Player", "Score"};
 			
-			table = new JTable(data, columnNames);
-			
-			table.setBounds((int)width/2, (int)height/2-offsetHeight, 239, 131);
-			table.setVisible(true);
-			
-			JScrollPane pane = new JScrollPane();
-			pane.setBounds((int)width/2, (int)height/2-offsetHeight, 239, 131);
-			pane.setViewportView(table);
-			game.add(pane);
-			
-			currentPlayer = new JLabel("Current Player: ");
-			currentPlayer.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			currentPlayer.setBounds(106, 42, 232, 57);
-			game.add(currentPlayer);
-			
 
 			JMenuBar menuBar = new JMenuBar();
-			menuBar.setBounds(0, 0, (int)width, 21);
-			game.add(menuBar);
+			frame.getContentPane().add(menuBar, BorderLayout.NORTH);
 			
 			JMenu mnFile = new JMenu("File");
 			menuBar.add(mnFile);
@@ -412,6 +363,96 @@ public void restart(){
 				}
 			});
 			mnFile.add(mntmExit);
+			
+			WestPanel = new JPanel();
+			WestPanel.setBackground(new Color(0, 128, 0));
+			game.add(WestPanel, BorderLayout.WEST);
+			WestPanel.setLayout(new BorderLayout(0, 0));
+			
+			dicePanel = new JPanel();
+			dicePanel.setBackground(new Color(0, 128, 0));
+			WestPanel.add(dicePanel, BorderLayout.NORTH);
+			dicePanel.setLayout(new GridLayout(3, 2, 50, 50));
+			
+			lblDice = new JLabel("");
+			lblDice.setPreferredSize(new Dimension(50, 50));
+			dicePanel.add(lblDice);
+			
+			
+			label = new JLabel("");
+			label.setPreferredSize(new Dimension(50, 50));
+			dicePanel.add(label);
+			
+			label_1 = new JLabel("");
+			label_1.setPreferredSize(new Dimension(50, 50));
+			dicePanel.add(label_1);
+			
+			label_2 = new JLabel("");
+			label_2.setPreferredSize(new Dimension(50, 50));
+			dicePanel.add(label_2);
+			
+			label_3 = new JLabel("");
+			label_3.setPreferredSize(new Dimension(50, 50));
+			dicePanel.add(label_3);
+			
+			label_4 = new JLabel("");
+			label_4.setPreferredSize(new Dimension(50, 50));
+			dicePanel.add(label_4);
+			
+			buttonPanel = new JPanel();
+			buttonPanel.setBackground(new Color(0, 128, 0));
+			WestPanel.add(buttonPanel, BorderLayout.SOUTH);
+			
+			btnRoll = new JButton("Roll");
+			buttonPanel.add(btnRoll);
+			btnRoll.setEnabled(false);
+			
+			endTurn = new JButton("End Turn");
+			buttonPanel.add(endTurn);
+			
+			NorthPanel = new JPanel();
+			NorthPanel.setBackground(new Color(0, 128, 0));
+			game.add(NorthPanel, BorderLayout.NORTH);
+			NorthPanel.setLayout(new BorderLayout(0, 0));
+			
+			curPlayer = new JPanel();
+			curPlayer.setBackground(new Color(0, 128, 0));
+			NorthPanel.add(curPlayer, BorderLayout.WEST);
+			
+			currentPlayer = new JLabel("Current Player: ");
+			curPlayer.add(currentPlayer);
+			currentPlayer.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			
+			scorePanels = new JPanel();
+			scorePanels.setBackground(new Color(0, 128, 0));
+			NorthPanel.add(scorePanels, BorderLayout.SOUTH);
+			scorePanels.setLayout(new GridLayout(0, 2, 0, 0));
+			
+			lblScore = new JLabel("Score: 0");
+			scorePanels.add(lblScore);
+			lblScore.setFont(new Font("Tahoma", Font.PLAIN, 21));
+			
+			lblBankScore = new JLabel("Bank Score: "+bankScore);
+			scorePanels.add(lblBankScore);
+			lblBankScore.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			
+			CenterPanel = new JPanel();
+			CenterPanel.setBackground(new Color(0, 128, 0));
+			game.add(CenterPanel, BorderLayout.CENTER);
+			
+			table = new JTable(data, columnNames);
+			table.setBackground(new Color(0, 128, 0));
+			table.setGridColor(new Color(0, 128, 0));
+			JTableHeader head = table.getTableHeader();
+			head.setBackground(new Color(0, 128, 0));
+
+			table.setVisible(true);
+			
+			JScrollPane pane = new JScrollPane();
+			pane.getViewport().setBackground(new Color(0, 128, 0));
+			pane.setBorder(BorderFactory.createLineBorder(Color.black));
+			CenterPanel.add(pane);
+			pane.setViewportView(table);
 			
 			
 			playerTurn(playerList);
@@ -572,7 +613,7 @@ public void restart(){
 				blackout(label_3, borderOption4);
 				blackout(label_4, borderOption5);
 				
-				removeBlackout();
+				
 				
 				diceIMG(0, lblDice);
 				diceIMG(1, label);
@@ -587,7 +628,7 @@ public void restart(){
 				lblBankScore.setText("Bank Score: " + tempScore);
 				btnRoll.setEnabled(false);
 				
-				zach += tempScore;
+				zach = tempScore;
 				standard.reset();
 			}
 		});
@@ -604,7 +645,7 @@ public void restart(){
 				
 				
 				
-				playerList.get(turn).setTotal(playerList.get(turn).getTotal()+bankScore+zach);
+				playerList.get(turn).setTotal(playerList.get(turn).getTotal()+zach+bankScore);
 
 				lblScore.setText("Score: " + playerList.get(turn).getTotal());
 				bankScore = 0;
@@ -630,6 +671,13 @@ public void restart(){
 					currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
 					lblScore.setText("Score: " + playerList.get(turn).getTotal());
 				}
+				
+				removeBlackout(lblDice);
+				removeBlackout(label);
+				removeBlackout(label_1);
+				removeBlackout(label_2);
+				removeBlackout(label_3);
+				removeBlackout(label_4);
 			}
 		});
 		

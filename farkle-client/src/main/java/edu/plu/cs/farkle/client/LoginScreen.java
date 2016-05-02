@@ -139,10 +139,11 @@ public class LoginScreen {
 						
 						if (db.get()){
 							System.out.println("LOgin debug");
-							frame.remove(welcomePanel);
 							welcomePanel.setVisible(false);
+							frame.remove(welcomePanel);
+							
 							Options options = new Options();
-							JPanel mode = options.options(frame, test);
+							JPanel mode = options.options(frame, test, db);
 							frame.getContentPane().add(mode);
 						}
 						}
@@ -161,9 +162,9 @@ public class LoginScreen {
 				regButton.add(btnRegister);
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-					frame.remove(welcomePanel);
 					welcomePanel.setVisible(false);
+					frame.remove(welcomePanel);
+					//
 					
 					Register reg = new Register();
 					JPanel regis = reg.register(frame);
