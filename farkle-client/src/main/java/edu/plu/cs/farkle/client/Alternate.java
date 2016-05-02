@@ -79,7 +79,7 @@ public class Alternate extends Standard{
 				if(i != 4){
 					bank += (i+1)*100;
 					change = true;
-					System.out.println("Three Dice = "+i+". Added"+ ((i+1)*100));
+					System.out.println("Three Dice = "+(i+1)+". Added "+ ((i+1)*100));
 				}
 			}
 			//added for Full House
@@ -132,7 +132,7 @@ public class Alternate extends Standard{
 		}
 		
 		
-		//farkle check
+		//Farkle check
 		if( (nums[1] < 3 && nums[1] > 0) || (nums[2] < 3 && nums[2] > 0) || (nums[3] < 3 && nums[3] > 0) || (nums[5] < 3 && nums[5] > 0)){
 			change = false;
 		}
@@ -174,6 +174,7 @@ public class Alternate extends Standard{
 		score = 0;
 		single.clear();
 	}
+	
 	public void reset(){
 		single.clear();
 	}
