@@ -63,7 +63,7 @@ public class AI {
 	 * @return int[] index the array of indexes
 	 */
 	public int[] setOfThrees(){
-		int[] index = {0, 0, 0};
+		int[] index = new int[3];
 		ArrayList<Integer> check = hasThree();
 		System.out.println(check.toString());
 		for(int i = 1; i <= 6; i++){
@@ -99,5 +99,16 @@ public class AI {
 			count = 0;
 		}
 		return diceNumbers;
+	}
+	
+	private int[] oneOrFive(){
+		int[] indexes = new int[6];
+		int count = 0;
+		for(int j = 0; j < diceRoll.size(); j++){
+			if(diceRoll.get(j) == 1 || diceRoll.get(j) == 5){
+				indexes[count++] = j;
+			}
+			}
+		return indexes;
 	}
 }
