@@ -87,10 +87,12 @@ public class Alternate extends Standard{
 				bank+= 250;
 				threePair += 1;
 				change = true;
+				System.out.println("Pair: Added 250");
 				//if there have been three pairs add score
 				if(threePair == 3){
 					bank += 1500;
 					change = true;
+					System.out.println("Three Pair: Added 1500");
 				}
 			}
 			//four of a kind

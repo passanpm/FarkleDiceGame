@@ -64,7 +64,7 @@ public class crud {
         try{
         	if (database.auth(player)){
         		database = new redis();
-        		player.setPlayers(database.listPlayers());
+        		//player.setPlayers(database.listPlayers());
         	}else{
         		System.out.println("Player does not exist");
         	}

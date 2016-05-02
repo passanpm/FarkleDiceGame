@@ -9,8 +9,8 @@ public class testAI {
 		System.out.println("Hello, my name is " + a.getName() + " and my difficulty is " + a.getDifficulty());
 		a.roll();
 		
-		int[] indices = new int[3];
-		indices = a.setOfThrees();
+		int[] indices = new int[6];
+		indices = a.mergeIndexes();
 		
 		for(int i = 0; i< indices.length; i++)
 			System.out.print(indices[i] + ",");

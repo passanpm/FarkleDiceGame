@@ -46,17 +46,22 @@ public class AI {
 	}
 	
 	/**
-	 * Picks best roll based on difficulty the player selected
-	 * @return
+	 * Picks best roll and returns and int[] array
+	 * Got help from here: http://stackoverflow.com/questions/80476/how-can-i-concatenate-two-arrays-in-java
+	 * @return allIndexes the int array that contains the indexes of scoring die
 	 */
-	public int bestRoll(){
-		int score = 0;
-		
-		for(int i = 0; i < diceRoll.size(); i++){
-			
+	public int[] mergeIndexes(){
+		int[] triple = setOfThrees();
+		int[] singles = oneOrFive();
+		int[] allIndexes = new int[triple.length + singles.length];
+		try{
+			System.arraycopy(triple, 0, allIndexes, 0, triple.length);
+			System.arraycopy(singles, 0, allIndexes, triple.length, singles.length);
+		} catch (Exception e){
+			return null;
 		}
 		
-		return score;
+		return allIndexes;
 	}
 	/**
 	 * Checks to see if diceRoll has a set of threes and returns an array of the indexes of that set of three
