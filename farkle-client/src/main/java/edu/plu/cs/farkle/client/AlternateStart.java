@@ -37,9 +37,7 @@ import java.awt.GridLayout;
 
 
 public class AlternateStart {
-	
-
-	
+		
 	private int die, score, bankScore, tempScore, zach = 0;
 	
 	private Image img;
@@ -54,8 +52,6 @@ public class AlternateStart {
 	////////////////WINDOW VARIABLES\\\\\\\\\\	
 	
 	private JTextField txtScore;
-	
-
 	
 	private double width, height;
 	
