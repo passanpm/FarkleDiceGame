@@ -103,15 +103,15 @@ public class PlayerScreen {
 				if(type.equals("Local")){
 					if(selection.equals("Standard")){
 						StartGame start = new StartGame();
-						JPanel strt = start.start(frame, players, playerList);
+						JPanel strt = start.start(frame, players, playerList, 0);
 						
 						
 						frame.remove(mode);
 						frame.getContentPane().add(strt);
 					}
 					else if(selection.equals("Alternate")){
-						AlternateStart start = new AlternateStart();
-						JPanel strt = start.start(frame, players, playerList);
+						StartGame start = new StartGame();
+						JPanel strt = start.start(frame, players, playerList, 1);
 						frame.remove(mode);
 						frame.getContentPane().add(strt);
 					}
@@ -126,7 +126,7 @@ public class PlayerScreen {
 						frame.getContentPane().add(strt);
 					}
 					else if(selection.equals("Alternate")){
-						StartAlternateAI start = new StartAlternateAI();
+						StartStandardAI start = new StartStandardAI();
 						JPanel strt = start.start(frame, players, playerList);
 						frame.remove(mode);
 						frame.getContentPane().add(strt);

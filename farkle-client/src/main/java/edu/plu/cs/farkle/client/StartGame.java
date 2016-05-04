@@ -48,7 +48,7 @@ public class StartGame {
 	
 	private ArrayList<Integer> roll = new ArrayList<Integer>();
 	
-	private Standard standard = new Standard();
+	private Gameplay gameChoice;// = new gameChoice();
 	
 	
 	////////////////WINDOW VARIABLES\\\\\\\\\\	
@@ -90,6 +90,8 @@ public class StartGame {
 	 private JPanel scorePanels;
 	 private JPanel CenterPanel;
 	 private JPanel SouthPanel;
+	 
+	 private Color c;
 	 
 ////////////METHODS///////////////
 		
@@ -149,7 +151,7 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		}
 		
      	name.setBorder(border);
-     	standard.addToSingle(roll.get(diceID));
+     	gameChoice.addToSingle(roll.get(diceID));
      	bdrCheck = true;
      
 		
@@ -183,11 +185,11 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		diceObj.banking(diceID, roll.get(diceID));
 		updateScore();
 		
-		tempScore = standard.bankScore();
+		tempScore = gameChoice.bankScore();
 		lblBankScore.setText("Bank Score: " + (bankScore+zach));
 		
 		
-		if(standard.getTemp() > 0 && standard.isChange()){
+		if(gameChoice.getTemp() > 0 && gameChoice.isChange()){
 			btnRoll.setEnabled(true);
 			
 		}
@@ -205,9 +207,9 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 			ex.printStackTrace();
 		}
 		
-		standard.removeFromSingle(roll.get(diceID));
+		gameChoice.removeFromSingle(roll.get(diceID));
 		updateScore();
-		tempScore = standard.bankScore();
+		tempScore = gameChoice.bankScore();
 		
 		lblBankScore.setText("Bank Score: " + (tempScore+zach));
 		
@@ -244,7 +246,7 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 			btnRoll.setEnabled(true);
 		}
 		
-		if(standard.getTemp()==0){
+		if(gameChoice.getTemp()==0){
 			btnRoll.setEnabled(false);
 			
 		}
@@ -254,11 +256,11 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 }
 
 public void removeDice(JLabel label, int i){
-		standard.removeFromSingle(roll.get(i));
+		gameChoice.removeFromSingle(roll.get(i));
 }
 
 public void updateScore() {
-	bankScore = standard.bankScore();
+	bankScore = gameChoice.bankScore();
 }
 
 public boolean blackout(JLabel dice, boolean b){
@@ -323,17 +325,34 @@ public void restart(){
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList) {		
+	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList, int choice) {		
+		game = new JPanel();
+		frame.getContentPane().add(game);
+		game.setLayout(new BorderLayout());
+			if(choice == 0){
+				System.out.println("Choosing standard");
+				gameChoice = new Standard();
+				c = new Color(0, 128,0);
+				game.setBackground(c);
+			}
+			else if(choice == 1){
+				System.out.println("Choosing alternate");
+				gameChoice = new Alternate();
+				c = new Color(0, 255, 255);
+				game.setBackground(c);
+			}
+			
+		
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 			width = screen.getWidth();
 			height = screen.getHeight();
 			offsetWidth = (int)width/15;
 			offsetHeight = (int)height/15;
 			
-			game = new JPanel();
-			game.setBackground(new Color(0, 128, 0));
-			frame.getContentPane().add(game);
-			game.setLayout(new BorderLayout());
+			
+			
+			
+		
 			
 			
 			/*JInternalFrame rules = new JInternalFrame("Rules");
@@ -390,12 +409,12 @@ public void restart(){
 			mnFile.add(mntmExit);
 			
 			WestPanel = new JPanel();
-			WestPanel.setBackground(new Color(0, 128, 0));
+			WestPanel.setBackground(c);
 			game.add(WestPanel, BorderLayout.WEST);
 			WestPanel.setLayout(new BorderLayout(0, 0));
 			
 			dicePanel = new JPanel();
-			dicePanel.setBackground(new Color(0, 128, 0));
+			dicePanel.setBackground(c);
 			WestPanel.add(dicePanel, BorderLayout.NORTH);
 			dicePanel.setLayout(new GridLayout(3, 2, 50, 50));
 			
@@ -430,7 +449,7 @@ public void restart(){
 			dicePanel.add(label_4);
 			
 			buttonPanel = new JPanel();
-			buttonPanel.setBackground(new Color(0, 128, 0));
+			buttonPanel.setBackground(c);
 			WestPanel.add(buttonPanel, BorderLayout.SOUTH);
 			
 			btnRoll = new JButton("Roll");
@@ -441,12 +460,12 @@ public void restart(){
 			buttonPanel.add(endTurn);
 			
 			NorthPanel = new JPanel();
-			NorthPanel.setBackground(new Color(0, 128, 0));
+			NorthPanel.setBackground(c);
 			game.add(NorthPanel, BorderLayout.NORTH);
 			NorthPanel.setLayout(new BorderLayout(0, 0));
 			
 			curPlayer = new JPanel();
-			curPlayer.setBackground(new Color(0, 128, 0));
+			curPlayer.setBackground(c);
 			NorthPanel.add(curPlayer, BorderLayout.WEST);
 			
 			currentPlayer = new JLabel("Current Player: ");
@@ -454,7 +473,7 @@ public void restart(){
 			currentPlayer.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			
 			scorePanels = new JPanel();
-			scorePanels.setBackground(new Color(0, 128, 0));
+			scorePanels.setBackground(c);
 			NorthPanel.add(scorePanels, BorderLayout.SOUTH);
 			scorePanels.setLayout(new GridLayout(0, 2, 0, 0));
 			
@@ -467,30 +486,30 @@ public void restart(){
 			lblBankScore.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			
 			CenterPanel = new JPanel();
-			CenterPanel.setBackground(new Color(0, 128, 0));
+			CenterPanel.setBackground(c);
 			game.add(CenterPanel, BorderLayout.CENTER);
 			
 			table = new JTable(data, columnNames);
-			table.setBackground(new Color(0, 128, 0));
-			table.setGridColor(new Color(0, 128, 0));
+			table.setBackground(c);
+			table.setGridColor(c);
 			JTableHeader head = table.getTableHeader();
-			head.setBackground(new Color(0, 128, 0));
+			head.setBackground(c);
 
 			table.setVisible(true);
 			
 			JScrollPane pane = new JScrollPane();
-			pane.getViewport().setBackground(new Color(0, 128, 0));
+			pane.getViewport().setBackground(c);
 			pane.setBorder(BorderFactory.createLineBorder(Color.black));
 			CenterPanel.add(pane);
 			pane.setViewportView(table);
 			
 			SouthPanel = new JPanel();
 			game.add(SouthPanel, BorderLayout.SOUTH);
-			SouthPanel.setBackground(new Color(0, 128, 0));
+			SouthPanel.setBackground(c);
 			farkText = new JTextPane();
 			farkText.setText("");
 			
-			playerTurn(playerList);
+			playerTurn(playerList, choice);
 			
 			return game;
 		
@@ -498,7 +517,14 @@ public void restart(){
 	}
 	
 	
-	private void playerTurn(ArrayList<Player> playerList){
+	private void playerTurn(ArrayList<Player> playerList, int choice){
+	
+		if(choice == 0){
+			c = new Color(0, 128,0);
+		}
+		else if(choice == 1){
+			c = new Color(0, 255, 255);
+		}
 		
 		currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
 		System.out.println(playerList.get(turn).getName());
@@ -518,14 +544,14 @@ public void restart(){
 			}
 			farkText = new JTextPane();
 			farkText.setText("YOU FARKLED!!!");
-			farkText.setBackground(new Color(0, 128, 0));
+			farkText.setBackground(c);
 			farkText.setFont(new Font("Arial", Font.BOLD, 24));
 			farkText.setEditable(false);
 			//farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
 			SouthPanel.add(farkText);
 			
 			btnRoll.setEnabled(false);
-			standard.clear();
+			gameChoice.clear();
 		}
 		
 		/*
@@ -655,14 +681,14 @@ public void restart(){
 					zach = 0;
 					farkText = new JTextPane();
 					farkText.setText("YOU FARKLED!!!");
-					farkText.setBackground(new Color(0, 128, 0));
+					farkText.setBackground(c);
 					farkText.setFont(new Font("Arial", Font.BOLD, 24));
 					farkText.setEditable(false);
 					//farkText.setBounds((int)width/2, (int)height/2+offsetHeight, 500, 500);
 					SouthPanel.add(farkText);				
 					btnRoll.setEnabled(false);
 					
-					standard.clear();	
+					gameChoice.clear();	
 
 				}
 					
@@ -690,7 +716,7 @@ public void restart(){
 				btnRoll.setEnabled(false);
 				
 				zach += tempScore;
-				standard.reset();
+				gameChoice.reset();
 			}
 		});
 	
@@ -728,7 +754,7 @@ public void restart(){
 				if(playerList.get(turn).getTotal() > 10000){
 					farkText = new JTextPane();
 					farkText.setText(" " + playerList.get(turn).getName() + " Wins!");
-					farkText.setBackground(new Color(0, 128, 0));
+					farkText.setBackground(c);
 					farkText.setFont(new Font("Arial", Font.BOLD, 24));
 					farkText.setVisible(true);
 					farkText.setEditable(false);
@@ -749,7 +775,10 @@ public void restart(){
 				}
 				else{
 					bankScore = 0;
-					standard = new Standard();
+					if(choice == 0)
+						gameChoice = new Standard();
+					else if(choice == 1)
+						gameChoice = new Alternate();
 					lblDice.setBorder(null);
 					label.setBorder(null);
 					label_1.setBorder(null);
@@ -757,7 +786,7 @@ public void restart(){
 					label_3.setBorder(null);
 					label_4.setBorder(null);
 					restart();
-					standard.clear();
+					gameChoice.clear();
 	
 					table.setValueAt(String.valueOf(playerList.get(turn).getTotal()), turn, 1);
 					
@@ -805,7 +834,7 @@ public void restart(){
 			
 			farkText = new JTextPane();
 			farkText.setText("YOU FARKLED!!!");
-			farkText.setBackground(new Color(0, 128, 0));
+			farkText.setBackground(c);
 			farkText.setFont(new Font("Arial", Font.BOLD, 24));
 			farkText.setEditable(false);
 			SouthPanel.add(farkText);
@@ -813,7 +842,7 @@ public void restart(){
 			
 			btnRoll.setEnabled(false);
 			
-			standard.clear();
+			gameChoice.clear();
 			
 		}
 	
