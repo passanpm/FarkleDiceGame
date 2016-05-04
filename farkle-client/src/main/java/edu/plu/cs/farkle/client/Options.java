@@ -18,6 +18,9 @@ import javax.swing.JTable;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import javax.swing.SpringLayout;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
 
@@ -100,10 +103,20 @@ public class Options{
 		
 		String columnNames[] = {"Username", "Wins"};
 		
+		
+		
+		
+		
 		//Leader board table
 		JTable leaderboard = new JTable(data, columnNames);
 		leaderboard.setVisible(true);
+		leaderboard.setBackground(new Color(255, 250, 205));
+		leaderboard.setGridColor(new Color(255, 250, 205));
+		leaderboard.setEnabled(false);
 		
+		
+		JTableHeader head = leaderboard.getTableHeader();
+		head.setBackground(new Color(255, 250, 205));
 		
 		JScrollPane scroll = new JScrollPane();
 		leaderPanel.add(scroll);
@@ -122,7 +135,7 @@ public class Options{
 				
 				
 				PlayerScreen player = new PlayerScreen();
-				JPanel start = player.initialize(frame, numPlayers, "AI");
+				JPanel start = player.initialize(frame, numPlayers, "AI", name);
 				
 				frame.getContentPane().add(start);
 				
@@ -136,7 +149,7 @@ public class Options{
 				
 				
 				PlayerScreen player = new PlayerScreen();
-				JPanel start = player.initialize(frame, numPlayers, "Local");
+				JPanel start = player.initialize(frame, numPlayers, "Local", name);
 				
 				frame.getContentPane().add(start);
 				

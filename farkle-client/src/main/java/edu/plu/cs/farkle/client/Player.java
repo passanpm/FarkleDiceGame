@@ -10,7 +10,7 @@ public class Player {
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private int wins;
 	private int total;
-	
+
 	public Player(){
 		name = "user";
 		pass = "pass";
