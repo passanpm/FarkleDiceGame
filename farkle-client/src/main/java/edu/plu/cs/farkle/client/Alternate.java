@@ -14,9 +14,11 @@ public class Alternate extends Gameplay{
 		int bank = 0;
 		nums = new int[6];
 		
+		//Clear the array
 		for(int i = 0; i < nums.length; i++)
 			nums[i] = 0;
 		
+		//Find how many of each value have been selected
 		for(int i = 0; i < single.size(); i++){
 			switch(single.get(i)){
 				case 1:
@@ -49,6 +51,7 @@ public class Alternate extends Gameplay{
 				}
 			
 		}
+		
 		//There is a set of dice with value 1
 		if(nums[0] == 3){
 			bank += 700;
@@ -66,9 +69,9 @@ public class Alternate extends Gameplay{
 
 		
 		int threePair = 0;
-		for(int i = 1; i < nums.length; i++){
+		for(int i = 0; i < nums.length; i++){
 			if(nums[i]==3){
-				if(i != 4){
+				if(i != 4 && i != 0){
 					bank += (i+1)*100;
 					change = true;
 					System.out.println("Three Dice = "+(i+1)+". Added "+ ((i+1)*100));
@@ -76,11 +79,13 @@ public class Alternate extends Gameplay{
 			}
 			//added for Full House
 			if(nums[i]==2){
-				bank+= 250;
 				threePair += 1;
-				change = true;
-				System.out.println("Pair: Added 250");
-				//if there have been three pairs add score
+				if(nums[i]==3){
+					bank+= 250;
+					change = true;
+					System.out.println("Full House: Added 250");
+				}
+				//if there are three pairs add score
 				if(threePair == 3){
 					bank += 1500;
 					change = true;
@@ -89,19 +94,46 @@ public class Alternate extends Gameplay{
 			}
 			//four of a kind
 			if(nums[i]==4){
-				bank += 2000;
+				if(i==0){
+					bank += 1600;
+					System.out.println("Bank: "+bank);
+				}
+				else if(i==4){
+					bank += 1800;
+					System.out.println("Bank: "+bank);
+				}
+				else{
+					bank += 2000;
+					System.out.println("Bank: "+bank);
+				}
 				change = true;
 				System.out.println("Four of a kind: Added 2000");
 			}
 			//five of a kind
 			if(nums[i]==5){
-				bank += 4000;
+				if(i==0){
+					bank += 3600;
+				}
+				else if(i==4){
+					bank += 3800;
+				}
+				else{
+					bank += 4000;
+				}
 				change = true;
 				System.out.println("Five of a kind: Added 4000");
 			}
 			//six of a kind
 			if(nums[i] == 6){
-				bank += 6000;
+				if(i==0){
+					bank += 5600;
+				}
+				else if(i==4){
+					bank += 5800;
+				}
+				else{
+					bank += 6000;
+				}
 				change = true;
 				System.out.println("Six of a kind: Added 6000");
 			}
@@ -123,7 +155,6 @@ public class Alternate extends Gameplay{
 			System.out.println("No Scoring Dice: Added 500");
 		}
 		
-		
 		//Farkle check
 		if( (nums[1] < 3 && nums[1] > 0) || (nums[2] < 3 && nums[2] > 0) || (nums[3] < 3 && nums[3] > 0) || (nums[5] < 3 && nums[5] > 0)){
 			change = false;
@@ -132,6 +163,7 @@ public class Alternate extends Gameplay{
 		tempScore = bank;
 		return bank;
 	}
+	
 
 	/**
 	 * FOR TESTING USE ONLY!
