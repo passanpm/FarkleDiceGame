@@ -128,9 +128,11 @@ public class PlayerScreen {
 					}
 				}
 				else if(type.equals("AI")){
+					playerList.add(new AI(1, "AI"));
+					
 					if(selection.equals("Standard")){
 						StartStandardAI start = new StartStandardAI();
-						JPanel strt = start.start(frame, players, playerList);
+						JPanel strt = start.start(frame, players, playerList, 0);
 						
 						
 						frame.remove(mode);
@@ -138,7 +140,7 @@ public class PlayerScreen {
 					}
 					else if(selection.equals("Alternate")){
 						StartStandardAI start = new StartStandardAI();
-						JPanel strt = start.start(frame, players, playerList);
+						JPanel strt = start.start(frame, players, playerList, 1);
 						frame.remove(mode);
 						frame.getContentPane().add(strt);
 					}

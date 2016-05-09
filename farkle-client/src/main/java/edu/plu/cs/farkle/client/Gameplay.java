@@ -14,6 +14,8 @@ public abstract class Gameplay {
 	
 	public abstract int bankScore();
 	
+	public abstract int aiBankScore(ArrayList<Integer> aiRoll);
+	
 	public void addToSingle(int value){
 		single.add(value);
 	}

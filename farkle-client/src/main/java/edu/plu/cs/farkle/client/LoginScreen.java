@@ -151,6 +151,9 @@ public class LoginScreen {
 									JPanel mode = options.options(frame, test, db);
 									frame.getContentPane().add(mode);
 								}
+								else{
+									lblUsername.setForeground(Color.red);
+								}
 								}
 								
 								

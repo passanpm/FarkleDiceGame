@@ -174,5 +174,10 @@ public class Alternate extends Gameplay{
 		}
 	}
 	
+	public int aiBankScore(ArrayList<Integer> aiRoll){
+		single = aiRoll;
+		return bankScore();
+	}
+	
 	
 }

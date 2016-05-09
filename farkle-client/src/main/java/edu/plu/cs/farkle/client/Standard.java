@@ -69,6 +69,10 @@ public class Standard extends Gameplay{
 		
 		return bank;
 	}
-
+	
+	public int aiBankScore(ArrayList<Integer> aiRoll){
+		single = aiRoll;
+		return bankScore();
+	}
 
 }
