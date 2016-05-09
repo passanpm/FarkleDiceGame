@@ -59,7 +59,7 @@ public class PlayerScreen {
 		JPanel textBoxHolder = new JPanel();
 		mode.add(textBoxHolder, BorderLayout.CENTER);
 		textBoxHolder.setBackground(new Color(255, 250, 205));
-		textBoxHolder.setLayout(new GridLayout(4,0,0, offsetHeight));
+		textBoxHolder.setLayout(new GridLayout(4, 1, 0, 0));
 		
 		JPanel textBoxPanel = new JPanel();
 		textBoxHolder.add(textBoxPanel);

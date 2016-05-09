@@ -35,6 +35,7 @@ import javax.swing.table.JTableHeader;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import javax.swing.border.MatteBorder;
 
 
 public class StartGame {
@@ -328,6 +329,7 @@ public void restart(){
 	 */
 	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList, int choice) {		
 		game = new JPanel();
+		game.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		frame.getContentPane().add(game);
 		game.setLayout(new BorderLayout());
 			if(choice == 0){
@@ -699,7 +701,7 @@ public void restart(){
 				}
 				lblScore.setText("Score: " + playerList.get(turn).getTotal());
 				
-				if(playerList.get(turn).getTotal() > 10000){
+				if(playerList.get(turn).getTotal() >= 10000){
 					farkText = new JTextPane();
 					farkText.setText(" " + playerList.get(turn).getName() + " Wins!");
 					farkText.setBackground(c);
@@ -720,6 +722,10 @@ public void restart(){
 					
 					endTurn.setEnabled(false);
 					btnRoll.setEnabled(false);
+					
+					
+					playerList.get(turn).setWins(playerList.get(turn).getWins()+1);
+					System.out.println("Wins: " + playerList.get(turn).getWins());
 				}
 				else{
 					lastTemp = 0;

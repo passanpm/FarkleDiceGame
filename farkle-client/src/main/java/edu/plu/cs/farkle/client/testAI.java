@@ -1,5 +1,5 @@
 package edu.plu.cs.farkle.client;
-import edu.plu.cs.farkle.client.AI;
+//import edu.plu.cs.farkle.client.AI;
 
 public class testAI {
 
