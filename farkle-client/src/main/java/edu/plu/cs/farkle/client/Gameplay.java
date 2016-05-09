@@ -54,7 +54,37 @@ public abstract class Gameplay {
 		return change;
 	}
 	
-
-	
+	public void countDice(){
+		nums = new int[6];
+		
+		//Clear the array
+		for(int i = 0; i < nums.length; i++)
+			nums[i] = 0;
+		
+		//Find how many of each value have been selected
+		for(int i = 0; i < single.size(); i++){
+			switch(single.get(i)){
+				case 1:
+					nums[0] += 1;
+					break;
+				case 2:
+					nums[1] += 1;
+					break;
+				case 3:
+					nums[2] += 1;
+					break;
+				case 4:
+					nums[3] += 1;
+					break;
+				case 5: 
+					nums[4] += 1;
+					break;
+				case 6: 
+					nums[5] += 1;
+					break;
+			}
+			
+		}
+	}
 	
 }
