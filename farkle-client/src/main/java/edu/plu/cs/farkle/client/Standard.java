@@ -13,6 +13,7 @@ public class Standard extends Gameplay{
 			nums[i] = 0;
 		
 		for(int i = 0; i < single.size(); i++){
+			System.out.println("single at " + i +": " + single.get(i));
 			switch(single.get(i)){
 				case 1:
 					nums[0] += 1;
@@ -73,6 +74,10 @@ public class Standard extends Gameplay{
 	public int aiBankScore(ArrayList<Integer> aiRoll){
 		single = aiRoll;
 		return bankScore();
+	}
+	public void clear(){
+		single.clear();
+		System.out.println(single.toString());
 	}
 
 }

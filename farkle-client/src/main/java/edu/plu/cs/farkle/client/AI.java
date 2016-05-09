@@ -41,6 +41,10 @@ public class AI extends Player{
 	public int getDifficulty(){
 		return difficulty;
 	}
+	
+	public void setRoll(ArrayList<Integer> thisDice){
+		diceRoll = thisDice;
+	}
 	/**
 	 * Rolls the dice and stores the result in diceRoll
 	 * @return
@@ -55,6 +59,7 @@ public class AI extends Player{
 	 * @return
 	 */
 	public ArrayList<Integer> getScore(){
+		System.out.println("DIceRoll: " + diceRoll.toString());
 		return diceScores;
 	}
 	/**
