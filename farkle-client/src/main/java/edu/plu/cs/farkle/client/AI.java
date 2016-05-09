@@ -66,7 +66,6 @@ public class AI extends Player{
 		oneOrFive();
 		return indexesOfAllScoringDice;
 	}
-	
 	/**
 	 * Checks to see if diceRoll has a set of threes and returns an array of the indexes of that set of three
 	 * @return int[] index the array of indexes

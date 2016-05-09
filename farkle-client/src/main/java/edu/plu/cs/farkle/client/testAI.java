@@ -3,16 +3,17 @@ package edu.plu.cs.farkle.client;
 
 public class testAI {
 
-
 	public static void main(String[] args) {
+		
 		AI a = new AI(1, "Boot Loop");
+		
 		System.out.println("Hello, my name is " + a.getName() + " and my difficulty is " + a.getDifficulty());
-		//a.roll();
+		
 		System.out.println(a.roll().toString());
-		//indices = a.mergeIndexes();
 		
 		System.out.println(a.getIndexes().toString());
-		System.out.println("\n" + a.getScore().toString());
+		
+		System.out.println(a.getScore().toString());
 	}
 	
 	
