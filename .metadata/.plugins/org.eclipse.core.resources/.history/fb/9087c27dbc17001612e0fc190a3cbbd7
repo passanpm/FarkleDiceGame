@@ -33,8 +33,9 @@ public class Database {
 
 
 	public static Player user = new Player();
-	String username = "null";
-	String password = "null";
+	String username = "user";
+	String password = "pass";
+
 	static Database d = new Database("jon", "pass");
 
 	public Database(String username, String password) {
@@ -61,7 +62,8 @@ public class Database {
 		Client client = null;
 		try {
 			client = ClientBuilder.newClient();
-			
+
+
 			ResteasyWebTarget resteasyWebTarget = (ResteasyWebTarget)client.target("http://localhost:8080/farkle/crud");
 			resteasyWebTarget.register(new BasicAuthentication(username, password));
 
@@ -119,21 +121,19 @@ public class Database {
 						System.out.println("POST: " + user.getName());
 
 						//build json with new data from player
+				    	System.out.println("TEST1");
 						((ObjectNode)node).put("name", user.getName());
 						((ObjectNode)node).put("pass", user.getPass());
 						((ObjectNode)node).put("wins", Integer.toString(user.getWins()));
 						((ObjectNode)node).put("total", Integer.toString(user.getTotal()));
-		
-						
-						client = ClientBuilder.newClient();
-
-
-						ResteasyWebTarget resteasyWebTarget2 = (ResteasyWebTarget)client.target("http://localhost:8080/farkle/crud");
+						System.out.println("TEST2");
 						
 						
-						resteasyWebTarget2.request().post(u);
+						resteasyWebTarget.request().post(u, node);
+						System.out.println("TEST3");
 						username = user.getName();
 						password = user.getPass();
+						System.out.println("TEST4");
 						//debug
 						System.out.println(node.toString());	
 						break;	

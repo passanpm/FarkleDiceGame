@@ -36,6 +36,7 @@ public class Database {
 	String username = "null";
 	String password = "null";
 	static Database d = new Database("jon", "pass");
+	client = ClientBuilder.newClient();
 
 	public Database(String username, String password) {
 			this.username = username;
@@ -60,7 +61,6 @@ public class Database {
 		
 		Client client = null;
 		try {
-			client = ClientBuilder.newClient();
 			
 			ResteasyWebTarget resteasyWebTarget = (ResteasyWebTarget)client.target("http://localhost:8080/farkle/crud");
 			resteasyWebTarget.register(new BasicAuthentication(username, password));
