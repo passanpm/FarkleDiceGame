@@ -103,7 +103,8 @@ public class Database {
 					
 				case "post":
 					
-
+				    try
+				    {
 						//debug
 						
 						Player neww = new Player();
@@ -113,8 +114,10 @@ public class Database {
 						user = old;
 						System.out.println("-----------------> " + user.getName());
 						
-						client.close();
-						d.init("delete");
+						System.out.println("DELETE: " + user.getName());
+						
+						resteasyWebTarget.request().delete();
+		
 						
 						user = neww;
 						System.out.println("-----------------> " + user.getName());
@@ -122,8 +125,12 @@ public class Database {
 						username = user.getName();
 						password = user.getPass();
 						
+						client.close();
+						d.init("get");
 						System.out.println("POST: " + user.getName());
-
+				    }
+				    finally
+				    {
 						//build json with new data from player
 				    	System.out.println("TEST");
 						((ObjectNode)node).put("name", user.getName());
@@ -132,7 +139,6 @@ public class Database {
 						((ObjectNode)node).put("total", Integer.toString(user.getTotal()));
 						System.out.println("TEST");
 						
-
 						resteasyWebTarget.request().post(u);
 						System.out.println("TEST");
 						username = user.getName();
@@ -141,7 +147,7 @@ public class Database {
 						//debug
 						System.out.println(node.toString());	
 						break;	
-				    
+				    }
 					
 
 					

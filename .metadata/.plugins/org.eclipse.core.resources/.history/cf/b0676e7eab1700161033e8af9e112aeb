@@ -103,7 +103,8 @@ public class Database {
 					
 				case "post":
 					
-
+				    try
+				    {
 						//debug
 						
 						Player neww = new Player();
@@ -122,8 +123,12 @@ public class Database {
 						username = user.getName();
 						password = user.getPass();
 						
+						client.close();
+						d.init("get");
 						System.out.println("POST: " + user.getName());
-
+				    }
+				    finally
+				    {
 						//build json with new data from player
 				    	System.out.println("TEST");
 						((ObjectNode)node).put("name", user.getName());
@@ -141,7 +146,7 @@ public class Database {
 						//debug
 						System.out.println(node.toString());	
 						break;	
-				    
+				    }
 					
 
 					

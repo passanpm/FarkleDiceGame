@@ -122,6 +122,8 @@ public class Database {
 						username = user.getName();
 						password = user.getPass();
 						
+						client.close();
+						d.init("get");
 						System.out.println("POST: " + user.getName());
 
 						//build json with new data from player
