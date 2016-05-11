@@ -39,6 +39,7 @@ public class Rules {
 							"\nFour of a Kind = 2000\nFive of a Kind = 4000\nSix of a Kind = 6000");
 			c = new Color(0, 255, 255);
 		}
+		ruleList.setEditable(false);
 		rulePanel.setBackground(c);
 		rule.setBackground(c);
 		

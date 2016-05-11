@@ -362,7 +362,6 @@ public void restart(){
 			JMenuItem newGame = new JMenuItem("New Game");
 			newGame.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e){
-					System.out.println("NEW GAME YE");
 					resetEverything(playerList);
 					playerTurn(playerList, choice);
 					game.revalidate();
