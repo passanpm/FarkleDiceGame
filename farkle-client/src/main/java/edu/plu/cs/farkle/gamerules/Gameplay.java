@@ -10,7 +10,7 @@ public abstract class Gameplay {
 	
 	protected static ArrayList<Integer> single = new ArrayList<Integer>();
 	
-	boolean change = false;
+	protected boolean change = false;
 	
 	public abstract int bankScore();
 	
