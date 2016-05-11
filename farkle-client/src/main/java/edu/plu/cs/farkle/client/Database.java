@@ -33,9 +33,8 @@ public class Database {
 
 
 	public static Player user = new Player();
-	String username = "user";
-	String password = "pass";
-
+	String username = "null";
+	String password = "null";
 	static Database d = new Database("jon", "pass");
 
 	public Database(String username, String password) {
@@ -62,8 +61,7 @@ public class Database {
 		Client client = null;
 		try {
 			client = ClientBuilder.newClient();
-
-
+			
 			ResteasyWebTarget resteasyWebTarget = (ResteasyWebTarget)client.target("http://localhost:8080/farkle/crud");
 			resteasyWebTarget.register(new BasicAuthentication(username, password));
 
@@ -108,36 +106,34 @@ public class Database {
 						
 						Player neww = new Player();
 						neww = user;
-						System.out.println("-----------------> " + neww.getName());
 						Player old = new Player(username, password);
 						user = old;
-						System.out.println("-----------------> " + user.getName());
 						
 						client.close();
 						d.init("delete");
 						
 						user = neww;
-						System.out.println("-----------------> " + user.getName());
-						System.out.println("-----------------> " + username);
 						username = user.getName();
 						password = user.getPass();
 						
 						System.out.println("POST: " + user.getName());
 
 						//build json with new data from player
-				    	System.out.println("TEST");
 						((ObjectNode)node).put("name", user.getName());
 						((ObjectNode)node).put("pass", user.getPass());
 						((ObjectNode)node).put("wins", Integer.toString(user.getWins()));
 						((ObjectNode)node).put("total", Integer.toString(user.getTotal()));
-						System.out.println("TEST");
+		
+						
+						client = ClientBuilder.newClient();
+
+
+						ResteasyWebTarget resteasyWebTarget2 = (ResteasyWebTarget)client.target("http://localhost:8080/farkle/crud");
 						
 						
-						resteasyWebTarget.request().post(u);
-						System.out.println("TEST");
+						resteasyWebTarget2.request().post(u);
 						username = user.getName();
 						password = user.getPass();
-						System.out.println("TEST");
 						//debug
 						System.out.println(node.toString());	
 						break;	
@@ -178,8 +174,9 @@ public class Database {
 			}
 			
 		} catch (Exception e) {
-		}
+		}finally{
 		client.close();
+		}
 		return false;
 	}
 	
