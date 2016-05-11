@@ -312,6 +312,15 @@ public void restart(){
 	
 	}
 
+	private void resetEverything(ArrayList<Player> playerList){
+		for(int i = 0; i < playerList.size(); i++){
+			playerList.get(i).setTotal(0);
+		}
+		zach = 0;
+		tempScore = 0;
+		score = 0;
+	}
+
 	/**
 	 * @wbp.parser.entryPoint
 	 */
@@ -348,6 +357,19 @@ public void restart(){
 			
 			JMenu mnFile = new JMenu("File");
 			menuBar.add(mnFile);
+			
+			//New Game Button
+			JMenuItem newGame = new JMenuItem("New Game");
+			newGame.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e){
+					System.out.println("NEW GAME YE");
+					resetEverything(playerList);
+					playerTurn(playerList, choice);
+					game.revalidate();
+					game.repaint();
+				}
+			});
+			mnFile.add(newGame);
 			
 			//Sign out button
 			JMenuItem mntmSignOut = new JMenuItem("Sign Out");
