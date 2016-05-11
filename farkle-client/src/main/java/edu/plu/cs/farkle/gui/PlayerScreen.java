@@ -92,14 +92,14 @@ public class PlayerScreen {
 				if(selection.equals("Standard")){
 					mode.setVisible(false);
 					Rules rules = new Rules();
-					JPanel rulePanel = rules.rules(0);
+					JPanel rulePanel = rules.rules(0, frame, players, type, name);
 					frame.remove(mode);
 					frame.getContentPane().add(rulePanel);
 				}
 				else if(selection.equals("Alternate")){
 					mode.setVisible(false);
 					Rules rules = new Rules();
-					JPanel rulePanel = rules.rules(1);
+					JPanel rulePanel = rules.rules(1, frame, players, type, name);
 					
 					frame.remove(mode);
 					frame.getContentPane().add(rulePanel);
