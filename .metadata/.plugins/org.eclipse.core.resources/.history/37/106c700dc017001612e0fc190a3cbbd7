@@ -174,9 +174,8 @@ public class Database {
 			}
 			
 		} catch (Exception e) {
-		}finally{
-		client.close();
 		}
+		client.close();
 		return false;
 	}
 	

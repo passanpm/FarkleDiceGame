@@ -58,9 +58,8 @@ public class Database {
 	@SuppressWarnings("finally")
 	public boolean init(String action){
 		
-		Client client = null;
 		try {
-			client = ClientBuilder.newClient();
+			Client client = ClientBuilder.newClient();
 			
 			ResteasyWebTarget resteasyWebTarget = (ResteasyWebTarget)client.target("http://localhost:8080/farkle/crud");
 			resteasyWebTarget.register(new BasicAuthentication(username, password));
@@ -174,9 +173,8 @@ public class Database {
 			}
 			
 		} catch (Exception e) {
-		}finally{
-		client.close();
 		}
+		client.close();
 		return false;
 	}
 	
