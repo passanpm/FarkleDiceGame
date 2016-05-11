@@ -32,7 +32,7 @@ public class Database {
 
 
 
-	public static Player user = new Player();
+	static Player user = new Player();
 	String username = "user";
 	String password = "pass";
 
