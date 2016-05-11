@@ -10,7 +10,7 @@ public class serverTest extends Database{
 	public static void main(String[] args){
 		
 		System.out.println(1);
-		d.get();
+		//d.get();
 		
 		
 		System.out.println(2);
@@ -38,7 +38,6 @@ public class serverTest extends Database{
 		
 		System.out.println(7);
 		d.get();
-		
 		
 		
 		
