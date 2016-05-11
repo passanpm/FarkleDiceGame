@@ -37,9 +37,9 @@ public class Database {
 	String password = "pass";
 
 	public static void main(String[] args){
-		Database d = new Database("user", "pass");
+		Database d = new Database("jon", "pass");
 		System.out.println(1);
-		d.get();
+		//d.get();
 		
 		
 		System.out.println(2);
@@ -77,7 +77,7 @@ public class Database {
 			this.username = username;
 			this.password = password;
 	}
-	
+
 	public void put(){
 		init("put");
 	}
@@ -92,6 +92,7 @@ public class Database {
 	}
 	
 	public boolean init(String action){
+		
 		Client client = null;
 		try {
 			client = ClientBuilder.newClient();
@@ -128,6 +129,7 @@ public class Database {
 						
 						//debug
 						System.out.println("DELETE: " + user.getName());
+						user = new Player();
 						return true;
 					} catch (Exception e) {
 						return false;
@@ -144,6 +146,7 @@ public class Database {
 					((ObjectNode)node).put("wins", Integer.toString(user.getWins()));
 					((ObjectNode)node).put("total", Integer.toString(user.getTotal()));
 					
+					
 					resteasyWebTarget.request().post(u);
 					
 					username = user.getName();
@@ -156,7 +159,10 @@ public class Database {
 					
 					try {
 						//call get
-						resteasyWebTarget.request().get();
+						if (resteasyWebTarget.request().get().equals("null")){
+							System.out.println("GET: Player does not exist");
+							return false;
+						}
 						
 						
 						//update player class
