@@ -48,31 +48,36 @@ public class crud {
 	@Produces("application/json")
 	public String get(@Context SecurityContext ctx ) {
 		System.out.println("ATTEMPTING TO GET");
-		// If the principal is null, then authentication failed.
-		String authString = "yes";
-		if( ctx.getUserPrincipal() == null ) {
-			authString = "no";
-			return null;
-		}
-        
-		 //Split username and password tokens
+		
+		//Split username and password tokens
         final StringTokenizer tokenizer = new StringTokenizer(ctx.getUserPrincipal().getName(), ":");
         player.setName(tokenizer.nextToken());
         player.setPass(tokenizer.nextToken());
-		
         
-        try{
-        	if (database.auth(player)){
-        		database = new redis();
-        		player.setPlayers(database.listPlayers());
-        	}else{
-        		System.out.println("Player does not exist");
-        		//return null; ----------------------------
-        	}
-        }catch (NullPointerException e){
-        	System.out.println("error");
-        }
+        	
+    		// If the principal is null, then authentication failed.
+    		String authString = "yes";
+    		if( ctx.getUserPrincipal() == null ) {
+    			authString = "no";
+    			return null;
+    		}
+            
+    		 
+    		
+            
+            try{
+            	if (database.auth(player)){
+            		database = new redis();
+            		player.setPlayers(database.listPlayers());
+            	}else{
+            		System.out.println("Player does not exist");
+            		return "null"; 
+            	}
+            }catch (NullPointerException e){
+            	System.out.println("error");
+            }
 
+		
 		
 		String json = String.format("{ "
 				+ " \"name\" : \"%s\","
@@ -81,8 +86,8 @@ public class crud {
 				+ " \"total\" : \"%s\","
 				+ " \"players\" : \"%s\" }"
 				, player.getName(), player.getPass(), player.getWins(), player.getTotal(), player.getPlayers());
-		return json;
 	
+		return json;
 		
 	}
 	
@@ -94,6 +99,7 @@ public class crud {
 		String authString = "yes";
 		if( ctx.getUserPrincipal() == null ) {
 			authString = "no";
+
 			return false;
 		}
 		
@@ -136,13 +142,10 @@ public class crud {
         	database.removePlayer(player.getName());
         	player = new player();
         	database = new redis();
-
         	return true;
 
         }catch (NullPointerException e){
         	System.out.println("deletion error");
-        	database = new redis();
-
         	return false;
         }
 
@@ -187,7 +190,6 @@ public class crud {
         
         database.listPlayers();
         database = new redis();
-		
 		
 	}
 	
