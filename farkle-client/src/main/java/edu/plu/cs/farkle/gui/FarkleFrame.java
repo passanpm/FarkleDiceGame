@@ -1,4 +1,4 @@
-package edu.plu.cs.farkle.client;
+package edu.plu.cs.farkle.gui;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -13,15 +13,14 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.io.File;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
+
 
 public class FarkleFrame {	
 	////////////////VARIABLES\\\\\\\\\\\\\\\\
 	private JFrame frame;	
 	private Dimension screenSize;	
 	private double width, height;
-	private int offsetWidth = (int)width/10;
-	private int offsetHeight;	
+
 	private JPanel welcomePanel;
 	
 	/**
@@ -75,8 +74,6 @@ public class FarkleFrame {
 		screenSize = frame.getBounds().getSize();
 		width = screenSize.getWidth();
 		height = screenSize.getHeight();
-		offsetWidth = (int)width/15;
-		offsetHeight = (int)height/15;	
 		
 		/*try{
 			String soundName = "/loop.wav";    

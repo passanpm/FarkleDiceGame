@@ -1,9 +1,7 @@
-package edu.plu.cs.farkle.client;
+package edu.plu.cs.farkle.gui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,13 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
-import javax.swing.SpringLayout;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-import java.awt.CardLayout;
+import edu.plu.cs.farkle.client.Database;
+
 import java.awt.FlowLayout;
 
 public class Options{
@@ -32,16 +28,9 @@ public class Options{
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel options(JFrame frame, String name, Database db){
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		double width = screen.getWidth();
-		double height = screen.getHeight();
-		int offsetWidth = (int)width/15;
-		int offsetHeight = (int)height/15;
-		
+	public JPanel options(JFrame frame, String name, Database db){		
 		JPanel mode = new JPanel();
 		mode.setBackground(new Color(255, 250, 205));
-	//	mode.setBounds(0, 0, (int)width, (int)height);
 		frame.getContentPane().add(mode);
 		mode.setLayout(new BorderLayout(0, 0));
 		

@@ -1,11 +1,9 @@
-package edu.plu.cs.farkle.client;
-
+package edu.plu.cs.farkle.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,27 +16,19 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+
+import edu.plu.cs.farkle.client.AI;
+import edu.plu.cs.farkle.client.Player;
+
 import java.awt.GridLayout;
 
 public class PlayerScreen {
-	private JTextField textField;
-
-	//private JFrame frame;
-
-
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel initialize(JFrame frame, int players, String type, String name) {
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		double width = screen.getWidth();
-		double height = screen.getHeight();
-		int offsetWidth = (int)width/15;
-		int offsetHeight = (int)height/15;
-		
+	public JPanel initialize(JFrame frame, int players, String type, String name) {	
 		JPanel mode = new JPanel();
 		mode.setBackground(new Color(255, 250, 205));
-		//mode.setBounds(0, 0, (int)width, (int)height);
 		frame.getContentPane().add(mode);
 		mode.setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -49,9 +39,7 @@ public class PlayerScreen {
 		JLabel n = new JLabel("Enter Player Names");
 		panel.add(n);
 		n.setFont(new Font("Tahoma", Font.BOLD, 31));
-		
-		
-		
+			
 		JTextField[] names = new JTextField[players+1];
 		
 		ArrayList<Player> playerList = new ArrayList<Player>();
@@ -68,15 +56,12 @@ public class PlayerScreen {
 		
 		Player user = new Player();
 		user.setName(name);
-		
-			
+				
 		playerList.add(user);
-		
-		
+				
 		for(int i = 1; i < players+1; i ++){
 			names[i] = new JTextField();
 			names[i].setPreferredSize(new Dimension(86, 20));
-			//names[i].setBounds((int)width/2, (offsetHeight*4)+offsetHeight*i, 86, 20);
 			textBoxPanel.add(names[i]);
 			names[i].setColumns(20);
 			
@@ -87,14 +72,11 @@ public class PlayerScreen {
 		buttonPanel.setBackground(new Color(255, 250, 205));
 		mode.add(buttonPanel);
 		
-		
 		JComboBox<String> gameplayBox = new JComboBox<String>();
 		buttonPanel.add(gameplayBox);
 		gameplayBox.addItem("Standard");
 		gameplayBox.addItem("Alternate");
-		
-		
-		
+				
 		JButton btnPlay = new JButton("Play");
 		buttonPanel.add(btnPlay);
 		
@@ -146,15 +128,7 @@ public class PlayerScreen {
 					}
 				}
 			}
-		});
-		
-	
-		
-		
-		
-		
-		
+		});	
 		return mode;
 	}
-
 }

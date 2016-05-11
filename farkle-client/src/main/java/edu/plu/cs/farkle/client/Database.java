@@ -1,38 +1,21 @@
 package edu.plu.cs.farkle.client;
 
-import java.io.BufferedReader;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ObjectNode;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
-import org.jboss.resteasy.client.ProxyFactory;
 import org.jboss.resteasy.client.jaxrs.BasicAuthentication;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
-import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
-import org.jboss.resteasy.spi.HttpResponse;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
-
-import jdk.nashorn.internal.parser.JSONParser;
 
 public class Database {
 
 
 
-	static Player user = new Player();
+	public static Player user = new Player();
 	String username = "user";
 	String password = "pass";
 

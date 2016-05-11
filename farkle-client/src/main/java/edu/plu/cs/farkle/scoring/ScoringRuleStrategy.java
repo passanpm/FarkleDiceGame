@@ -1,8 +1,8 @@
-package edu.plu.cs.farkle.client;
+package edu.plu.cs.farkle.scoring;
 
 import java.util.ArrayList;
 
-public abstract class Gameplay {
+public abstract class ScoringRuleStrategy {
 	protected int score = 0;
 	protected int tempScore = 0;
 	protected int oneScore = 0;
@@ -83,8 +83,6 @@ public abstract class Gameplay {
 					nums[5] += 1;
 					break;
 			}
-			
 		}
 	}
-	
 }

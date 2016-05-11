@@ -1,10 +1,9 @@
-package edu.plu.cs.farkle.client;
+package edu.plu.cs.farkle.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -19,7 +18,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -30,15 +28,21 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.Border;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+
+import edu.plu.cs.farkle.client.AI;
+import edu.plu.cs.farkle.client.Dice;
+import edu.plu.cs.farkle.client.Player;
+import edu.plu.cs.farkle.gamerules.Alternate;
+import edu.plu.cs.farkle.gamerules.Gameplay;
+import edu.plu.cs.farkle.gamerules.Standard;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.border.MatteBorder;
 
 
-public class StartGame {
+public class StartStandardAI {
 
 	
 	private int die, score, bankScore, tempScore, zach = 0;
@@ -49,28 +53,19 @@ public class StartGame {
 	
 	private ArrayList<Integer> roll = new ArrayList<Integer>();
 	
-	private Gameplay gameChoice;// = new gameChoice();
+	private Gameplay gameChoice;
+	
+	private AI ai;
 	
 	
 	////////////////WINDOW VARIABLES\\\\\\\\\\	
 	
 	private JTextField txtScore;
-	
-
-	
-	private double width, height;
 	private int lastTemp;
-	//amount to offset dimensions
-	private int offsetWidth = (int)width/10;
-	private int offsetHeight;
-	
 	private JLabel lblDice, label, label_1, label_2, label_3, label_4;
-	
 	private JPanel  game;
-	
 	private int turn = 0;
-	
-	//private ArrayList<Player> playerList;
+
 	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
 	 Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
@@ -102,10 +97,8 @@ public class StartGame {
 * @param j
 */
 public void diceIMG(int a, JLabel j){
-	System.out.println(roll.toString());
 	if(a < roll.size())
 		die = roll.get(a);
-
 
 	switch(die){
 	case 1: img = new ImageIcon(this.getClass().getResource("/Dice1.png")).getImage();
@@ -266,25 +259,15 @@ public void updateScore() {
 }
 
 public boolean blackout(JLabel dice, boolean b){
-	Color c=new Color(1f,0f,0f,0f );
 	if (b){
-		//dice.setBorder(BorderFactory.createLineBorder(c, 10));
 		dice.setVisible(false);
 	}
 	return b;	
 }
 
 public void removeBlackout(JLabel dice){
-	/*if (blackout(lblDice, borderOption)==blackout(label, borderOption1)&&
-			blackout(label, borderOption1==blackout(label_1, borderOption2)&&
-			blackout(label_1, borderOption2)==blackout(label_2, borderOption3)&&
-			blackout(label_2, borderOption3)==blackout(label_3, borderOption4)&&
-			blackout(label_3, borderOption4)==blackout(label_4, borderOption5)&&
-					blackout(label_4, borderOption5)==true
-		)){*/
 		dice.setVisible(true);
 		restart();
-	//}
 }
 
 public void restart(){
@@ -332,6 +315,9 @@ public void restart(){
 		game.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		frame.getContentPane().add(game);
 		game.setLayout(new BorderLayout());
+		
+
+		
 			if(choice == 0){
 				System.out.println("Choosing standard");
 				gameChoice = new Standard();
@@ -345,22 +331,16 @@ public void restart(){
 				game.setBackground(c);
 			}
 			
-		
-			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-			width = screen.getWidth();
-			height = screen.getHeight();
-			offsetWidth = (int)width/15;
-			offsetHeight = (int)height/15;
 			
 			String data[][] = new String[playerList.size()][2];
 			for(int i = 0; i < playerList.size(); i++){
 				data[i][0] = playerList.get(i).getName();
 				data[i][1] = String.valueOf(playerList.get(i).getTotal());
 			}
-			
 			String columnNames[] = {"Player", "Score"};
 			
-
+			ai = (AI)playerList.get(playerList.size()-1);
+			
 			JMenuBar menuBar = new JMenuBar();
 			frame.getContentPane().add(menuBar, BorderLayout.NORTH);
 			
@@ -513,6 +493,8 @@ public void restart(){
 	
 	private void playerTurn(ArrayList<Player> playerList, int choice){
 	
+		
+		
 		if(choice == 0){
 			c = new Color(0, 128,0);
 		}
@@ -521,12 +503,10 @@ public void restart(){
 		}
 		
 		currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
-		System.out.println(playerList.get(turn).getName());
+		System.out.println(turn);
 		
-		/*roll = new ArrayList<Integer>();
-		for(int i = 0; i < 6; i ++){
-			roll.add(1);
-		}*/
+		
+		System.out.println(playerList.get(turn).getName());
 		
 		
 		
@@ -670,11 +650,16 @@ public void restart(){
 			}
 		});
 	
-		
+	
 		
 		//End turn button
 		endTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				
+				
+				
+				//Adds dice throwing sound
 				try{
 					String soundName = "/diceThrow.wav";    
 					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
@@ -684,11 +669,13 @@ public void restart(){
 				}catch(Exception ex){
 					ex.printStackTrace();
 				}
+				
+				
 				if(turn == playerList.size()){
 					turn = 0;
 					currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
 				}
-				
+				System.out.println("Player: " + playerList.get(turn).getName() +"\nTurn: " + turn   + "\nScore: " + playerList.get(turn).getTotal());
 				
 				if(zach > 0){
 					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+zach+tempScore+lastTemp);
@@ -701,9 +688,14 @@ public void restart(){
 				}
 				lblScore.setText("Score: " + playerList.get(turn).getTotal());
 				
-				if(playerList.get(turn).getTotal() >= 10000){
+				
+				//Determines winner
+				if(playerList.get(turn).getTotal() >= 10000 || ai.getTotal() >= 10000){
 					farkText = new JTextPane();
-					farkText.setText(" " + playerList.get(turn).getName() + " Wins!");
+					if(playerList.get(turn).getTotal() >= 10000)
+						farkText.setText(" " + playerList.get(turn).getName() + " Wins!");
+					else if(ai.getTotal() >= 10000)
+						farkText.setText(" " + "AI Wins!");
 					farkText.setBackground(c);
 					farkText.setFont(new Font("Arial", Font.BOLD, 24));
 					farkText.setVisible(true);
@@ -727,19 +719,22 @@ public void restart(){
 					playerList.get(turn).setWins(playerList.get(turn).getWins()+1);
 					System.out.println("Wins: " + playerList.get(turn).getWins());
 				}
+				//If there is no winner...
 				else{
+					
+					
+					tempScore = 0;
 					lastTemp = 0;
 					bankScore = 0;
-					if(choice == 0)
-						gameChoice = new Standard();
-					else if(choice == 1)
-						gameChoice = new Alternate();
+					zach = 0;
+					
 					lblDice.setBorder(null);
 					label.setBorder(null);
 					label_1.setBorder(null);
 					label_2.setBorder(null);
 					label_3.setBorder(null);
 					label_4.setBorder(null);
+					
 					restart();
 					gameChoice.clear();
 	
@@ -747,14 +742,40 @@ public void restart(){
 					
 					
 					turn++;
-					if(turn >= playerList.size()){
-						currentPlayer.setText("Current Player: " + playerList.get(0).getName());
-						lblScore.setText("Score: " + playerList.get(0).getTotal());
+					if(turn == playerList.size()-1){
+						
+						diceObj.rollInit(6, 1, 6);
+						ai.setRoll(diceObj.getRoll());
+						
+						
+						
+						//AI's list of scoring dice
+						ArrayList<Integer> tempRoll = ai.getScore();
+						ai.getIndexes();
+						//AI's current total score
+						int aiTemp = playerList.get(playerList.size()-1).getTotal();
+						
+						//Updates AI's total score
+						playerList.get(playerList.size()-1).setTotal(gameChoice.aiBankScore(tempRoll)+aiTemp);
+						
+						table.setValueAt(String.valueOf(playerList.get(turn).getTotal()), turn, 1);
+						
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						gameChoice.clear();
+						turn = 0;
+						tempRoll.clear();
+						
+						
 					}
-					else{
-						currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
-						lblScore.setText("Score: " + playerList.get(turn).getTotal());
-					}
+					
+					
+			
 					
 					removeBlackout(lblDice);
 					removeBlackout(label);
@@ -762,6 +783,9 @@ public void restart(){
 					removeBlackout(label_2);
 					removeBlackout(label_3);
 					removeBlackout(label_4);
+					
+					
+					
 				}
 			}
 		});
