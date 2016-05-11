@@ -90,6 +90,7 @@ public class StartGame {
 	 private JPanel SouthPanel;
 	 
 	 private Color c;
+	 private JPanel panel;
 	 
 ////////////METHODS///////////////
 		
@@ -378,9 +379,24 @@ public void restart(){
 			game.add(WestPanel, BorderLayout.WEST);
 			WestPanel.setLayout(new BorderLayout(0, 0));
 			
+			buttonPanel = new JPanel();
+			buttonPanel.setBackground(c);
+			WestPanel.add(buttonPanel, BorderLayout.SOUTH);
+			
+			btnRoll = new JButton("Roll");
+			buttonPanel.add(btnRoll);
+			btnRoll.setEnabled(false);
+			
+			endTurn = new JButton("End Turn");
+			buttonPanel.add(endTurn);
+			
+			panel = new JPanel();
+			panel.setBackground(c);
+			WestPanel.add(panel, BorderLayout.NORTH);
+			
 			dicePanel = new JPanel();
+			panel.add(dicePanel);
 			dicePanel.setBackground(c);
-			WestPanel.add(dicePanel, BorderLayout.NORTH);
 			dicePanel.setLayout(new GridLayout(3, 2, 50, 50));
 			
 			lblDice = new JLabel("");
@@ -412,17 +428,6 @@ public void restart(){
 			label_4.setSize(new Dimension(50, 50));
 			label_4.setPreferredSize(new Dimension(50,50));
 			dicePanel.add(label_4);
-			
-			buttonPanel = new JPanel();
-			buttonPanel.setBackground(c);
-			WestPanel.add(buttonPanel, BorderLayout.SOUTH);
-			
-			btnRoll = new JButton("Roll");
-			buttonPanel.add(btnRoll);
-			btnRoll.setEnabled(false);
-			
-			endTurn = new JButton("End Turn");
-			buttonPanel.add(endTurn);
 			
 			NorthPanel = new JPanel();
 			NorthPanel.setBackground(c);

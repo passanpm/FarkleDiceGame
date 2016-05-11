@@ -83,12 +83,35 @@ public class PlayerScreen {
 		JPanel rulePanel = new JPanel();
 		rulePanel.setBackground(new Color(255, 250, 205));
 		mode.add(rulePanel);
+		
+		JButton btnNewButton = new JButton("Rules");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String selection = (String) gameplayBox.getSelectedItem();
+				
+				if(selection.equals("Standard")){
+					mode.setVisible(false);
+					Rules rules = new Rules();
+					JPanel rulePanel = rules.rules(0);
+					frame.remove(mode);
+					frame.getContentPane().add(rulePanel);
+				}
+				else if(selection.equals("Alternate")){
+					mode.setVisible(false);
+					Rules rules = new Rules();
+					JPanel rulePanel = rules.rules(1);
+					
+					frame.remove(mode);
+					frame.getContentPane().add(rulePanel);
+				}
+			}
+		});
+		rulePanel.add(btnNewButton);
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mode.setVisible(false);
 				
 				String selection = (String) gameplayBox.getSelectedItem();
-				System.out.println(selection);
 				
 				for(int i = 1; i < playerList.size(); i++){
 					playerList.get(i).setName(names[i].getText());
