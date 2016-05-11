@@ -75,7 +75,7 @@ public class FarkleFrame {
 		width = screenSize.getWidth();
 		height = screenSize.getHeight();
 		
-		/*try{
+		try{
 			String soundName = "/loop.wav";    
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
 			Clip clip = AudioSystem.getClip();
@@ -83,7 +83,7 @@ public class FarkleFrame {
 			clip.loop(clip.LOOP_CONTINUOUSLY);
 		}catch(Exception ex){
 			ex.printStackTrace();
-		}*/
+		}
 		
 		login();	
 	}
