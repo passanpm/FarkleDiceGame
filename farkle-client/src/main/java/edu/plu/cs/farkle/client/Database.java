@@ -15,7 +15,7 @@ public class Database {
 
 
 
-	static Player user = new Player();
+	public static Player user = new Player();
 	String username = "user";
 	String password = "pass";
 

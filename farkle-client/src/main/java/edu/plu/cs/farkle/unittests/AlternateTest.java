@@ -1,7 +1,9 @@
-package edu.plu.cs.farkle.client;
+package edu.plu.cs.farkle.unittests;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+
+import edu.plu.cs.farkle.gamerules.Alternate;
 
 public class AlternateTest {
 	

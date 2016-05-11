@@ -1,4 +1,4 @@
-package edu.plu.cs.farkle.client;
+package edu.plu.cs.farkle.gui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -15,6 +15,8 @@ import javax.swing.JTable;
 
 import java.awt.BorderLayout;
 import javax.swing.table.JTableHeader;
+
+import edu.plu.cs.farkle.client.Database;
 
 import java.awt.FlowLayout;
 

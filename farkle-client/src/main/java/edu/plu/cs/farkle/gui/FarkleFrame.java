@@ -1,4 +1,4 @@
-package edu.plu.cs.farkle.client;
+package edu.plu.cs.farkle.gui;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;

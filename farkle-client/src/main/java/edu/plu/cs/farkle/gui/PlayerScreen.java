@@ -1,4 +1,4 @@
-package edu.plu.cs.farkle.client;
+package edu.plu.cs.farkle.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,6 +16,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+
+import edu.plu.cs.farkle.client.AI;
+import edu.plu.cs.farkle.client.Player;
+
 import java.awt.GridLayout;
 
 public class PlayerScreen {

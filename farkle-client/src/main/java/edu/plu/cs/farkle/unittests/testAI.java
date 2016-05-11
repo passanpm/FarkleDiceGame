@@ -1,5 +1,7 @@
-package edu.plu.cs.farkle.client;
+package edu.plu.cs.farkle.unittests;
 //import edu.plu.cs.farkle.client.AI;
+
+import edu.plu.cs.farkle.client.AI;
 
 public class testAI {
 
