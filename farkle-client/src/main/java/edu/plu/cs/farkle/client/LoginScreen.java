@@ -1,10 +1,8 @@
 package edu.plu.cs.farkle.client;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,15 +32,8 @@ public class LoginScreen {
 	 * @wbp.parser.entryPoint
 	 */
 	public JPanel Login(JFrame frame){
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		double width = screen.getWidth();
-		double height = screen.getHeight();
-		int offsetWidth = (int)width/15;
-		int offsetHeight = (int)height/15;
-		
 		JPanel welcomePanel = new JPanel();
 		welcomePanel.setBackground(new Color(255, 250, 205));
-		//welcomePanel.setBounds(0, 0, (int)width, (int)height);
 		frame.getContentPane().add(welcomePanel);
 		welcomePanel.setLayout(new BorderLayout(0, 0));
 		
@@ -136,6 +127,7 @@ public class LoginScreen {
 							public void actionPerformed(ActionEvent e) {
 								String test = usernameText.getText();
 								
+								@SuppressWarnings("deprecation")
 								String password = passwordField.getText();
 								System.out.println("Pass: " + password);
 

@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -19,7 +18,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -30,7 +28,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.Border;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import java.awt.BorderLayout;
@@ -49,20 +46,15 @@ public class StartGame {
 	
 	private ArrayList<Integer> roll = new ArrayList<Integer>();
 	
-	private Gameplay gameChoice;// = new gameChoice();
+	private Gameplay gameChoice;
 	
 	
 	////////////////WINDOW VARIABLES\\\\\\\\\\	
 	
 	private JTextField txtScore;
-	
 
-	
-	private double width, height;
 	private int lastTemp;
-	//amount to offset dimensions
-	private int offsetWidth = (int)width/10;
-	private int offsetHeight;
+
 	
 	private JLabel lblDice, label, label_1, label_2, label_3, label_4;
 	
@@ -70,7 +62,6 @@ public class StartGame {
 	
 	private int turn = 0;
 	
-	//private ArrayList<Player> playerList;
 	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
 	 Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
@@ -266,25 +257,15 @@ public void updateScore() {
 }
 
 public boolean blackout(JLabel dice, boolean b){
-	Color c=new Color(1f,0f,0f,0f );
 	if (b){
-		//dice.setBorder(BorderFactory.createLineBorder(c, 10));
 		dice.setVisible(false);
 	}
 	return b;	
 }
 
 public void removeBlackout(JLabel dice){
-	/*if (blackout(lblDice, borderOption)==blackout(label, borderOption1)&&
-			blackout(label, borderOption1==blackout(label_1, borderOption2)&&
-			blackout(label_1, borderOption2)==blackout(label_2, borderOption3)&&
-			blackout(label_2, borderOption3)==blackout(label_3, borderOption4)&&
-			blackout(label_3, borderOption4)==blackout(label_4, borderOption5)&&
-					blackout(label_4, borderOption5)==true
-		)){*/
 		dice.setVisible(true);
 		restart();
-	//}
 }
 
 public void restart(){
@@ -345,12 +326,6 @@ public void restart(){
 				game.setBackground(c);
 			}
 			
-		
-			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-			width = screen.getWidth();
-			height = screen.getHeight();
-			offsetWidth = (int)width/15;
-			offsetHeight = (int)height/15;
 			
 			String data[][] = new String[playerList.size()][2];
 			for(int i = 0; i < playerList.size(); i++){

@@ -1,6 +1,5 @@
 package edu.plu.cs.farkle.client;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Dice{
