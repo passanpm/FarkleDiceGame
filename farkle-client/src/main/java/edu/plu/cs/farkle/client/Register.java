@@ -110,7 +110,14 @@ public class Register {
 				
 				Database db = new Database(username, password);
 				
-				db.put();
+				if(!username.equals("")&&!password.equals(""))
+					db.put();
+				else{
+					if(username.equals(""))
+						lblUsername.setForeground(Color.red);
+					if(password.equals(""))
+						lblPassword.setForeground(Color.red);
+				}
 				
 				
 			}

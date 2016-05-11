@@ -137,11 +137,11 @@ public class LoginScreen {
 								String test = usernameText.getText();
 								
 								String password = passwordField.getText();
-							
+								System.out.println("Pass: " + password);
 
 								Database db = new Database(test, password);
 								System.out.println(db.get());
-								if (db.get()){
+								if (db.get() && (!test.equals("") && !password.equals(""))){
 									System.out.println(test + " : " + password);
 									System.out.println("LOgin debug");
 									welcomePanel.setVisible(false);
@@ -152,7 +152,10 @@ public class LoginScreen {
 									frame.getContentPane().add(mode);
 								}
 								else{
-									lblUsername.setForeground(Color.red);
+									if(test.equals(""))
+										lblUsername.setForeground(Color.red);
+									if(password.equals(""))
+										lblPassword.setForeground(Color.red);
 								}
 								}
 								
