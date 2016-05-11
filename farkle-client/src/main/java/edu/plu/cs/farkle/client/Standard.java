@@ -1,42 +1,7 @@
 package edu.plu.cs.farkle.client;
 import java.util.ArrayList;
 
-public class Standard{
-	
-	protected int score = 0;
-	protected int tempScore = 0;
-	
-	protected int oneScore = 0;
-
-	protected static ArrayList<Integer> single = new ArrayList<Integer>();
-	
-	boolean change = false;
-	
-	public void addToSingle(int value){
-		single.add(value);
-	}
-
-	public void removeFromSingle(int die){
-		
-		boolean found = false;
-		int i = 0;
-		while(!found){
-			if(single.get(i)*-1==die){
-				single.remove(i);
-				found = true;
-			}
-			else
-				i++;
-		}
-	}
-	
-	public void clear(){
-		score = 0;
-		single.clear();
-	}
-	public void reset(){
-		single.clear();
-	}
+public class Standard extends Gameplay{
 	
 	public int bankScore(){
 		change = false;
@@ -48,6 +13,7 @@ public class Standard{
 			nums[i] = 0;
 		
 		for(int i = 0; i < single.size(); i++){
+			System.out.println("single at " + i +": " + single.get(i));
 			switch(single.get(i)){
 				case 1:
 					nums[0] += 1;
@@ -105,17 +71,13 @@ public class Standard{
 		return bank;
 	}
 	
-	public int getTemp(){
-		return tempScore;
+	public int aiBankScore(ArrayList<Integer> aiRoll){
+		single = aiRoll;
+		return bankScore();
 	}
-	
-	public int getScore(){
-		return score;
+	public void clear(){
+		single.clear();
+		System.out.println(single.toString());
 	}
-	
-	public boolean isChange(){
-		return change;
-	}
-
 
 }

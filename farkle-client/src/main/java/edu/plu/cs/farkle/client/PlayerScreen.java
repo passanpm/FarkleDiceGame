@@ -29,7 +29,7 @@ public class PlayerScreen {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel initialize(JFrame frame, int players, String type) {
+	public JPanel initialize(JFrame frame, int players, String type, String name) {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		double width = screen.getWidth();
 		double height = screen.getHeight();
@@ -38,7 +38,7 @@ public class PlayerScreen {
 		
 		JPanel mode = new JPanel();
 		mode.setBackground(new Color(255, 250, 205));
-		mode.setBounds(0, 0, (int)width, (int)height);
+		//mode.setBounds(0, 0, (int)width, (int)height);
 		frame.getContentPane().add(mode);
 		mode.setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -59,14 +59,21 @@ public class PlayerScreen {
 		JPanel textBoxHolder = new JPanel();
 		mode.add(textBoxHolder, BorderLayout.CENTER);
 		textBoxHolder.setBackground(new Color(255, 250, 205));
-		textBoxHolder.setLayout(new GridLayout(4,0,0, offsetHeight));
+		textBoxHolder.setLayout(new GridLayout(4, 1, 0, 0));
 		
 		JPanel textBoxPanel = new JPanel();
 		textBoxHolder.add(textBoxPanel);
 		textBoxPanel.setBackground(new Color(255, 250, 205));
 		textBoxPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		for(int i = 0; i < players+1; i ++){
+		Player user = new Player();
+		user.setName(name);
+		
+			
+		playerList.add(user);
+		
+		
+		for(int i = 1; i < players+1; i ++){
 			names[i] = new JTextField();
 			names[i].setPreferredSize(new Dimension(86, 20));
 			//names[i].setBounds((int)width/2, (offsetHeight*4)+offsetHeight*i, 86, 20);
@@ -90,6 +97,10 @@ public class PlayerScreen {
 		
 		JButton btnPlay = new JButton("Play");
 		buttonPanel.add(btnPlay);
+		
+		JPanel rulePanel = new JPanel();
+		rulePanel.setBackground(new Color(255, 250, 205));
+		mode.add(rulePanel);
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mode.setVisible(false);
@@ -97,37 +108,39 @@ public class PlayerScreen {
 				String selection = (String) gameplayBox.getSelectedItem();
 				System.out.println(selection);
 				
-				for(int i = 0; i < playerList.size(); i++){
+				for(int i = 1; i < playerList.size(); i++){
 					playerList.get(i).setName(names[i].getText());
 				}
 				if(type.equals("Local")){
 					if(selection.equals("Standard")){
 						StartGame start = new StartGame();
-						JPanel strt = start.start(frame, players, playerList);
+						JPanel strt = start.start(frame, players, playerList, 0);
 						
 						
 						frame.remove(mode);
 						frame.getContentPane().add(strt);
 					}
 					else if(selection.equals("Alternate")){
-						AlternateStart start = new AlternateStart();
-						JPanel strt = start.start(frame, players, playerList);
+						StartGame start = new StartGame();
+						JPanel strt = start.start(frame, players, playerList, 1);
 						frame.remove(mode);
 						frame.getContentPane().add(strt);
 					}
 				}
 				else if(type.equals("AI")){
+					playerList.add(new AI(1, "AI"));
+					
 					if(selection.equals("Standard")){
 						StartStandardAI start = new StartStandardAI();
-						JPanel strt = start.start(frame, players, playerList);
+						JPanel strt = start.start(frame, players, playerList, 0);
 						
 						
 						frame.remove(mode);
 						frame.getContentPane().add(strt);
 					}
 					else if(selection.equals("Alternate")){
-						StartAlternateAI start = new StartAlternateAI();
-						JPanel strt = start.start(frame, players, playerList);
+						StartStandardAI start = new StartStandardAI();
+						JPanel strt = start.start(frame, players, playerList, 1);
 						frame.remove(mode);
 						frame.getContentPane().add(strt);
 					}

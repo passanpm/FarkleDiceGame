@@ -3,17 +3,18 @@ package edu.plu.cs.farkle.client;
 import java.util.ArrayList;
 
 public class AI extends Player{
-
+	//the difficulty of the AI as an int
 	private int difficulty;
-	
+	//a Dice object
 	private Dice die;
-	
+	//the name of the AI as a String
 	private String name;
-	
+	//all the values of the dice rolled
 	private ArrayList<Integer> diceRoll;
-	
+	//the values of all the scoring dice
 	private ArrayList<Integer> diceScores;
-	
+	//the indexes of all the scoring dice
+	private ArrayList<Integer> indexesOfAllScoringDice;
 	/**
 	 * Constructor
 	 * @param d the difficulty of the AI as an int
@@ -24,6 +25,7 @@ public class AI extends Player{
 		name = n;
 		die = new Dice();
 		diceScores = new ArrayList<Integer>();
+		indexesOfAllScoringDice = new ArrayList<Integer>();
 	}
 	/**
 	 * Returns the name of the AI.
@@ -39,51 +41,49 @@ public class AI extends Player{
 	public int getDifficulty(){
 		return difficulty;
 	}
+	
+	public void setRoll(ArrayList<Integer> thisDice){
+		diceRoll = thisDice;
+	}
 	/**
 	 * Rolls the dice and stores the result in diceRoll
+	 * @return
 	 */
 	public ArrayList<Integer> roll(){
 		die.rollInit(6, 1, 6);
 		diceRoll = die.getRoll();
 		return diceRoll;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Integer> getScore(){
+		System.out.println("DIceRoll: " + diceRoll.toString());
 		return diceScores;
 	}
 	/**
-	 * Picks best roll and returns and int[] array
-	 * Got help from here: http://stackoverflow.com/questions/80476/how-can-i-concatenate-two-arrays-in-java
-	 * @return allIndexes the int array that contains the indexes of scoring die
+	 * 
+	 * @return
 	 */
-	public int[] mergeIndexes(){
-		int[] triple = setOfThrees();
-		int[] singles = oneOrFive();
-		int[] allIndexes = new int[triple.length + singles.length];
-		try{
-			System.arraycopy(triple, 0, allIndexes, 0, triple.length);
-			System.arraycopy(singles, 0, allIndexes, triple.length, singles.length);
-		} catch (Exception e){
-			return null;
-		}
-		
-		return allIndexes;
+	public ArrayList<Integer> getIndexes(){
+		setOfThrees();
+		oneOrFive();
+		return indexesOfAllScoringDice;
 	}
 	/**
 	 * Checks to see if diceRoll has a set of threes and returns an array of the indexes of that set of three
 	 * @return int[] index the array of indexes
 	 */
-	public int[] setOfThrees(){
-		int[] index = new int[3];
+	public void setOfThrees(){
 		ArrayList<Integer> check = hasThree();
-		System.out.println(check.toString());
 		for(int i = 1; i <= 6; i++){
 			if(check.contains(i)){
 				int count = 0;
 			for(int j = 0; j < diceRoll.size(); j++){
 				if(diceRoll.get(j) == i){
 					diceScores.add(i);
-					index[count++] = j;
+					indexesOfAllScoringDice.add(j);
 				}
 				if(count > 2){
 					break;
@@ -92,9 +92,11 @@ public class AI extends Player{
 			break;
 			}
 		}
-		return index;
 	}
-	
+	/**
+	 * Looks for a triple and returns the values in an ArrayList<Integer>
+	 * @return
+	 */
 	private ArrayList<Integer> hasThree(){
 		ArrayList<Integer> diceNumbers = new ArrayList<Integer>();
 		int count = 0;
@@ -112,16 +114,16 @@ public class AI extends Player{
 		}
 		return diceNumbers;
 	}
-	
-	private int[] oneOrFive(){
-		int[] indexes = new int[6];
-		int count = 0;
+	/**
+	 * Looks for a one or a five and stores the indexes in indexesOfAllScoringDice
+	 * and the values in diceScores
+	 */
+	private void oneOrFive(){
 		for(int j = 0; j < diceRoll.size(); j++){
 			if(diceRoll.get(j) == 1 || diceRoll.get(j) == 5){
 				diceScores.add(diceRoll.get(j));
-				indexes[count++] = j;
+				indexesOfAllScoringDice.add(j);
 			}
 			}
-		return indexes;
 	}
 }

@@ -30,14 +30,15 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import javax.swing.border.MatteBorder;
 
 
 public class StartGame {
-	
 
 	
 	private int die, score, bankScore, tempScore, zach = 0;
@@ -48,7 +49,7 @@ public class StartGame {
 	
 	private ArrayList<Integer> roll = new ArrayList<Integer>();
 	
-	private Standard standard = new Standard();
+	private Gameplay gameChoice;// = new gameChoice();
 	
 	
 	////////////////WINDOW VARIABLES\\\\\\\\\\	
@@ -58,7 +59,7 @@ public class StartGame {
 
 	
 	private double width, height;
-	
+	private int lastTemp;
 	//amount to offset dimensions
 	private int offsetWidth = (int)width/10;
 	private int offsetHeight;
@@ -72,7 +73,7 @@ public class StartGame {
 	//private ArrayList<Player> playerList;
 	
 	private boolean borderOption, borderOption1, borderOption2, borderOption3, borderOption4, borderOption5= false;
-	 Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
+	 Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
 	 private JLabel lblScore;
 	 private JLabel lblBankScore;
 	 private JButton btnRoll;
@@ -91,6 +92,8 @@ public class StartGame {
 	 private JPanel CenterPanel;
 	 private JPanel SouthPanel;
 	 
+	 private Color c;
+	 
 ////////////METHODS///////////////
 		
 /**
@@ -99,7 +102,7 @@ public class StartGame {
 * @param j
 */
 public void diceIMG(int a, JLabel j){
-	
+	System.out.println(roll.toString());
 	if(a < roll.size())
 		die = roll.get(a);
 
@@ -124,6 +127,7 @@ public void diceIMG(int a, JLabel j){
 			j.setIcon(new ImageIcon(img));
 			break;
 	}
+	
 }
 
 /**
@@ -149,7 +153,7 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		}
 		
      	name.setBorder(border);
-     	standard.addToSingle(roll.get(diceID));
+     	gameChoice.addToSingle(roll.get(diceID));
      	bdrCheck = true;
      
 		
@@ -183,11 +187,11 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 		diceObj.banking(diceID, roll.get(diceID));
 		updateScore();
 		
-		tempScore = standard.bankScore();
-		lblBankScore.setText("Bank Score: " + (bankScore+zach));
+		tempScore = gameChoice.bankScore();
+		lblBankScore.setText("Bank Score: " + (bankScore+zach+lastTemp));
 		
 		
-		if(standard.getTemp() > 0 && standard.isChange()){
+		if(gameChoice.getTemp() > 0 && gameChoice.isChange()){
 			btnRoll.setEnabled(true);
 			
 		}
@@ -205,11 +209,11 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 			ex.printStackTrace();
 		}
 		
-		standard.removeFromSingle(roll.get(diceID));
+		gameChoice.removeFromSingle(roll.get(diceID));
 		updateScore();
-		tempScore = standard.bankScore();
+		tempScore = gameChoice.bankScore();
 		
-		lblBankScore.setText("Bank Score: " + (tempScore+zach));
+		lblBankScore.setText("Bank Score: " + (tempScore+zach+lastTemp));
 		
 		name.setBorder(null);
 		switch ( diceID ) {
@@ -244,7 +248,7 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 			btnRoll.setEnabled(true);
 		}
 		
-		if(standard.getTemp()==0){
+		if(gameChoice.getTemp()==0){
 			btnRoll.setEnabled(false);
 			
 		}
@@ -254,11 +258,11 @@ public void diceClick(int diceID, JLabel name, MouseEvent e, Border border, bool
 }
 
 public void removeDice(JLabel label, int i){
-		standard.removeFromSingle(roll.get(i));
+		gameChoice.removeFromSingle(roll.get(i));
 }
 
 public void updateScore() {
-	bankScore = standard.bankScore();
+	bankScore = gameChoice.bankScore();
 }
 
 public boolean blackout(JLabel dice, boolean b){
@@ -323,31 +327,30 @@ public void restart(){
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList) {		
+	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList, int choice) {		
+		game = new JPanel();
+		game.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+		frame.getContentPane().add(game);
+		game.setLayout(new BorderLayout());
+			if(choice == 0){
+				System.out.println("Choosing standard");
+				gameChoice = new Standard();
+				c = new Color(0, 128,0);
+				game.setBackground(c);
+			}
+			else if(choice == 1){
+				System.out.println("Choosing alternate");
+				gameChoice = new Alternate();
+				c = new Color(0, 255, 255);
+				game.setBackground(c);
+			}
+			
+		
 			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 			width = screen.getWidth();
 			height = screen.getHeight();
 			offsetWidth = (int)width/15;
 			offsetHeight = (int)height/15;
-			
-			game = new JPanel();
-			game.setBackground(new Color(0, 128, 0));
-			frame.getContentPane().add(game);
-			game.setLayout(new BorderLayout());
-			
-			
-			/*JInternalFrame rules = new JInternalFrame("Rules");
-			game.add(rules);
-			rules.setVisible(true);
-			rules.getContentPane().setLayout(null);
-			
-			JTextPane txtpnWelcomeToFarkle = new JTextPane();
-			txtpnWelcomeToFarkle.setText("Welcome to Farkle! Here are some rules of the game mode you have selected.\n\nThere are six dice that you roll "
-					+ "and you will choose dice to bank based on this scoring system:\n\n1's are worth 100 points\n5's are worth 50 points\n"
-					+ "3 1's are worth 1000 points\n3 2's are worth 200 points\n");
-			txtpnWelcomeToFarkle.setEditable(false);
-			txtpnWelcomeToFarkle.setBounds(0, 0, 213, 230);
-			rules.getContentPane().add(txtpnWelcomeToFarkle);*/
 			
 			String data[][] = new String[playerList.size()][2];
 			for(int i = 0; i < playerList.size(); i++){
@@ -390,42 +393,47 @@ public void restart(){
 			mnFile.add(mntmExit);
 			
 			WestPanel = new JPanel();
-			WestPanel.setBackground(new Color(0, 128, 0));
+			WestPanel.setBackground(c);
 			game.add(WestPanel, BorderLayout.WEST);
 			WestPanel.setLayout(new BorderLayout(0, 0));
 			
 			dicePanel = new JPanel();
-			dicePanel.setBackground(new Color(0, 128, 0));
+			dicePanel.setBackground(c);
 			WestPanel.add(dicePanel, BorderLayout.NORTH);
 			dicePanel.setLayout(new GridLayout(3, 2, 50, 50));
 			
 			lblDice = new JLabel("");
-			lblDice.setPreferredSize(new Dimension(50, 50));
+			lblDice.setSize(new Dimension(50, 50));
 			dicePanel.add(lblDice);
 			
 			
 			label = new JLabel("");
-			label.setPreferredSize(new Dimension(50, 50));
+			label.setSize(new Dimension(50, 50));
+			label.setPreferredSize(new Dimension(50,50));
 			dicePanel.add(label);
 			
 			label_1 = new JLabel("");
-			label_1.setPreferredSize(new Dimension(50, 50));
+			label_1.setSize(new Dimension(50, 50));
+			label_1.setPreferredSize(new Dimension(50,50));
 			dicePanel.add(label_1);
 			
 			label_2 = new JLabel("");
-			label_2.setPreferredSize(new Dimension(50, 50));
+			label_2.setSize(new Dimension(50, 50));
+			label_2.setPreferredSize(new Dimension(50,50));
 			dicePanel.add(label_2);
 			
 			label_3 = new JLabel("");
-			label_3.setPreferredSize(new Dimension(50, 50));
+			label_3.setSize(new Dimension(50, 50));
+			label_3.setPreferredSize(new Dimension(50,50));
 			dicePanel.add(label_3);
 			
 			label_4 = new JLabel("");
-			label_4.setPreferredSize(new Dimension(50, 50));
+			label_4.setSize(new Dimension(50, 50));
+			label_4.setPreferredSize(new Dimension(50,50));
 			dicePanel.add(label_4);
 			
 			buttonPanel = new JPanel();
-			buttonPanel.setBackground(new Color(0, 128, 0));
+			buttonPanel.setBackground(c);
 			WestPanel.add(buttonPanel, BorderLayout.SOUTH);
 			
 			btnRoll = new JButton("Roll");
@@ -436,12 +444,12 @@ public void restart(){
 			buttonPanel.add(endTurn);
 			
 			NorthPanel = new JPanel();
-			NorthPanel.setBackground(new Color(0, 128, 0));
+			NorthPanel.setBackground(c);
 			game.add(NorthPanel, BorderLayout.NORTH);
 			NorthPanel.setLayout(new BorderLayout(0, 0));
 			
 			curPlayer = new JPanel();
-			curPlayer.setBackground(new Color(0, 128, 0));
+			curPlayer.setBackground(c);
 			NorthPanel.add(curPlayer, BorderLayout.WEST);
 			
 			currentPlayer = new JLabel("Current Player: ");
@@ -449,7 +457,7 @@ public void restart(){
 			currentPlayer.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			
 			scorePanels = new JPanel();
-			scorePanels.setBackground(new Color(0, 128, 0));
+			scorePanels.setBackground(c);
 			NorthPanel.add(scorePanels, BorderLayout.SOUTH);
 			scorePanels.setLayout(new GridLayout(0, 2, 0, 0));
 			
@@ -462,30 +470,40 @@ public void restart(){
 			lblBankScore.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			
 			CenterPanel = new JPanel();
-			CenterPanel.setBackground(new Color(0, 128, 0));
+			CenterPanel.setBackground(c);
 			game.add(CenterPanel, BorderLayout.CENTER);
 			
+			
+			
+			
 			table = new JTable(data, columnNames);
-			table.setBackground(new Color(0, 128, 0));
-			table.setGridColor(new Color(0, 128, 0));
+		
+			table.setBackground(c);
+			table.setGridColor(c);
 			JTableHeader head = table.getTableHeader();
-			head.setBackground(new Color(0, 128, 0));
+			head.setBackground(c);
 
+			table.setEnabled(false);
+			
 			table.setVisible(true);
 			
 			JScrollPane pane = new JScrollPane();
-			pane.getViewport().setBackground(new Color(0, 128, 0));
+			pane.getViewport().setBackground(c);
 			pane.setBorder(BorderFactory.createLineBorder(Color.black));
 			CenterPanel.add(pane);
 			pane.setViewportView(table);
 			
 			SouthPanel = new JPanel();
 			game.add(SouthPanel, BorderLayout.SOUTH);
-			SouthPanel.setBackground(new Color(0, 128, 0));
+			SouthPanel.setBackground(c);
 			farkText = new JTextPane();
 			farkText.setText("");
 			
-			playerTurn(playerList);
+			diceObj.rollInit(6, 1, 6);
+			roll = diceObj.getRoll();
+			
+			
+			playerTurn(playerList, choice);
 			
 			return game;
 		
@@ -493,13 +511,25 @@ public void restart(){
 	}
 	
 	
-	private void playerTurn(ArrayList<Player> playerList){
+	private void playerTurn(ArrayList<Player> playerList, int choice){
+	
+		if(choice == 0){
+			c = new Color(0, 128,0);
+		}
+		else if(choice == 1){
+			c = new Color(0, 255, 255);
+		}
 		
 		currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
 		System.out.println(playerList.get(turn).getName());
-		diceObj.rollInit(6, 1, 6);
 		
-		roll = diceObj.getRoll();
+		/*roll = new ArrayList<Integer>();
+		for(int i = 0; i < 6; i ++){
+			roll.add(1);
+		}*/
+		
+		
+		
 		
 		if(diceObj.farkle()){
 			try{
@@ -513,16 +543,267 @@ public void restart(){
 			}
 			farkText = new JTextPane();
 			farkText.setText("YOU FARKLED!!!");
-			farkText.setBackground(new Color(0, 128, 0));
+			farkText.setBackground(c);
 			farkText.setFont(new Font("Arial", Font.BOLD, 24));
 			farkText.setEditable(false);
 			//farkText.setBounds((int)width/2, (int)height/2+offsetHeight*2, 500, 500);
 			SouthPanel.add(farkText);
 			
 			btnRoll.setEnabled(false);
-			standard.clear();
+			gameChoice.clear();
+			
+			diceObj.rollInit(6, 1, 6);
+			roll = diceObj.getRoll();
 		}
 		
+		handleDice();
+		
+		
+		
+		
+		//ROLL BUTTON\\
+		
+		lastTemp = 0;
+		
+		btnRoll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					String soundName = "/diceThrow.wav";    
+					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+					Clip clip = AudioSystem.getClip();
+					clip.open(audioInputStream);
+					clip.start();
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
+				
+				diceObj.roll(6, 1, roll);
+				
+				int i = 0;
+				int foundNegative = 0;
+				while(i < roll.size()){
+					if(roll.get(i) < 0){
+						System.out.println("Banked: " + foundNegative);
+						foundNegative++;
+					}
+					i++;
+				}
+				
+				if(foundNegative == 6){
+					
+					lastTemp = zach+tempScore;
+					
+					System.out.println("Zach: " + zach + "\nTempScore: " + tempScore + "\nbankScore: " + bankScore + "\nScore" + score);
+					//tempScore += zach;
+					System.out.println(tempScore);
+					lblBankScore.setText("Bank Score: " + lastTemp);
+					System.out.println("Success");
+					diceObj.rollInit(6, 1, 6);
+					roll = diceObj.getRoll();
+					
+					System.out.println(roll.toString());
+					
+					removeBlackout(lblDice);
+					removeBlackout(label);
+					removeBlackout(label_1);
+					removeBlackout(label_2);
+					removeBlackout(label_3);
+					removeBlackout(label_4);
+					
+					
+					
+					//handleDice();
+					
+					
+					
+				}
+				if(diceObj.farkle()){
+					try{
+						String soundName = "/sadTrombone.wav";    
+						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+						Clip clip = AudioSystem.getClip();
+						clip.open(audioInputStream);
+						clip.start();
+					}catch(Exception ex){
+						ex.printStackTrace();
+					}
+					bankScore = 0;
+					tempScore = 0;
+					zach = 0;
+					farkText = new JTextPane();
+					farkText.setText("YOU FARKLED!!!");
+					farkText.setBackground(c);
+					farkText.setFont(new Font("Arial", Font.BOLD, 24));
+					farkText.setEditable(false);
+					SouthPanel.add(farkText);				
+					btnRoll.setEnabled(false);
+					
+					gameChoice.clear();	
+
+				}
+					
+				roll = diceObj.getRoll();
+				//die = roll.get(0);
+			
+				blackout(lblDice, borderOption);
+				blackout(label, borderOption1);
+				blackout(label_1, borderOption2);
+				blackout(label_2, borderOption3);
+				blackout(label_3, borderOption4);
+				blackout(label_4, borderOption5);
+				
+				
+				
+				diceIMG(0, lblDice);
+				diceIMG(1, label);
+				diceIMG(2, label_1);
+				diceIMG(3, label_2);
+				diceIMG(4, label_3);
+				diceIMG(5, label_4);
+				
+				
+				lblBankScore.setText("Bank Score: " + (tempScore+lastTemp));
+				btnRoll.setEnabled(false);
+				
+				zach += tempScore;
+				gameChoice.reset();
+			}
+		});
+	
+		
+		
+		//End turn button
+		endTurn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					String soundName = "/diceThrow.wav";    
+					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+					Clip clip = AudioSystem.getClip();
+					clip.open(audioInputStream);
+					clip.start();
+				}catch(Exception ex){
+					ex.printStackTrace();
+				}
+				if(turn == playerList.size()){
+					turn = 0;
+					currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
+				}
+				
+				
+				if(zach > 0){
+					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+zach+tempScore+lastTemp);
+				}
+				else if (tempScore > 0){
+					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+tempScore+lastTemp);
+				}
+				else if(tempScore > 0 && zach > 0){
+					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+(zach+tempScore+lastTemp));
+				}
+				lblScore.setText("Score: " + playerList.get(turn).getTotal());
+				
+				if(playerList.get(turn).getTotal() >= 10000){
+					farkText = new JTextPane();
+					farkText.setText(" " + playerList.get(turn).getName() + " Wins!");
+					farkText.setBackground(c);
+					farkText.setFont(new Font("Arial", Font.BOLD, 24));
+					farkText.setVisible(true);
+					farkText.setEditable(false);
+					SouthPanel.setVisible(true);
+					SouthPanel.add(farkText);
+					try{
+						String soundName = "/victory.wav";    
+						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+						Clip clip = AudioSystem.getClip();
+						clip.open(audioInputStream);
+						clip.start();
+					}catch(Exception ex){
+						ex.printStackTrace();
+					}
+					
+					endTurn.setEnabled(false);
+					btnRoll.setEnabled(false);
+					
+					
+					playerList.get(turn).setWins(playerList.get(turn).getWins()+1);
+					System.out.println("Wins: " + playerList.get(turn).getWins());
+				}
+				else{
+					lastTemp = 0;
+					bankScore = 0;
+					if(choice == 0)
+						gameChoice = new Standard();
+					else if(choice == 1)
+						gameChoice = new Alternate();
+					lblDice.setBorder(null);
+					label.setBorder(null);
+					label_1.setBorder(null);
+					label_2.setBorder(null);
+					label_3.setBorder(null);
+					label_4.setBorder(null);
+					restart();
+					gameChoice.clear();
+	
+					table.setValueAt(String.valueOf(playerList.get(turn).getTotal()), turn, 1);
+					
+					
+					turn++;
+					if(turn >= playerList.size()){
+						currentPlayer.setText("Current Player: " + playerList.get(0).getName());
+						lblScore.setText("Score: " + playerList.get(0).getTotal());
+					}
+					else{
+						currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
+						lblScore.setText("Score: " + playerList.get(turn).getTotal());
+					}
+					
+					removeBlackout(lblDice);
+					removeBlackout(label);
+					removeBlackout(label_1);
+					removeBlackout(label_2);
+					removeBlackout(label_3);
+					removeBlackout(label_4);
+				}
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		if(diceObj.farkle()){
+			try{
+				String soundName = "/sadTrombone.wav";    
+				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioInputStream);
+				clip.start();
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
+			
+			farkText = new JTextPane();
+			farkText.setText("YOU FARKLED!!!");
+			farkText.setBackground(c);
+			farkText.setFont(new Font("Arial", Font.BOLD, 24));
+			farkText.setEditable(false);
+			SouthPanel.add(farkText);
+			
+			
+			btnRoll.setEnabled(false);
+			
+			gameChoice.clear();
+			
+		}
+	
+	}
+	
+	private void handleDice(){
 		/*
 		 * Handle Dice 0
 		 */
@@ -613,205 +894,6 @@ public void restart(){
 				}
 			});
 		}
-		
-		
-		
-		
-		//ROLL BUTTON\\
-		
-	
-		
-		btnRoll.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
-					String soundName = "/diceThrow.wav";    
-					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
-					Clip clip = AudioSystem.getClip();
-					clip.open(audioInputStream);
-					clip.start();
-				}catch(Exception ex){
-					ex.printStackTrace();
-				}
-				
-				diceObj.roll(6, 1, roll);
-				
-				if(diceObj.farkle()){
-					try{
-						String soundName = "/sadTrombone.wav";    
-						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
-						Clip clip = AudioSystem.getClip();
-						clip.open(audioInputStream);
-						clip.start();
-					}catch(Exception ex){
-						ex.printStackTrace();
-					}
-					bankScore = 0;
-					tempScore = 0;
-					zach = 0;
-					farkText = new JTextPane();
-					farkText.setText("YOU FARKLED!!!");
-					farkText.setBackground(new Color(0, 128, 0));
-					farkText.setFont(new Font("Arial", Font.BOLD, 24));
-					farkText.setEditable(false);
-					//farkText.setBounds((int)width/2, (int)height/2+offsetHeight, 500, 500);
-					SouthPanel.add(farkText);				
-					btnRoll.setEnabled(false);
-					
-					standard.clear();	
-
-				}
-					
-				roll = diceObj.getRoll();
-				//die = roll.get(0);
-			
-				blackout(lblDice, borderOption);
-				blackout(label, borderOption1);
-				blackout(label_1, borderOption2);
-				blackout(label_2, borderOption3);
-				blackout(label_3, borderOption4);
-				blackout(label_4, borderOption5);
-				
-				
-				
-				diceIMG(0, lblDice);
-				diceIMG(1, label);
-				diceIMG(2, label_1);
-				diceIMG(3, label_2);
-				diceIMG(4, label_3);
-				diceIMG(5, label_4);
-				
-				
-				lblBankScore.setText("Bank Score: " + tempScore);
-				btnRoll.setEnabled(false);
-				
-				zach += tempScore;
-				standard.reset();
-			}
-		});
-	
-		
-		
-		//End turn button
-		endTurn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
-					String soundName = "/diceThrow.wav";    
-					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
-					Clip clip = AudioSystem.getClip();
-					clip.open(audioInputStream);
-					clip.start();
-				}catch(Exception ex){
-					ex.printStackTrace();
-				}
-				if(turn == playerList.size()){
-					turn = 0;
-					currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
-				}
-				
-				
-				if(zach > 0){
-					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+zach+tempScore);
-				}
-				else if (tempScore > 0){
-					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+tempScore);
-				}
-				else if(tempScore > 0 && zach > 0){
-					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+(zach+tempScore));
-				}
-				lblScore.setText("Score: " + playerList.get(turn).getTotal());
-				
-				if(playerList.get(turn).getTotal() > 10000){
-					farkText = new JTextPane();
-					farkText.setText(" " + playerList.get(turn).getName() + " Wins!");
-					farkText.setBackground(new Color(0, 128, 0));
-					farkText.setFont(new Font("Arial", Font.BOLD, 24));
-					farkText.setVisible(true);
-					farkText.setEditable(false);
-					SouthPanel.setVisible(true);
-					SouthPanel.add(farkText);
-					try{
-						String soundName = "/victory.wav";    
-						AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
-						Clip clip = AudioSystem.getClip();
-						clip.open(audioInputStream);
-						clip.start();
-					}catch(Exception ex){
-						ex.printStackTrace();
-					}
-					
-					endTurn.setEnabled(false);
-					btnRoll.setEnabled(false);
-				}
-				else{
-					bankScore = 0;
-					standard = new Standard();
-					lblDice.setBorder(null);
-					label.setBorder(null);
-					label_1.setBorder(null);
-					label_2.setBorder(null);
-					label_3.setBorder(null);
-					label_4.setBorder(null);
-					restart();
-					standard.clear();
-	
-					table.setValueAt(String.valueOf(playerList.get(turn).getTotal()), turn, 1);
-					
-					
-					turn++;
-					if(turn >= playerList.size()){
-						currentPlayer.setText("Current Player: " + playerList.get(0).getName());
-						lblScore.setText("Score: " + playerList.get(0).getTotal());
-					}
-					else{
-						currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
-						lblScore.setText("Score: " + playerList.get(turn).getTotal());
-					}
-					
-					removeBlackout(lblDice);
-					removeBlackout(label);
-					removeBlackout(label_1);
-					removeBlackout(label_2);
-					removeBlackout(label_3);
-					removeBlackout(label_4);
-				}
-			}
-		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		if(diceObj.farkle()){
-			try{
-				String soundName = "/sadTrombone.wav";    
-				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(this.getClass().getResource(soundName).getPath()));
-				Clip clip = AudioSystem.getClip();
-				clip.open(audioInputStream);
-				clip.start();
-			}catch(Exception ex){
-				ex.printStackTrace();
-			}
-			
-			farkText = new JTextPane();
-			farkText.setText("YOU FARKLED!!!");
-			farkText.setBackground(new Color(0, 128, 0));
-			farkText.setFont(new Font("Arial", Font.BOLD, 24));
-			farkText.setEditable(false);
-			SouthPanel.add(farkText);
-			
-			
-			btnRoll.setEnabled(false);
-			
-			standard.clear();
-			
-		}
-	
 	}
 
 }
