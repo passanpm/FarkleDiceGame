@@ -1,4 +1,4 @@
-package edu.plu.cs.farkle.client;
+package edu.plu.cs.farkle.unittests;
 
 
 import javax.ws.rs.client.Client;
