@@ -785,12 +785,12 @@ public void restart(){
 						
 						table.setValueAt(String.valueOf(playerList.get(turn).getTotal()), turn, 1);
 						
-						/*try {
+						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
-						}*/
+						}
 						
 						gameChoice.clear();
 						turn = 0;
