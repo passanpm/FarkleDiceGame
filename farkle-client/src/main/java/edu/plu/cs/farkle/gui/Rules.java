@@ -30,11 +30,13 @@ public class Rules {
 		
 		JTextArea ruleList = new JTextArea();
 		if(selection == 0){
-			ruleList.setText("Standard Rules: Play the game and win");
+			ruleList.setText("Standard Rules: \nSelect Dice.\n1's = 100, 5's = 50\nThree 1's = 1000\nThree of a Kind 2-6 = Dice Value * 100 (ie: 2 = 200, 5 = 500)");
 			c = (new Color(0, 128, 0));
 		}
 		else if(selection == 1){
-			ruleList.setText("Alternate Rules: Play the game and lose");
+			ruleList.setText("Alternate Rules: \nSelect Dice.\n1's = 100, 5's = 50\nThree 1's = 1000\nThree 2-6 = Dice Value * 100 (ie: 2 = 200, 5 = 500)"+
+							"\nFull House = Three of a Kind + Pair (ie: 22255) Scored as Three of a Kind + 250\nThree Pair = 1500 (ie: 223355)\nStraight = 2500 (ie: 123456)"+
+							"\nFour of a Kind = 2000\nFive of a Kind = 4000\nSix of a Kind = 6000");
 			c = new Color(0, 255, 255);
 		}
 		rulePanel.setBackground(c);

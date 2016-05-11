@@ -7,39 +7,21 @@ public class Standard extends Gameplay{
 		change = false;
 		
 		int bank = 0;
-		int[] nums = new int[6];
+		countDice();
 		
-		for(int i = 0; i < nums.length; i++)
-			nums[i] = 0;
+		int amt;
+		//Add 100 for each 1
+		if(nums[0]>0){
+			amt = nums[0];
+			bank += 100*amt;
+			System.out.println(amt+" 1's - Added "+100*amt);
+		}
 		
-		for(int i = 0; i < single.size(); i++){
-			System.out.println("single at " + i +": " + single.get(i));
-			switch(single.get(i)){
-				case 1:
-					nums[0] += 1;
-					break;
-				case 2:
-					nums[1] += 1;
-					break;
-				case 3:
-					nums[2] += 1;
-					break;
-				case 4:
-					nums[3] += 1;
-					break;
-				case 5: 
-					nums[4] += 1;
-					break;
-				case 6: 
-					nums[5] += 1;
-					break;
-			}
-			
-			if(single.get(i) == 1)
-				bank += 100;			
-			else if (single.get(i) == 5)
-				bank += 50;
-			
+		//Add 50 for each 5
+		if(nums[4]>0){
+			amt = nums[4];
+			bank += 50*amt;
+			System.out.println(amt+" 5's - Added "+50*amt);
 		}
 		
 		if(nums[0] == 3){
@@ -74,10 +56,6 @@ public class Standard extends Gameplay{
 	public int aiBankScore(ArrayList<Integer> aiRoll){
 		single = aiRoll;
 		return bankScore();
-	}
-	public void clear(){
-		single.clear();
-		System.out.println(single.toString());
 	}
 
 }
