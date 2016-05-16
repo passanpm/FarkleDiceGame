@@ -13,7 +13,7 @@ public class Standard extends Gameplay{
 		//Add 100 for each 1
 		if(nums[0]>0){
 			amt = nums[0];
-			bank += 100*amt;
+			bank += 10000*amt;
 			System.out.println(amt+" 1's - Added "+100*amt);
 		}
 		

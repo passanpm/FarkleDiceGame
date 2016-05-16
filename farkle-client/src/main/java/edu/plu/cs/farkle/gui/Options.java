@@ -85,10 +85,12 @@ public class Options{
 		System.out.println(db.user.getPlayers().size());
 		for(int i = 0; i < db.user.getPlayers().size(); i++){
 			data[i][0] = db.user.getPlayers().get(i).getName();
-			System.out.println("Username: " + db.user.getPlayers().get(i).getName());
 			
 			data[i][1] = String.valueOf(db.user.getPlayers().get(i).getWins());
-			System.out.println("Wins: " + db.user.getPlayers().get(i).getWins());
+			if(data[i][0].equals(play.getName())){
+				play.setWins(Integer.parseInt(data[i][1]));
+			}
+			
 		}
 		
 		String columnNames[] = {"Username", "Wins"};
