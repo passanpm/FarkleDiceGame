@@ -27,7 +27,7 @@ public class PlayerScreen {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel initialize(JFrame frame, int players, String type, String name, Database db) {	
+	public JPanel initialize(JFrame frame, int players, String type, Player play, Database db) {	
 		JPanel mode = new JPanel();
 		mode.setBackground(new Color(255, 250, 205));
 		frame.getContentPane().add(mode);
@@ -55,10 +55,8 @@ public class PlayerScreen {
 		textBoxPanel.setBackground(new Color(255, 250, 205));
 		textBoxPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		Player user = new Player();
-		user.setName(name);
-				
-		playerList.add(user);
+		
+		playerList.add(play);
 				
 		for(int i = 1; i < players+1; i ++){
 			names[i] = new JTextField();
@@ -93,14 +91,14 @@ public class PlayerScreen {
 				if(selection.equals("Standard")){
 					mode.setVisible(false);
 					Rules rules = new Rules();
-					JPanel rulePanel = rules.rules(0, frame, players, type, name, db);
+					JPanel rulePanel = rules.rules(0, frame, players, type, play, db);
 					frame.remove(mode);
 					frame.getContentPane().add(rulePanel);
 				}
 				else if(selection.equals("Alternate")){
 					mode.setVisible(false);
 					Rules rules = new Rules();
-					JPanel rulePanel = rules.rules(1, frame, players, type, name, db);
+					JPanel rulePanel = rules.rules(1, frame, players, type, play, db);
 					
 					frame.remove(mode);
 					frame.getContentPane().add(rulePanel);

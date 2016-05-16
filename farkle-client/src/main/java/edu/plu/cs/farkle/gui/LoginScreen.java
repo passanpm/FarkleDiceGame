@@ -16,6 +16,7 @@ import javax.swing.JRootPane;
 import javax.swing.JTextField;
 
 import edu.plu.cs.farkle.client.Database;
+import edu.plu.cs.farkle.client.Player;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -137,14 +138,14 @@ public class LoginScreen {
 								Database db = new Database(test, password);
 								System.out.println(db.get());
 								if (db.get() && (!test.equals("") && !password.equals(""))){
-									db.post();
 									System.out.println(test + " : " + password);
 									System.out.println("LOgin debug");
 									welcomePanel.setVisible(false);
 									frame.remove(welcomePanel);
+									Player play = new Player(test, password);
 									
 									Options options = new Options();
-									JPanel mode = options.options(frame, test, db);
+									JPanel mode = options.options(frame, play, db);
 									frame.getContentPane().add(mode);
 								}
 								else{

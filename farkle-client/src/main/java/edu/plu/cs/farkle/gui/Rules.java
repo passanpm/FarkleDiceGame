@@ -5,6 +5,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import edu.plu.cs.farkle.client.Database;
+import edu.plu.cs.farkle.client.Player;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,7 +21,7 @@ public class Rules {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel rules(int selection, JFrame frame, int players, String type, String name, Database db) {
+	public JPanel rules(int selection, JFrame frame, int players, String type, Player play, Database db) {
 
 		JPanel rule = new JPanel();
 		rule.setLayout(new BorderLayout(0, 0));
@@ -58,7 +59,7 @@ public class Rules {
 				rule.setVisible(false);
 				
 				PlayerScreen player = new PlayerScreen();
-				JPanel backPanel = player.initialize(frame, players, type, name, db);
+				JPanel backPanel = player.initialize(frame, players, type, play, db);
 				
 				frame.remove(rule);
 				frame.getContentPane().add(backPanel);

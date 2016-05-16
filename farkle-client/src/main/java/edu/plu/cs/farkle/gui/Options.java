@@ -17,6 +17,7 @@ import java.awt.BorderLayout;
 import javax.swing.table.JTableHeader;
 
 import edu.plu.cs.farkle.client.Database;
+import edu.plu.cs.farkle.client.Player;
 
 import java.awt.FlowLayout;
 
@@ -28,7 +29,7 @@ public class Options{
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel options(JFrame frame, String name, Database db){		
+	public JPanel options(JFrame frame, Player play, Database db){		
 		JPanel mode = new JPanel();
 		mode.setBackground(new Color(255, 250, 205));
 		frame.getContentPane().add(mode);
@@ -40,7 +41,7 @@ public class Options{
 		
 		
 		
-		JLabel lblWelcomeBack = new JLabel("Welcome Back, "+ name + "!");
+		JLabel lblWelcomeBack = new JLabel("Welcome Back, "+ play.getName() + "!");
 		welcomeBack.add(lblWelcomeBack);
 		
 		lblWelcomeBack.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -124,7 +125,7 @@ public class Options{
 				
 				
 				PlayerScreen player = new PlayerScreen();
-				JPanel start = player.initialize(frame, numPlayers, "AI", name, db);
+				JPanel start = player.initialize(frame, numPlayers, "AI", play, db);
 				
 				frame.getContentPane().add(start);
 				
@@ -138,7 +139,7 @@ public class Options{
 				
 				
 				PlayerScreen player = new PlayerScreen();
-				JPanel start = player.initialize(frame, numPlayers, "Local", name, db);
+				JPanel start = player.initialize(frame, numPlayers, "Local", play, db);
 				
 				frame.getContentPane().add(start);
 				

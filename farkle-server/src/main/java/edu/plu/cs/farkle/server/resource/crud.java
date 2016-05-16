@@ -175,6 +175,7 @@ public class crud {
         		
 
         		database.setWins(player.getName(), Integer.toString(node.get("wins").getIntValue()));
+        		System.out.println("Debug: " + player.getName()+ " "+ Integer.toString(node.get("wins").getIntValue()));
         		
         		player.setWins(node.get("wins").getIntValue());
         		System.out.println("CHANGED WINS to " + node.get("wins").getIntValue());

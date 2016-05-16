@@ -139,7 +139,9 @@ public class Database {
 						username = user.getName();
 						password = user.getPass();
 						//debug
-						System.out.println(node.toString());	
+						System.out.println(node.toString());
+						
+						System.out.println(" DEBUG WINS " + user.getWins());
 						break;	
 				    
 					
@@ -178,6 +180,7 @@ public class Database {
 						//debug
 						System.out.println("GET: " + username);
 						System.out.println(node.toString());
+						System.out.println(" DEBUG WINS " + user.getWins());
 						return true;
 					} catch (Exception e) {
 						System.out.println("Player does not existt");
