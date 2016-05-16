@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="auth" key="selection"/>
+		<item value="error" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="error"/>
 			<item value="auth"/>
 			<item value="list"/>
 			<item value="kill"/>
@@ -15,7 +16,6 @@
 			<item value="players"/>
 			<item value="number of"/>
 			<item value="get"/>
-			<item value="pool"/>
 		</list>
 		<list key="replacehistory">
 		</list>

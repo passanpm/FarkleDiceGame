@@ -7433,3 +7433,159 @@ Caused by: org.eclipse.core.runtime.CoreException: One or more constraints have 
 2016-05-11 14:40:41,638 [Worker-35] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2016-05-11 14:41:11,417 [Worker-35] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
 2016-05-11 14:41:11,417 [Worker-35] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 14:42:48,823 [Worker-38] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:42:48,824 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 14:42:48,825 [Worker-38] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:42:48,825 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 14:42:48,830 [Worker-38] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:42:48,830 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 14:42:48,831 [Worker-38] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:42:48,831 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 14:43:17,477 [Worker-42] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 14:43:17,477 [Worker-42] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 14:50:53,397 [Worker-47] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:50:53,398 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 14:50:53,400 [Worker-47] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:50:53,400 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 14:51:07,341 [Worker-48] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 14:51:07,341 [Worker-48] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 14:53:08,419 [Worker-52] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:53:08,420 [Worker-52] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 14:53:08,421 [Worker-52] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:53:08,422 [Worker-52] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 14:54:02,150 [Worker-43] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:54:02,151 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 14:54:02,152 [Worker-43] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:54:02,153 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 14:54:12,094 [Worker-50] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 14:54:12,094 [Worker-50] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 14:55:25,321 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:55:25,322 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 14:55:25,323 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:55:25,323 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 14:55:33,123 [Worker-54] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 14:55:33,123 [Worker-54] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 14:57:19,374 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:57:19,375 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 14:57:19,376 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:57:19,376 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 14:57:35,648 [Worker-57] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 14:57:35,648 [Worker-57] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 14:59:25,795 [Worker-52] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:59:25,796 [Worker-52] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 14:59:25,798 [Worker-52] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:59:25,798 [Worker-52] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 14:59:50,766 [Worker-57] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:59:50,767 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 14:59:50,767 [Worker-57] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 14:59:50,768 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 15:00:59,607 [Worker-43] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:00:59,608 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 15:00:59,609 [Worker-43] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:00:59,611 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 15:03:34,521 [Worker-55] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:03:34,522 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 15:03:34,524 [Worker-55] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:03:34,525 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 15:06:27,971 [Worker-60] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:06:27,973 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 15:06:27,975 [Worker-60] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:06:27,977 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 15:07:58,700 [Worker-64] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 15:07:58,700 [Worker-64] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 15:13:24,730 [Worker-67] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:13:24,731 [Worker-67] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 15:13:24,732 [Worker-67] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:13:24,732 [Worker-67] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 15:18:19,350 [Worker-63] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 15:18:19,351 [Worker-63] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 15:20:49,613 [Worker-73] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:20:49,614 [Worker-73] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 15:20:49,615 [Worker-73] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:20:49,616 [Worker-73] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 15:22:26,519 [Worker-75] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:22:26,520 [Worker-75] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 15:22:26,521 [Worker-75] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:22:26,522 [Worker-75] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 15:22:51,475 [Worker-74] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:22:51,476 [Worker-74] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 15:22:51,477 [Worker-74] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:22:51,477 [Worker-74] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 15:23:11,685 [Worker-76] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 15:23:11,685 [Worker-76] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 15:23:52,890 [Worker-76] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:23:52,891 [Worker-76] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 15:23:52,892 [Worker-76] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:23:52,893 [Worker-76] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 15:24:03,701 [Worker-78] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 15:24:03,701 [Worker-78] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 15:24:04,200 [Worker-72] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 15:24:04,200 [Worker-72] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 15:24:05,199 [Worker-79] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 15:24:05,199 [Worker-79] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 15:24:22,964 [Worker-63] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 15:24:22,964 [Worker-63] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-11 15:25:28,979 [Worker-78] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:25:28,980 [Worker-78] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 15:25:28,981 [Worker-78] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:25:28,981 [Worker-78] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 15:25:45,829 [Worker-78] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:25:45,830 [Worker-78] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-11 15:25:45,831 [Worker-78] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 15:25:45,832 [Worker-78] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 23:29:34,221 [Worker-84] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 23:29:34,222 [Worker-84] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-05-11 23:29:34,223 [Worker-84] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-11 23:29:34,224 [Worker-84] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-11 23:29:43,756 [Worker-64] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-11 23:29:43,756 [Worker-64] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-15 18:43:49,047 [Worker-63] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:43:49,069 [Worker-63] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-15 18:43:49,077 [Worker-63] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:43:49,078 [Worker-63] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-05-15 18:43:49,889 [Worker-63] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:43:49,890 [Worker-63] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-05-15 18:43:49,893 [Worker-63] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:43:49,894 [Worker-63] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-05-15 18:44:01,886 [Worker-60] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-15 18:44:01,887 [Worker-60] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-15 18:44:15,631 [Worker-59] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-15 18:44:15,631 [Worker-59] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-15 18:45:05,526 [Worker-65] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-15 18:45:05,528 [Worker-65] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-15 18:45:49,306 [Worker-62] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:45:49,313 [Worker-62] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-05-15 18:45:49,315 [Worker-62] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:45:49,316 [Worker-62] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-15 18:46:00,392 [Worker-63] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-15 18:46:00,392 [Worker-63] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-15 18:49:36,662 [Worker-65] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:49:36,663 [Worker-65] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-15 18:49:36,665 [Worker-65] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:49:36,665 [Worker-65] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-15 18:49:46,958 [Worker-65] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-15 18:49:46,959 [Worker-65] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-15 18:50:30,958 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:50:30,959 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-15 18:50:30,961 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:50:30,961 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-15 18:50:36,698 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:50:36,699 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-15 18:50:36,701 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:50:36,703 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-15 18:50:42,865 [Worker-60] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-15 18:50:42,865 [Worker-60] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-15 18:54:25,806 [Worker-72] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:54:25,807 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-15 18:54:25,809 [Worker-72] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:54:25,809 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-15 18:54:36,925 [Worker-71] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-15 18:54:36,925 [Worker-71] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-15 18:57:46,497 [Worker-70] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:57:46,498 [Worker-70] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 14 resources
+2016-05-15 18:57:46,500 [Worker-70] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-15 18:57:46,501 [Worker-70] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-05-15 18:57:58,425 [Worker-77] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-15 18:57:58,425 [Worker-77] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run
+2016-05-15 18:58:04,549 [Worker-78] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/pecache/390/farkle-red/farkle-server
+2016-05-15 18:58:04,550 [Worker-78] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B jetty:run

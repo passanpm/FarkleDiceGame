@@ -35,7 +35,7 @@ public class Database {
 	public static Player user = new Player();
 	private String username = "null";
 	private String password = "null";
-	static Database d = new Database("null", "null");
+	static Database d = new Database("jon", "pass");
 
 	public Database(String username, String password) {
 			this.username = username;
@@ -123,6 +123,7 @@ public class Database {
 						((ObjectNode)node).put("pass", user.getPass());
 						((ObjectNode)node).put("wins", Integer.toString(user.getWins()));
 						((ObjectNode)node).put("total", Integer.toString(user.getTotal()));
+						((ObjectNode)node).put("players", user.getPlayers().toString());
 		
 						
 						client = ClientBuilder.newClient();
@@ -147,27 +148,33 @@ public class Database {
 				case "get":
 					
 					try {
+						System.out.println("------------------------1");
 						//call get
-						if (resteasyWebTarget.request().get().equals("null")){
+						if (resteasyWebTarget.request().get().equals("jon")){
 							System.out.println("GET: Player does not exist");
 							return false;
 						}
+						System.out.println("------------------------2");
 						
-						
+						System.out.println(node.toString());
 						//update player class
 						user.setName(node.get("name").asText());
+						System.out.println("updating name");
 						user.setPass(node.get("pass").asText());
+						System.out.println("updating pass");
 						user.setTotal(Integer.parseInt(node.get("total").asText()));
+						System.out.println("updating total");
 						user.setWins(Integer.parseInt(node.get("wins").asText()));
-						user.setPlayers(node.get("players").asText());
-						
-						
+						System.out.println("updating wins");
+						//user.setPlayers(node.get("players").asText());
+						System.out.println("updating leaderboard");
+						System.out.println("------------------------3");
 						//debug
-						System.out.println("GET: " + node.get("name"));
+						System.out.println("GET: " + username);
 						System.out.println(node.toString());
 						return true;
 					} catch (Exception e) {
-						System.out.println("Player does not exist");
+						System.out.println("Player does not existt");
 						return false;
 					}
 					
