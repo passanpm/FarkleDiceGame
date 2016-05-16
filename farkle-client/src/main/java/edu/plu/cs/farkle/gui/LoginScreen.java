@@ -137,6 +137,7 @@ public class LoginScreen {
 								Database db = new Database(test, password);
 								System.out.println(db.get());
 								if (db.get() && (!test.equals("") && !password.equals(""))){
+									db.post();
 									System.out.println(test + " : " + password);
 									System.out.println("LOgin debug");
 									welcomePanel.setVisible(false);

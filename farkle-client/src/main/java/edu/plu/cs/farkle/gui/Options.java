@@ -124,7 +124,7 @@ public class Options{
 				
 				
 				PlayerScreen player = new PlayerScreen();
-				JPanel start = player.initialize(frame, numPlayers, "AI", name);
+				JPanel start = player.initialize(frame, numPlayers, "AI", name, db);
 				
 				frame.getContentPane().add(start);
 				
@@ -138,7 +138,7 @@ public class Options{
 				
 				
 				PlayerScreen player = new PlayerScreen();
-				JPanel start = player.initialize(frame, numPlayers, "Local", name);
+				JPanel start = player.initialize(frame, numPlayers, "Local", name, db);
 				
 				frame.getContentPane().add(start);
 				

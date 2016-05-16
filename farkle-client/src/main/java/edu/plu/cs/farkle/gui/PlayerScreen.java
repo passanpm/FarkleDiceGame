@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
 import edu.plu.cs.farkle.client.AI;
+import edu.plu.cs.farkle.client.Database;
 import edu.plu.cs.farkle.client.Player;
 
 import java.awt.GridLayout;
@@ -26,7 +27,7 @@ public class PlayerScreen {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel initialize(JFrame frame, int players, String type, String name) {	
+	public JPanel initialize(JFrame frame, int players, String type, String name, Database db) {	
 		JPanel mode = new JPanel();
 		mode.setBackground(new Color(255, 250, 205));
 		frame.getContentPane().add(mode);
@@ -92,14 +93,14 @@ public class PlayerScreen {
 				if(selection.equals("Standard")){
 					mode.setVisible(false);
 					Rules rules = new Rules();
-					JPanel rulePanel = rules.rules(0, frame, players, type, name);
+					JPanel rulePanel = rules.rules(0, frame, players, type, name, db);
 					frame.remove(mode);
 					frame.getContentPane().add(rulePanel);
 				}
 				else if(selection.equals("Alternate")){
 					mode.setVisible(false);
 					Rules rules = new Rules();
-					JPanel rulePanel = rules.rules(1, frame, players, type, name);
+					JPanel rulePanel = rules.rules(1, frame, players, type, name, db);
 					
 					frame.remove(mode);
 					frame.getContentPane().add(rulePanel);
@@ -119,7 +120,7 @@ public class PlayerScreen {
 				if(type.equals("Local")){
 					if(selection.equals("Standard")){
 						StartGame start = new StartGame();
-						JPanel strt = start.start(frame, players, playerList, 0);
+						JPanel strt = start.start(frame, players, playerList, 0, db);
 						
 						
 						frame.remove(mode);
@@ -127,7 +128,7 @@ public class PlayerScreen {
 					}
 					else if(selection.equals("Alternate")){
 						StartGame start = new StartGame();
-						JPanel strt = start.start(frame, players, playerList, 1);
+						JPanel strt = start.start(frame, players, playerList, 1, db);
 						frame.remove(mode);
 						frame.getContentPane().add(strt);
 					}

@@ -325,7 +325,7 @@ public void restart(){
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList, int choice) {	
+	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList, int choice, Database db) {	
 		game = new JPanel();
 		game.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		frame.getContentPane().add(game);
@@ -364,7 +364,7 @@ public void restart(){
 			newGame.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e){
 					resetEverything(playerList);
-					playerTurn(playerList, choice);
+					playerTurn(playerList, choice, db);
 					game.revalidate();
 					game.repaint();
 				}
@@ -511,7 +511,7 @@ public void restart(){
 			roll = diceObj.getRoll();
 			
 			
-			playerTurn(playerList, choice);
+			playerTurn(playerList, choice, db);
 			
 			return game;
 		
@@ -519,7 +519,7 @@ public void restart(){
 	}
 	
 	
-	private void playerTurn(ArrayList<Player> playerList, int choice){
+	private void playerTurn(ArrayList<Player> playerList, int choice, Database db){
 	
 		if(choice == 0){
 			c = new Color(0, 128,0);
@@ -530,12 +530,6 @@ public void restart(){
 		
 		currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
 		System.out.println(playerList.get(turn).getName());
-		
-		/*roll = new ArrayList<Integer>();
-		for(int i = 0; i < 6; i ++){
-			roll.add(1);
-		}*/
-		
 		
 		
 		
@@ -732,9 +726,12 @@ public void restart(){
 					btnRoll.setEnabled(false);
 					
 					
-					playerList.get(turn).setWins(playerList.get(turn).getWins()+1);
-					System.out.println("Wins: " + playerList.get(turn).getWins());
 					
+					if(turn == 0){
+						playerList.get(0).setWins(playerList.get(0).getWins()+1);
+						db.post();
+						System.out.println("WIns: " + playerList.get(0).getWins());
+					}
 				}
 				else{
 					lastTemp = 0;
