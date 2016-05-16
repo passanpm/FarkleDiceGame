@@ -698,7 +698,7 @@ public void restart(){
 				
 				
 				if(zach > 0){
-					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+zach+tempScore+lastTemp);
+					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+zach+lastTemp);
 				}
 				else if (tempScore > 0){
 					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+tempScore+lastTemp);
