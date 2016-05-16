@@ -675,10 +675,9 @@ public void restart(){
 					turn = 0;
 					currentPlayer.setText("Current Player: " + playerList.get(turn).getName());
 				}
-				System.out.println("Player: " + playerList.get(turn).getName() +"\nTurn: " + turn   + "\nScore: " + playerList.get(turn).getTotal());
 				
 				if(zach > 0){
-					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+zach+tempScore+lastTemp);
+					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+zach+lastTemp);
 				}
 				else if (tempScore > 0){
 					playerList.get(turn).setTotal(playerList.get(turn).getTotal()+tempScore+lastTemp);
