@@ -102,9 +102,9 @@ public class Options{
 		    @Override
 		    public int compare(String[] int1, String[] int2)
 		    {
-		        Integer numOfKeys1 = Integer.parseInt(int2[1]);
-		        Integer numOfKeys2 = Integer.parseInt(int1[1]);
-		        return numOfKeys1.compareTo(numOfKeys2);
+		        Integer column1 = Integer.parseInt(int2[1]);
+		        Integer column2 = Integer.parseInt(int1[1]);
+		        return column1.compareTo(column2);
 		    }
 		});
 		String columnNames[] = {"Username", "Wins"};
