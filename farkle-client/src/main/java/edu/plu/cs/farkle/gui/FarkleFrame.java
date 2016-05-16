@@ -70,7 +70,7 @@ public class FarkleFrame {
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		frame.addComponentListener(new ResizeListener());
-		
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		screenSize = frame.getBounds().getSize();
 		width = screenSize.getWidth();
 		height = screenSize.getHeight();
