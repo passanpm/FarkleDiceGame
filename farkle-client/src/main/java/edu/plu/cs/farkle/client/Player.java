@@ -66,12 +66,10 @@ public class Player {
 	}
 
 	public void setPlayers(String p) {
-		System.out.println("---------------------------> 1");
 		final StringTokenizer tokenizer = new StringTokenizer(p, ":");
 		int count = tokenizer.countTokens()/2;
 		ArrayList<Player> l = new ArrayList<Player>();
 		
-		System.out.println("---------------------------> 2");
 		
 		
 		for (int i = 0; i < count; i++){
@@ -91,9 +89,7 @@ public class Player {
 		}
 		
 		
-		System.out.println("---------------------------> 3");
 		this.players = l;
-		System.out.println("---------------------------> 4");
 	}
 	
 }

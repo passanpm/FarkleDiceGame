@@ -730,7 +730,7 @@ public void restart(){
 					if(turn == 0){
 						playerList.get(0).setWins(playerList.get(0).getWins()+1);
 						//Database db = new Database(playerList.get(0).getName(), playerList.get(0).getPass());
-						db.post();
+						db.post(playerList.get(0));
 						System.out.println("WIns: " + playerList.get(0).getWins());
 						System.out.println("name: " + playerList.get(0).getName() + " Pass: " + playerList.get(0).getPass());
 					}
