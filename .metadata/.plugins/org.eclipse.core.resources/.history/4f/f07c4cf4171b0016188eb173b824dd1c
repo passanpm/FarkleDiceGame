@@ -177,11 +177,11 @@ public class crud {
         		database.setWins(player.getName(), Integer.toString(node.get("wins").getIntValue()));
         		
         		player.setWins(node.get("wins").getIntValue());
-        		System.out.println("CHANGED WINS to " + node.get("wins").getIntValue());
+        		System.out.println("CHANGED WINS");
         		
         		database.setTotal(player.getName(), Integer.toString(node.get("total").getIntValue()));
         		player.setTotal(node.get("total").getIntValue());
-        		System.out.println("CHANGED TOTAL to " + node.get("total").getIntValue());
+        		System.out.println("CHANGED TOTAL");
         		
         		
         }catch (NullPointerException e){
