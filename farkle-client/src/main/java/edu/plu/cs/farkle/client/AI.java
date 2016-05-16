@@ -6,7 +6,7 @@ public class AI extends Player{
 	//the difficulty of the AI as an int
 	private int difficulty;
 	//a Dice object
-	private Dice die;
+
 	//the name of the AI as a String
 	private String name;
 	//all the values of the dice rolled
@@ -23,7 +23,6 @@ public class AI extends Player{
 	public AI(int d, String n){
 		difficulty = d;
 		name = n;
-		die = new Dice();
 		diceScores = new ArrayList<Integer>();
 		indexesOfAllScoringDice = new ArrayList<Integer>();
 	}
@@ -49,11 +48,7 @@ public class AI extends Player{
 	 * Rolls the dice and stores the result in diceRoll
 	 * @return
 	 */
-	public ArrayList<Integer> roll(){
-		die.rollInit(6, 1, 6);
-		diceRoll = die.getRoll();
-		return diceRoll;
-	}
+
 	/**
 	 * 
 	 * @return

@@ -87,7 +87,7 @@ public class Database {
 						resteasyWebTarget.request().put(u);
 						
 						//debug
-						System.out.println("PUT: " + username);
+						//System.out.println("PUT: " + username);
 						return true;
 					} catch (Exception e) {
 						return false;
@@ -99,7 +99,7 @@ public class Database {
 						resteasyWebTarget.request().delete();
 						
 						//debug
-						System.out.println("DELETE: " + username);
+						//System.out.println("DELETE: " + username);
 						user = new Player();
 						return true;
 					} catch (Exception e) {
@@ -123,7 +123,7 @@ public class Database {
 						username = user.getName();
 						password = user.getPass();
 						
-						System.out.println("POST: " + user.getName());
+						//System.out.println("POST: " + user.getName());
 
 						//build json with new data from player
 						((ObjectNode)node).put("name", user.getName());
@@ -143,9 +143,9 @@ public class Database {
 						username = user.getName();
 						password = user.getPass();
 						//debug
-						System.out.println(node.toString());
+						//System.out.println(node.toString());
 						
-						System.out.println(" DEBUG WINS " + user.getWins());
+						//System.out.println(" DEBUG WINS " + user.getWins());
 						break;	
 				    
 					
@@ -160,11 +160,11 @@ public class Database {
 	
 						//call get
 						if (resteasyWebTarget.request().get().equals("jon")){
-							System.out.println("GET: Player does not exist");
+							//System.out.println("GET: Player does not exist");
 							return false;
 						}
 						
-						System.out.println(node.toString());
+						//System.out.println(node.toString());
 						//update player class
 						user.setName(node.get("name").asText());
 						//System.out.println("updating name");
@@ -176,14 +176,14 @@ public class Database {
 						//System.out.println("updating wins");
 						
 						
-						System.out.println("-------> " + node.get("players").getTextValue());
+						//System.out.println("-------> " + node.get("players").getTextValue());
 						user.setPlayers(node.get("players").getTextValue());
 						
 						
-						System.out.println("updating leaderboard");
+						//System.out.println("updating leaderboard");
 						//debug
-						System.out.println("GET: " + username);
-						System.out.println(node.toString());
+						//System.out.println("GET: " + username);
+						//System.out.println(node.toString());
 						return true;
 					} catch (Exception e) {
 						System.out.println("Player does not existt");

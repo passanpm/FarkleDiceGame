@@ -11,7 +11,6 @@ public class testAI {
 		
 		System.out.println("Hello, my name is " + a.getName() + " and my difficulty is " + a.getDifficulty());
 		
-		System.out.println("Roll: " + a.roll().toString());
 		
 		System.out.println("Indexes: " + a.getIndexes().toString());
 		

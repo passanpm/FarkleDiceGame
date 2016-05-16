@@ -31,6 +31,7 @@ import javax.swing.border.Border;
 import javax.swing.table.JTableHeader;
 
 import edu.plu.cs.farkle.client.AI;
+import edu.plu.cs.farkle.client.Database;
 import edu.plu.cs.farkle.client.Dice;
 import edu.plu.cs.farkle.client.Player;
 import edu.plu.cs.farkle.gamerules.Alternate;
@@ -310,7 +311,7 @@ public void restart(){
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList, int choice) {		
+	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList, int choice, Database db) {		
 		game = new JPanel();
 		game.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		frame.getContentPane().add(game);
@@ -483,7 +484,7 @@ public void restart(){
 			roll = diceObj.getRoll();
 			
 			
-			playerTurn(playerList, choice);
+			playerTurn(playerList, choice, db);
 			
 			return game;
 		
@@ -491,7 +492,7 @@ public void restart(){
 	}
 	
 	
-	private void playerTurn(ArrayList<Player> playerList, int choice){
+	private void playerTurn(ArrayList<Player> playerList, int choice, Database db){
 	
 		
 		
@@ -717,6 +718,14 @@ public void restart(){
 					
 					playerList.get(turn).setWins(playerList.get(turn).getWins()+1);
 					System.out.println("Wins: " + playerList.get(turn).getWins());
+					
+					if(turn == 0){
+						playerList.get(0).setWins(playerList.get(0).getWins()+1);
+						//Database db = new Database(playerList.get(0).getName(), playerList.get(0).getPass());
+						db.post(playerList.get(0));
+						System.out.println("WIns: " + playerList.get(0).getWins());
+						System.out.println("name: " + playerList.get(0).getName() + " Pass: " + playerList.get(0).getPass());
+					}
 				}
 				//If there is no winner...
 				else{

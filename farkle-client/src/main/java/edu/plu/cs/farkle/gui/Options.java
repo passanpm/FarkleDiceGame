@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -84,7 +85,7 @@ public class Options{
 		String data[][] = new String[db.user.getPlayers().size()][2];
 		System.out.println(db.user.getPlayers().size());
 		for(int i = 0; i < db.user.getPlayers().size(); i++){
-			data[i][0] = db.user.getPlayers().get(i).getName();
+			data[i][0] = db.user.getPlayers().get(i).getName();	
 			
 			data[i][1] = String.valueOf(db.user.getPlayers().get(i).getWins());
 			if(data[i][0].equals(play.getName())){
@@ -96,7 +97,7 @@ public class Options{
 		String columnNames[] = {"Username", "Wins"};
 		
 		
-		
+		Arrays.sort(data);
 		
 		
 		//Leader board table

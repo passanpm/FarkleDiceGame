@@ -136,7 +136,7 @@ public class PlayerScreen {
 					
 					if(selection.equals("Standard")){
 						StartStandardAI start = new StartStandardAI();
-						JPanel strt = start.start(frame, players, playerList, 0);
+						JPanel strt = start.start(frame, players, playerList, 0, db);
 						
 						
 						frame.remove(mode);
@@ -144,7 +144,7 @@ public class PlayerScreen {
 					}
 					else if(selection.equals("Alternate")){
 						StartStandardAI start = new StartStandardAI();
-						JPanel strt = start.start(frame, players, playerList, 1);
+						JPanel strt = start.start(frame, players, playerList, 1, db);
 						frame.remove(mode);
 						frame.getContentPane().add(strt);
 					}
