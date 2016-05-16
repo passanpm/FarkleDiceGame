@@ -735,6 +735,9 @@ public void restart(){
 					playerList.get(turn).setWins(playerList.get(turn).getWins()+1);
 					System.out.println("Wins: " + playerList.get(turn).getWins());
 					
+					//playerList.get(turn).getName() 
+					
+					//JHKGHJLVlhjgdsf;iagdfkjlahlgufkhdsflkugh;audrhsg;uskdfbkjfbgjkdfsbhgu;srhgi;hdsi;ozhvdfklnlkjvnbdfjk.b;dkfjv;djkszbhv;ilszdhgli;hsdi;zgh;izsdhg;ihds;iofgnldsjkfbkjkdfkxbv
 				}
 				else{
 					lastTemp = 0;

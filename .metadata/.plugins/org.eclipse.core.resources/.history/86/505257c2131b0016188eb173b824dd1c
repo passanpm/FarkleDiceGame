@@ -41,9 +41,6 @@ public class Database {
 			this.username = username;
 			this.password = password;
 	}
-	public Database(){
-		
-	}
 
 	public void put(){
 		init("put");

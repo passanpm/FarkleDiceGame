@@ -30,7 +30,6 @@ import javax.swing.JTextPane;
 import javax.swing.border.Border;
 import javax.swing.table.JTableHeader;
 
-import edu.plu.cs.farkle.client.Database;
 import edu.plu.cs.farkle.client.Dice;
 import edu.plu.cs.farkle.client.Player;
 import edu.plu.cs.farkle.gamerules.Alternate;
@@ -326,6 +325,7 @@ public void restart(){
 	 * @wbp.parser.entryPoint
 	 */
 	public JPanel start(JFrame frame, int players, ArrayList<Player> playerList, int choice) {	
+		Database d = new Database();
 		game = new JPanel();
 		game.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		frame.getContentPane().add(game);
@@ -735,6 +735,8 @@ public void restart(){
 					playerList.get(turn).setWins(playerList.get(turn).getWins()+1);
 					System.out.println("Wins: " + playerList.get(turn).getWins());
 					
+					//playerList.get(turn).getName() 
+					//JHKGHJLVlhjgdsf;iagdfkjlahlgufkhdsflkugh;audrhsg;uskdfbkjfbgjkdfsbhgu;srhgi;hdsi;ozhvdfklnlkjvnbdfjk.b;dkfjv;djkszbhv;ilszdhgli;hsdi;zgh;izsdhg;ihds;iofgnldsjkfbkjkdfkxbv
 				}
 				else{
 					lastTemp = 0;
