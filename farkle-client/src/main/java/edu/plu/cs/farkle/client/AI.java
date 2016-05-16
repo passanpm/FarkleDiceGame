@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class AI extends Player{
 	//the difficulty of the AI as an int
 	private int difficulty;
-	//a Dice object
+	
 
 	//the name of the AI as a String
 	private String name;
