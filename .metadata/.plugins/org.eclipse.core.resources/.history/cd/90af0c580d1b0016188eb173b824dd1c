@@ -75,19 +75,16 @@ public class Player {
 		
 		
 		for (int i = 0; i < count; i++){
-			String winss = tokenizer.nextToken();
-			String namee = tokenizer.nextToken();;
-			try{
-				//System.out.println("Creating dummy player");
-				Player pl = new Player();
-				pl.setWins(Integer.parseInt(winss)); 
-				//System.out.println("Setting name");
-				pl.setName(namee); 
-				//System.out.println("adding player to array");
-				l.add(pl);
-			}catch (Exception e){
-				
-			}
+			String name = tokenizer.nextToken();
+			int win = Integer.parseInt(tokenizer.nextToken());
+			//System.out.println("Creating dummy player");
+			Player pl = new Player();
+			//System.out.println("setting wins");
+			pl.setWins(win); 
+			//System.out.println("Setting name");
+			pl.setName(name); 
+			//System.out.println("adding player to array");
+			l.add(pl);
 		}
 		
 		

@@ -72,24 +72,17 @@ public class Player {
 		ArrayList<Player> l = new ArrayList<Player>();
 		
 		System.out.println("---------------------------> 2");
+		System.out.println((Integer.parseInt(tokenizer.nextToken()));
+		System.out.println(tokenizer.nextToken());
 		
-		
+		/*
 		for (int i = 0; i < count; i++){
-			String winss = tokenizer.nextToken();
-			String namee = tokenizer.nextToken();;
-			try{
-				//System.out.println("Creating dummy player");
-				Player pl = new Player();
-				pl.setWins(Integer.parseInt(winss)); 
-				//System.out.println("Setting name");
-				pl.setName(namee); 
-				//System.out.println("adding player to array");
-				l.add(pl);
-			}catch (Exception e){
-				
-			}
+			Player pl = new Player();
+			pl.setWins(Integer.parseInt(tokenizer.nextToken())); 
+			pl.setName(tokenizer.nextToken()); 
+			l.add(pl);
 		}
-		
+		*/
 		
 		System.out.println("---------------------------> 3");
 		this.players = l;
