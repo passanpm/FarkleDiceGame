@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.Comparator;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -85,6 +86,8 @@ public class Options{
 		String data[][] = new String[db.user.getPlayers().size()][2];
 		System.out.println(db.user.getPlayers().size());
 		for(int i = 0; i < db.user.getPlayers().size(); i++){
+			
+			
 			data[i][0] = db.user.getPlayers().get(i).getName();	
 			
 			data[i][1] = String.valueOf(db.user.getPlayers().get(i).getWins());
@@ -94,10 +97,20 @@ public class Options{
 			
 		}
 		
+		Arrays.sort(data, new Comparator<String[]>()
+		{
+		    @Override
+		    public int compare(String[] int1, String[] int2)
+		    {
+		        Integer numOfKeys1 = Integer.parseInt(int2[1]);
+		        Integer numOfKeys2 = Integer.parseInt(int1[1]);
+		        return numOfKeys1.compareTo(numOfKeys2);
+		    }
+		});
 		String columnNames[] = {"Username", "Wins"};
 		
 		
-		Arrays.sort(data);
+		
 		
 		
 		//Leader board table
